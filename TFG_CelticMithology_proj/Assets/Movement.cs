@@ -41,14 +41,15 @@ public class Movement : MonoBehaviour {
             temp_pos.y -= Time.deltaTime * speed;
         }
 
-        //Vector3 pos = transform.position;
         //top left
         Vector3 sprite_point_top_left = temp_pos + player_sprite.bounds.min;
+        sprite_point_top_left.x += 1;
+        sprite_point_top_left.y += 1;
         // Bottom right
         Vector3 sprite_point_bottom_right= temp_pos + player_sprite.bounds.max;
+        sprite_point_bottom_right.x -= 1;
+        sprite_point_bottom_right.y -= 1;
 
-        //temp_pos.x -= (player_sprite.rect.width/2)/ ;
-        //temp_pos.y -= (player_sprite.rect.height/2)/ player_sprite.pixelsPerUnit;
 
         if (CanIWalk(sprite_point_top_left) && CanIWalk(sprite_point_bottom_right))
         {
@@ -60,7 +61,6 @@ public class Movement : MonoBehaviour {
     private bool CanIWalk(Vector3 position)
     {
         bool ret = false;
-
         Vector3Int tile_in_position = walkability.LocalToCell(position);
         TileBase tile_in = walkability.GetTile(tile_in_position);
         if(tile_in == walkable_tile)
