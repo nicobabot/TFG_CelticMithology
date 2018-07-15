@@ -120,9 +120,9 @@ public class Movement : MonoBehaviour {
             else if(dir == Direction.LEFT)
             {
                 Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_in_position);
-                float tile_x_comprovation = Mathf.Abs(world_position_tile.x) + (1.5f / 2);
+                float tile_x_comprovation = world_position_tile.x; 
                 
-                if (Mathf.Abs(top_left_position.x) < tile_x_comprovation)
+                if (position.x - (width*0.5f) > tile_x_comprovation)
                 {
                     ret = true;
                 }
@@ -134,27 +134,27 @@ public class Movement : MonoBehaviour {
             else if (dir == Direction.UP)
             {
                 Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_in_position);
-                float tile_y_comprovation = world_position_tile.y - walkability.size.y * 0.5f;
-                if (top_left_position.y > tile_y_comprovation)
+                float tile_y_comprovation = world_position_tile.y - 0.25f;
+                if (position.y + (height * 0.5f) < tile_y_comprovation)
                 {
-                    ret = false;
+                    ret = true;
                 }
                 else
                 {
-                    ret = true;
+                    ret = false;
                 }
             }
             else if (dir == Direction.DOWN)
             {
                 Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_in_position);
-                float tile_y_comprovation = world_position_tile.y + walkability.size.y * 0.5f;
-                if (top_left_position.y + height< tile_y_comprovation)
+                float tile_y_comprovation = world_position_tile.y;
+                if (position.y - (height * 0.5f) > tile_y_comprovation)
                 {
-                    ret = false;
+                    ret = true;
                 }
                 else
                 {
-                    ret = true;
+                    ret = false;
                 }
             }
 
