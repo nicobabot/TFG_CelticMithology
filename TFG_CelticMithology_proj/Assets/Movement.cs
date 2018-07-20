@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour {
     public Tilemap walkability;
     public Tile walkable_tile;
     public Tile non_walkable_tile;
+    public BoxCollider2D collider;
     SpriteRenderer sprite_rend;
     Sprite player_sprite;
     bool moving_in_diagonals = false;
@@ -41,22 +42,17 @@ public class Movement : MonoBehaviour {
     void Start () {
         sprite_rend = GetComponent<SpriteRenderer>();
         player_sprite = sprite_rend.sprite;
-
-
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        float width = player_sprite.bounds.max.x;
-        float height = player_sprite.bounds.max.y;
+        sprite_bottom_left = collider.bounds.min;
+        sprite_top_right = collider.bounds.max;
 
-        sprite_top_left = transform.position + player_sprite.bounds.min;
-        sprite_bottom_right = transform.position + player_sprite.bounds.max;
-
-        sprite_top_right = new Vector3(sprite_bottom_right.x, sprite_top_left.y);
-        sprite_bottom_left = new Vector3(sprite_top_left.x, sprite_bottom_right.y);
-
+        sprite_bottom_right = new Vector3(sprite_top_right.x, sprite_bottom_left.y);
+        sprite_top_left = new Vector3(sprite_bottom_left.x, sprite_top_right.y);
+        
         Vector3 temp_pos = DetectDirection();
 
         if (!moving_in_diagonals)
@@ -143,11 +139,11 @@ public class Movement : MonoBehaviour {
             case Direction.RIGHT:
                 Vector3Int tile_top_right= Vector3Int.zero;
                 tile_top_right = walkability.LocalToCell(sprite_top_right);
-                tile_top_right.x -= 1;
+                tile_top_right.x += 1;
 
                 Vector3Int tile_bottom_right = Vector3Int.zero;
                 tile_bottom_right = walkability.LocalToCell(sprite_bottom_right);
-                tile_bottom_right.x -= 1;
+                tile_bottom_right.x += 1;
 
                 ret = RightComprovation(sprite_top_right, sprite_bottom_right, tile_top_right, tile_bottom_right);
 
@@ -189,7 +185,7 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
-            if (sprite_top_right.x > tile_x_comprovation)
+            if (sprite_top_right.x < tile_x_comprovation)
             {
                 check1_top = true;
             }
@@ -206,7 +202,7 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
-            if (sprite_bottom_right.x > tile_x_comprovation)
+            if (sprite_bottom_right.x < tile_x_comprovation)
             {
                 check2_bottom = true;
             }
