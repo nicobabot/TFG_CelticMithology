@@ -14,15 +14,11 @@ public class Movement : MonoBehaviour {
     Sprite player_sprite;
     bool moving_in_diagonals = false;
 
-    float width = 0.0f;
-    float height = 0.0f;
-
     Vector3 sprite_top_left = Vector3.zero;
     Vector3 sprite_top_right = Vector3.zero;
 
     Vector3 sprite_bottom_right = Vector3.zero;
     Vector3 sprite_bottom_left = Vector3.zero;
-
 
     enum Direction
     {
@@ -36,6 +32,12 @@ public class Movement : MonoBehaviour {
         DOWN_LEFT
     }
     Direction current_direction;
+
+    enum Comprobation
+    {
+        BIGGER,
+        SMALLER
+    }
 
 
     // Use this for initialization
@@ -128,6 +130,7 @@ public class Movement : MonoBehaviour {
         Gizmos.DrawWireSphere(sprite_top_right, 0.1f);
         Gizmos.DrawWireSphere(sprite_bottom_right, 0.1f);
         Gizmos.DrawWireSphere(sprite_bottom_left, 0.1f);
+        
     }
 
     private bool CanIWalk(Vector3 sprite_top_left, Vector3 sprite_top_right, Vector3 sprite_bottom_right, Vector3 sprite_bottom_left, Direction dir)
@@ -149,7 +152,15 @@ public class Movement : MonoBehaviour {
 
                 break;
             case Direction.LEFT:
+                Vector3Int tile_top_left = Vector3Int.zero;
+                tile_top_left = walkability.LocalToCell(sprite_top_left);
+                tile_top_left.x -= 1;
 
+                Vector3Int tile_bottom_left = Vector3Int.zero;
+                tile_bottom_left = walkability.LocalToCell(sprite_bottom_left);
+                tile_bottom_left.x -= 1;
+
+                ret = LeftComprovation(sprite_top_left, sprite_bottom_left, tile_top_left, tile_bottom_left);
                 break;
             case Direction.UP:
 
@@ -217,6 +228,58 @@ public class Movement : MonoBehaviour {
         return ret;
     }
 
-  
+    bool LeftComprovation(Vector3 sprite_top_left, Vector3 sprite_bottom_left, Vector3Int tile_top_left_pos, Vector3Int tile_bottom_leftt_pos)
+    {
+        bool ret = false;
+        bool check1_top = false;
+        bool check2_bottom = false;
+
+        TileBase tile_top_left = walkability.GetTile(tile_top_left_pos);
+        TileBase tile_bottom_left = walkability.GetTile(tile_bottom_leftt_pos);
+
+        if (tile_top_left == walkable_tile)
+        {
+            check1_top = true;
+
+        }
+        else
+        {
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_top_left_pos);
+            //Need to find tile width and height units without magic number
+            float tile_x_comprovation = world_position_tile.x + (1.5f / 2);
+
+            if (sprite_top_left.x > tile_x_comprovation)
+            {
+                check1_top = true;
+            }
+
+        }
+
+        if (tile_bottom_left == walkable_tile)
+        {
+            check2_bottom = true;
+        }
+        else
+        {
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_bottom_leftt_pos);
+
+            //Need to find tile width and height units without magic number
+            float tile_x_comprovation = world_position_tile.x + (1.5f / 2);
+
+
+            if (sprite_bottom_left.x > tile_x_comprovation)
+            {
+                check2_bottom = true;
+            }
+        }
+
+        if (check1_top == true && check2_bottom == true)
+        {
+            ret = true;
+        }
+
+
+        return ret;
+    }
 
 }
