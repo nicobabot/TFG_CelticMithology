@@ -421,6 +421,7 @@ public class Movement : MonoBehaviour {
             case Direction.UP_RIGHT:
                 Vector3Int tile_top_right_upright = Vector3Int.zero;
                 tile_top_right_upright = walkability.LocalToCell(sprite_top_right);
+                tile_top_right_upright.x += 1;
                 tile_top_right_upright.y += 1;
 
                 Vector3Int tile_bottom_right_upright = Vector3Int.zero;
@@ -438,6 +439,7 @@ public class Movement : MonoBehaviour {
             case Direction.UP_LEFT:
                 Vector3Int tile_top_left_upleft = Vector3Int.zero;
                 tile_top_left_upleft = walkability.LocalToCell(sprite_top_left);
+                tile_top_left_upleft.x += 1;
                 tile_top_left_upleft.y += 1;
 
                 Vector3Int tile_bottom_left_upleft = Vector3Int.zero;
@@ -486,11 +488,27 @@ public class Movement : MonoBehaviour {
         }
         else
         {
+            bool check1 = false;
+            bool check2 = false;
+
             Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_top_right_pos);
             //Need to find tile width and height units without magic number
             float tile_y_comprovation = world_position_tile.y - (1.5f / 2);
 
             if (sprite_top_right.y < tile_y_comprovation)
+            {
+                check1 = true;
+            }
+
+            //Need to find tile width and height units without magic number
+            float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
+
+            if (sprite_top_right.x < tile_x_comprovation)
+            {
+                check2 = true;
+            }
+
+            if(check1 ==  true && check2 == true)
             {
                 check1_top_r = true;
             }
@@ -555,15 +573,29 @@ public class Movement : MonoBehaviour {
         }
         else
         {
+            bool check1 = false;
+            bool check2 = false;
+
             Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_top_right_pos);
             //Need to find tile width and height units without magic number
             float tile_y_comprovation = world_position_tile.y - (1.5f / 2);
 
             if (sprite_top_right.y < tile_y_comprovation)
             {
-                check1_top_r = true;
+                check1 = true;
             }
 
+            float tile_x_comprovation = world_position_tile.x + (1.5f / 2);
+
+            if (sprite_top_right.x > tile_x_comprovation)
+            {
+                check2 = true;
+            }
+
+            if (check1 == true && check2 == true)
+            {
+                check1_top_r = true;
+            }
         }
 
         if (tile_bottom_left == walkable_tile)
