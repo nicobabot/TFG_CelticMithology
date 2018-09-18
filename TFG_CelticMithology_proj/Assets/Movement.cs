@@ -30,10 +30,11 @@ public class Movement : MonoBehaviour {
         UP_RIGHT,
         UP_LEFT,
         DOWN_RIGHT,
-        DOWN_LEFT
+        DOWN_LEFT,
+        NO_MOVING
+
     }
     Direction current_direction;
-
 
     // Use this for initialization
     void Start () {
@@ -43,6 +44,8 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        Vector3 temp_pos_transf = Vector3.zero;
 
         sprite_bottom_left = collider.bounds.min;
         sprite_top_right = collider.bounds.max;
@@ -61,9 +64,27 @@ public class Movement : MonoBehaviour {
         }
         else
         {
-            if (CanIWalkInDiagonals(sprite_top_left, sprite_top_right, sprite_bottom_right, sprite_bottom_left, current_direction))
+            Direction can_move_diagonal = CanIWalkInDiagonals(sprite_top_left, sprite_top_right, sprite_bottom_right, sprite_bottom_left, current_direction);
+
+            if (can_move_diagonal != Direction.NO_MOVING)
             {
-                transform.position = temp_pos;
+                if(can_move_diagonal == Direction.UP || can_move_diagonal == Direction.DOWN)
+                {
+                    temp_pos_transf = transform.position;
+                    temp_pos_transf.y = temp_pos.y;
+                    transform.position = temp_pos_transf;
+                }
+                else if (can_move_diagonal == Direction.RIGHT || can_move_diagonal == Direction.LEFT)
+                {
+                    temp_pos_transf = transform.position;
+                    temp_pos_transf.x = temp_pos.x;
+                    transform.position = temp_pos_transf;
+                }
+                else
+                {
+                    transform.position = temp_pos;
+                }
+
             }
         }
 
@@ -412,9 +433,9 @@ public class Movement : MonoBehaviour {
         return ret;
     }
 
-    private bool CanIWalkInDiagonals(Vector3 sprite_top_left, Vector3 sprite_top_right, Vector3 sprite_bottom_right, Vector3 sprite_bottom_left, Direction dir)
+    private Direction CanIWalkInDiagonals(Vector3 sprite_top_left, Vector3 sprite_top_right, Vector3 sprite_bottom_right, Vector3 sprite_bottom_left, Direction dir)
     {
-        bool ret = false;
+        Direction ret = Direction.NO_MOVING;
         Vector3Int tile_diagonal = Vector3Int.zero;
         Vector3Int tile_right = Vector3Int.zero;
         Vector3Int tile_left = Vector3Int.zero;
@@ -496,10 +517,10 @@ public class Movement : MonoBehaviour {
         return ret;
     }
 
-    bool UpRightComprovation(Vector3 sprite_top_right, Vector3 sprite_bottom_right, Vector3 sprite_top_left, Vector3Int tile_diagonal,
+    Direction UpRightComprovation(Vector3 sprite_top_right, Vector3 sprite_bottom_right, Vector3 sprite_top_left, Vector3Int tile_diagonal,
         Vector3Int tile_right, Vector3Int tile_top)
     {
-        bool ret = false;
+        Direction ret = Direction.NO_MOVING;
         bool check1_top_r = false;
         bool check2_bottom = false;
         bool check3_top_l = false;
@@ -575,19 +596,27 @@ public class Movement : MonoBehaviour {
 
         if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
         {
-            ret = true;
+            ret = Direction.UP_RIGHT;
+        }
+        else if (check3_top_l == true && check2_bottom == false)
+        {
+            ret = Direction.UP;
+        }
+        else if(check3_top_l == false && check2_bottom == true)
+        {
+            ret = Direction.RIGHT;
         }
 
         return ret;
     }
 
-    bool UpLeftComprovation(Vector3 sprite_top_left,  Vector3 sprite_bottom_left, Vector3 sprite_top_right, Vector3Int tile_diagonal,
+    Direction UpLeftComprovation(Vector3 sprite_top_left,  Vector3 sprite_bottom_left, Vector3 sprite_top_right, Vector3Int tile_diagonal,
         Vector3Int tile_left, Vector3Int tile_top)
     {
-        bool ret = false;
-        bool check1_top_r = false;
-        bool check2_bottom = false;
-        bool check3_top_l = false;
+        Direction ret = Direction.NO_MOVING;
+        bool check1_diagonal_upleft = false;
+        bool check2_bottom_left = false;
+        bool check3_top_up= false;
 
         TileBase tile_diagonal_base = walkability.GetTile(tile_diagonal);
         TileBase tile_left_base = walkability.GetTile(tile_left);
@@ -595,7 +624,7 @@ public class Movement : MonoBehaviour {
 
         if (tile_diagonal_base == walkable_tile)
         {
-            check1_top_r = true;
+            check1_diagonal_upleft = true;
         }
         else
         {
@@ -620,13 +649,13 @@ public class Movement : MonoBehaviour {
 
             if (check1 == true && check2 == true)
             {
-                check1_top_r = true;
+                check1_diagonal_upleft = true;
             }
         }
 
         if (tile_left_base == walkable_tile)
         {
-            check2_bottom = true;
+            check2_bottom_left = true;
         }
         else
         {
@@ -634,15 +663,15 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_x_comprovation = world_position_tile.x + (1.5f / 2);
 
-            if (sprite_bottom_right.x > tile_x_comprovation)
+            if (sprite_bottom_left.x > tile_x_comprovation)
             {
-                check2_bottom = true;
+                check2_bottom_left = true;
             }
         }
 
         if (tile_top_base == walkable_tile)
         {
-            check3_top_l = true;
+            check3_top_up = true;
         }
         else
         {
@@ -652,22 +681,30 @@ public class Movement : MonoBehaviour {
 
             if (sprite_top_left.y < tile_y_comprovation)
             {
-                check3_top_l = true;
+                check3_top_up = true;
             }
         }
 
-        if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
+        if (check1_diagonal_upleft == true && check3_top_up == true && check2_bottom_left == true)
         {
-            ret = true;
+            ret = Direction.UP_LEFT;
+        }
+        else if (check3_top_up == true && check2_bottom_left == false)
+        {
+            ret = Direction.UP;
+        }
+        else if (check3_top_up == false && check2_bottom_left == true)
+        {
+            ret = Direction.LEFT;
         }
 
         return ret;
     }
 
-    bool DownRightComprovation(Vector3 sprite_bottom_right, Vector3 sprite_top_right, Vector3 sprite_bottom_left, Vector3Int tile_diagonal,
+    Direction DownRightComprovation(Vector3 sprite_bottom_right, Vector3 sprite_top_right, Vector3 sprite_bottom_left, Vector3Int tile_diagonal,
        Vector3Int tile_right, Vector3Int tile_down)
     {
-        bool ret = false;
+        Direction ret = Direction.NO_MOVING;
         bool check1_top_r = false;
         bool check2_bottom = false;
         bool check3_top_l = false;
@@ -689,14 +726,14 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_y_comprovation = world_position_tile.y + (1.5f / 2);
 
-            if (sprite_top_right.y > tile_y_comprovation)
+            if (sprite_bottom_right.y > tile_y_comprovation)
             {
                 check1 = true;
             }
 
             float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
-            if (sprite_top_right.x < tile_x_comprovation)
+            if (sprite_bottom_right.x < tile_x_comprovation)
             {
                 check2 = true;
             }
@@ -717,7 +754,7 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
-            if (sprite_bottom_right.x < tile_x_comprovation)
+            if (sprite_top_right.x < tile_x_comprovation)
             {
                 check2_bottom = true;
             }
@@ -733,7 +770,7 @@ public class Movement : MonoBehaviour {
             //Need to find tile width and height units without magic number
             float tile_y_comprovation = world_position_tile.y + (1.5f / 2);
 
-            if (sprite_top_left.y > tile_y_comprovation)
+            if (sprite_bottom_left.y > tile_y_comprovation)
             {
                 check3_top_l = true;
             }
@@ -741,16 +778,24 @@ public class Movement : MonoBehaviour {
 
         if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
         {
-            ret = true;
+            ret = Direction.DOWN_RIGHT;
+        }
+        else if (check3_top_l == true && check2_bottom == false)
+        {
+            ret = Direction.DOWN;
+        }
+        else if (check3_top_l == false && check2_bottom == true)
+        {
+            ret = Direction.RIGHT;
         }
 
         return ret;
     }
 
-    bool DownLeftComprovation(Vector3 sprite_bottom_left, Vector3 sprite_top_left, Vector3 sprite_bottom_right, Vector3Int tile_diagonal,
+    Direction DownLeftComprovation(Vector3 sprite_bottom_left, Vector3 sprite_top_left, Vector3 sprite_bottom_right, Vector3Int tile_diagonal,
       Vector3Int tile_left, Vector3Int tile_down)
     {
-        bool ret = false;
+        Direction ret = Direction.NO_MOVING;
         bool check1_top_r = false;
         bool check2_bottom = false;
         bool check3_top_l = false;
@@ -824,7 +869,15 @@ public class Movement : MonoBehaviour {
 
         if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
         {
-            ret = true;
+            ret = Direction.DOWN_LEFT;
+        }
+        else if (check3_top_l == true && check2_bottom == false)
+        {
+            ret = Direction.DOWN;
+        }
+        else if (check3_top_l == false && check2_bottom == true)
+        {
+            ret = Direction.LEFT;
         }
 
         return ret;
