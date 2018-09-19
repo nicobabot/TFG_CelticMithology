@@ -555,7 +555,7 @@ public class Movement : MonoBehaviour {
                 check2 = true;
             }
 
-            if(check1 ==  true && check2 == true)
+            if(check1 ==  true || check2 == true)
             {
                 check1_top_r = true;
             }
@@ -647,7 +647,7 @@ public class Movement : MonoBehaviour {
                 check2 = true;
             }
 
-            if (check1 == true && check2 == true)
+            if (check1 == true || check2 == true)
             {
                 check1_diagonal_upleft = true;
             }
@@ -738,7 +738,7 @@ public class Movement : MonoBehaviour {
                 check2 = true;
             }
 
-            if (check1 == true && check2 == true)
+            if (check1 == true || check2 == true)
             {
                 check1_top_r = true;
             }
@@ -829,7 +829,7 @@ public class Movement : MonoBehaviour {
                 check2 = true;
             }
 
-            if (check1 == true && check2 == true)
+            if (check1 == true || check2 == true)
             {
                 check1_top_r = true;
             }
