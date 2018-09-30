@@ -264,7 +264,26 @@ public class Movement : MonoBehaviour {
 
         if(check1_top ==true && check2_bottom == true)
         {
-            ret = true;
+            Vector3Int tile_pos = Vector3Int.zero;
+            tile_pos = walkability.LocalToCell(transform.position);
+            tile_pos.x += 1;
+            TileBase tile_pos_base = walkability.GetTile(tile_pos);
+            if (tile_pos_base == walkable_tile)
+            {
+                ret = true;
+            }
+           else
+            {
+                Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_pos);
+                //Need to find tile width and height units without magic number
+                float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
+
+                if (sprite_bottom_right.x < tile_x_comprovation)
+                {
+                    ret = true;
+                }
+            }
+
         }
 
 
@@ -318,7 +337,25 @@ public class Movement : MonoBehaviour {
 
         if (check1_top == true && check2_bottom == true)
         {
-            ret = true;
+            Vector3Int tile_pos = Vector3Int.zero;
+            tile_pos = walkability.LocalToCell(transform.position);
+            tile_pos.x -= 1;
+            TileBase tile_pos_base = walkability.GetTile(tile_pos);
+            if (tile_pos_base == walkable_tile)
+            {
+                ret = true;
+            }
+            else
+            {
+                Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_pos);
+                //Need to find tile width and height units without magic number
+                float tile_x_comprovation = world_position_tile.x + (1.5f / 2);
+
+                if (sprite_bottom_right.x > tile_x_comprovation)
+                {
+                    ret = true;
+                }
+            }
         }
 
 
@@ -372,7 +409,25 @@ public class Movement : MonoBehaviour {
 
         if (check1_top == true && check2_bottom == true)
         {
-            ret = true;
+            Vector3Int tile_pos = Vector3Int.zero;
+            tile_pos = walkability.LocalToCell(transform.position);
+            tile_pos.y += 1;
+            TileBase tile_pos_base = walkability.GetTile(tile_pos);
+            if (tile_pos_base == walkable_tile)
+            {
+                ret = true;
+            }
+            else
+            {
+                Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_pos);
+                //Need to find tile width and height units without magic number
+                float tile_y_comprovation = world_position_tile.y - (1.5f / 2);
+
+                if (sprite_top_right.y < tile_y_comprovation)
+                {
+                    ret = true;
+                }
+            }
         }
 
 
@@ -426,7 +481,25 @@ public class Movement : MonoBehaviour {
 
         if (check1_top == true && check2_bottom == true)
         {
-            ret = true;
+            Vector3Int tile_pos = Vector3Int.zero;
+            tile_pos = walkability.LocalToCell(transform.position);
+            tile_pos.y -= 1;
+            TileBase tile_pos_base = walkability.GetTile(tile_pos);
+            if (tile_pos_base == walkable_tile)
+            {
+                ret = true;
+            }
+            else
+            {
+                Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_pos);
+                //Need to find tile width and height units without magic number
+                float tile_y_comprovation = world_position_tile.y + (1.5f / 2);
+
+                if (sprite_top_right.y > tile_y_comprovation)
+                {
+                    ret = true;
+                }
+            }
         }
 
 
