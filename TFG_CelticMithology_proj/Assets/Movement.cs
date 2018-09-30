@@ -442,6 +442,8 @@ public class Movement : MonoBehaviour {
         Vector3Int tile_top = Vector3Int.zero;
         Vector3Int tile_down = Vector3Int.zero;
         Vector3Int tile_right_down = Vector3Int.zero;
+        Vector3Int tile_right_up = Vector3Int.zero;
+        Vector3Int tile_down_left = Vector3Int.zero;
         Vector3Int tile_top_left = Vector3Int.zero;
         Vector3Int tile_left_down = Vector3Int.zero;
         Vector3Int tile_top_right = Vector3Int.zero;
@@ -507,12 +509,20 @@ public class Movement : MonoBehaviour {
                 tile_right = walkability.LocalToCell(transform.position);
                 tile_right.x += 1;
 
+                tile_right_up = walkability.LocalToCell(transform.position);
+                tile_right_up.x += 1;
+                tile_right_up.y += 1;
 
                 tile_down = walkability.LocalToCell(transform.position);
                 tile_down.y -= 1;
 
+                tile_down_left = walkability.LocalToCell(transform.position);
+                tile_down_left.y -= 1;
+                tile_down_left.x -= 1;
+
+
                 ret = DownRightComprovation(sprite_bottom_right, sprite_top_right, sprite_bottom_left, tile_diagonal,
-                    tile_right, tile_down);
+                    tile_right, tile_down, tile_right_up, tile_down_left);
 
                 break;
             case Direction.DOWN_LEFT:
@@ -528,12 +538,13 @@ public class Movement : MonoBehaviour {
                 tile_top_left.x -= 1;
                 tile_top_left.y += 1;
 
+                tile_down = walkability.LocalToCell(transform.position);
+                tile_down.y -= 1;
+
                 tile_down_right = walkability.LocalToCell(transform.position);
                 tile_down_right.x += 1;
                 tile_down_right.y -= 1;
 
-                tile_down = walkability.LocalToCell(transform.position);
-                tile_down.y -= 1;
 
                 ret = DownLeftComprovation(sprite_bottom_left, sprite_top_left, sprite_bottom_right, tile_diagonal,
                     tile_left, tile_down, tile_top_left, tile_down_right);
@@ -550,9 +561,9 @@ public class Movement : MonoBehaviour {
         Vector3Int tile_right, Vector3Int tile_top, Vector3Int tile_right_down, Vector3Int tile_top_left)
     {
         Direction ret = Direction.NO_MOVING;
-        bool check1_top_r = false;
-        bool check2_bottom = false;
-        bool check3_top_l = false;
+        bool check_diagonal = false;
+        bool check_right = false;
+        bool check_up = false;
 
         TileBase tile_diagonal_base = walkability.GetTile(tile_diagonal);
         TileBase tile_right_base = walkability.GetTile(tile_right);
@@ -564,7 +575,7 @@ public class Movement : MonoBehaviour {
 
         if (tile_diagonal_base == walkable_tile)
         {
-            check1_top_r = true;
+            check_diagonal = true;
         }
         else
         {
@@ -590,14 +601,14 @@ public class Movement : MonoBehaviour {
 
             if(check1 ==  true && check2 == true)
             {
-                check1_top_r = true;
+                check_diagonal = true;
             }
 
         }
 
         if (tile_right_base == walkable_tile && tile_right_down_base == walkable_tile)
         {
-            check2_bottom = true;
+            check_right = true;
         }
         else
         {
@@ -613,24 +624,24 @@ public class Movement : MonoBehaviour {
                 check1_r_d = true;
             }
 
-            Vector3 world_position_tile_right_down = walkability.GetCellCenterWorld(tile_right_down);
+            world_position_tile = walkability.GetCellCenterWorld(tile_right_down);
             //Need to find tile width and height units without magic number
-            float tile_x_comprovation_right_down = world_position_tile.x - (1.5f / 2);
+            tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
-            if (sprite_bottom_right.x < tile_x_comprovation_right_down)
+            if (sprite_bottom_right.x < tile_x_comprovation)
             {
                 check2_r_d = true;
             }
 
             if (check1_r_d && check2_r_d)
             {
-                check2_bottom = true;
+                check_right = true;
             }
         }
 
         if (tile_top_base == walkable_tile && tile_top_left_base == walkable_tile)
         {
-            check3_top_l = true;
+            check_up = true;
         }
         else
         {
@@ -657,28 +668,48 @@ public class Movement : MonoBehaviour {
 
             if (check1_l_t && check2_l_t)
             {
-                check3_top_l = true;
+                check_up = true;
             }
 
         }
 
-        if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
+        if (check_diagonal == true && check_right == true && check_up == true)
         {
             ret = Direction.UP_RIGHT;
         }
-        else if (check3_top_l == true && check2_bottom == false)
+        else if (tile_diagonal_base == walkable_tile && tile_right_base == walkable_tile && tile_top_base == walkable_tile
+           && tile_right_down_base == non_walkable_tile && tile_top_left_base == non_walkable_tile)
+        {
+            ret = Direction.UP_RIGHT;
+        }
+        else if (check_up == true && check_right == false)
         {
             ret = Direction.UP;
         }
-        else if (check3_top_l == true && check2_bottom == true && check1_top_r == false)
-        {
-            ret = Direction.UP;
-        }
-        else if(check3_top_l == false && check2_bottom == true)
+        else if(check_up == false && check_right == true)
         {
             ret = Direction.RIGHT;
         }
+        else if(check_diagonal == false && check_right == true && check_up == true)
+        {
 
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_diagonal);
+            float tile_x_comprovation = world_position_tile.x - (1.25f / 2);
+
+            if (sprite_top_right.x < tile_x_comprovation)
+            {
+                ret = Direction.UP;
+            }
+            else
+            {
+                float tile_y_comprovation = world_position_tile.y - (1.25f / 2);
+                if (sprite_top_right.y < tile_y_comprovation)
+                {
+                    ret = Direction.RIGHT;
+                }
+            }
+
+        }
         return ret;
     }
 
@@ -686,9 +717,9 @@ public class Movement : MonoBehaviour {
         Vector3Int tile_left, Vector3Int tile_top, Vector3Int tile_left_down, Vector3Int tile_top_right)
     {
         Direction ret = Direction.NO_MOVING;
-        bool check1_diagonal_upleft = false;
-        bool check2_bottom_left = false;
-        bool check3_top_up= false;
+        bool check_diagonal = false;
+        bool check_left = false;
+        bool check_up= false;
 
         TileBase tile_diagonal_base = walkability.GetTile(tile_diagonal);
         TileBase tile_left_base = walkability.GetTile(tile_left);
@@ -699,7 +730,7 @@ public class Movement : MonoBehaviour {
 
         if (tile_diagonal_base == walkable_tile)
         {
-            check1_diagonal_upleft = true;
+            check_diagonal = true;
         }
         else
         {
@@ -724,13 +755,13 @@ public class Movement : MonoBehaviour {
 
             if (check1 == true && check2 == true)
             {
-                check1_diagonal_upleft = true;
+                check_diagonal = true;
             }
         }
 
         if (tile_left_base == walkable_tile && tile_left_down_base == walkable_tile)
         {
-            check2_bottom_left = true;
+            check_left = true;
         }
         else
         {
@@ -758,14 +789,14 @@ public class Movement : MonoBehaviour {
 
             if (check1_l_d && check2_l_d)
             {
-                check2_bottom_left = true;
+                check_left = true;
             }
 
         }
 
         if (tile_top_base == walkable_tile && tile_top_right_base == walkable_tile)
         {
-            check3_top_up = true;
+            check_up = true;
         }
         else
         {
@@ -792,46 +823,70 @@ public class Movement : MonoBehaviour {
 
             if (check1_r_t && check2_r_t)
             {
-                check3_top_up = true;
+                check_up = true;
             }
 
         }
 
-        if (check1_diagonal_upleft == true && check3_top_up == true && check2_bottom_left == true)
+        if (check_diagonal == true && check_up == true && check_left == true)
         {
             ret = Direction.UP_LEFT;
         }
-        else if (check3_top_up == true && check2_bottom_left == false)
+        else if (tile_diagonal_base == walkable_tile && tile_left_base == walkable_tile && tile_top_base == walkable_tile
+        && tile_left_down_base == non_walkable_tile && tile_top_right_base == non_walkable_tile)
+        {
+            ret = Direction.UP_LEFT;
+        }
+        else if (check_up == true && check_left == false)
         {
             ret = Direction.UP;
         }
-        else if (check1_diagonal_upleft == false && check3_top_up == true && check2_bottom_left == true)
-        {
-            ret = Direction.UP;
-        }
-        else if (check3_top_up == false && check2_bottom_left == true)
+        else if (check_up == false && check_left == true)
         {
             ret = Direction.LEFT;
+        }
+        else if (check_diagonal == false && check_left == true && check_up == true)
+        {
+
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_diagonal);
+            float tile_x_comprovation = world_position_tile.x + (1.25f / 2);
+
+            if (sprite_top_left.x > tile_x_comprovation)
+            {
+                ret = Direction.UP;
+            }
+            else
+            {
+                float tile_y_comprovation = world_position_tile.y - (1.25f / 2);
+                if (sprite_top_left.y < tile_y_comprovation)
+                {
+                    ret = Direction.LEFT;
+                }
+            }
+
         }
 
         return ret;
     }
 
     Direction DownRightComprovation(Vector3 sprite_bottom_right, Vector3 sprite_top_right, Vector3 sprite_bottom_left, Vector3Int tile_diagonal,
-       Vector3Int tile_right, Vector3Int tile_down)
+       Vector3Int tile_right, Vector3Int tile_down, Vector3Int tile_right_up, Vector3Int tile_down_left)
     {
         Direction ret = Direction.NO_MOVING;
-        bool check1_top_r = false;
-        bool check2_bottom = false;
-        bool check3_top_l = false;
+        bool check_diagonal = false;
+        bool check_right = false;
+        bool check_down = false;
 
         TileBase tile_diagonal_base = walkability.GetTile(tile_diagonal);
         TileBase tile_right_base = walkability.GetTile(tile_right);
         TileBase tile_down_base = walkability.GetTile(tile_down);
 
+        TileBase tile_right_up_base = walkability.GetTile(tile_right_up);
+        TileBase tile_down_left_base = walkability.GetTile(tile_down_left);
+
         if (tile_diagonal_base == walkable_tile)
         {
-            check1_top_r = true;
+            check_diagonal = true;
         }
         else
         {
@@ -856,76 +911,135 @@ public class Movement : MonoBehaviour {
 
             if (check1 == true && check2 == true)
             {
-                check1_top_r = true;
+                check_diagonal = true;
             }
         }
 
-        if (tile_right_base == walkable_tile)
+        if (tile_right_base == walkable_tile && tile_right_up_base == walkable_tile)
         {
-            check2_bottom = true;
+            check_right = true;
         }
         else
         {
+            bool check1 = false;
+            bool check2 = false;
+
             Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_right);
             //Need to find tile width and height units without magic number
             float tile_x_comprovation = world_position_tile.x - (1.5f / 2);
 
             if (sprite_top_right.x < tile_x_comprovation)
             {
-                check2_bottom = true;
+                check1 = true;
             }
+
+            world_position_tile = walkability.GetCellCenterWorld(tile_right_up);
+            //Need to find tile width and height units without magic number
+            tile_x_comprovation = world_position_tile.x - (1.5f / 2);
+
+            if (sprite_top_right.x < tile_x_comprovation)
+            {
+                check2 = true;
+            }
+
+            if(check1 && check2)
+            {
+                check_right = true;
+            }
+
         }
 
-        if (tile_down_base == walkable_tile)
+        if (tile_down_base == walkable_tile && tile_down_left_base == walkable_tile)
         {
-            check3_top_l = true;
+            check_down = true;
         }
         else
         {
+            bool check1 = false;
+            bool check2 = false;
+
             Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_down);
             //Need to find tile width and height units without magic number
             float tile_y_comprovation = world_position_tile.y + (1.5f / 2);
 
             if (sprite_bottom_left.y > tile_y_comprovation)
             {
-                check3_top_l = true;
+                check1 = true;
             }
+
+            world_position_tile = walkability.GetCellCenterWorld(tile_down_left);
+            //Need to find tile width and height units without magic number
+            tile_y_comprovation = world_position_tile.y + (1.5f / 2);
+
+            if (sprite_bottom_left.y > tile_y_comprovation)
+            {
+                check1 = true;
+            }
+
+            if(check1 == true && check2 == true)
+            {
+                check_down = true;
+            }
+
         }
 
-        if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
+        if (check_diagonal == true && check_right == true && check_down == true)
         {
             ret = Direction.DOWN_RIGHT;
         }
-        else if (check3_top_l == true && check2_bottom == false)
+        else if (tile_diagonal_base == walkable_tile && tile_right_base == walkable_tile && tile_down_base == walkable_tile 
+            && tile_down_left_base == non_walkable_tile && tile_right_up_base == non_walkable_tile)
+        {
+            ret = Direction.DOWN_RIGHT;
+        }
+        else if (check_down == true && check_right == false)
         {
             ret = Direction.DOWN;
         }
-        else if (check3_top_l == false && check2_bottom == true)
+        else if (check_down == false && check_right == true)
         {
             ret = Direction.RIGHT;
+        }
+        if (check_diagonal == false && check_right == true && check_down == true)
+        {
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_diagonal);
+            float tile_x_comprovation = world_position_tile.x - (1.25f / 2);
+
+            if (sprite_bottom_right.x < tile_x_comprovation)
+            {
+                ret = Direction.DOWN;
+            }
+            else
+            {
+                float tile_y_comprovation = world_position_tile.y + (1.25f / 2);
+                if (sprite_bottom_right.y > tile_y_comprovation)
+                {
+                    ret = Direction.RIGHT;
+                }
+            }
         }
 
         return ret;
     }
 
     Direction DownLeftComprovation(Vector3 sprite_bottom_left, Vector3 sprite_top_left, Vector3 sprite_bottom_right, Vector3Int tile_diagonal,
-      Vector3Int tile_left, Vector3Int tile_down, Vector3Int tile_top_left, Vector3Int tile_down_right)
+      Vector3Int tile_left, Vector3Int tile_down, Vector3Int tile_left_up, Vector3Int tile_down_right)
     {
         Direction ret = Direction.NO_MOVING;
-        bool check1_top_r = false;
-        bool check2_bottom = false;
-        bool check3_top_l = false;
+        bool check_diagonal= false;
+        bool check_left = false;
+        bool check_down = false;
 
         TileBase tile_diagonal_base = walkability.GetTile(tile_diagonal);
         TileBase tile_left_base = walkability.GetTile(tile_left);
         TileBase tile_down_base = walkability.GetTile(tile_down);
 
-        TileBase tile_top_left_base = walkability.GetTile(tile_top_left);
+        TileBase tile_left_up_base = walkability.GetTile(tile_left_up);
         TileBase tile_down_right_base = walkability.GetTile(tile_down_right);
 
         if (tile_diagonal_base == walkable_tile)
         {
-            check1_top_r = true;
+            check_diagonal = true;
         }
         else
         {
@@ -950,13 +1064,13 @@ public class Movement : MonoBehaviour {
 
             if (check1 == true && check2 == true)
             {
-                check1_top_r = true;
+                check_diagonal = true;
             }
         }
 
-        if (tile_left_base == walkable_tile && tile_top_left_base == walkable_tile)
+        if (tile_left_base == walkable_tile && tile_left_up_base == walkable_tile)
         {
-            check2_bottom = true;
+            check_left = true;
         }
         else
         {
@@ -972,7 +1086,7 @@ public class Movement : MonoBehaviour {
                 check1 = true;
             }
 
-            world_position_tile = walkability.GetCellCenterWorld(tile_top_left);
+            world_position_tile = walkability.GetCellCenterWorld(tile_left_up);
             //Need to find tile width and height units without magic number
             tile_x_comprovation = world_position_tile.x + (1.5f / 2);
 
@@ -983,14 +1097,14 @@ public class Movement : MonoBehaviour {
 
             if (check1 && check2)
             {
-                check2_bottom = true;
+                check_left = true;
             }
 
         }
 
         if (tile_down_base == walkable_tile && tile_down_right_base == walkable_tile)
         {
-            check3_top_l = true;
+            check_down = true;
         }
         else
         {
@@ -1017,27 +1131,47 @@ public class Movement : MonoBehaviour {
 
             if (check1 && check2)
             {
-                check3_top_l = true;
+                check_down = true;
             }
 
         }
 
-        if (check1_top_r == true && check2_bottom == true && check3_top_l == true)
+        if (check_diagonal == true && check_left == true && check_down == true)
         {
             ret = Direction.DOWN_LEFT;
         }
-        else if (check3_top_l == true && check2_bottom == false)
+        else if (tile_diagonal_base == walkable_tile && tile_left_base == walkable_tile && tile_down_base == walkable_tile
+            && tile_down_right_base == non_walkable_tile && tile_left_up_base == non_walkable_tile)
+        {
+            ret = Direction.DOWN_LEFT;
+        }
+        else if (check_down == true && check_left == false)
         {
             ret = Direction.DOWN;
         }
-        else if (check1_top_r == false && check2_bottom == true && check3_top_l == true)
-        {
-            ret = Direction.DOWN;
-        }
-        else if (check3_top_l == false && check2_bottom == true)
+        else if (check_down == false && check_left == true)
         {
             ret = Direction.LEFT;
         }
+        if (check_diagonal == false && check_left == true && check_down == true)
+        {
+            Vector3 world_position_tile = walkability.GetCellCenterWorld(tile_diagonal);
+            float tile_x_comprovation = world_position_tile.x + (1.25f / 2);
+
+            if (sprite_bottom_left.x > tile_x_comprovation)
+            {
+                ret = Direction.DOWN;
+            }
+            else
+            {
+                float tile_y_comprovation = world_position_tile.y + (1.25f / 2);
+                if (sprite_bottom_left.y > tile_y_comprovation)
+                {
+                    ret = Direction.LEFT;
+                }
+            }
+        }
+
 
         return ret;
     }
