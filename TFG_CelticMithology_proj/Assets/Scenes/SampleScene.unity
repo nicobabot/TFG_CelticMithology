@@ -2892,6 +2892,7 @@ GameObject:
   - component: {fileID: 1035032150}
   - component: {fileID: 1035032153}
   - component: {fileID: 1035032152}
+  - component: {fileID: 1035032156}
   - component: {fileID: 1035032154}
   - component: {fileID: 1035032155}
   m_Layer: 0
@@ -3006,7 +3007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2c1b3adf3e3c14bac25246fe498dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &1035032155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3020,6 +3020,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Father_UI_Player_Live: {fileID: 612399600}
   hearts_division: 2
+--- !u!114 &1035032156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1035032149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0555b49ebba1d4c9068ac3129effcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timedashing: 0.2
+  speed: 5
+  dashspeed: 10
 --- !u!1 &1096143627
 GameObject:
   m_ObjectHideFlags: 0
