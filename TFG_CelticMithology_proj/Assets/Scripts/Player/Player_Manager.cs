@@ -15,6 +15,15 @@ public class Player_Manager : MonoBehaviour {
     }
     public Player_States current_state;
 
+    public enum Player_Direction
+    {
+        UP_PLAYER,
+        DOWN_PLAYER,
+        RIGHT_PLAYER,
+        LEFT_PLAYER
+    }
+    public Player_Direction player_direction;
+
     Collision_Movement movement_script;
     float timer_dash = 0.0f;
     bool want_to_dash = false;

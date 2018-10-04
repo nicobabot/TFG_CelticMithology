@@ -40,6 +40,26 @@ public class Collision_Movement : MonoBehaviour {
             }
         }
 
+        //Just to keep tracking of the direction of the player
+        if (input_movement_horizontal > 0.5f)
+        {
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.RIGHT_PLAYER;
+        }
+        else if (input_movement_horizontal < -0.5f)
+        {
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.LEFT_PLAYER;
+        }
+
+        if (input_movement_vertical > 0.5f)
+        {
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.UP_PLAYER;
+        }
+        else if(input_movement_vertical < -0.5f)
+        {
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.DOWN_PLAYER;
+        }
+
+        //Movement calculation
         if (input_movement_horizontal > 0.5f || input_movement_horizontal < -0.5f)
         {
             rb.velocity = new Vector3(input_movement_horizontal * new_speed, rb.velocity.y);
