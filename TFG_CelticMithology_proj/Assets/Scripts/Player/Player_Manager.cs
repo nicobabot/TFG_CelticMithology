@@ -42,17 +42,15 @@ public class Player_Manager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            want_to_dash = true;
             current_state = Player_States.DASHING_PLAYER;
         }
 
-        if (want_to_dash && timer_dash <= time_dashing)
+        if (current_state == Player_States.DASHING_PLAYER && timer_dash <= time_dashing)
         {
             timer_dash += Time.deltaTime;
             movement_script.Movement_Update(dash_speed, true);
         }
         else {
-            want_to_dash = false;
             timer_dash = 0.0f;
             movement_script.Movement_Update(movement_speed);
         }

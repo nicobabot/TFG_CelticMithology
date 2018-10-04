@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Collision_Movement : MonoBehaviour {
 
+    public Collider2D combat_collider;
+
     Rigidbody2D rb;
     Player_Manager play_manager_scr;
+
 
     // Use this for initialization
     void Start () {
@@ -18,6 +21,24 @@ public class Collision_Movement : MonoBehaviour {
 
         float input_movement_horizontal = Input.GetAxisRaw("Horizontal");
         float input_movement_vertical = Input.GetAxisRaw("Vertical");
+
+        //If the player is dashing we want to deactivate the combat collider to
+        //be inmortal
+        if(is_dashing == true)
+        {
+            if (combat_collider.enabled)
+            {
+                combat_collider.enabled = false;
+            }
+        }
+        else
+        {
+            //If the player finished dashing we want to activate the combat collider
+            if (!combat_collider.enabled)
+            {
+                combat_collider.enabled = true;
+            }
+        }
 
         if (input_movement_horizontal > 0.5f || input_movement_horizontal < -0.5f)
         {
@@ -39,6 +60,7 @@ public class Collision_Movement : MonoBehaviour {
             rb.velocity = new Vector3(rb.velocity.x, 0f);
         }
 
+        //Just to change the state of the player
         if ((input_movement_horizontal < 0.5f && input_movement_horizontal > -0.5f) && 
             (input_movement_vertical < 0.5f && input_movement_vertical > -0.5f)) {
             if (!is_dashing) play_manager_scr.current_state = Player_Manager.Player_States.IDLE_PLAYER;

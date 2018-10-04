@@ -394,7 +394,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01368618, y: 0.075276375}
@@ -3062,6 +3062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2c1b3adf3e3c14bac25246fe498dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combat_collider: {fileID: 154280116}
 --- !u!114 &1035032155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3088,7 +3089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time_dashing: 0.25
   movement_speed: 5
-  dash_speed: 10
+  dash_speed: 8
   current_state: 0
 --- !u!1 &1096143627
 GameObject:
@@ -4820,7 +4821,7 @@ Transform:
   m_GameObject: {fileID: 2005525432}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -5.41, y: -7.113, z: 0}
-  m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1}
+  m_LocalScale: {x: 0.9500008, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 27938191}
   m_RootOrder: 2
