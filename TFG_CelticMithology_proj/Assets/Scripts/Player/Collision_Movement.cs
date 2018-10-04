@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collision_Movement : MonoBehaviour {
 
-    public Collider2D combat_collider;
+    public Collider2D combat_player_collider;
 
     Rigidbody2D rb;
     Player_Manager play_manager_scr;
@@ -26,17 +26,17 @@ public class Collision_Movement : MonoBehaviour {
         //be inmortal
         if(is_dashing == true)
         {
-            if (combat_collider.enabled)
+            if (combat_player_collider.enabled)
             {
-                combat_collider.enabled = false;
+                combat_player_collider.enabled = false;
             }
         }
         else
         {
             //If the player finished dashing we want to activate the combat collider
-            if (!combat_collider.enabled)
+            if (!combat_player_collider.enabled)
             {
-                combat_collider.enabled = true;
+                combat_player_collider.enabled = true;
             }
         }
 
