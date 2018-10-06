@@ -67,11 +67,11 @@ public class Player_Manager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton"))
         {
             current_state = Player_States.DASHING_PLAYER;
         }
-        else if (Input.GetKeyDown(KeyCode.T))
+        else if (Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton"))
         {
             current_state = Player_States.SLASHING_PLAYER;
         }
