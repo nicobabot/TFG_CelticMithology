@@ -8,6 +8,7 @@ public class Slash_Attack : MonoBehaviour {
     public float time_slashing = 1.0f;
     Player_Manager player_manager_sct;
     float timer_slash = 0.0f;
+    GameObject enemy_collided = null;
 
     // Use this for initialization
     void Start () {
@@ -22,6 +23,17 @@ public class Slash_Attack : MonoBehaviour {
         if (!collider_to_activate.active)
         {
             collider_to_activate.SetActive(true);
+        }
+
+        Detect_Collision_Slash collision_slash_scr = collider_to_activate.GetComponent<Detect_Collision_Slash>();
+
+        if(collision_slash_scr!= null)
+        {
+            enemy_collided = collision_slash_scr.Is_Enemy_Collided();
+            if (enemy_collided != null)
+            {
+                //Call enemy damage function
+            }
         }
 
         timer_slash += Time.deltaTime;
