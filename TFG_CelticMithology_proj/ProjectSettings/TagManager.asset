@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - player_movement_collider
+  - player_combat_collider
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,12 @@ public class Detect_Collision_Slash : MonoBehaviour {
 
     public GameObject Is_Enemy_Collided()
     {
-        return enemy_collided;
+        GameObject temp_go = enemy_collided;
+        if (temp_go != null)
+        {
+            enemy_collided = null;
+        }
+        return temp_go;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

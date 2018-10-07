@@ -13,8 +13,9 @@ public class Player_Manager : MonoBehaviour {
         MOVING_PLAYER,
         DASHING_PLAYER,
         SLASHING_PLAYER,
+        FALLING_PLAYER
     }
-    public Player_States current_state;
+    public  Player_States current_state;
 
     public enum Player_Direction
     {
@@ -85,6 +86,13 @@ public class Player_Manager : MonoBehaviour {
         else if (current_state == Player_States.SLASHING_PLAYER)
         {
             slash_attack_script.Attack_Slash_Update();
+        }
+        else if (current_state == Player_States.FALLING_PLAYER)
+        {
+            //todo
+            Vector3 temp_vect = Vector3.zero;
+            transform.position = temp_vect;
+            current_state = Player_States.IDLE_PLAYER;
         }
         else {
             timer_dash = 0.0f;
