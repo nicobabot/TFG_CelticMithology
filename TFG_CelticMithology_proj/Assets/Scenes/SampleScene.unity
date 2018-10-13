@@ -4102,6 +4102,8 @@ GameObject:
   - component: {fileID: 1130667138}
   - component: {fileID: 1130667137}
   - component: {fileID: 1130667136}
+  - component: {fileID: 1130667140}
+  - component: {fileID: 1130667139}
   m_Layer: 9
   m_Name: EnemyTest
   m_TagString: enemy
@@ -4192,6 +4194,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130667139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130667135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc3dd557cb454549b8255e16e240dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1130667140}
+  Action_name: 
+--- !u!114 &1130667140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130667135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbf9de4a3f7ddd4f91d38c795ec7fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life:
+    my_name: Live
+    my_value: 50
 --- !u!1 &1137306163
 GameObject:
   m_ObjectHideFlags: 0
