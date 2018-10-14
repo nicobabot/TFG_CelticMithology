@@ -5,9 +5,8 @@ using UnityEngine;
 public class BT_Soldier : BT_Entity {
 
     //current_action
-    //[SerializeField]private ActionBase patroll;
-
-
+    public Action_FollowPlayer chase;
+    public GameObject player;
 
     override public void Update()
     {
@@ -20,11 +19,11 @@ public class BT_Soldier : BT_Entity {
     {
         bool decide = false;
 
-        /*if (currentAction != chase_player && this.myBB.GetParameter("player_transform") != null && (bool)this.myBB.GetParameter("ready_to_attack")==false)
+        if (currentAction != chase)
         {
-            currentAction = chase_player;
+            currentAction = chase;
             decide = true;
-        }*/
+        }
 
 
         return decide;

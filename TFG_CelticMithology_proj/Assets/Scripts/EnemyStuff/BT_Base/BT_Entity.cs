@@ -17,6 +17,7 @@ public class BT_Entity : MonoBehaviour {
     private ActionBase current_action = null;
     [SerializeField]Blackboard blackboard = null;
     public string Action_name = "";
+    public Pathfinder pathfinder_scr;
     
     private BT_Status status = BT_Status.WAITING;
 

@@ -356,6 +356,49 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
+--- !u!1 &143351902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 143351904}
+  - component: {fileID: 143351903}
+  m_Layer: 0
+  m_Name: PathfinderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &143351903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 143351902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281fa9645eff969418d4ae9d9f2546ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkability: {fileID: 565210249}
+  walkable_tile: {fileID: 11400000, guid: 864dfc2cadc8ac24c95e2bb16dcafb8c, type: 2}
+  non_walkable_tile: {fileID: 11400000, guid: 5aeff58afd4281349b607314f7fb4226, type: 2}
+--- !u!4 &143351904
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 143351902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.017677, y: 1.7362268, z: -0.06247804}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154280114
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,6 +4147,7 @@ GameObject:
   - component: {fileID: 1130667136}
   - component: {fileID: 1130667140}
   - component: {fileID: 1130667139}
+  - component: {fileID: 1130667141}
   m_Layer: 9
   m_Name: EnemyTest
   m_TagString: enemy
@@ -4207,6 +4251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackboard: {fileID: 1130667140}
   Action_name: 
+  pathfinder_scr: {fileID: 143351903}
+  chase: {fileID: 1130667141}
+  player: {fileID: 1035032149}
 --- !u!114 &1130667140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4221,6 +4268,19 @@ MonoBehaviour:
   life:
     my_name: Live
     my_value: 50
+--- !u!114 &1130667141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130667135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7b9e0f442765f449c7b07e5d2054a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Follow Player
 --- !u!1 &1137306163
 GameObject:
   m_ObjectHideFlags: 0
