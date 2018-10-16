@@ -175,23 +175,36 @@ public class Pathfinder : MonoBehaviour
         int x_pos = node.GetTileX();
         int y_pos = node.GetTileY();
 
-        ret.Add(new PathNode(x_pos + (int)range, y_pos));
 
-        ret.Add(new PathNode(x_pos - (int)range, y_pos));
+        if (IsWalkableTile(x_pos + (int)range, y_pos))
+        {
+            ret.Add(new PathNode(x_pos + (int)range, y_pos));
+        }
 
-        ret.Add(new PathNode(x_pos, y_pos + (int)range));
+        if (IsWalkableTile(x_pos - (int)range, y_pos))
+        {
+            ret.Add(new PathNode(x_pos - (int)range, y_pos));
+        }
 
-        ret.Add(new PathNode(x_pos, y_pos - (int)range));
+        if (IsWalkableTile(x_pos, y_pos + (int)range))
+        {
+            ret.Add(new PathNode(x_pos, y_pos + (int)range));
+        }
+
+        if (IsWalkableTile(x_pos, y_pos - (int)range))
+        {
+            ret.Add(new PathNode(x_pos, y_pos - (int)range));
+        }
 
 
         return ret;
     }
 
-    public bool IsWalkableTile(PathNode pn)
+    public bool IsWalkableTile(int x_t, int y_t)
     {
         bool ret = false;
 
-        Vector3Int position_tile = new Vector3Int(pn.GetTileX(), pn.GetTileY(), 0);
+        Vector3Int position_tile = new Vector3Int(x_t, y_t, 0);
         TileBase tile_temp = walkability.GetTile(position_tile);
         if(tile_temp == walkable_tile)
         {
