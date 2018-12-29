@@ -8,6 +8,8 @@ public class BT_Soldier : BT_Entity {
     public Action_FollowPlayer chase;
     public GameObject player;
 
+    bool can_start_combat = false;
+
     override public void Update()
     {
 
@@ -19,14 +21,40 @@ public class BT_Soldier : BT_Entity {
     {
         bool decide = false;
 
-        if (currentAction != chase)
+        if (currentAction != chase && can_start_combat == false)
         {
             currentAction = chase;
+            decide = true;
+        }
+        else if(can_start_combat == true)
+        {
+            //currentAction = chase;
             decide = true;
         }
 
 
         return decide;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Can start combat
+        if(collision.tag == "player_combat_collider")
+        {
+            currentAction.EndAction();
+            can_start_combat = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Start chasing
+        if (collision.tag == "player_combat_collider")
+        {
+            currentAction.EndAction();
+            can_start_combat = false;
+        }
     }
 
 }
