@@ -164,22 +164,4 @@ public class BT_Entity : MonoBehaviour {
 
 virtual public bool MakeDecision(){ return true; }
 
-
-    public bool Box2DContainPoint(Vector2 left_top_quad, Vector2 botom_down_quad, Vector2 point_to_test)
-    {
-
-        bool ret = false;
-
-        if (point_to_test.x < left_top_quad.x && point_to_test.x > botom_down_quad.x)
-        {
-            if (point_to_test.y < left_top_quad.y && point_to_test.y > botom_down_quad.y)
-            {
-                ret = true;
-            }
-
-        }
-
-        return ret;
-    }
-
 }

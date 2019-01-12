@@ -34,11 +34,7 @@ public class Slash_Attack : MonoBehaviour {
             enemy_collided = collision_slash_scr.Is_Enemy_Collided();
             if (enemy_collided != null)
             {
-                Debug.Log("Enemy detected: ", enemy_collided);
-                cam_manager.Cam_Shake();
-
-                enemy_collided = null;
-                //Call enemy damage function
+                React_To_Slash(enemy_collided);
             }
         }
 
@@ -55,4 +51,23 @@ public class Slash_Attack : MonoBehaviour {
 
 
     }
+
+    void React_To_Slash(GameObject enemy_collided)
+    {
+        Debug.Log("Enemy detected: ", enemy_collided);
+        cam_manager.Cam_Shake();
+
+        //Detect enemy type
+        BT_Soldier soldier = enemy_collided.GetComponent<BT_Soldier>();
+        if (soldier != null)
+        {
+            Soldier_Blackboard bb_soldier = enemy_collided.GetComponent<Soldier_Blackboard>();
+            bb_soldier.is_enemy_hit.SetValue(true);
+        }
+
+
+        enemy_collided = null;
+        //Call enemy damage function
+    }
+
 }

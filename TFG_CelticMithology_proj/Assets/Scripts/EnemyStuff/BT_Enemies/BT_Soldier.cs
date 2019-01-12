@@ -6,7 +6,8 @@ public class BT_Soldier : BT_Entity {
 
     //current_action
     public Action_FollowPlayer chase;
-    public GameObject player;
+    public Action_PushBack pushback;
+    public Action_MeleeAttack melee_attack;
 
     bool can_start_combat = false;
 
@@ -26,11 +27,16 @@ public class BT_Soldier : BT_Entity {
             currentAction = chase;
             decide = true;
         }
-        else if(can_start_combat == true)
+        else if ((bool)myBB.GetParameter("is_enemy_hit") == true)
+        {
+            currentAction = pushback;
+            decide = true;
+        }
+       /* else if (can_start_combat == true)
         {
             //currentAction = chase;
             decide = true;
-        }
+        }*/
 
 
         return decide;
@@ -42,7 +48,9 @@ public class BT_Soldier : BT_Entity {
         //Can start combat
         if(collision.tag == "player_combat_collider")
         {
-            currentAction.EndAction();
+            if(currentAction != null)
+            currentAction.isFinish=true;
+
             can_start_combat = true;
         }
     }
@@ -52,7 +60,14 @@ public class BT_Soldier : BT_Entity {
         //Start chasing
         if (collision.tag == "player_combat_collider")
         {
-            currentAction.EndAction();
+            if (currentAction != null)
+            {
+                if (currentAction == melee_attack)
+                {
+                    currentAction.isFinish = true;
+                }
+            }
+
             can_start_combat = false;
         }
     }

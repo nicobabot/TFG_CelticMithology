@@ -16,9 +16,16 @@ public class Action_FollowPlayer : ActionBase {
     Vector3Int cell_destiny_pos = Vector3Int.zero;
     Vector3Int cell_pos = Vector3Int.zero;
     PathNode actual_node;
+    GameObject player;
 
     override public BT_Status StartAction()
     {
+        player = (GameObject)myBT.myBB.GetParameter("player");
+        if(player == null)
+        {
+            Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
+        }
+
         Recalculate_Path();
 
         return BT_Status.RUNNING;
@@ -27,7 +34,7 @@ public class Action_FollowPlayer : ActionBase {
     override public BT_Status UpdateAction()
     {
 
-        if (myBT.pathfinder_scr.walkability.LocalToCell(((BT_Soldier)myBT).player.transform.position) != cell_destiny_pos)
+        if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
         {
             Recalculate_Path();
         }
@@ -61,7 +68,7 @@ public class Action_FollowPlayer : ActionBase {
         timer_changing = 0;
         cells_changed = 0;
 
-        destiny_pos = ((BT_Soldier)myBT).player.transform.position;
+        destiny_pos = player.transform.position;
 
         cell_destiny_pos = myBT.pathfinder_scr.walkability.LocalToCell(destiny_pos);
 
