@@ -175,50 +175,64 @@ public class Pathfinder : MonoBehaviour
         int x_pos = node.GetTileX();
         int y_pos = node.GetTileY();
 
+        bool right_available = false;
+        bool left_available = false;
+        bool up_available = false;
+        bool down_available = false;
 
+
+        //right
         if (IsWalkableTile(x_pos + (int)range, y_pos))
         {
             ret.Add(new PathNode(x_pos + (int)range, y_pos));
+            right_available = true;
         }
 
+        //left
         if (IsWalkableTile(x_pos - (int)range, y_pos))
         {
             ret.Add(new PathNode(x_pos - (int)range, y_pos));
+            left_available = true;
         }
 
+        //up
         if (IsWalkableTile(x_pos, y_pos + (int)range))
         {
             ret.Add(new PathNode(x_pos, y_pos + (int)range));
+            up_available = true;
         }
 
+        //down
         if (IsWalkableTile(x_pos, y_pos - (int)range))
         {
             ret.Add(new PathNode(x_pos, y_pos - (int)range));
-        }
-
-        //right up diagonal
-        if (IsWalkableTile(x_pos + (int)range, y_pos + (int)range))
-        {
-            ret.Add(new PathNode(x_pos + (int)range, y_pos + (int)range));
+            down_available = true;
         }
 
         //left up diagonal
-        if (IsWalkableTile(x_pos - (int)range, y_pos + (int)range))
+        if (IsWalkableTile(x_pos - (int)range, y_pos + (int)range) && left_available && up_available)
         {
             ret.Add(new PathNode(x_pos - (int)range, y_pos + (int)range));
         }
 
+        //left down diagonals
+        if (IsWalkableTile(x_pos - (int)range, y_pos - (int)range) && left_available && down_available)
+        {
+            ret.Add(new PathNode(x_pos - (int)range, y_pos - (int)range));
+        }
+
+        //right up diagonal
+        if (IsWalkableTile(x_pos + (int)range, y_pos + (int)range) && right_available && up_available)
+        {
+            ret.Add(new PathNode(x_pos + (int)range, y_pos + (int)range));
+        }
+
         //right down diagonal
-        if (IsWalkableTile(x_pos + (int)range, y_pos - (int)range))
+        if (IsWalkableTile(x_pos + (int)range, y_pos - (int)range) && right_available && down_available)
         {
             ret.Add(new PathNode(x_pos + (int)range, y_pos - (int)range));
         }
 
-        //left down diagonals
-        if (IsWalkableTile(x_pos - (int)range, y_pos - (int)range))
-        {
-            ret.Add(new PathNode(x_pos - (int)range, y_pos - (int)range));
-        }
 
         return ret;
     }
