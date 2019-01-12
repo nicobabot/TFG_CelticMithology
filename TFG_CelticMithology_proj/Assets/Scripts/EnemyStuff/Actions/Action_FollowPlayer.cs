@@ -15,6 +15,7 @@ public class Action_FollowPlayer : ActionBase {
     Vector3 destiny_pos = Vector3.zero;
     Vector3Int cell_destiny_pos = Vector3Int.zero;
     Vector3Int cell_pos = Vector3Int.zero;
+    PathNode actual_node;
 
     override public BT_Status StartAction()
     {
@@ -25,79 +26,23 @@ public class Action_FollowPlayer : ActionBase {
 
     override public BT_Status UpdateAction()
     {
+
         if (myBT.pathfinder_scr.walkability.LocalToCell(((BT_Soldier)myBT).player.transform.position) != cell_destiny_pos)
         {
             Recalculate_Path();
         }
-        else if (cells_changed < tiles_list.Count)
+
+
+        if (cells_changed < tiles_list.Count)
         {
-            PathNode temp_node = tiles_list[cells_changed];
-            int x_tile = temp_node.GetTileX();
-            int y_tile = temp_node.GetTileY();
+            actual_node = tiles_list[cells_changed];
+            int x_tile = actual_node.GetTileX();
+            int y_tile = actual_node.GetTileY();
             Vector3 new_position = myBT.pathfinder_scr.walkability.CellToLocal(new Vector3Int(x_tile, y_tile, 0));
 
-            //Anchor point
-            float y_pos = new_position.y + GetComponent<SpriteRenderer>().size.y * 0.5f;
-            new_position.y = y_pos;
+            transform.position = Vector3.MoveTowards(transform.position, new_position, speed*Time.deltaTime);
 
-
-            float new_x = transform.position.x;
-            float new_y = transform.position.y;
-
-            bool is_x_bigger = false;
-            bool is_y_bigger = false;
-
-            if (new_position.x > new_x) {
-                is_x_bigger = true;
-                new_x += Time.deltaTime * speed;
-            }
-            else
-                new_x -= Time.deltaTime * speed;
-
-            if (new_position.y > new_y) {
-                is_y_bigger = true;
-                new_y += Time.deltaTime * speed;
-            }
-            else
-                new_y -= Time.deltaTime * speed;
-
-            transform.position = new Vector3(new_x, new_y, 0);
-
-            bool can_change_x = false;
-            bool can_change_y = false;
-
-            if (is_x_bigger) {
-                if (transform.position.x >= new_position.x - speed*Time.deltaTime)
-                {
-                    can_change_x = true;
-                }
-            }
-            else
-            {
-                if (transform.position.x <= new_position.x + speed * Time.deltaTime)
-                {
-                    can_change_x = true;
-                }
-
-            }
-
-            if (is_y_bigger)
-            {
-                if (transform.position.y >= new_position.y - speed * Time.deltaTime)
-                {
-                    can_change_y = true;
-                }
-            }
-            else
-            {
-                if (transform.position.y <= new_position.y + speed * Time.deltaTime)
-                {
-                    can_change_y = true;
-                }
-
-            }
-
-            if (can_change_x == true && can_change_y == true)
+            if (transform.position == new_position)
             {
                 cells_changed++;
             }
@@ -120,7 +65,7 @@ public class Action_FollowPlayer : ActionBase {
 
         cell_destiny_pos = myBT.pathfinder_scr.walkability.LocalToCell(destiny_pos);
 
-        cell_pos = myBT.pathfinder_scr.walkability.LocalToCell(transform.GetChild(0).transform.position);
+        cell_pos = myBT.pathfinder_scr.walkability.LocalToCell(transform.position);
 
         tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y));
     }

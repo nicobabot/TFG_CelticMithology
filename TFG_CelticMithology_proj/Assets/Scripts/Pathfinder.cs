@@ -196,6 +196,29 @@ public class Pathfinder : MonoBehaviour
             ret.Add(new PathNode(x_pos, y_pos - (int)range));
         }
 
+        //right up diagonal
+        if (IsWalkableTile(x_pos + (int)range, y_pos + (int)range))
+        {
+            ret.Add(new PathNode(x_pos + (int)range, y_pos + (int)range));
+        }
+
+        //left up diagonal
+        if (IsWalkableTile(x_pos - (int)range, y_pos + (int)range))
+        {
+            ret.Add(new PathNode(x_pos - (int)range, y_pos + (int)range));
+        }
+
+        //right down diagonal
+        if (IsWalkableTile(x_pos + (int)range, y_pos - (int)range))
+        {
+            ret.Add(new PathNode(x_pos + (int)range, y_pos - (int)range));
+        }
+
+        //left down diagonals
+        if (IsWalkableTile(x_pos - (int)range, y_pos - (int)range))
+        {
+            ret.Add(new PathNode(x_pos - (int)range, y_pos - (int)range));
+        }
 
         return ret;
     }
