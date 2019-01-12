@@ -6,6 +6,8 @@ public class Slash_Attack : MonoBehaviour {
 
     public GameObject father_collider_slash_attack;
     public float time_slashing = 1.0f;
+    public CameraManager cam_manager;
+
     Player_Manager player_manager_sct;
     float timer_slash = 0.0f;
     GameObject enemy_collided = null;
@@ -32,6 +34,10 @@ public class Slash_Attack : MonoBehaviour {
             enemy_collided = collision_slash_scr.Is_Enemy_Collided();
             if (enemy_collided != null)
             {
+                Debug.Log("Enemy detected: ", enemy_collided);
+                cam_manager.Cam_Shake();
+
+                enemy_collided = null;
                 //Call enemy damage function
             }
         }
