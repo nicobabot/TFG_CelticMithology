@@ -11,6 +11,7 @@ public class Action_PushBack : ActionBase {
     GameObject player;
     Vector3 pushback_dir = Vector3.zero;
     bool is_pushback_done = false;
+    bool can_make_pushback = false;
     Rigidbody2D rb;
 
     override public BT_Status StartAction()
@@ -28,6 +29,12 @@ public class Action_PushBack : ActionBase {
         pushback_dir = transform.position - player.transform.position;
         pushback_dir = pushback_dir.normalized * push_distance;
 
+        Vector3 new_pos = transform.position + pushback_dir;
+        Pathfinder path_scr = myBT.pathfinder_scr;
+
+        Vector3Int new_pos_cell = path_scr.walkability.LocalToCell(new_pos);
+        can_make_pushback = path_scr.IsWalkableTile(new_pos_cell.x, new_pos_cell.y);
+
         is_pushback_done = false;
         timer_pushback = 0.0f;
 
@@ -36,6 +43,12 @@ public class Action_PushBack : ActionBase {
 
     override public BT_Status UpdateAction()
     {
+        if (!can_make_pushback)
+        {
+            myBT.myBB.SetParameter("is_enemy_hit", false);
+            isFinish = true;
+            return BT_Status.RUNNING;
+        }
 
         rb.velocity = pushback_dir;
 

@@ -2,38 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Detect_Collision_Slash : MonoBehaviour {
 
+    public LayerMask enemy_layer;
     GameObject enemy_collided = null;
+    BoxCollider2D collider;
 
     // Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public GameObject Is_Enemy_Collided()
+    public Collider2D[] Is_Enemy_Collided()
     {
-        GameObject temp_go = enemy_collided;
-        if (temp_go != null)
-        {
-            enemy_collided = null;
-        }
-        return temp_go;
+        collider = GetComponent<BoxCollider2D>();
+        Collider2D[] enemies_found = Physics2D.OverlapBoxAll(transform.position, collider.size, 0.0f, enemy_layer);
+      
+        return enemies_found;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnDrawGizmosSelected()
     {
-        
-        if(collision.tag == "enemy")
-        {
-            enemy_collided = collision.gameObject;
-        }
-
+        Gizmos.DrawWireCube(transform.position, collider.size);
     }
 
-}
+        /*private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "enemy")
+            {
+                enemy_collided = collision.gameObject;
+            }
+        }*/
+
+    }

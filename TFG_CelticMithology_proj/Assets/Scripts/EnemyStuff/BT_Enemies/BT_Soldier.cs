@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Soldier_Blackboard))]
 public class BT_Soldier : BT_Entity {
 
     //current_action

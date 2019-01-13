@@ -10,7 +10,9 @@ public class Slash_Attack : MonoBehaviour {
 
     Player_Manager player_manager_sct;
     float timer_slash = 0.0f;
-    GameObject enemy_collided = null;
+    Collider2D[] enemies_found = null;
+
+    bool is_slash_done = false;
 
     // Use this for initialization
     void Start () {
@@ -29,45 +31,48 @@ public class Slash_Attack : MonoBehaviour {
 
         Detect_Collision_Slash collision_slash_scr = collider_to_activate.GetComponent<Detect_Collision_Slash>();
 
-        if(collision_slash_scr!= null)
+        if(collision_slash_scr!= null && is_slash_done == false)
         {
-            enemy_collided = collision_slash_scr.Is_Enemy_Collided();
-            if (enemy_collided != null)
+            enemies_found = collision_slash_scr.Is_Enemy_Collided();
+            if (enemies_found.Length > 0)
             {
-                React_To_Slash(enemy_collided);
+                React_To_Slash();
             }
+            is_slash_done = true;
         }
 
         timer_slash += Time.deltaTime;
 
         if(timer_slash> time_slashing)
         {
+            is_slash_done = false;
             timer_slash = 0;
             collider_to_activate.SetActive(false);
             player_manager_sct.current_state = Player_Manager.Player_States.IDLE_PLAYER;
         }
 
-
-
-
     }
 
-    void React_To_Slash(GameObject enemy_collided)
+    void React_To_Slash()
     {
-        Debug.Log("Enemy detected: ", enemy_collided);
+        Debug.Log("Enemies detected: " + enemies_found.Length);
         cam_manager.Cam_Shake();
 
-        //Detect enemy type
-        BT_Soldier soldier = enemy_collided.GetComponent<BT_Soldier>();
-        if (soldier != null)
+        foreach (Collider2D col in enemies_found)
         {
-            Soldier_Blackboard bb_soldier = enemy_collided.GetComponent<Soldier_Blackboard>();
-            bb_soldier.is_enemy_hit.SetValue(true);
+
+            //Detect enemy type
+            BT_Soldier soldier = col.GetComponent<BT_Soldier>();
+            if (soldier != null)
+            {
+                Soldier_Blackboard bb_soldier = col.GetComponent<Soldier_Blackboard>();
+                bb_soldier.is_enemy_hit.SetValue(true);
+            }
+
         }
 
-
-        enemy_collided = null;
-        //Call enemy damage function
+        System.Array.Clear(enemies_found, 0, enemies_found.Length);
+            //Call enemy damage function
     }
 
 }
