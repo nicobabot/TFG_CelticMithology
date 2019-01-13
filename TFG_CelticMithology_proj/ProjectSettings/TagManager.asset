@@ -7,6 +7,7 @@ TagManager:
   - enemy
   - player_movement_collider
   - player_combat_collider
+  - wall
   layers:
   - Default
   - TransparentFX
