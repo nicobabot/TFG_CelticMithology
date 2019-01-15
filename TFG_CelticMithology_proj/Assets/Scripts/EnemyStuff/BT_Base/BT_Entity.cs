@@ -128,21 +128,21 @@ public class BT_Entity : MonoBehaviour {
         switch (myStatus)
         {
             case BT_Status.WAITING:
-                Debug.Log("Waiting for action");
+                //Debug.Log("Waiting for action");
                 break;
             case BT_Status.RUNNING:
-                Debug.Log("Action start running");
+                //Debug.Log("Action start running");
                 break;
             case BT_Status.SUCCESS:
-                Debug.Log("Action Succes change to waitinh");
+                //Debug.Log("Action Succes change to waitinh");
                 ResetAction();
                 break;
             case BT_Status.FAIL:
-                Debug.Log("Action Fail change to waiting");
+                //Debug.Log("Action Fail change to waiting");
                 ResetAction();
                 break;
             case BT_Status.ERROR:
-                Debug.Log("Action Error something bad happend :(((");
+                //Debug.Log("Action Error something bad happend :(((");
                 ResetAction();
                 break;
         }

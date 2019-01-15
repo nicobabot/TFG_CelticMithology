@@ -33,11 +33,11 @@ public class BT_Soldier : BT_Entity {
             currentAction = pushback;
             decide = true;
         }
-       /* else if (can_start_combat == true)
+        else if (can_start_combat == true)
         {
-            //currentAction = chase;
+            currentAction = melee_attack;
             decide = true;
-        }*/
+        }
 
 
         return decide;

@@ -112,3 +112,27 @@ public class ParameterGameObject : Parameter
 
 
 }
+public enum Direction
+{
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN,
+    NEUTRAL
+}
+[System.Serializable]
+public class ParameterEnumDirection : Parameter
+{
+
+    [SerializeField] private Direction my_value;
+
+    public Direction myValue
+    {
+        get { return my_value; }
+        set { my_value = value; }
+    }
+    override public object GetValue() { return myValue; }
+    override public void SetValue(object value) { myValue = (Direction)value; }
+
+
+}
