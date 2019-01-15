@@ -17,6 +17,9 @@ public class Action_PushBack : ActionBase {
     Vector3 hitpoint_wall;
     Rigidbody2D rb;
 
+    Vector3 temp_position;
+    Vector3 temp_position_player;
+
     override public BT_Status StartAction()
     {
 
@@ -29,13 +32,33 @@ public class Action_PushBack : ActionBase {
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         //Reverse direction to make the pushback
-        pushback_dir = transform.position - player.transform.position;
+        SpriteRenderer sprite_rend = GetComponent<SpriteRenderer>();
+        if (sprite_rend == null)
+        {
+            Debug.Log("Sprite renderer null _Action_PushBack");
+        }
+
+        float size_addition = (sprite_rend.size.y * 0.5f) * 0.5f;
+        temp_position = transform.position;
+        temp_position.y += size_addition;
+
+
+        SpriteRenderer sprite_rend_player = player.GetComponent<SpriteRenderer>();
+        if (sprite_rend_player == null)
+        {
+            Debug.Log("Sprite renderer null _Action_PushBack");
+        }
+
+        float size_addition_player = (sprite_rend_player.size.y * 0.5f) * 0.5f;
+        temp_position_player = player.transform.position;
+        temp_position_player.y += size_addition_player;
+
+        pushback_dir = temp_position - temp_position_player;
         pushback_dir = pushback_dir.normalized * push_distance;
 
-        Vector3 new_pos = transform.position + pushback_dir;
-        Pathfinder path_scr = myBT.pathfinder_scr;
 
-        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
+
+        RaycastHit2D[] hit = Physics2D.RaycastAll(temp_position, pushback_dir.normalized, push_distance);
         if (hit != null)
         {
             foreach(RaycastHit2D hit_t in hit)
@@ -47,9 +70,6 @@ public class Action_PushBack : ActionBase {
             }
         }
 
-
-        Vector3Int new_pos_cell = path_scr.walkability.LocalToCell(new_pos);
-        can_make_pushback = path_scr.IsWalkableTile(new_pos_cell.x, new_pos_cell.y);
 
         is_pushback_done = false;
         timer_pushback = 0.0f;
@@ -63,13 +83,14 @@ public class Action_PushBack : ActionBase {
         pushback_dir = transform.position - player.transform.position;
         pushback_dir = pushback_dir.normalized * push_distance;
         Gizmos.DrawLine(transform.position, transform.position + pushback_dir);*/
-        Gizmos.DrawWireSphere(hitpoint_wall, 0.1f);
+        Gizmos.DrawLine(temp_position, temp_position + pushback_dir);
+        Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
     }
 
     override public BT_Status UpdateAction()
     {
 
-        Vector3 direction = transform.position - hitpoint_wall;
+        Vector3 direction = temp_position - hitpoint_wall;
 
         if (direction.magnitude < min_distance)
         {

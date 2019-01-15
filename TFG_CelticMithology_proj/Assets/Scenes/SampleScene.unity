@@ -4531,7 +4531,7 @@ MonoBehaviour:
   name: Pushback
   push_distance: 6
   time_doing_pushback: 0.135
-  min_distance: 0.2
+  min_distance: 1
 --- !u!50 &1130667143
 Rigidbody2D:
   serializedVersion: 4
@@ -5655,7 +5655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1734126963
 Transform:
   m_ObjectHideFlags: 0
