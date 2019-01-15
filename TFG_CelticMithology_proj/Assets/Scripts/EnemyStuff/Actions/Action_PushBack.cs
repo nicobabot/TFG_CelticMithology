@@ -38,7 +38,7 @@ public class Action_PushBack : ActionBase {
             Debug.Log("Sprite renderer null _Action_PushBack");
         }
 
-        float size_addition = (sprite_rend.size.y * 0.5f) * 0.5f;
+        float size_addition = (sprite_rend.bounds.size.y * 0.5f);
         temp_position = transform.position;
         temp_position.y += size_addition;
 
@@ -49,7 +49,7 @@ public class Action_PushBack : ActionBase {
             Debug.Log("Sprite renderer null _Action_PushBack");
         }
 
-        float size_addition_player = (sprite_rend_player.size.y * 0.5f) * 0.5f;
+        float size_addition_player = (sprite_rend_player.bounds.size.y * 0.5f);
         temp_position_player = player.transform.position;
         temp_position_player.y += size_addition_player;
 
@@ -79,12 +79,10 @@ public class Action_PushBack : ActionBase {
 
     private void OnDrawGizmos()
     {
-        /*player = (GameObject)myBT.myBB.GetParameter("player");
-        pushback_dir = transform.position - player.transform.position;
-        pushback_dir = pushback_dir.normalized * push_distance;
-        Gizmos.DrawLine(transform.position, transform.position + pushback_dir);*/
         Gizmos.DrawLine(temp_position, temp_position + pushback_dir);
         Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
+        /*Gizmos.DrawWireSphere(temp_position, 0.1f);
+        Gizmos.DrawWireSphere(temp_position_player, 0.1f);*/
     }
 
     override public BT_Status UpdateAction()
