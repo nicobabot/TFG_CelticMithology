@@ -88,68 +88,29 @@ public class Action_FollowPlayer : ActionBase {
         float x = transform.position.x;
         float y = transform.position.y;
 
-        if (x < new_position.x)
-        {
-            dir_x = Direction.RIGHT;
-        }
-        else
-        {
-            dir_x = Direction.LEFT;
-        }
+        if (x < new_position.x) dir_x = Direction.RIGHT;
+        else dir_x = Direction.LEFT;
+        
 
-        if(y < new_position.y)
-        {
-            dir_y = Direction.UP;
-        }
-        else
-        {
-            dir_y = Direction.DOWN;
-        }
+        if(y < new_position.y) dir_y = Direction.UP;
+        else dir_y = Direction.DOWN;
 
 
-        /* if(dir_x == Direction.RIGHT && dir_y == Direction.NEUTRAL)
-         {
-             //Play animation
-             Debug.Log("Going Right");
-             myBT.myBB.SetParameter("direction", dir_x);
-         }
-         else if (dir_x == Direction.LEFT && dir_y == Direction.NEUTRAL)
-         {
-             //Play animation
-             Debug.Log("Going left");
-             myBT.myBB.SetParameter("direction", dir_x);
-         }
-         else if(dir_y == Direction.UP && dir_x == Direction.NEUTRAL)
-         {
-             //Play animation
-             Debug.Log("Going up");
-             myBT.myBB.SetParameter("direction", dir_y);
-         }
-         else if (dir_y == Direction.DOWN && dir_x == Direction.NEUTRAL)
-         {
-             //Play animation
-             Debug.Log("Going down");
-             myBT.myBB.SetParameter("direction", dir_y);
-         }
-         else
-         {*/
         float dif_x = Mathf.Abs(x - new_position.x);
-            float dif_y = Mathf.Abs(y - new_position.y);
+        float dif_y = Mathf.Abs(y - new_position.y);
 
-            if (dif_x> dif_y)
-            {
-                dir_y = Direction.NEUTRAL;
-                Debug.Log("Going " + dir_x.ToString());
-                myBT.myBB.SetParameter("direction", dir_x);
-            }
-            else
-            {
-                dir_x = Direction.NEUTRAL;
-                Debug.Log("Going " + dir_y.ToString());
-                myBT.myBB.SetParameter("direction", dir_y);
-            }
-        //}
-
+        if (dif_x > dif_y)
+        {
+            dir_y = Direction.NEUTRAL;
+            Debug.Log("Going " + dir_x.ToString());
+            myBT.myBB.SetParameter("direction", dir_x);
+        }
+        else
+        {
+            dir_x = Direction.NEUTRAL;
+            Debug.Log("Going " + dir_y.ToString());
+            myBT.myBB.SetParameter("direction", dir_y);
+        }
 
     }
 
