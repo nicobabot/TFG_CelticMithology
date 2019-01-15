@@ -17,6 +17,7 @@ public class Action_PushBack : ActionBase {
     Vector3 hitpoint_wall;
     Rigidbody2D rb;
 
+    SpriteRenderer sprite_rend;
     Vector3 temp_position;
     Vector3 temp_position_player;
 
@@ -32,7 +33,7 @@ public class Action_PushBack : ActionBase {
         rb = gameObject.GetComponent<Rigidbody2D>();
 
         //Reverse direction to make the pushback
-        SpriteRenderer sprite_rend = GetComponent<SpriteRenderer>();
+        sprite_rend = GetComponent<SpriteRenderer>();
         if (sprite_rend == null)
         {
             Debug.Log("Sprite renderer null _Action_PushBack");
@@ -58,7 +59,7 @@ public class Action_PushBack : ActionBase {
 
 
 
-        RaycastHit2D[] hit = Physics2D.RaycastAll(temp_position, pushback_dir.normalized, push_distance);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
         if (hit != null)
         {
             foreach(RaycastHit2D hit_t in hit)
@@ -79,7 +80,7 @@ public class Action_PushBack : ActionBase {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(temp_position, temp_position + pushback_dir);
+        Gizmos.DrawLine(transform.position, transform.position + pushback_dir);
         Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
         /*Gizmos.DrawWireSphere(temp_position, 0.1f);
         Gizmos.DrawWireSphere(temp_position_player, 0.1f);*/
@@ -88,7 +89,7 @@ public class Action_PushBack : ActionBase {
     override public BT_Status UpdateAction()
     {
 
-        Vector3 direction = temp_position - hitpoint_wall;
+        Vector3 direction = transform.position - hitpoint_wall;
 
         if (direction.magnitude < min_distance)
         {
