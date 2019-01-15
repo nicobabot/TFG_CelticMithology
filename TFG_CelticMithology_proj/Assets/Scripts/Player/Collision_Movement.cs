@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collision_Movement : MonoBehaviour {
 
     public Collider2D combat_player_collider;
+    public Collider2D falling_player_collider;
 
     Rigidbody2D rb;
     Player_Manager play_manager_scr;
@@ -29,6 +30,7 @@ public class Collision_Movement : MonoBehaviour {
             if (combat_player_collider.enabled)
             {
                 combat_player_collider.enabled = false;
+                falling_player_collider.enabled = false;
             }
         }
         else
@@ -37,6 +39,7 @@ public class Collision_Movement : MonoBehaviour {
             if (!combat_player_collider.enabled)
             {
                 combat_player_collider.enabled = true;
+                falling_player_collider.enabled = true;
             }
         }
 

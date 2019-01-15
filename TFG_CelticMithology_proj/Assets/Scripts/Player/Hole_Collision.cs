@@ -18,7 +18,7 @@ public class Hole_Collision : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "player_movement_collider")
+        if(collision.tag == "player_falling_collider")
         {
             player_scr.current_state = Player_Manager.Player_States.FALLING_PLAYER;
         }
