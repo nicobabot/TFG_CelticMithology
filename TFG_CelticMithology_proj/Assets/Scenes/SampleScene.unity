@@ -3598,7 +3598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time_dashing: 0.25
   movement_speed: 5
-  dash_speed: 8
+  dash_speed: 11
   current_state: 0
   player_direction: 0
   player_weapon: 0
@@ -4390,7 +4390,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12946278, y: 0.87734747}
+  m_Offset: {x: -0.12946278, y: 0.45032024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -4401,7 +4401,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0210744, y: 1.7835989}
+  m_Size: {x: 1.0210744, y: 0.92954445}
   m_EdgeRadius: 0
 --- !u!212 &1130667137
 SpriteRenderer:
@@ -4529,7 +4529,7 @@ MonoBehaviour:
   name: Pushback
   push_distance: 6
   time_doing_pushback: 0.135
-  min_distance: 0.1
+  min_distance: 0.2
 --- !u!50 &1130667143
 Rigidbody2D:
   serializedVersion: 4
