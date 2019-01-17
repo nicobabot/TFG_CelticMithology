@@ -9,6 +9,7 @@ public class Action_MeleeAttack : ActionBase {
     float timer_to_attack = 0.5f;
     GameObject player;
     BoxCollider2D collider;
+    Live_Manager live_manager_scr;
 
     override public BT_Status StartAction()
     {
@@ -24,6 +25,8 @@ public class Action_MeleeAttack : ActionBase {
 
             }
         }
+
+        timer_to_attack = time_to_attack;
 
         return BT_Status.RUNNING;
     }
@@ -49,7 +52,25 @@ public class Action_MeleeAttack : ActionBase {
             {
                 Debug.Log("Player damaged!");
                 //Damage player
+                Transform parent = col_temp.transform.parent;
+                if (parent != null) {
+                    live_manager_scr = parent.GetComponent<Live_Manager>();
+                    if (live_manager_scr != null)
+                    {
+                        live_manager_scr.DetectedDamage();
+                    }
+                    else
+                    {
+                        Debug.Log("Live Manager not found _Action_MeleeAttack");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Parent not found _Action_MeleeAttack");
+                }
+
             }
+            col_temp = null;
             timer_to_attack = 0;
         }
         
@@ -60,7 +81,8 @@ public class Action_MeleeAttack : ActionBase {
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawCube(collider.transform.position, collider.size);
+        if (collider != null)
+            Gizmos.DrawCube(collider.transform.position, collider.size);
     }
 
     override public BT_Status EndAction()
