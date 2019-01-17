@@ -6381,8 +6381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb5d76f65855fe42818a5e2e02c5a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushback_force: 6
-  time_doing_pushback: 0.135
+  pushback_force: 8
+  time_doing_pushback: 0.25
   enemy_pos: {fileID: 0}
 --- !u!1 &1096143627
 GameObject:
