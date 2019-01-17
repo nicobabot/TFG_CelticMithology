@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent (typeof(Collision_Movement))]
+[RequireComponent(typeof(Slash_Attack))]
+[RequireComponent(typeof(Player_PushBack))]
 public class Player_Manager : MonoBehaviour {
     public float time_dashing = 1.0f;
     public float movement_speed = 5.0f;
@@ -13,7 +17,8 @@ public class Player_Manager : MonoBehaviour {
         MOVING_PLAYER,
         DASHING_PLAYER,
         SLASHING_PLAYER,
-        FALLING_PLAYER
+        FALLING_PLAYER,
+        PUSHBACK_PLAYER
     }
     public  Player_States current_state;
 
@@ -35,6 +40,7 @@ public class Player_Manager : MonoBehaviour {
 
     Collision_Movement movement_script;
     Slash_Attack slash_attack_script;
+    Player_PushBack pushback_script;
     float timer_dash = 0.0f;
     bool want_to_dash = false;
 
@@ -44,16 +50,8 @@ public class Player_Manager : MonoBehaviour {
     void Start () {
 
         movement_script = GetComponent<Collision_Movement>();
-        if (movement_script == null)
-        {
-            Debug.Log("Movement script not found _ Player_Manager");
-        }
-
         slash_attack_script = GetComponent<Slash_Attack>();
-        if (slash_attack_script == null)
-        {
-            Debug.Log("Slash script not found _ Player_Manager");
-        }
+        pushback_script = GetComponent<Player_PushBack>();
 
         timer_dash = 0.0f;
 
@@ -93,6 +91,10 @@ public class Player_Manager : MonoBehaviour {
             Vector3 temp_vect = Vector3.zero;
             transform.position = temp_vect;
             current_state = Player_States.IDLE_PLAYER;
+        }
+        else if (current_state == Player_States.PUSHBACK_PLAYER)
+        {
+            pushback_script.PushBack_Update();
         }
         else {
             timer_dash = 0.0f;

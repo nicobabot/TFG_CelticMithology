@@ -6,6 +6,7 @@ public class Action_MeleeAttack : ActionBase {
 
     public float time_to_attack = 0.5f;
     public LayerMask player_layer;
+    public Fader fader_scr;
     float timer_to_attack = 0.5f;
     GameObject player;
     BoxCollider2D collider;
@@ -51,9 +52,24 @@ public class Action_MeleeAttack : ActionBase {
             if (col_temp != null)
             {
                 Debug.Log("Player damaged!");
-                //Damage player
+                fader_scr.Fade_image.enabled = true;
+                fader_scr.FadeOut(false,true);
+
                 Transform parent = col_temp.transform.parent;
                 if (parent != null) {
+
+                    Player_Manager player_manager = parent.GetComponent<Player_Manager>();
+                    player_manager.current_state = Player_Manager.Player_States.PUSHBACK_PLAYER;
+                    Player_PushBack pushback_player = parent.GetComponent<Player_PushBack>();
+                    if (pushback_player != null)
+                    {
+                        pushback_player.enemy_pos = transform;
+                    }
+                    else
+                    {
+                        Debug.Log("pushback not detected _Action_MeleeAttack");
+                    }
+
                     live_manager_scr = parent.GetComponent<Live_Manager>();
                     if (live_manager_scr != null)
                     {
