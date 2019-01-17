@@ -36,7 +36,6 @@ public class Player_PushBack : MonoBehaviour {
             rb.velocity = Vector2.zero;
             timer_pushback = 0;
             player_manager_sct.current_state = Player_Manager.Player_States.IDLE_PLAYER;
-
         }
 
     }

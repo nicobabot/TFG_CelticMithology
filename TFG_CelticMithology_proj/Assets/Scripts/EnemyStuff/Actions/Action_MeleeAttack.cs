@@ -16,13 +16,48 @@ public class Action_MeleeAttack : ActionBase {
     {
         timer_to_attack = time_to_attack;
         player = (GameObject)myBT.myBB.GetParameter("player");
+
+        bool use_horizontal = false;
+
         Direction dir = (Direction)myBT.myBB.GetParameter("direction");
+
+        Direction dir_x = Direction.NEUTRAL;
+        Direction dir_y = Direction.NEUTRAL;
+
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        if (x < player.transform.position.x) dir_x = Direction.RIGHT;
+        else dir_x = Direction.LEFT;
+        
+
+        if(y < player.transform.position.y) dir_y = Direction.UP;
+        else dir_y = Direction.DOWN;
+
+
+        float dif_x = Mathf.Abs(x - player.transform.position.x);
+        float dif_y = Mathf.Abs(y - player.transform.position.y);
+
+        if (dif_x > dif_y)
+        {
+            dir_y = Direction.NEUTRAL;
+            use_horizontal = true;
+        }
+        else
+        {
+            dir_x = Direction.NEUTRAL;
+        }
 
         if (transform.childCount > 0)
         {
             if (transform.GetChild(0).childCount > 0) {
-
-                collider = transform.GetChild(0).GetChild((int)dir).GetComponent<BoxCollider2D>();
+                if (use_horizontal) {
+                    collider = transform.GetChild(0).GetChild((int)dir_x).GetComponent<BoxCollider2D>();
+                }
+                else
+                {
+                    collider = transform.GetChild(0).GetChild((int)dir_y).GetComponent<BoxCollider2D>();
+                }
 
             }
         }
