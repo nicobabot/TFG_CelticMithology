@@ -26,7 +26,7 @@ public class Action_MeleeAttack : ActionBase {
             }
         }
 
-        timer_to_attack = time_to_attack;
+        timer_to_attack = 0;
 
         return BT_Status.RUNNING;
     }
