@@ -9,17 +9,18 @@ public class Action_PushBack : ActionBase {
     public float min_distance = 0.1f;
 
     float timer_pushback;
+
     GameObject player;
+
     Vector3 pushback_dir = Vector3.zero;
-    bool is_pushback_done = false;
-    bool can_make_pushback = false;
-    bool is_there_wall = false;
+    Vector3 temp_position;
+    Vector3 temp_position_player;
     Vector3 hitpoint_wall;
+    Vector3 pushback_point = Vector3.zero;
+
     Rigidbody2D rb;
 
     SpriteRenderer sprite_rend;
-    Vector3 temp_position;
-    Vector3 temp_position_player;
 
     override public BT_Status StartAction()
     {
@@ -52,12 +53,12 @@ public class Action_PushBack : ActionBase {
 
         float size_addition_player = (sprite_rend_player.bounds.size.y * 0.5f);
         temp_position_player = player.transform.position;
-        temp_position_player.y += size_addition_player;
+        //temp_position_player.y += size_addition_player;
 
         pushback_dir = temp_position - temp_position_player;
         pushback_dir = pushback_dir.normalized * push_distance;
 
-
+        pushback_point = transform.position + pushback_dir;
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
         if (hit != null)
@@ -65,14 +66,12 @@ public class Action_PushBack : ActionBase {
             foreach(RaycastHit2D hit_t in hit)
             if (hit_t.transform.CompareTag("wall"))
             {
-                is_there_wall = true;
                 hitpoint_wall = hit_t.point;
                 break;
             }
         }
 
 
-        is_pushback_done = false;
         timer_pushback = 0.0f;
 
         return BT_Status.RUNNING;
@@ -99,13 +98,15 @@ public class Action_PushBack : ActionBase {
             return BT_Status.RUNNING;
         }
 
-        rb.velocity = pushback_dir;
+        float step = Time.deltaTime * push_distance;
+
+        transform.position = Vector3.MoveTowards(transform.position, pushback_point, step);
 
         timer_pushback += Time.deltaTime;
 
         if(timer_pushback > time_doing_pushback)
         {
-            rb.velocity = Vector2.zero;
+
             myBT.myBB.SetParameter("is_enemy_hit", false);
             isFinish = true;
         }
