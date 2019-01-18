@@ -17,7 +17,10 @@ public class BT_Soldier : BT_Entity
         if ((int)myBB.GetParameter("Live") <= 0)
         {
             //Animation of enemy dying
-            currentAction.isFinish = true;
+            if (currentAction != null)
+            {
+                currentAction.isFinish = true;
+            }
             gameObject.SetActive(false);
         }
 

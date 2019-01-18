@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+[RequireComponent (typeof(SpriteRenderer))]
 public class Collision_Movement : MonoBehaviour
 {
     public Collider2D combat_player_collider;
@@ -7,12 +7,19 @@ public class Collision_Movement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Player_Manager play_manager_scr;
+    private SpriteRenderer sprite_rend_scr;
+    private Animator anim;
+
+    public float timer_to_make_idle = 0.25f;
+    float timer_to_idle = 0.0f;
 
     // Use this for initialization
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         play_manager_scr = GetComponent<Player_Manager>();
+        sprite_rend_scr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,15 +48,21 @@ public class Collision_Movement : MonoBehaviour
             }
         }
 
+        bool is_idle_hor = false;
+        bool is_idle_vert = false;
+
         //Just to keep tracking of the direction of the player
         if (input_movement_horizontal > 0.5f)
         {
+            sprite_rend_scr.flipX = false;
             play_manager_scr.player_direction = Player_Manager.Player_Direction.RIGHT_PLAYER;
         }
         else if (input_movement_horizontal < -0.5f)
         {
+            sprite_rend_scr.flipX = true;
             play_manager_scr.player_direction = Player_Manager.Player_Direction.LEFT_PLAYER;
         }
+        else is_idle_hor = true;
 
         if (input_movement_vertical > 0.5f)
         {
@@ -59,6 +72,22 @@ public class Collision_Movement : MonoBehaviour
         {
             play_manager_scr.player_direction = Player_Manager.Player_Direction.DOWN_PLAYER;
         }
+        else is_idle_vert = true;
+
+        if (is_idle_hor && is_idle_vert)
+        {
+            timer_to_idle += Time.deltaTime;
+
+            if (timer_to_idle > timer_to_make_idle) {
+                anim.SetBool("player_idle", true);
+            }
+        }
+        else
+        {
+            timer_to_idle = 0.0f;
+            anim.SetBool("player_idle", false);
+        }
+
 
         //Movement calculation
         if (input_movement_horizontal > 0.5f || input_movement_horizontal < -0.5f)
