@@ -2,6 +2,7 @@
 
 public class Slash_Attack : MonoBehaviour
 {
+    public int damage;
     public GameObject father_collider_slash_attack;
     public float time_slashing = 1.0f;
     public CameraManager cam_manager;
@@ -72,8 +73,10 @@ public class Slash_Attack : MonoBehaviour
             BT_Soldier soldier = col.GetComponent<BT_Soldier>();
             if (soldier != null)
             {
+                soldier.Enemy_Live_Modification(damage);
                 Soldier_Blackboard bb_soldier = col.GetComponent<Soldier_Blackboard>();
                 bb_soldier.is_enemy_hit.SetValue(true);
+               
             }
         }
 

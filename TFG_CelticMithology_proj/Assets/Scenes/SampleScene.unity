@@ -6291,6 +6291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66665b5a89cbaae458bf7030b9a391ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: -1
   father_collider_slash_attack: {fileID: 1829847171}
   time_slashing: 0.1
   cam_manager: {fileID: 282840815}
@@ -7184,7 +7185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life:
     my_name: Live
-    my_value: 50
+    my_value: 5
   is_enemy_hit:
     my_name: is_enemy_hit
     my_value: 0

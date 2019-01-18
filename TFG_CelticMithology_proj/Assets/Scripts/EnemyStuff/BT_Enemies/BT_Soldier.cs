@@ -13,6 +13,13 @@ public class BT_Soldier : BT_Entity
 
     override public void Update()
     {
+
+        if ((int)myBB.GetParameter("Live") <= 0)
+        {
+            currentAction.isFinish = true;
+            gameObject.SetActive(false);
+        }
+
         base.Update();
     }
 

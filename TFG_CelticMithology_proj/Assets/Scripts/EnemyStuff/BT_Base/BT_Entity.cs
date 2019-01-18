@@ -166,4 +166,12 @@ public class BT_Entity : MonoBehaviour
     {
         return true;
     }
+
+    virtual public void Enemy_Live_Modification(int num)
+    {
+        int live = (int)blackboard.GetParameter("Live");
+        live += num;
+        blackboard.SetParameter("Live", live);
+    }
+
 }
