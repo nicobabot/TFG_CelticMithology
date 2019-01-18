@@ -52,9 +52,7 @@ public class Action_PushBack : ActionBase
         //temp_position_player.y += size_addition_player;
 
         pushback_dir = temp_position - temp_position_player;
-        pushback_dir = pushback_dir.normalized * push_distance;
 
-        pushback_point = transform.position + pushback_dir;
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
         if (hit != null)
@@ -66,6 +64,9 @@ public class Action_PushBack : ActionBase
                     break;
                 }
         }
+
+        pushback_dir = pushback_dir.normalized * push_distance;
+        pushback_point = transform.position + pushback_dir;
 
         timer_pushback = 0.0f;
 

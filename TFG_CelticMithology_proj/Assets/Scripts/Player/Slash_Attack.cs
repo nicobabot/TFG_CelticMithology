@@ -69,14 +69,22 @@ public class Slash_Attack : MonoBehaviour
 
         foreach (Collider2D col in enemies_found)
         {
-            //Detect enemy type
-            BT_Soldier soldier = col.GetComponent<BT_Soldier>();
-            if (soldier != null)
+            Transform parent = col.transform.parent;
+            if (parent != null)
             {
-                soldier.Enemy_Live_Modification(damage);
-                Soldier_Blackboard bb_soldier = col.GetComponent<Soldier_Blackboard>();
-                bb_soldier.is_enemy_hit.SetValue(true);
-               
+                //Detect enemy type
+                BT_Soldier soldier = parent.GetComponent<BT_Soldier>();
+                if (soldier != null)
+                {
+                    soldier.Enemy_Live_Modification(damage);
+                    Soldier_Blackboard bb_soldier = parent.GetComponent<Soldier_Blackboard>();
+                    bb_soldier.is_enemy_hit.SetValue(true);
+
+                }
+            }
+            else
+            {
+                Debug.Log("Parent null _Slash_Attack");
             }
         }
 
