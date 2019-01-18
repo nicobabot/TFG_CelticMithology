@@ -87,7 +87,9 @@ public class Slash_Attack : MonoBehaviour
     public void Update_Attack_Colliders_To_None_Active()
     {
 
-        for(int i=0; i< father_collider_slash_attack.transform.childCount; i++)
+        collider_to_activate = null;
+
+        for (int i=0; i< father_collider_slash_attack.transform.childCount; i++)
         {
             GameObject collider_to_deactivate = father_collider_slash_attack.transform.GetChild(i).gameObject;
             collider_to_deactivate.SetActive(false);

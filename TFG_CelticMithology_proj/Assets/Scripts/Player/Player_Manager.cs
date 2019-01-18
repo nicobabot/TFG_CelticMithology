@@ -64,11 +64,13 @@ public class Player_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && current_state != Player_States.PUSHBACK_PLAYER)
         {
+            slash_attack_script.Update_Attack_Colliders_To_None_Active();
             current_state = Player_States.DASHING_PLAYER;
         }
-        else if (Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton"))
+        else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton")) && current_state != Player_States.PUSHBACK_PLAYER)
         {
             current_state = Player_States.SLASHING_PLAYER;
         }

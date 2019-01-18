@@ -7,7 +7,7 @@ public class BT_Soldier : BT_Entity
     public Action_FollowPlayer chase;
 
     public Action_PushBack pushback;
-    public Action_MeleeAttack melee_attack;
+   // public Action_MeleeAttack melee_attack;
 
     private bool can_start_combat = false;
 
@@ -16,6 +16,7 @@ public class BT_Soldier : BT_Entity
 
         if ((int)myBB.GetParameter("Live") <= 0)
         {
+            //Animation of enemy dying
             currentAction.isFinish = true;
             gameObject.SetActive(false);
         }
@@ -37,11 +38,11 @@ public class BT_Soldier : BT_Entity
             currentAction = pushback;
             decide = true;
         }
-        else if (can_start_combat == true)
+        /*else if (can_start_combat == true)
         {
             currentAction = melee_attack;
             decide = true;
-        }
+        }*/
 
         return decide;
     }
@@ -65,10 +66,10 @@ public class BT_Soldier : BT_Entity
         {
             if (currentAction != null)
             {
-                if (currentAction == melee_attack)
+               /* if (currentAction == melee_attack)
                 {
                     currentAction.isFinish = true;
-                }
+                }*/
             }
 
             can_start_combat = false;
