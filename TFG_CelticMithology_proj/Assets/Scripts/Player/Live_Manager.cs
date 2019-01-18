@@ -1,37 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Live_Manager : MonoBehaviour {
-
+public class Live_Manager : MonoBehaviour
+{
     public GameObject Father_UI_Player_Live;
-    int lives = 0;
+    private int lives = 0;
     public int hearts_division = 2;
 
     // Use this for initialization
-    void Start() {
-
+    private void Start()
+    {
         if (Father_UI_Player_Live == null)
         {
             Debug.Log("Father_UI_Player_Live null");
         }
         else
-        { 
+        {
             lives = Father_UI_Player_Live.transform.childCount * hearts_division;
         }
-
     }
 
     // Update is called once per frame
-    void Update() {
-
-
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             DetectedDamage();
         }
-
     }
 
     public void DetectedDamage()
@@ -40,13 +35,13 @@ public class Live_Manager : MonoBehaviour {
         int num_childs = Father_UI_Player_Live.transform.childCount;
         childs_temporal_vector = new GameObject[num_childs];
         int temp_index = 0;
-        for (int i= num_childs; i>0; i--)
+        for (int i = num_childs; i > 0; i--)
         {
-            childs_temporal_vector[temp_index] = Father_UI_Player_Live.transform.GetChild(i-1).gameObject;
+            childs_temporal_vector[temp_index] = Father_UI_Player_Live.transform.GetChild(i - 1).gameObject;
             temp_index++;
         }
 
-        foreach(GameObject go in childs_temporal_vector)
+        foreach (GameObject go in childs_temporal_vector)
         {
             Image img_comp = go.GetComponent<Image>();
             float filled = img_comp.fillAmount;
@@ -56,10 +51,10 @@ public class Live_Manager : MonoBehaviour {
 
             for (int i = 1; i <= hearts_division; i++)
             {
-
                 float value_sliced = slice * i;
 
-                if (filled == 0.0f) {
+                if (filled == 0.0f)
+                {
                     break;
                 }
                 else if (filled == Mathf.Clamp(value_sliced, 0.0f, filled))
@@ -70,12 +65,10 @@ public class Live_Manager : MonoBehaviour {
                 }
             }
 
-            if(modification == true)
+            if (modification == true)
             {
                 break;
             }
-
         }
     }
-
 }

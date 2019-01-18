@@ -1,27 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class Action_FollowPlayer : ActionBase {
-
+public class Action_FollowPlayer : ActionBase
+{
     public float time_to_change_cell = 1.0f;
     public float speed = 5.0f;
-    float timer_changing = 0.0f;
-    int cells_changed = 0;
-    List<PathNode> tiles_list;
+    private float timer_changing = 0.0f;
+    private int cells_changed = 0;
+    private List<PathNode> tiles_list;
 
     //Values calculate path
-    Vector3 destiny_pos = Vector3.zero;
-    Vector3Int cell_destiny_pos = Vector3Int.zero;
-    Vector3Int cell_pos = Vector3Int.zero;
-    PathNode actual_node;
-    GameObject player;
+    private Vector3 destiny_pos = Vector3.zero;
+
+    private Vector3Int cell_destiny_pos = Vector3Int.zero;
+    private Vector3Int cell_pos = Vector3Int.zero;
+    private PathNode actual_node;
+    private GameObject player;
 
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
-        if(player == null)
+        if (player == null)
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
@@ -40,32 +39,30 @@ public class Action_FollowPlayer : ActionBase {
             Recalculate_Path();
         }
 
-
         if (cells_changed < tiles_list.Count)
         {
             actual_node = tiles_list[cells_changed];
             int x_tile = actual_node.GetTileX();
             int y_tile = actual_node.GetTileY();
-            new_position =  myBT.pathfinder_scr.walkability.CellToLocal(new Vector3Int(x_tile, y_tile, 0));
+            new_position = myBT.pathfinder_scr.walkability.CellToLocal(new Vector3Int(x_tile, y_tile, 0));
 
-            transform.position = Vector3.MoveTowards(transform.position, new_position, speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new_position, speed * Time.deltaTime);
 
             if (transform.position == new_position)
             {
                 cells_changed++;
             }
-
         }
 
-        DetectDirection(new_position);
+        DetectDirection(transform.position, new_position);
 
         return BT_Status.RUNNING;
     }
 
     public void Recalculate_Path()
     {
-        if(tiles_list!=null)
-        tiles_list.Clear();
+        if (tiles_list != null)
+            tiles_list.Clear();
 
         timer_changing = 0;
         cells_changed = 0;
@@ -79,22 +76,19 @@ public class Action_FollowPlayer : ActionBase {
         tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y));
     }
 
-    void DetectDirection(Vector3 new_position)
+    public Direction DetectDirection(Vector3 my_position, Vector3 new_position)
     {
-
         Direction dir_x = Direction.NEUTRAL;
         Direction dir_y = Direction.NEUTRAL;
 
-        float x = transform.position.x;
-        float y = transform.position.y;
+        float x = my_position.x;
+        float y = my_position.y;
 
         if (x < new_position.x) dir_x = Direction.RIGHT;
         else dir_x = Direction.LEFT;
-        
 
-        if(y < new_position.y) dir_y = Direction.UP;
+        if (y < new_position.y) dir_y = Direction.UP;
         else dir_y = Direction.DOWN;
-
 
         float dif_x = Mathf.Abs(x - new_position.x);
         float dif_y = Mathf.Abs(y - new_position.y);
@@ -104,20 +98,19 @@ public class Action_FollowPlayer : ActionBase {
             dir_y = Direction.NEUTRAL;
             Debug.Log("Going " + dir_x.ToString());
             myBT.myBB.SetParameter("direction", dir_x);
+            return dir_x;
         }
         else
         {
             dir_x = Direction.NEUTRAL;
             Debug.Log("Going " + dir_y.ToString());
             myBT.myBB.SetParameter("direction", dir_y);
+            return dir_y;
         }
-
     }
 
     override public BT_Status EndAction()
     {
-
         return BT_Status.SUCCESS;
     }
-
 }

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-[RequireComponent (typeof(Collision_Movement))]
+[RequireComponent(typeof(Collision_Movement))]
 [RequireComponent(typeof(Slash_Attack))]
 [RequireComponent(typeof(Player_PushBack))]
-public class Player_Manager : MonoBehaviour {
+public class Player_Manager : MonoBehaviour
+{
     public float time_dashing = 1.0f;
     public float movement_speed = 5.0f;
     public float dash_speed = 10.0f;
@@ -20,15 +18,17 @@ public class Player_Manager : MonoBehaviour {
         FALLING_PLAYER,
         PUSHBACK_PLAYER
     }
-    public  Player_States current_state;
+
+    public Player_States current_state;
 
     public enum Player_Direction
     {
-        UP_PLAYER=0,
+        UP_PLAYER = 0,
         DOWN_PLAYER,
         RIGHT_PLAYER,
         LEFT_PLAYER
     }
+
     public Player_Direction player_direction;
 
     public enum Player_Weapon
@@ -36,19 +36,18 @@ public class Player_Manager : MonoBehaviour {
         Sword,
         Shield
     }
+
     public Player_Weapon player_weapon;
 
-    Collision_Movement movement_script;
-    Slash_Attack slash_attack_script;
-    Player_PushBack pushback_script;
-    float timer_dash = 0.0f;
-    bool want_to_dash = false;
-
-
+    private Collision_Movement movement_script;
+    private Slash_Attack slash_attack_script;
+    private Player_PushBack pushback_script;
+    private float timer_dash = 0.0f;
+    private bool want_to_dash = false;
 
     // Use this for initialization
-    void Start () {
-
+    private void Start()
+    {
         movement_script = GetComponent<Collision_Movement>();
         slash_attack_script = GetComponent<Slash_Attack>();
         pushback_script = GetComponent<Player_PushBack>();
@@ -60,13 +59,12 @@ public class Player_Manager : MonoBehaviour {
         //testing porpouse-------------
         player_weapon = Player_Weapon.Sword;
         //----------------------------
-
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton"))
+    // Update is called once per frame
+    private void Update()
+    {
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && current_state != Player_States.PUSHBACK_PLAYER)
         {
             current_state = Player_States.DASHING_PLAYER;
         }
@@ -74,7 +72,6 @@ public class Player_Manager : MonoBehaviour {
         {
             current_state = Player_States.SLASHING_PLAYER;
         }
-
 
         if (current_state == Player_States.DASHING_PLAYER && timer_dash <= time_dashing)
         {
@@ -94,12 +91,19 @@ public class Player_Manager : MonoBehaviour {
         }
         else if (current_state == Player_States.PUSHBACK_PLAYER)
         {
+            slash_attack_script.Update_Attack_Colliders_To_None_Active();
             pushback_script.PushBack_Update();
         }
-        else {
+        else
+        {
             timer_dash = 0.0f;
             movement_script.Movement_Update(movement_speed);
         }
-
     }
+
+    public void Set_Enemy_Pushback(Transform enemy_trans)
+    {
+        pushback_script.enemy_pos = enemy_trans;
+    }
+
 }

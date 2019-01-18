@@ -1,28 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent (typeof(Player_Manager))]
+[RequireComponent(typeof(Player_Manager))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player_PushBack : MonoBehaviour {
-
+public class Player_PushBack : MonoBehaviour
+{
     public float pushback_force;
-    public float time_doing_pushback=0.1f;
+    public float time_doing_pushback = 0.1f;
     public Transform enemy_pos;
-    float timer_pushback=0.0f;
-    Player_Manager player_manager_sct;
-    Rigidbody2D rb;
-
+    private float timer_pushback = 0.0f;
+    private Player_Manager player_manager_sct;
+    private Rigidbody2D rb;
 
     // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         player_manager_sct = GetComponent<Player_Manager>();
         rb = GetComponent<Rigidbody2D>();
     }
-	
-	// Update is called once per frame
-	public void PushBack_Update()
+
+    // Update is called once per frame
+    public void PushBack_Update()
     {
+        if (enemy_pos == null)
+        {
+            Reset_Values();
+            return;
+        }
 
         Vector3 dir_push = transform.position - enemy_pos.position;
         dir_push = dir_push.normalized * pushback_force;
@@ -33,10 +36,16 @@ public class Player_PushBack : MonoBehaviour {
 
         if (timer_pushback > time_doing_pushback)
         {
-            rb.velocity = Vector2.zero;
-            timer_pushback = 0;
-            player_manager_sct.current_state = Player_Manager.Player_States.IDLE_PLAYER;
+            Reset_Values();
         }
-
     }
+
+    void Reset_Values()
+    {
+        rb.velocity = Vector2.zero;
+        timer_pushback = 0;
+        enemy_pos = null;
+        player_manager_sct.current_state = Player_Manager.Player_States.IDLE_PLAYER;
+    }
+
 }

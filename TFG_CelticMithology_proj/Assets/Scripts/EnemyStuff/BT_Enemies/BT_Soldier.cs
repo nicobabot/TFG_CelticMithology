@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Soldier_Blackboard))]
-public class BT_Soldier : BT_Entity {
-
+public class BT_Soldier : BT_Entity
+{
     //current_action
     public Action_FollowPlayer chase;
+
     public Action_PushBack pushback;
     public Action_MeleeAttack melee_attack;
 
-    bool can_start_combat = false;
+    private bool can_start_combat = false;
 
     override public void Update()
     {
-
-
         base.Update();
     }
 
@@ -23,7 +20,7 @@ public class BT_Soldier : BT_Entity {
     {
         bool decide = false;
 
-        if (currentAction != chase && can_start_combat == false)
+        if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false)
         {
             currentAction = chase;
             decide = true;
@@ -39,18 +36,16 @@ public class BT_Soldier : BT_Entity {
             decide = true;
         }
 
-
         return decide;
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Can start combat
-        if(collision.tag == "player_combat_collider")
+        if (collision.tag == "player_combat_collider")
         {
-            if(currentAction != null)
-            currentAction.isFinish=true;
+            if (currentAction != null)
+                currentAction.isFinish = true;
 
             can_start_combat = true;
         }
@@ -72,5 +67,4 @@ public class BT_Soldier : BT_Entity {
             can_start_combat = false;
         }
     }
-
 }

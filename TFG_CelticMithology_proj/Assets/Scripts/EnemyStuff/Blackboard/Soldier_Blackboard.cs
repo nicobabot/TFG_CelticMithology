@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Soldier_Blackboard : Blackboard {
-
+﻿public class Soldier_Blackboard : Blackboard
+{
     public ParameterInt life;
     public ParameterBool is_enemy_hit;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
 
     // Use this for initialization
-    override public void Start () {
+    override public void Start()
+    {
         base.Start();
 
         list.Add(life);
@@ -18,5 +15,4 @@ public class Soldier_Blackboard : Blackboard {
         list.Add(player);
         list.Add(direction);
     }
-	
 }

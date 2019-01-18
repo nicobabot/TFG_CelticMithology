@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum BT_Status
 {
@@ -11,20 +9,20 @@ public enum BT_Status
     ERROR,
 }
 
-
-public class BT_Entity : MonoBehaviour {
-
+public class BT_Entity : MonoBehaviour
+{
     private ActionBase current_action = null;
-    [SerializeField]Blackboard blackboard = null;
+    [SerializeField] private Blackboard blackboard = null;
     public string Action_name = "";
     public Pathfinder pathfinder_scr;
-    
+
     private BT_Status status = BT_Status.WAITING;
 
     public ActionBase currentAction
     {
         get { return current_action; }
-        set {
+        set
+        {
             if (currentAction != null)
             {
                 currentAction.isFinish = false;
@@ -36,7 +34,6 @@ public class BT_Entity : MonoBehaviour {
             {
                 Action_name = currentAction.name;
             }
-
         }
     }
 
@@ -52,20 +49,20 @@ public class BT_Entity : MonoBehaviour {
             }
         }
     }
+
     public Blackboard myBB
     {
         get { return blackboard; }
-       
     }
+
     // Use this for initialization
-    void Start () {
-
-
+    private void Start()
+    {
     }
 
     // Update is called once per frame
-    virtual public void Update () {
-
+    virtual public void Update()
+    {
         BT_Status current_status = myStatus;
 
         if (current_action == null)
@@ -99,10 +96,10 @@ public class BT_Entity : MonoBehaviour {
         {
             if (MakeDecision())
             {
-                current_status = current_action.StartAction();   
+                current_status = current_action.StartAction();
                 if (current_action.isFinish)
                 {
-                    current_status = EndAction();       
+                    current_status = EndAction();
                 }
                 EndUpdate(current_status);
                 return;
@@ -116,31 +113,35 @@ public class BT_Entity : MonoBehaviour {
         }
         current_status = current_action.UpdateAction();
         EndUpdate(current_status);
-
     }
-    void EndUpdate(BT_Status current_status)
+
+    private void EndUpdate(BT_Status current_status)
     {
         myStatus = current_status;
-
     }
-    void StatusChange()
+
+    private void StatusChange()
     {
         switch (myStatus)
         {
             case BT_Status.WAITING:
                 //Debug.Log("Waiting for action");
                 break;
+
             case BT_Status.RUNNING:
                 //Debug.Log("Action start running");
                 break;
+
             case BT_Status.SUCCESS:
                 //Debug.Log("Action Succes change to waitinh");
                 ResetAction();
                 break;
+
             case BT_Status.FAIL:
                 //Debug.Log("Action Fail change to waiting");
                 ResetAction();
                 break;
+
             case BT_Status.ERROR:
                 //Debug.Log("Action Error something bad happend :(((");
                 ResetAction();
@@ -148,20 +149,21 @@ public class BT_Entity : MonoBehaviour {
         }
     }
 
-    BT_Status EndAction()
+    private BT_Status EndAction()
     {
         if (currentAction == null)
             return BT_Status.ERROR;
         return currentAction.EndAction();
     }
-    void ResetAction()
-    {
 
+    private void ResetAction()
+    {
         currentAction = null;
         status = BT_Status.WAITING;
     }
 
-
-virtual public bool MakeDecision(){ return true; }
-
+    virtual public bool MakeDecision()
+    {
+        return true;
+    }
 }

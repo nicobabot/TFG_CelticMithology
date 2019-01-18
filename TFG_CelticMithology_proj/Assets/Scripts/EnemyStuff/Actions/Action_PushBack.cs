@@ -1,30 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Action_PushBack : ActionBase {
-
+public class Action_PushBack : ActionBase
+{
     public float push_distance = 1.0f;
-    public float time_doing_pushback=0.5f;
+    public float time_doing_pushback = 0.5f;
     public float min_distance = 0.1f;
 
-    float timer_pushback;
+    private float timer_pushback;
 
-    GameObject player;
+    private GameObject player;
 
-    Vector3 pushback_dir = Vector3.zero;
-    Vector3 temp_position;
-    Vector3 temp_position_player;
-    Vector3 hitpoint_wall;
-    Vector3 pushback_point = Vector3.zero;
+    private Vector3 pushback_dir = Vector3.zero;
+    private Vector3 temp_position;
+    private Vector3 temp_position_player;
+    private Vector3 hitpoint_wall;
+    private Vector3 pushback_point = Vector3.zero;
 
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
 
-    SpriteRenderer sprite_rend;
+    private SpriteRenderer sprite_rend;
 
     override public BT_Status StartAction()
     {
-
         player = (GameObject)myBT.myBB.GetParameter("player");
         if (player == null)
         {
@@ -44,7 +41,6 @@ public class Action_PushBack : ActionBase {
         temp_position = transform.position;
         temp_position.y += size_addition;
 
-
         SpriteRenderer sprite_rend_player = player.GetComponent<SpriteRenderer>();
         if (sprite_rend_player == null)
         {
@@ -63,14 +59,13 @@ public class Action_PushBack : ActionBase {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
         if (hit != null)
         {
-            foreach(RaycastHit2D hit_t in hit)
-            if (hit_t.transform.CompareTag("wall"))
-            {
-                hitpoint_wall = hit_t.point;
-                break;
-            }
+            foreach (RaycastHit2D hit_t in hit)
+                if (hit_t.transform.CompareTag("wall"))
+                {
+                    hitpoint_wall = hit_t.point;
+                    break;
+                }
         }
-
 
         timer_pushback = 0.0f;
 
@@ -87,7 +82,6 @@ public class Action_PushBack : ActionBase {
 
     override public BT_Status UpdateAction()
     {
-
         Vector3 direction = transform.position - hitpoint_wall;
 
         if (direction.magnitude < min_distance)
@@ -104,9 +98,8 @@ public class Action_PushBack : ActionBase {
 
         timer_pushback += Time.deltaTime;
 
-        if(timer_pushback > time_doing_pushback)
+        if (timer_pushback > time_doing_pushback)
         {
-
             myBT.myBB.SetParameter("is_enemy_hit", false);
             isFinish = true;
         }
@@ -114,11 +107,8 @@ public class Action_PushBack : ActionBase {
         return BT_Status.RUNNING;
     }
 
-
     override public BT_Status EndAction()
     {
-
         return BT_Status.SUCCESS;
     }
-
 }

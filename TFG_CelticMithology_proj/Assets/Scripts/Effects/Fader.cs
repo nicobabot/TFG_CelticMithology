@@ -1,13 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Fader : MonoBehaviour {
-
+public class Fader : MonoBehaviour
+{
     public Image Fade_image;
     public float fade_time = 0.5f;
-    bool starting_fade = false;
+    private bool starting_fade = false;
     public bool fade_done = false;
 
     public void FadeIn(bool want_FadeOut = false)
@@ -17,15 +16,14 @@ public class Fader : MonoBehaviour {
         StartCoroutine(FadeCanvasGroup(Fade_image, Fade_image.color.a, 1, fade_time, want_FadeOut, false));
     }
 
-    public void FadeOut(bool want_FadeIn=false, bool return_alpha_to_full=false)
+    public void FadeOut(bool want_FadeIn = false, bool return_alpha_to_full = false)
     {
         fade_done = false;
         starting_fade = true;
         StartCoroutine(FadeCanvasGroup(Fade_image, Fade_image.color.a, 0, fade_time, false, want_FadeIn, return_alpha_to_full));
     }
 
-
-    public IEnumerator FadeCanvasGroup(Image cg, float start, float end, float lerpTime = 1, bool now_fade_out = false, bool now_fade_in = false, bool return_alpha_to_full=false)
+    public IEnumerator FadeCanvasGroup(Image cg, float start, float end, float lerpTime = 1, bool now_fade_out = false, bool now_fade_in = false, bool return_alpha_to_full = false)
     {
         float _timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - _timeStartedLerping;
@@ -67,4 +65,3 @@ public class Fader : MonoBehaviour {
         fade_done = true;
     }
 }
-
