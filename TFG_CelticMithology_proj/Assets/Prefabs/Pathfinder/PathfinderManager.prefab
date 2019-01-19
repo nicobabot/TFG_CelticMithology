@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281fa9645eff969418d4ae9d9f2546ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkability: {fileID: 8195094279874108824, guid: 8acde0350a26dc34abbec99d2ba168f2,
-    type: 2}
+  walkability: {fileID: 0}
   walkable_tile: {fileID: 11400000, guid: 864dfc2cadc8ac24c95e2bb16dcafb8c, type: 2}
   non_walkable_tile: {fileID: 11400000, guid: 5aeff58afd4281349b607314f7fb4226, type: 2}

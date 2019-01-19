@@ -265,8 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackboard: {fileID: 114269682889604714}
   Action_name: 
-  pathfinder_scr: {fileID: 114934369991641082, guid: 8a339b7506bcd124a980e18f496edad7,
-    type: 2}
+  pathfinder_scr: {fileID: 0}
   chase: {fileID: 114338160220401512}
   pushback: {fileID: 114584380096645760}
 --- !u!114 &114584380096645760
