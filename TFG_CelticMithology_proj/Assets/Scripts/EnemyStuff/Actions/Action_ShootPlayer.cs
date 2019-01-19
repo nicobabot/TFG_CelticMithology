@@ -8,6 +8,7 @@ public class Action_ShootPlayer : ActionBase {
     public LayerMask layer_wall;
     public GameObject projectile;
     public float time_to_spawn_projectile = 0.75f;
+    public bool only_stright_shots = false;
 
     [Header("Projectile Settings")]
     public float projectile_min_distance = 0.1f;
@@ -18,6 +19,7 @@ public class Action_ShootPlayer : ActionBase {
     private float timer_spawn_proj = 0.0f;
     private Vector3 pushback_dir;
     private Vector3 hitpoint_wall;
+    private Action_FollowPlayer follow_player_scr;
 
     override public BT_Status StartAction()
     {
@@ -34,7 +36,13 @@ public class Action_ShootPlayer : ActionBase {
         sprite_rend_player = player.GetComponent<SpriteRenderer>();
         if (sprite_rend_player == null)
         {
-            Debug.Log("Sprite renderer null _Action_PushBack");
+            Debug.Log("<color=red>Sprite renderer null _Action_PushBack");
+        }
+
+        follow_player_scr = GetComponent<Action_FollowPlayer>();
+        if (follow_player_scr == null)
+        {
+            Debug.Log("<color=red>No follow player action _Action_PushBack");
         }
 
         return BT_Status.RUNNING;
@@ -46,7 +54,14 @@ public class Action_ShootPlayer : ActionBase {
 
         if (timer_spawn_proj > time_to_spawn_projectile)
         {
-            CalculateDirection();
+            if (!only_stright_shots)
+            {
+                Calculate_Direction();
+            }
+            else
+            {
+                Calculate_Stright_Direction();
+            }
             GameObject my_projectile = Instantiate(projectile);
             my_projectile.SetActive(true);
             my_projectile.transform.position = transform.position;
@@ -61,7 +76,7 @@ public class Action_ShootPlayer : ActionBase {
         return BT_Status.RUNNING;
     }
 
-    void CalculateDirection()
+    void Calculate_Direction()
     {
         float size_addition_player = (sprite_rend_player.bounds.size.y * 0.5f);
         Vector3 temp_position_player = player.transform.position;
@@ -73,6 +88,34 @@ public class Action_ShootPlayer : ActionBase {
         {
             hitpoint_wall = hit.point;
         }
+    }
+
+    void Calculate_Stright_Direction()
+    {
+        Direction new_direction = follow_player_scr.DetectDirection(transform.position, player.transform.position);
+
+        switch (new_direction)
+        {
+            case Direction.RIGHT:
+                pushback_dir = transform.right;
+                break;
+            case Direction.LEFT:
+                pushback_dir = -transform.right;
+                break;
+            case Direction.UP:
+                pushback_dir = transform.up;
+                break;
+            case Direction.DOWN:
+                pushback_dir = -transform.up;
+                break;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, pushback_dir, Mathf.Infinity, layer_wall);
+        if (hit != null)
+        {
+            hitpoint_wall = hit.point;
+        }
+
     }
 
     override public BT_Status EndAction()

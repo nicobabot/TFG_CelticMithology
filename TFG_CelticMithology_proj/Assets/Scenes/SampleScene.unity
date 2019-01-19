@@ -7548,7 +7548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1548837155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7727,6 +7727,7 @@ MonoBehaviour:
     m_Bits: 2048
   projectile: {fileID: 375505420}
   time_to_spawn_projectile: 1
+  only_stright_shots: 1
   projectile_min_distance: 0.1
   projectile_velocity: 5
 --- !u!1 &1556557924
@@ -8471,7 +8472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61085401957517770, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
