@@ -47,6 +47,7 @@ public class Player_Manager : MonoBehaviour
     private Player_PushBack pushback_script;
     private float timer_dash = 0.0f;
     private bool want_to_dash = false;
+    private bool in_mine = false;
 
     // Use this for initialization
     private void Start()
@@ -75,7 +76,14 @@ public class Player_Manager : MonoBehaviour
         }
         else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton")) && current_state != Player_States.PUSHBACK_PLAYER)
         {
-            current_state = Player_States.SLASHING_PLAYER;
+            if (!in_mine)
+            {
+                current_state = Player_States.SLASHING_PLAYER;
+            }
+            else
+            {
+                //Functionality in mine
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("MenuButton")) && current_state != Player_States.PUSHBACK_PLAYER)
         {
@@ -131,5 +139,16 @@ public class Player_Manager : MonoBehaviour
     {
         pushback_script.enemy_pos = enemy_trans;
     }
+
+    public bool Get_In_Mine()
+    {
+        return in_mine;
+    }
+
+    public void Set_In_Mine(bool new_state)
+    {
+        in_mine = new_state;
+    }
+
 
 }
