@@ -48,6 +48,7 @@ public class Action_ShootPlayer : ActionBase {
         {
             CalculateDirection();
             GameObject my_projectile = Instantiate(projectile);
+            my_projectile.SetActive(true);
             my_projectile.transform.position = transform.position;
             Projectile_Behaviour projectile_scr = my_projectile.GetComponent<Projectile_Behaviour>();
             if (projectile_scr != null)

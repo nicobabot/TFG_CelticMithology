@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerDetection_Damage : MonoBehaviour {
 
+    public bool need_enemy_type_detection = true;
     public Fader fader_scr;
     Live_Manager live_manager_scr;
     Player_Manager player_manager_scr;
@@ -37,13 +38,20 @@ public class PlayerDetection_Damage : MonoBehaviour {
     bool Detect_Enemy_Type_And_Action()
     {
         bool is_pushing = false;
-        //Need update with all types
-        BT_Soldier enemy_temp = transform.parent.GetComponent<BT_Soldier>();
-        if (enemy_temp != null)
+        if (need_enemy_type_detection)
         {
-            is_pushing = (bool)enemy_temp.myBB.GetParameter("is_enemy_hit");
-        }
+            //Need update with all types
+            Transform parent = transform.parent;
+            if (parent = null) {
+                BT_Entity enemy_temp = parent.GetComponent<BT_Soldier>();
+                if (enemy_temp != null)
+                {
+                    is_pushing = (bool)enemy_temp.myBB.GetParameter("is_enemy_hit");
+                }
+                // enemy_temp = transform.parent.GetComponent<BT_Caorthannach>();
 
+            }
+        }
         return is_pushing;
 
     }

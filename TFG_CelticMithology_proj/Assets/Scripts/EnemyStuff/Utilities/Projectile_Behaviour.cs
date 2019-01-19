@@ -23,7 +23,6 @@ public class Projectile_Behaviour : MonoBehaviour {
 
         Vector3 dir = hit_wall_point - transform.position;
 
-
         float step = Time.deltaTime * velocity;
 
         transform.position = Vector3.MoveTowards(transform.position, hit_wall_point, step);
@@ -32,8 +31,17 @@ public class Projectile_Behaviour : MonoBehaviour {
         {
             //Particles
             gameObject.SetActive(false);
-            Destroy(this);
         }
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("player_combat_collider"))
+        {
+            //Particles
+            gameObject.SetActive(false);
+        }
+    }
+
 }

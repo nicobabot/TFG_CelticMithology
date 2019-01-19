@@ -79,7 +79,13 @@ public class Slash_Attack : MonoBehaviour
                     soldier.Enemy_Live_Modification(damage);
                     Soldier_Blackboard bb_soldier = parent.GetComponent<Soldier_Blackboard>();
                     bb_soldier.is_enemy_hit.SetValue(true);
-
+                }
+                BT_Caorthannach Caorth = parent.GetComponent<BT_Caorthannach>();
+                if (Caorth != null)
+                {
+                    Caorth.Enemy_Live_Modification(damage);
+                    Caorthannach_Blackboard bb_caorth = parent.GetComponent<Caorthannach_Blackboard>();
+                    bb_caorth.is_enemy_hit.SetValue(true);
                 }
             }
             else

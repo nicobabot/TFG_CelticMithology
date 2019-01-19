@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212582623684057314}
   - component: {fileID: 61429338356526930}
   - component: {fileID: 114651913584000772}
+  - component: {fileID: 114951445665563506}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682421969592024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.88, y: -7.11, z: 0}
   m_LocalScale: {x: 0.09034918, y: 0.09034918, z: 0.09034918}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,6 +79,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6603bd5d63767f439ce5b8d889de478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114951445665563506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682421969592024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78de69b240054f7438e1f235a89da463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  need_enemy_type_detection: 0
+  fader_scr: {fileID: 0}
 --- !u!212 &212582623684057314
 SpriteRenderer:
   m_ObjectHideFlags: 1
