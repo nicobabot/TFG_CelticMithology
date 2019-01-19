@@ -53,6 +53,11 @@ public class Action_PushBack : ActionBase
 
         pushback_dir = temp_position - temp_position_player;
 
+        if ((Direction)myBT.myBB.GetParameter("direction") == Direction.UP)
+        {
+            pushback_dir = -pushback_dir;
+        }
+
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
         if (hit != null)
@@ -77,6 +82,8 @@ public class Action_PushBack : ActionBase
     {
         Gizmos.DrawLine(transform.position, transform.position + pushback_dir);
         Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
+        Gizmos.DrawWireSphere(temp_position, 0.1f);
+        Gizmos.DrawWireSphere(temp_position_player, 0.1f);
         /*Gizmos.DrawWireSphere(temp_position, 0.1f);
         Gizmos.DrawWireSphere(temp_position_player, 0.1f);*/
     }
