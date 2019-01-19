@@ -53,6 +53,10 @@ public class Action_FollowPlayer : ActionBase
                 cells_changed++;
             }
         }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
 
         DetectDirection(transform.position, new_position);
 

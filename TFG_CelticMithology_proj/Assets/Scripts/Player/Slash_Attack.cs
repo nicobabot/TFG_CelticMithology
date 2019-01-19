@@ -76,6 +76,10 @@ public class Slash_Attack : MonoBehaviour
                 BT_Soldier soldier = parent.GetComponent<BT_Soldier>();
                 if (soldier != null)
                 {
+                    if (soldier.currentAction != null)
+                    {
+                        soldier.currentAction.isFinish = true;
+                    }
                     soldier.Enemy_Live_Modification(damage);
                     Soldier_Blackboard bb_soldier = parent.GetComponent<Soldier_Blackboard>();
                     bb_soldier.is_enemy_hit.SetValue(true);
@@ -83,6 +87,10 @@ public class Slash_Attack : MonoBehaviour
                 BT_Caorthannach Caorth = parent.GetComponent<BT_Caorthannach>();
                 if (Caorth != null)
                 {
+                   /* if (soldier.currentAction != null)
+                    {
+                        soldier.currentAction.isFinish = true;
+                    }*/
                     Caorth.Enemy_Live_Modification(damage);
                     Caorthannach_Blackboard bb_caorth = parent.GetComponent<Caorthannach_Blackboard>();
                     bb_caorth.is_enemy_hit.SetValue(true);
