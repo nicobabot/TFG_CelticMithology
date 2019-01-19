@@ -5,6 +5,7 @@ public class Action_PushBack : ActionBase
     public float push_distance = 1.0f;
     public float time_doing_pushback = 0.5f;
     public float min_distance = 0.1f;
+    public LayerMask layer_ray;
 
     private float timer_pushback;
 
@@ -59,7 +60,7 @@ public class Action_PushBack : ActionBase
         }
 
 
-        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance, layer_ray);
         if (hit != null)
         {
             foreach (RaycastHit2D hit_t in hit)
