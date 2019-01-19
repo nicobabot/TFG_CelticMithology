@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collision_Movement))]
 [RequireComponent(typeof(Slash_Attack))]
@@ -8,6 +9,7 @@ public class Player_Manager : MonoBehaviour
     public float time_dashing = 1.0f;
     public float movement_speed = 5.0f;
     public float dash_speed = 10.0f;
+    public GameObject Menu;
 
     public enum Player_States
     {
@@ -16,7 +18,8 @@ public class Player_Manager : MonoBehaviour
         DASHING_PLAYER,
         SLASHING_PLAYER,
         FALLING_PLAYER,
-        PUSHBACK_PLAYER
+        PUSHBACK_PLAYER,
+        IN_MENU_PLAYER
     }
 
     public Player_States current_state;
@@ -74,6 +77,24 @@ public class Player_Manager : MonoBehaviour
         {
             current_state = Player_States.SLASHING_PLAYER;
         }
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("MenuButton")) && current_state != Player_States.PUSHBACK_PLAYER)
+        {
+
+            if (Time.timeScale == 1)
+            {
+                current_state = Player_States.IN_MENU_PLAYER;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                current_state = Player_States.IDLE_PLAYER;
+                Time.timeScale = 1;
+            }
+
+            Menu.SetActive(!Menu.active);
+
+        }
+
 
         if (current_state == Player_States.DASHING_PLAYER && timer_dash <= time_dashing)
         {
@@ -95,6 +116,9 @@ public class Player_Manager : MonoBehaviour
         {
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             pushback_script.PushBack_Update();
+        }
+        else if (current_state == Player_States.IN_MENU_PLAYER)
+        {
         }
         else
         {
