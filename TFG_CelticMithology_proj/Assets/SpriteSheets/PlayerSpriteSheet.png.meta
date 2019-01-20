@@ -10,32 +10,52 @@ TextureImporter:
     21300010: Idle_5
     21300012: Idle_6
     21300014: Idle_7
-    21300016: PlayerSpriteSheet_8
-    21300018: PlayerSpriteSheet_10
-    21300020: PlayerSpriteSheet_11
-    21300022: PlayerSpriteSheet_12
-    21300024: PlayerSpriteSheet_14
-    21300026: PlayerSpriteSheet_15
-    21300028: PlayerSpriteSheet_16
-    21300030: PlayerSpriteSheet_18
-    21300032: PlayerSpriteSheet_19
-    21300034: PlayerSpriteSheet_21
-    21300036: PlayerSpriteSheet_22
-    21300038: PlayerSpriteSheet_23
-    21300040: PlayerSpriteSheet_24
-    21300042: PlayerSpriteSheet_26
-    21300044: PlayerSpriteSheet_27
-    21300046: PlayerSpriteSheet_28
-    21300048: PlayerSpriteSheet_9
-    21300050: PlayerSpriteSheet_13
-    21300052: PlayerSpriteSheet_17
-    21300054: PlayerSpriteSheet_20
-    21300056: PlayerSpriteSheet_25
-    21300058: PlayerSpriteSheet_29
-    21300060: PlayerSpriteSheet_30
-    21300062: PlayerSpriteSheet_31
-    21300064: PlayerSpriteSheet_32
-    21300066: PlayerSpriteSheet_33
+    21300016: Front_Idle_0
+    21300018: Front_Idle_1
+    21300020: Front_Idle_2
+    21300022: Front_Idle_3
+    21300024: Front_Idle_4
+    21300026: Front_Idle_5
+    21300028: Front_Idle_6
+    21300030: Front_Idle_7
+    21300032: Back_Idle_0
+    21300034: Back_Idle_1
+    21300036: Back_Idle_2
+    21300038: Back_Idle_3
+    21300040: Back_Idle_4
+    21300042: Back_Idle_5
+    21300044: Back_Idle_6
+    21300046: Back_Idle_7
+    21300048: Side_Run_0
+    21300050: Side_Run_1
+    21300052: Side_Run_2
+    21300054: Side_Run_3
+    21300056: Side_Run_4
+    21300058: Side_Run_5
+    21300060: Side_Run_6
+    21300062: Side_Run_7
+    21300064: Side_Run_8
+    21300066: Side_Run_9
+    21300068: Back_Run_0
+    21300070: Back_Run_1
+    21300072: Back_Run_2
+    21300074: Back_Run_3
+    21300076: Back_Run_4
+    21300078: Back_Run_5
+    21300080: Back_Run_6
+    21300082: Back_Run_7
+    21300084: Back_Run_8
+    21300086: Back_Run_9
+    21300088: Front_Run_0
+    21300090: Front_Run_1
+    21300092: Front_Run_2
+    21300094: Front_Run_3
+    21300096: Front_Run_4
+    21300098: Front_Run_5
+    21300100: Front_Run_6
+    21300102: Front_Run_7
+    21300104: Front_Run_8
+    21300106: Front_Run_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -81,7 +101,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -144,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 134
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -163,8 +183,8 @@ TextureImporter:
       name: Idle_1
       rect:
         serializedVersion: 2
-        x: 29
-        y: 134
+        x: 30
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -183,8 +203,8 @@ TextureImporter:
       name: Idle_2
       rect:
         serializedVersion: 2
-        x: 58
-        y: 134
+        x: 60
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -203,8 +223,8 @@ TextureImporter:
       name: Idle_3
       rect:
         serializedVersion: 2
-        x: 87
-        y: 134
+        x: 90
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -223,8 +243,8 @@ TextureImporter:
       name: Idle_4
       rect:
         serializedVersion: 2
-        x: 116
-        y: 134
+        x: 120
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -243,8 +263,8 @@ TextureImporter:
       name: Idle_5
       rect:
         serializedVersion: 2
-        x: 145
-        y: 134
+        x: 150
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -263,8 +283,8 @@ TextureImporter:
       name: Idle_6
       rect:
         serializedVersion: 2
-        x: 174
-        y: 134
+        x: 180
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -283,8 +303,8 @@ TextureImporter:
       name: Idle_7
       rect:
         serializedVersion: 2
-        x: 203
-        y: 134
+        x: 210
+        y: 221
         width: 29
         height: 47
       alignment: 7
@@ -300,11 +320,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_8
+      name: Front_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 92
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -320,11 +340,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_10
+      name: Front_Idle_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 92
+        x: 40
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -340,11 +360,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_11
+      name: Front_Idle_2
       rect:
         serializedVersion: 2
-        x: 78
-        y: 92
+        x: 80
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -360,11 +380,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_12
+      name: Front_Idle_3
       rect:
         serializedVersion: 2
-        x: 117
-        y: 92
+        x: 120
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -380,11 +400,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_14
+      name: Front_Idle_4
       rect:
         serializedVersion: 2
-        x: 156
-        y: 92
+        x: 160
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -400,11 +420,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_15
+      name: Front_Idle_5
       rect:
         serializedVersion: 2
-        x: 195
-        y: 92
+        x: 200
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -420,11 +440,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_16
+      name: Front_Idle_6
       rect:
         serializedVersion: 2
-        x: 234
-        y: 92
+        x: 240
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -440,11 +460,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_18
+      name: Front_Idle_7
       rect:
         serializedVersion: 2
-        x: 273
-        y: 92
+        x: 280
+        y: 179
         width: 39
         height: 41
       alignment: 7
@@ -460,11 +480,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_19
+      name: Back_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 50
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -480,11 +500,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_21
+      name: Back_Idle_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 50
+        x: 38
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -500,11 +520,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_22
+      name: Back_Idle_2
       rect:
         serializedVersion: 2
-        x: 74
-        y: 50
+        x: 76
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -520,11 +540,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_23
+      name: Back_Idle_3
       rect:
         serializedVersion: 2
-        x: 111
-        y: 50
+        x: 114
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -540,11 +560,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_24
+      name: Back_Idle_4
       rect:
         serializedVersion: 2
-        x: 148
-        y: 50
+        x: 152
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -560,11 +580,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_26
+      name: Back_Idle_5
       rect:
         serializedVersion: 2
-        x: 185
-        y: 50
+        x: 190
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -580,11 +600,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_27
+      name: Back_Idle_6
       rect:
         serializedVersion: 2
-        x: 222
-        y: 50
+        x: 228
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -600,11 +620,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_28
+      name: Back_Idle_7
       rect:
         serializedVersion: 2
-        x: 259
-        y: 50
+        x: 266
+        y: 137
         width: 37
         height: 41
       alignment: 7
@@ -620,11 +640,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_9
+      name: Side_Run_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -640,11 +660,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_13
+      name: Side_Run_1
       rect:
         serializedVersion: 2
         x: 42
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -660,11 +680,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_17
+      name: Side_Run_2
       rect:
         serializedVersion: 2
         x: 84
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -680,11 +700,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_20
+      name: Side_Run_3
       rect:
         serializedVersion: 2
         x: 126
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -700,11 +720,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_25
+      name: Side_Run_4
       rect:
         serializedVersion: 2
         x: 168
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -720,11 +740,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_29
+      name: Side_Run_5
       rect:
         serializedVersion: 2
         x: 210
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -740,11 +760,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_30
+      name: Side_Run_6
       rect:
         serializedVersion: 2
         x: 252
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -760,11 +780,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_31
+      name: Side_Run_7
       rect:
         serializedVersion: 2
         x: 294
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -780,11 +800,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_32
+      name: Side_Run_8
       rect:
         serializedVersion: 2
         x: 336
-        y: 0
+        y: 87
         width: 42
         height: 49
       alignment: 7
@@ -800,11 +820,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_33
+      name: Side_Run_9
       rect:
         serializedVersion: 2
         x: 378
-        y: 0
+        y: 87
         width: 41
         height: 49
       alignment: 7
@@ -815,6 +835,406 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: acab8f30431c7104ca3c5243d86e696d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc51810275eb7a42b009208a47b1a7b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc38137c46377f47b13313e0507d187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5e967738fd0614a8b54fb57e603603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cdb5cada2e315743ab193ad6b28d58e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 388a88d8d7300fb42a26cfcde00aba58
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_5
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308ef8e235f27a541a4a92fe87c5c804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_6
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f755e9ece9d4843a78bbd0a0a644dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_7
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c0e59f050c9254c9dc726f30d500b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_8
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f222774baca5f384faaa803cfdd873b3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Run_9
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 41
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b4fa427af01b749a0062f530240d65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0960c11136657dd42bcb9a43984b4417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d3b6322fc3d22a45b44b1b797ffafba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9802c32dea5b53c4bb082d4c7be379e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15e0f8b5444cbb344a6759ee241e195e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04990da6963aa17469c9982358e760e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196a411909f8d504ab93ee397e01614f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7f904860937d749b719833f6712916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa94b02567ba7b348807430d09a9d431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620c76a87b896c245b706f0842fbd620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Run_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 44
+        width: 39
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f7980c95e159184eb107a25409dcf50
       vertices: []
       indices: 
       edges: []
