@@ -84,6 +84,25 @@ public class Player_Stats: MonoBehaviour
 
     }
 
+    public void Add_Material(uint n_mat, Material_InGame type)
+    {
+        switch (type)
+        {
+            case Material_InGame.WOOD_MATERIAL:
+                p_wood_material += n_mat;
+                break;
+            case Material_InGame.IRON_MATERIAL:
+                p_iron_material += n_mat;
+                break;
+            case Material_InGame.SILVER_MATERIAL:
+                p_silver_material += n_mat;
+                break;
+            case Material_InGame.DIAMOND_MATERIAL:
+                p_diamond_material += n_mat;
+                break;
+        }
+    }
+
 }
 
 public enum ObjectType

@@ -7,14 +7,13 @@ public class Material_Spawner : MonoBehaviour {
 
     public Material_InGame material_to_spawn;
 
-    [Range(2,5)]
-    public int min_rand_materials = 2;
-    [Range(5, 15)]
+    [Range(1, 15)]
     public int max_rand_materials = 5;
 
     CircleCollider2D col_circle;
     bool is_spawn_done = false;
-    bool spawn_material = false;
+
+
 
     // Use this for initialization
     void Start () {
@@ -24,23 +23,16 @@ public class Material_Spawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Vector2 point_to_spawn = Random.insideUnitSphere * col_circle.radius;
-
-        if (spawn_material && is_spawn_done == false)
+        if (is_spawn_done == false)
         {
-            switch (material_to_spawn)
+            for (int i = 0; i < max_rand_materials; i++)
             {
-                case Material_InGame.WOOD_MATERIAL:
-                    break;
+                Vector2 point_to_spawn = transform.position + Random.insideUnitSphere * col_circle.radius;
 
-                case Material_InGame.IRON_MATERIAL:
-                    break;
-
-                case Material_InGame.SILVER_MATERIAL:
-                    break;
-
-                case Material_InGame.DIAMOND_MATERIAL:
-                    break;
+                Transform trans = transform.GetChild((int)material_to_spawn);
+                GameObject go = Instantiate(trans.gameObject);
+                go.SetActive(true);
+                go.transform.position = point_to_spawn;
             }
             is_spawn_done = true;
         }

@@ -4,6 +4,7 @@
 public class Detect_Collision_Slash : MonoBehaviour
 {
     public LayerMask enemy_layer;
+    public LayerMask material_layer;
     private GameObject enemy_collided = null;
     private BoxCollider2D collider;
 
@@ -25,11 +26,11 @@ public class Detect_Collision_Slash : MonoBehaviour
         return enemies_found;
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    public Collider2D Is_Material_Collided()
     {
-        if (collision.tag == "enemy")
-        {
-            enemy_collided = collision.gameObject;
-        }
-    }*/
+        collider = GetComponent<BoxCollider2D>();
+        Collider2D material_found = Physics2D.OverlapBox(transform.position, collider.size, 0.0f, material_layer);
+
+        return material_found;
+    }
 }
