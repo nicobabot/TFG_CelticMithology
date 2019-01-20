@@ -34,14 +34,7 @@ public class Player_Manager : MonoBehaviour
 
     public Player_Direction player_direction;
 
-    public enum Player_Weapon
-    {
-        Sword,
-        Shield
-    }
-
-    public Player_Weapon player_weapon;
-
+    private Player_Stats player_stats;
     private Collision_Movement movement_script;
     private Slash_Attack slash_attack_script;
     private Player_PushBack pushback_script;
@@ -56,13 +49,13 @@ public class Player_Manager : MonoBehaviour
         slash_attack_script = GetComponent<Slash_Attack>();
         pushback_script = GetComponent<Player_PushBack>();
 
+        player_stats = new Player_Stats();
+        player_stats.StartStats();
+
         timer_dash = 0.0f;
 
         current_state = Player_States.IDLE_PLAYER;
 
-        //testing porpouse-------------
-        player_weapon = Player_Weapon.Sword;
-        //----------------------------
     }
 
     // Update is called once per frame

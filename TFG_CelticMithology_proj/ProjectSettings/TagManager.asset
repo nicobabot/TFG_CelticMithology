@@ -9,6 +9,7 @@ TagManager:
   - player_combat_collider
   - wall
   - player_falling_collider
+  - player_change_state_collider
   layers:
   - Default
   - TransparentFX
