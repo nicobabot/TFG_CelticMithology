@@ -49,8 +49,7 @@ public class Player_Manager : MonoBehaviour
         slash_attack_script = GetComponent<Slash_Attack>();
         pushback_script = GetComponent<Player_PushBack>();
 
-        player_stats = new Player_Stats();
-        player_stats.StartStats();
+        player_stats = GetComponent<Player_Stats>();
 
         timer_dash = 0.0f;
 
@@ -143,5 +142,9 @@ public class Player_Manager : MonoBehaviour
         in_mine = new_state;
     }
 
+    public Player_Stats Get_Player_Stats()
+    {
+        return player_stats;
+    }
 
 }

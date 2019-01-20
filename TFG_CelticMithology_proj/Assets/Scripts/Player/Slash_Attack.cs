@@ -2,12 +2,12 @@
 
 public class Slash_Attack : MonoBehaviour
 {
-    public int damage;
     public GameObject father_collider_slash_attack;
     public float time_slashing = 1.0f;
     public CameraManager cam_manager;
 
     private Player_Manager player_manager_sct;
+    private Player_Stats player_stats;
     private float timer_slash = 0.0f;
     private Collider2D[] enemies_found = null;
 
@@ -19,6 +19,7 @@ public class Slash_Attack : MonoBehaviour
     private void Start()
     {
         player_manager_sct = GetComponent<Player_Manager>();
+        player_stats = player_manager_sct.Get_Player_Stats();
     }
 
     // Update is called once per frame
@@ -80,7 +81,7 @@ public class Slash_Attack : MonoBehaviour
                     {
                         soldier.currentAction.isFinish = true;
                     }
-                    soldier.Enemy_Live_Modification(damage);
+                    soldier.Enemy_Live_Modification(player_stats.Right_Hand_Object.damage);
                     Soldier_Blackboard bb_soldier = parent.GetComponent<Soldier_Blackboard>();
                     bb_soldier.is_enemy_hit.SetValue(true);
                 }
@@ -91,7 +92,7 @@ public class Slash_Attack : MonoBehaviour
                     {
                         soldier.currentAction.isFinish = true;
                     }*/
-                    Caorth.Enemy_Live_Modification(damage);
+                    Caorth.Enemy_Live_Modification(player_stats.Right_Hand_Object.damage);
                     Caorthannach_Blackboard bb_caorth = parent.GetComponent<Caorthannach_Blackboard>();
                     bb_caorth.is_enemy_hit.SetValue(true);
                 }

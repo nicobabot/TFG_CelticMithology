@@ -1,18 +1,71 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
+public enum Material_InGame
+{
+    WOOD_MATERIAL=0,
+    IRON_MATERIAL,
+    SILVER_MATERIAL,
+    DIAMOND_MATERIAL
+}
 public class Player_Stats: MonoBehaviour
 {
 
-    int wood_material = 0;
-    int iron_material = 0;
-    int silver_material = 0;
-    int diamond_material = 0;
+    uint p_wood_material = 0;
+    public uint Wood_Material
+    {
+        get { return p_wood_material; }
+        set { p_wood_material = value; }
+    }
 
-    Object_InGame Chest_Object;
-    Object_InGame Head_Object;
-    Object_InGame Right_Hand_Object;
-    Object_InGame Left_Hand_Object;
+    uint p_iron_material = 0;
+    public uint Iron_Material
+    {
+        get { return p_iron_material; }
+        set { p_iron_material = value; }
+    }
+
+    uint p_silver_material = 0;
+    public uint Silver_Material
+    {
+        get { return p_silver_material; }
+        set { p_silver_material = value; }
+    }
+
+    uint p_diamond_material = 0;
+    public uint Diamond_Material
+    {
+        get { return p_diamond_material; }
+        set { p_diamond_material = value; }
+    }
+
+    Object_InGame item_Chest_Object;
+    public Object_InGame Chest_Object
+    {
+        get { return item_Chest_Object; }
+        set { item_Chest_Object = value; }
+    }
+
+    Object_InGame item_Head_Object;
+    public Object_InGame Head_Object
+    {
+        get { return item_Head_Object; }
+        set { item_Head_Object = value; }
+    }
+
+    Object_InGame item_Right_Hand_Object;
+    public Object_InGame Right_Hand_Object
+    {
+        get { return item_Right_Hand_Object; }
+        set { item_Right_Hand_Object = value; }
+    }
+
+    Object_InGame item_Left_Hand_Object;
+    public Object_InGame Left_Hand_Object
+    {
+        get { return item_Left_Hand_Object; }
+        set { item_Left_Hand_Object = value; }
+    }
 
     Object_InGame Right_Hand_Object_Secondary_1;
     Object_InGame Right_Hand_Object_Secondary_2;
@@ -22,13 +75,12 @@ public class Player_Stats: MonoBehaviour
     Object_InGame[] Player_Inventory_Objects;
     public Object_InGame[] All_Game_Objects;
 
-    public void StartStats()
+    private void Start()
     {
         Player_Inventory_Objects = new Object_InGame[8];
         //Pushback to all objects of the game
 
         Right_Hand_Object = All_Game_Objects[0];
-
 
     }
 
