@@ -11,7 +11,7 @@ public class BT_Caorthannach : BT_Entity
     override public void Update()
     {
 
-        if ((int)myBB.GetParameter("Live") <= 0)
+        if ((int)myBB.GetParameter("live") <= 0)
         {
             //Animation of enemy dying
             if (currentAction != null)

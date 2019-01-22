@@ -56,7 +56,7 @@ public class BT_Entity : MonoBehaviour
     }
 
     // Use this for initialization
-    private void Start()
+    virtual public void Start()
     {
     }
 
@@ -169,9 +169,9 @@ public class BT_Entity : MonoBehaviour
 
     virtual public void Enemy_Live_Modification(int num)
     {
-        int live = (int)blackboard.GetParameter("Live");
+        int live = (int)blackboard.GetParameter("live");
         live += num;
-        blackboard.SetParameter("Live", live);
+        blackboard.SetParameter("live", live);
     }
 
 }

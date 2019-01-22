@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Action_PushBack : ActionBase
 {
@@ -6,10 +7,14 @@ public class Action_PushBack : ActionBase
     public float time_doing_pushback = 0.5f;
     public float min_distance = 0.1f;
     public LayerMask layer_ray;
+    public Color damaged_color;
+    public Image live_bar;
 
     private float timer_pushback;
 
     private GameObject player;
+
+    private Color regular_color;
 
     private Vector3 pushback_dir = Vector3.zero;
     private Vector3 temp_position;
@@ -20,6 +25,7 @@ public class Action_PushBack : ActionBase
     private Rigidbody2D rb;
 
     private SpriteRenderer sprite_rend;
+
 
     override public BT_Status StartAction()
     {
@@ -37,6 +43,12 @@ public class Action_PushBack : ActionBase
         {
             Debug.Log("Sprite renderer null _Action_PushBack");
         }
+
+        regular_color = sprite_rend.color;
+
+        //Live bar
+        live_bar.fillAmount -= 1.0f / (int)myBT.myBB.GetParameter("total_live");
+
 
         float size_addition = (sprite_rend.bounds.size.y * 0.5f);
         temp_position = transform.position;
@@ -58,7 +70,6 @@ public class Action_PushBack : ActionBase
         {
             pushback_dir = -pushback_dir;
         }
-
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance, layer_ray);
         if (hit != null)
@@ -91,10 +102,14 @@ public class Action_PushBack : ActionBase
 
     override public BT_Status UpdateAction()
     {
+
+        sprite_rend.color = damaged_color;
+
         Vector3 direction = transform.position - hitpoint_wall;
 
         if (direction.magnitude < min_distance)
         {
+            sprite_rend.color = regular_color;
             rb.velocity = Vector2.zero;
             myBT.myBB.SetParameter("is_enemy_hit", false);
             isFinish = true;
@@ -109,6 +124,7 @@ public class Action_PushBack : ActionBase
 
         if (timer_pushback > time_doing_pushback)
         {
+            sprite_rend.color = regular_color;
             myBT.myBB.SetParameter("is_enemy_hit", false);
             isFinish = true;
         }
