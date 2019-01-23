@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Slash_Attack : MonoBehaviour
 {
     public GameObject father_collider_slash_attack;
@@ -15,16 +16,21 @@ public class Slash_Attack : MonoBehaviour
 
     Animator anim;
     GameObject collider_to_activate;
+    Rigidbody2D rb;
 
     private void Start()
     {
         player_manager_sct = GetComponent<Player_Manager>();
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Attack_Slash_Update()
     {
+        
         anim.SetBool("player_attack", true);
+
+        rb.velocity = Vector2.zero;
 
         AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
         float lenght_anim = anim_clip[0].clip.length;

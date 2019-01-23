@@ -13,19 +13,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1249,10 +1249,6 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: 1109202777522196720}
   m_StateMachineTransitions:
-  - first: {fileID: 1107524155815237726}
-    second:
-    - {fileID: 1109473228678887778}
-    - {fileID: 1109437465164299856}
   - first: {fileID: 1107262926469802538}
     second:
     - {fileID: 1109070960623387874}
@@ -1261,6 +1257,10 @@ AnimatorStateMachine:
     second:
     - {fileID: 1109591688888081036}
     - {fileID: 1109967641669906166}
+  - first: {fileID: 1107524155815237726}
+    second:
+    - {fileID: 1109473228678887778}
+    - {fileID: 1109437465164299856}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
