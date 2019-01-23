@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+[RequireComponent(typeof(Animator))]
 public class Slash_Attack : MonoBehaviour
 {
     public GameObject father_collider_slash_attack;
@@ -13,17 +13,25 @@ public class Slash_Attack : MonoBehaviour
     private Collider2D[] enemies_found = null;
     private bool is_slash_done = false;
 
+    Animator anim;
     GameObject collider_to_activate;
 
-    // Use this for initialization
     private void Start()
     {
         player_manager_sct = GetComponent<Player_Manager>();
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     public void Attack_Slash_Update()
     {
+        anim.SetBool("player_attack", true);
+
+        AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
+        float lenght_anim = anim_clip[0].clip.length;
+ 
+
+        timer_slash += Time.deltaTime;
+
         collider_to_activate = father_collider_slash_attack.transform.GetChild((int)player_manager_sct.player_direction).gameObject;
 
         if (!collider_to_activate.active)
@@ -33,7 +41,7 @@ public class Slash_Attack : MonoBehaviour
 
         Detect_Collision_Slash collision_slash_scr = collider_to_activate.GetComponent<Detect_Collision_Slash>();
 
-        if (collision_slash_scr != null && is_slash_done == false)
+        if (timer_slash > lenght_anim*0.5f && collision_slash_scr != null && is_slash_done == false)
         {
             enemies_found = collision_slash_scr.Is_Enemy_Collided();
             if (enemies_found.Length > 0)
@@ -43,10 +51,11 @@ public class Slash_Attack : MonoBehaviour
             is_slash_done = true;
         }
 
-        timer_slash += Time.deltaTime;
 
-        if (timer_slash > time_slashing)
+
+        if (timer_slash > lenght_anim)
         {
+            anim.SetBool("player_attack", false);
             is_slash_done = false;
             timer_slash = 0;
             collider_to_activate.SetActive(false);
