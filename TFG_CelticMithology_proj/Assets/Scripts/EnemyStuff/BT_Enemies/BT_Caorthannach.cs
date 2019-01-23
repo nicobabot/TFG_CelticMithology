@@ -7,6 +7,10 @@ public class BT_Caorthannach : BT_Entity
     //current_action
     public Action_FollowPlayer chase;
     public Action_ShootPlayer shoot;
+    public Action_Dead dead;
+    public Action_DamageStatic damage_static;
+    private bool is_dead = false;
+
 
     override public void Update()
     {
@@ -18,7 +22,7 @@ public class BT_Caorthannach : BT_Entity
             {
                 currentAction.isFinish = true;
             }
-            gameObject.SetActive(false);
+            is_dead = true;
         }
 
         base.Update();
@@ -28,22 +32,21 @@ public class BT_Caorthannach : BT_Entity
     {
         bool decide = false;
 
-        if (currentAction != shoot)
+        if (currentAction != shoot && (bool)myBB.GetParameter("is_enemy_hit") == false && is_dead == false)
         {
             currentAction = shoot;
             decide = true;
         }
-
-        /*if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false)
+        else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
         {
-            currentAction = chase;
+            currentAction = damage_static;
             decide = true;
         }
-        else if ((bool)myBB.GetParameter("is_enemy_hit") == true)
+        else if (currentAction != dead && is_dead == true)
         {
-            currentAction = pushback;
+            currentAction = dead;
             decide = true;
-        }*/
+        }
 
 
         return decide;

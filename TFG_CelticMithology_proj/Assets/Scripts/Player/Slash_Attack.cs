@@ -96,10 +96,10 @@ public class Slash_Attack : MonoBehaviour
                 BT_Caorthannach Caorth = parent.GetComponent<BT_Caorthannach>();
                 if (Caorth != null)
                 {
-                   /* if (soldier.currentAction != null)
+                    if (Caorth.currentAction != null)
                     {
-                        soldier.currentAction.isFinish = true;
-                    }*/
+                        Caorth.currentAction.isFinish = true;
+                    }
                     Caorth.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
                     Caorthannach_Blackboard bb_caorth = parent.GetComponent<Caorthannach_Blackboard>();
                     bb_caorth.is_enemy_hit.SetValue(true);
