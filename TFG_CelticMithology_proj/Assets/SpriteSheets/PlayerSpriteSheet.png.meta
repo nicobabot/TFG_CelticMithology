@@ -56,6 +56,11 @@ TextureImporter:
     21300102: Front_Run_7
     21300104: Front_Run_8
     21300106: Front_Run_9
+    21300108: Side_Attack_0
+    21300110: Side_Attack_1
+    21300112: Side_Attack_2
+    21300114: Side_Attack_3
+    21300116: Side_Attack_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1235,6 +1240,106 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8f7980c95e159184eb107a25409dcf50
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 282
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202b504cb1a3cde4dad38a08beb4c7af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 282
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86da36c1a0980a84d9b4826a74bf6ea5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 282
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12887b8740fb0c409270a88b636019e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 282
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d94437405e72e74aafcc9d291f703fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 282
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b17ba87a6324b024dbeffbd76e92a8bd
       vertices: []
       indices: 
       edges: []
