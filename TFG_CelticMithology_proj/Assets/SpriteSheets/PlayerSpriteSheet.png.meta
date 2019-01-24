@@ -1251,7 +1251,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
@@ -1269,9 +1269,9 @@ TextureImporter:
       name: Side_Attack_1
       rect:
         serializedVersion: 2
-        x: 56
+        x: 58
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
@@ -1289,9 +1289,9 @@ TextureImporter:
       name: Side_Attack_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 116
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
@@ -1309,9 +1309,9 @@ TextureImporter:
       name: Side_Attack_3
       rect:
         serializedVersion: 2
-        x: 168
+        x: 174
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
@@ -1329,9 +1329,9 @@ TextureImporter:
       name: Side_Attack_4
       rect:
         serializedVersion: 2
-        x: 224
+        x: 232
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
@@ -1349,9 +1349,9 @@ TextureImporter:
       name: Side_Attack_5
       rect:
         serializedVersion: 2
-        x: 280
+        x: 290
         y: 282
-        width: 55
+        width: 57
         height: 57
       alignment: 9
       pivot: {x: 0.4, y: 0.2}
