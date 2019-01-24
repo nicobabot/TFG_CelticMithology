@@ -106,7 +106,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75409836
   m_HasExitTime: 0
@@ -868,7 +868,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75409836
   m_HasExitTime: 0
@@ -1277,6 +1277,9 @@ AnimatorTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: player_idle
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: player_attack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1107262721441734110}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1338,6 +1341,9 @@ AnimatorTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: player_attack
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: player_idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1107524155815237726}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1369,6 +1375,9 @@ AnimatorTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: player_idle
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: player_attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1107262926469802538}
   m_DstState: {fileID: 0}
