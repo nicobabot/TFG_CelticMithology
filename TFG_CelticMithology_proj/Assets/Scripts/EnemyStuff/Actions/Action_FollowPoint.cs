@@ -8,10 +8,10 @@ public class Action_FollowPoint : ActionBase {
     public GameObject points_father;
     public float velocity = 1.0f;
     public BoxCollider2D col_detect_player;
+    public BoxCollider2D collider_enemy;
 
     private Action_FollowPlayer follow_player_scr;
     private GameObject player;
-    private BoxCollider2D collider_enemy;
     private Vector3 point_to_follow;
 
     override public BT_Status StartAction()
@@ -23,7 +23,6 @@ public class Action_FollowPoint : ActionBase {
         }
 
         follow_player_scr = GetComponent<Action_FollowPlayer>();
-        collider_enemy = GetComponent<BoxCollider2D>();
 
         int point = Random.Range(0, points_father.transform.childCount);
 

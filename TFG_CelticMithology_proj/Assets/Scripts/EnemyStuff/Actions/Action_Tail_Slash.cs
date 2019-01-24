@@ -53,6 +53,7 @@ public class Action_Tail_Slash : ActionBase {
         }
         else
         {
+            go.SetActive(false);
             if (player_detection_slash != null)
             {
                 Transform parent = player_detection_slash.transform.parent;
@@ -64,7 +65,6 @@ public class Action_Tail_Slash : ActionBase {
 
                     if (live_manager_scr != null && player_manager_scr != null)
                     {
-                        go.SetActive(false);
                         player_manager_scr.Set_Enemy_Pushback(transform);
                         player_manager_scr.current_state = Player_Manager.Player_States.PUSHBACK_PLAYER;
                         fader_scr.Fade_image.enabled = true;
@@ -78,10 +78,17 @@ public class Action_Tail_Slash : ActionBase {
             {
                 //Stop
             }
+            isFinish = true;
+
         }
 
 
         return BT_Status.RUNNING;
+    }
+
+    public void Reset_Tail_Slash()
+    {
+        slash_done = false;
     }
 
     override public BT_Status EndAction()

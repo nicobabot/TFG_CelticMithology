@@ -110,6 +110,17 @@ public class Slash_Attack : MonoBehaviour
                     Caorthannach_Blackboard bb_caorth = parent.GetComponent<Caorthannach_Blackboard>();
                     bb_caorth.is_enemy_hit.SetValue(true);
                 }
+                BT_Kelpi Kelpi = parent.GetComponent<BT_Kelpi>();
+                if (Kelpi != null)
+                {
+                    if (Kelpi.currentAction != null)
+                    {
+                        Kelpi.currentAction.isFinish = true;
+                    }
+                    Kelpi.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    Kelpi_Blackboard bb_kelpi = parent.GetComponent<Kelpi_Blackboard>();
+                    bb_kelpi.is_enemy_hit.SetValue(true);
+                }
             }
             else
             {
