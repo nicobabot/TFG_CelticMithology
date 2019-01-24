@@ -30,6 +30,7 @@ public class Action_Tail_Slash : ActionBase {
         follow_player_scr = GetComponent<Action_FollowPlayer>();
         collider_enemy = GetComponent<BoxCollider2D>();
 
+        dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
     }
 
@@ -37,18 +38,16 @@ public class Action_Tail_Slash : ActionBase {
     {
 
         timer_attack += Time.deltaTime;
-
+        GameObject go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
         if (!slash_done)
         {
+            go.SetActive(true);
+            BoxCollider2D col = go.GetComponent<BoxCollider2D>();
+            player_detection_slash = Physics2D.OverlapBox(go.transform.position, col.size, 0, player_mask);
+
             if (timer_attack > time_to_make_slash)
             {
-                time_to_make_slash = 0.0f;
-                dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
-                GameObject go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
-                BoxCollider2D col = go.GetComponent<BoxCollider2D>();
-
-                player_detection_slash = Physics2D.OverlapBox(go.transform.position, col.size, 0, player_mask);
-
+                timer_attack = 0.0f;
                 slash_done = true;
             }
         }
@@ -65,6 +64,7 @@ public class Action_Tail_Slash : ActionBase {
 
                     if (live_manager_scr != null && player_manager_scr != null)
                     {
+                        go.SetActive(false);
                         player_manager_scr.Set_Enemy_Pushback(transform);
                         player_manager_scr.current_state = Player_Manager.Player_States.PUSHBACK_PLAYER;
                         fader_scr.Fade_image.enabled = true;
