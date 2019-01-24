@@ -34,7 +34,7 @@ public class Slash_Attack : MonoBehaviour
 
         AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
         float lenght_anim = anim_clip[0].clip.length;
- 
+
 
         timer_slash += Time.deltaTime;
 
@@ -71,10 +71,10 @@ public class Slash_Attack : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if (collider_to_activate != null)
+        /*if (collider_to_activate != null)
         {
             Gizmos.DrawCube(collider_to_activate.transform.position, collider_to_activate.GetComponent<BoxCollider2D>().size);
-        }
+        }*/
     }
 
     private void React_To_Slash()

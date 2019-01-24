@@ -4,6 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collision_Movement))]
 [RequireComponent(typeof(Slash_Attack))]
 [RequireComponent(typeof(Player_PushBack))]
+[RequireComponent(typeof(Animator))]
 public class Player_Manager : MonoBehaviour
 {
     public float time_dashing = 1.0f;
@@ -38,6 +39,9 @@ public class Player_Manager : MonoBehaviour
     private Collision_Movement movement_script;
     private Slash_Attack slash_attack_script;
     private Player_PushBack pushback_script;
+
+    private Animator anim;
+
     private float timer_dash = 0.0f;
     private bool want_to_dash = false;
     private bool in_mine = false;
@@ -48,6 +52,8 @@ public class Player_Manager : MonoBehaviour
         movement_script = GetComponent<Collision_Movement>();
         slash_attack_script = GetComponent<Slash_Attack>();
         pushback_script = GetComponent<Player_PushBack>();
+
+        anim = GetComponent<Animator>();
 
         player_stats = GetComponent<Player_Stats>();
 
@@ -71,6 +77,7 @@ public class Player_Manager : MonoBehaviour
         {
             if (!in_mine)
             {
+                anim.SetBool("player_idle", false);
                 current_state = Player_States.SLASHING_PLAYER;
             }
             else
@@ -115,6 +122,7 @@ public class Player_Manager : MonoBehaviour
         }
         else if (current_state == Player_States.PUSHBACK_PLAYER)
         {
+            anim.SetBool("player_attack", false);
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             pushback_script.PushBack_Update();
         }
