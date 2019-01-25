@@ -406,6 +406,7 @@ Transform:
   m_Children:
   - {fileID: 4106995}
   - {fileID: 738321895}
+  - {fileID: 1611784678}
   - {fileID: 333198965}
   - {fileID: 1763264749}
   m_Father: {fileID: 1156564479}
@@ -5929,7 +5930,7 @@ RectTransform:
   m_Children:
   - {fileID: 1429352129}
   m_Father: {fileID: 50785988}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6342,7 +6343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &411518545
 Transform:
   m_ObjectHideFlags: 0
@@ -13606,6 +13607,7 @@ GameObject:
   - component: {fileID: 694752451}
   - component: {fileID: 694752450}
   - component: {fileID: 694752449}
+  - component: {fileID: 694752455}
   m_Layer: 9
   m_Name: Kelpie
   m_TagString: Untagged
@@ -13685,6 +13687,7 @@ MonoBehaviour:
   pathfinder_scr: {fileID: 143351903}
   follow_point: {fileID: 694752450}
   tail_slash: {fileID: 694752449}
+  shark_attack: {fileID: 694752455}
   lives_to_change_phase: 4
 --- !u!114 &694752453
 MonoBehaviour:
@@ -13734,6 +13737,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &694752455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694752448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7900d5fb04bb787489df175f57fa05cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: action
+  shadow_sprite: {fileID: 21300100, guid: f78a4f0a2b7a3414ca9606b23ae0884b, type: 3}
+  follow_speed: 0.1
+  time_following_player: 0.75
+  shark_collider: {fileID: 1611784679}
+  player_layer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!212 &694752456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17583,6 +17606,8 @@ MonoBehaviour:
   movement_speed: 5
   dash_speed: 15
   Menu: {fileID: 1225303827}
+  fader_scr: {fileID: 2056421631}
+  live_manager_scr: {fileID: 1310819220}
   current_state: 0
   player_direction: 0
 --- !u!50 &1310819224
@@ -18604,6 +18629,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.72299194, y: 0.636467}
   m_EdgeRadius: 0
+--- !u!1 &1611784677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611784678}
+  - component: {fileID: 1611784679}
+  m_Layer: 0
+  m_Name: Shark_Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611784678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1611784677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.145, y: 0.814, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 50785988}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1611784679
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1611784677}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05707407, y: -0.03804958}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.327225, y: 1.3348362}
+  m_EdgeRadius: 0
 --- !u!1 &1621407359
 GameObject:
   m_ObjectHideFlags: 0
@@ -19442,7 +19521,7 @@ Transform:
   - {fileID: 845691869}
   - {fileID: 1176336591}
   m_Father: {fileID: 50785988}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1773298810
 Prefab:

@@ -60,17 +60,15 @@ public class Action_Tail_Slash : ActionBase {
 
                 if (parent != null)
                 {
-                    Live_Manager live_manager_scr = parent.GetComponent<Live_Manager>();
                     Player_Manager player_manager_scr = parent.GetComponent<Player_Manager>();
 
-                    if (live_manager_scr != null && player_manager_scr != null)
+                    if (player_manager_scr != null)
                     {
-                        player_manager_scr.Set_Enemy_Pushback(transform);
-                        player_manager_scr.current_state = Player_Manager.Player_States.PUSHBACK_PLAYER;
-                        fader_scr.Fade_image.enabled = true;
-                        fader_scr.FadeOut(false, true);
-                        live_manager_scr.DetectedDamage();
+                        player_manager_scr.GetDamage(transform);
+                        slash_done = false;
                         player_detection_slash = null;
+                        BT_Kelpi kelpi_bt = ((BT_Kelpi)myBT);
+                        if (kelpi_bt != null) kelpi_bt.Set_Can_Make_Slash(false);
                     }
                 }
             }

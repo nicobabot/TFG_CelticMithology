@@ -11,6 +11,8 @@ public class Player_Manager : MonoBehaviour
     public float movement_speed = 5.0f;
     public float dash_speed = 10.0f;
     public GameObject Menu;
+    public Fader fader_scr;
+    public Live_Manager live_manager_scr;
 
     public enum Player_States
     {
@@ -144,6 +146,15 @@ public class Player_Manager : MonoBehaviour
     public bool Get_In_Mine()
     {
         return in_mine;
+    }
+
+    public void GetDamage(Transform enemy_push)
+    {
+        Set_Enemy_Pushback(enemy_push);
+        current_state = Player_States.PUSHBACK_PLAYER;
+        fader_scr.Fade_image.enabled = true;
+        fader_scr.FadeOut(false, true);
+        live_manager_scr.DetectedDamage();
     }
 
     public void Set_In_Mine(bool new_state)

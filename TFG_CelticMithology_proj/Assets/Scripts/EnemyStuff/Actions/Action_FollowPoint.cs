@@ -14,6 +14,8 @@ public class Action_FollowPoint : ActionBase {
     private GameObject player;
     private Vector3 point_to_follow;
 
+    private Vector3 last_point_followed;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -24,9 +26,13 @@ public class Action_FollowPoint : ActionBase {
 
         follow_player_scr = GetComponent<Action_FollowPlayer>();
 
-        int point = Random.Range(0, points_father.transform.childCount);
+        do
+        {
+            int point = Random.Range(0, points_father.transform.childCount);
+            point_to_follow = points_father.transform.GetChild(point).position;
+        } while (point_to_follow == last_point_followed);
 
-        point_to_follow = points_father.transform.GetChild(point).position;
+        last_point_followed = point_to_follow;
 
         //Make to water animation
 

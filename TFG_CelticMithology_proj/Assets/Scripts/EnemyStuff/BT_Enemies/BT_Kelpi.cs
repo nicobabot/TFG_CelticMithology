@@ -12,8 +12,11 @@ public class BT_Kelpi : BT_Entity
         KELPI_PHASE_2
     }
 
+    [Header("Phase 1")]
     public Action_FollowPoint follow_point;
     public Action_Tail_Slash tail_slash;
+    [Header("Phase 2")]
+    public Action_SharkAttack shark_attack;
 
     Kelpi_Phases kelpi_phase = Kelpi_Phases.KELPI_PHASE_1;
 
@@ -69,10 +72,19 @@ public class BT_Kelpi : BT_Entity
         }
         else
         {
-
+            if (currentAction != shark_attack)
+            {
+                currentAction = shark_attack;
+                decide = true;
+            }
         }
 
         return decide;
+    }
+
+    public void Set_Can_Make_Slash(bool new_state)
+    {
+        can_make_slash = new_state;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

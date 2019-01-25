@@ -24,11 +24,7 @@ public class PlayerDetection_Damage : MonoBehaviour {
 
                     if (live_manager_scr != null && player_manager_scr != null)
                     {
-                        player_manager_scr.Set_Enemy_Pushback(transform);
-                        player_manager_scr.current_state = Player_Manager.Player_States.PUSHBACK_PLAYER;
-                        fader_scr.Fade_image.enabled = true;
-                        fader_scr.FadeOut(false, true);
-                        live_manager_scr.DetectedDamage();
+                        player_manager_scr.GetDamage(transform);
                     }
                 }
             }
