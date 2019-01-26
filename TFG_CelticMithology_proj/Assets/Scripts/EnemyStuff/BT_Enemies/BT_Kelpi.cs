@@ -25,6 +25,7 @@ public class BT_Kelpi : BT_Entity
 
     private bool can_make_slash = false;
     private bool make_displacement = true;
+    private bool make_shark_action = true;
 
     override public void Update()
     {
@@ -72,8 +73,9 @@ public class BT_Kelpi : BT_Entity
         }
         else
         {
-            if (currentAction != shark_attack)
+            if (currentAction != shark_attack && make_shark_action == true)
             {
+                make_shark_action = false;
                 currentAction = shark_attack;
                 decide = true;
             }

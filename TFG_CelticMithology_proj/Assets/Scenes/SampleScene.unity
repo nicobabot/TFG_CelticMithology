@@ -13753,10 +13753,12 @@ MonoBehaviour:
   shadow_sprite: {fileID: 21300100, guid: f78a4f0a2b7a3414ca9606b23ae0884b, type: 3}
   follow_speed: 0.1
   time_following_player: 0.75
+  distance_to_arrive_player: 0.5
   shark_collider: {fileID: 1611784679}
   player_layer:
     serializedVersion: 2
     m_Bits: 1024
+  time_stunned: 1.5
 --- !u!212 &694752456
 SpriteRenderer:
   m_ObjectHideFlags: 0

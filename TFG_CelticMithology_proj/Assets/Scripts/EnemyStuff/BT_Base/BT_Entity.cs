@@ -172,6 +172,7 @@ public class BT_Entity : MonoBehaviour
         int live = (int)blackboard.GetParameter("live");
         live += num;
         blackboard.SetParameter("live", live);
+        blackboard.SetParameter("is_enemy_hit", false);
     }
 
 }
