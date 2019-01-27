@@ -36,15 +36,31 @@ public class PlayerDetection_Damage : MonoBehaviour {
         bool is_pushing = false;
         if (need_enemy_type_detection)
         {
+            bool type_found = false;
+
             //Need update with all types
             Transform parent = transform.parent;
             if (parent = null) {
                 BT_Entity enemy_temp = parent.GetComponent<BT_Soldier>();
-                if (enemy_temp != null)
+                if (enemy_temp != null && type_found == false)
                 {
+                    type_found = true;
                     is_pushing = (bool)enemy_temp.myBB.GetParameter("is_enemy_hit");
                 }
-                // enemy_temp = transform.parent.GetComponent<BT_Caorthannach>();
+
+                enemy_temp = parent.GetComponent<BT_Caorthannach>();
+                if (enemy_temp != null && type_found == false)
+                {
+                    type_found = true;
+                    is_pushing = (bool)enemy_temp.myBB.GetParameter("is_enemy_hit");
+                }
+
+                enemy_temp = parent.GetComponent<BT_Kelpi>();
+                if (enemy_temp != null && type_found == false)
+                {
+                    type_found = true;
+                    is_pushing = (bool)enemy_temp.myBB.GetParameter("is_enemy_hit");
+                }
 
             }
         }

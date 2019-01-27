@@ -10,6 +10,9 @@ public class Action_Tail_Slash : ActionBase {
     public LayerMask player_mask;
     public Fader fader_scr;
 
+    [Header("The collider that player detects to make damage the enemy")]
+    public BoxCollider2D get_damage_collider;
+
     private Action_FollowPlayer follow_player_scr;
     private GameObject player;
     private Vector3 point_to_follow;
@@ -41,6 +44,7 @@ public class Action_Tail_Slash : ActionBase {
         GameObject go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
         if (!slash_done)
         {
+            get_damage_collider.enabled = false;
             go.SetActive(true);
             BoxCollider2D col = go.GetComponent<BoxCollider2D>();
             player_detection_slash = Physics2D.OverlapBox(go.transform.position, col.size, 0, player_mask);
@@ -75,6 +79,7 @@ public class Action_Tail_Slash : ActionBase {
             else
             {
                 //Stop
+                get_damage_collider.enabled = true;
             }
             isFinish = true;
 

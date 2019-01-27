@@ -58,7 +58,6 @@ public class Slash_Attack : MonoBehaviour
         }
 
 
-
         if (timer_slash > lenght_anim)
         {
             anim.SetBool("player_attack", false);
@@ -113,10 +112,10 @@ public class Slash_Attack : MonoBehaviour
                 BT_Kelpi Kelpi = parent.GetComponent<BT_Kelpi>();
                 if (Kelpi != null)
                 {
-                    if (Kelpi.currentAction != null)
+                    /*if (Kelpi.currentAction != null)
                     {
                         Kelpi.currentAction.isFinish = true;
-                    }
+                    }*/
                     Kelpi.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
                     Kelpi_Blackboard bb_kelpi = parent.GetComponent<Kelpi_Blackboard>();
                     bb_kelpi.is_enemy_hit.SetValue(true);

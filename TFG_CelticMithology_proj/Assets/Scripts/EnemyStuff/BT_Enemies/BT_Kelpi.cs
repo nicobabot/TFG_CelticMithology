@@ -6,19 +6,19 @@ using UnityEngine;
 public class BT_Kelpi : BT_Entity
 {
 
-    enum Kelpi_Phases
+    public enum Kelpi_Phases
     {
         KELPI_PHASE_1,
         KELPI_PHASE_2
     }
+
+    public Kelpi_Phases kelpi_phase = Kelpi_Phases.KELPI_PHASE_1;
 
     [Header("Phase 1")]
     public Action_FollowPoint follow_point;
     public Action_Tail_Slash tail_slash;
     [Header("Phase 2")]
     public Action_SharkAttack shark_attack;
-
-    Kelpi_Phases kelpi_phase = Kelpi_Phases.KELPI_PHASE_1;
 
     [Header("How many lives need to lose to change phase")]
     public int lives_to_change_phase = 4;
@@ -39,9 +39,10 @@ public class BT_Kelpi : BT_Entity
             }
             gameObject.SetActive(false);
         }
-        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase)
+        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase && kelpi_phase != Kelpi_Phases.KELPI_PHASE_2)
         {
             kelpi_phase = Kelpi_Phases.KELPI_PHASE_2;
+            myBB.SetParameter("is_enemy_hit", false);
         }
 
         base.Update();

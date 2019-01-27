@@ -19,6 +19,10 @@ public class Action_SharkAttack : ActionBase
     public float time_following_player = 1.5f;
     public float distance_to_arrive_player = 0.5f;
     public BoxCollider2D shark_collider;
+
+    [Tooltip("By code will deactivate this collider to led kelpi follow the player")]
+    public BoxCollider2D get_damage_collider;
+    public BoxCollider2D player_damage_collider;
     public LayerMask player_layer;
 
     [Header("Stun kelpi fail shark bite")]
@@ -33,6 +37,10 @@ public class Action_SharkAttack : ActionBase
     float timer_follow = 0.0f;
     bool shark_attack_done = false;
 
+    float standard_y_sprite_player;
+    float standard_y_sprite_enemy;
+    float sprite_enemy_x = 0;
+
     override public BT_Status StartAction()
     {
         state = Kelpi_State.FOLLOWING_PLAYER;
@@ -42,12 +50,18 @@ public class Action_SharkAttack : ActionBase
         sprite_rend_player = player.GetComponent<SpriteRenderer>();
         normal_sprite = sprite_rend.sprite;
 
+
+        standard_y_sprite_player = sprite_rend_player.bounds.size.y;
+        standard_y_sprite_enemy = sprite_rend.bounds.size.y;
+
         //Animation of kelpie going below water
 
         //Changing sprite to shadow below water
         sprite_rend.sprite = shadow_sprite;
         shark_attack_done = false;
         timer_stunned_count = 0;
+        player_damage_collider.enabled = false;
+        get_damage_collider.enabled = false;
         return BT_Status.RUNNING;
     }
 
@@ -57,8 +71,8 @@ public class Action_SharkAttack : ActionBase
         if (shark_attack_done == false)
         {
             Vector3 player_pos = player.transform.position;
-            player_pos.y += sprite_rend_player.bounds.size.y * 0.5f;
-            player_pos.y -= sprite_rend.bounds.size.y * 0.5f;
+            player_pos.y += standard_y_sprite_player * 0.5f;
+            player_pos.y -= standard_y_sprite_enemy * 0.5f;
             Vector3 my_pos = transform.position;
 
             Vector3 diff = player_pos - my_pos;
@@ -67,22 +81,24 @@ public class Action_SharkAttack : ActionBase
 
             transform.position = Vector3.MoveTowards(my_pos, player_pos, follow_speed);
 
-            if (diff.magnitude < distance_to_arrive_player)
+           // if (diff.magnitude < distance_to_arrive_player)
+            //{
+            timer_follow += Time.deltaTime;
+
+            sprite_rend.size += new Vector2(50, 50);
+
+
+            if (timer_follow > time_following_player)
             {
-                timer_follow += Time.deltaTime;
-
-                if (timer_follow > time_following_player)
-                {
-                    sprite_rend.sprite = normal_sprite;
-                    //Activate colliders
-                    shark_collider.enabled = true;
-                    player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
-
-                    shark_attack_done = true;
-                    timer_follow = 0;
-                }
-
+                sprite_rend.sprite = normal_sprite;
+                //Activate colliders
+                shark_collider.enabled = true;
+                player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
+                shark_attack_done = true;
+                timer_follow = 0;
             }
+
+            // }
         }
         else
         {
@@ -99,6 +115,7 @@ public class Action_SharkAttack : ActionBase
             else
             {
                 //(bool)myBB.GetParameter("is_enemy_hit") == true
+                get_damage_collider.enabled = true;
                 state = Kelpi_State.STUNNED;
                 //make kelpi fail attack and then wait seconds
                 timer_stunned_count += Time.deltaTime;
