@@ -20,12 +20,16 @@ public class BT_Kelpi : BT_Entity
     [Header("Phase 2")]
     public Action_SharkAttack shark_attack;
 
+    [Header("Death State")]
+    public Action_Dead dead;
+
     [Header("How many lives need to lose to change phase")]
     public int lives_to_change_phase = 4;
 
     private bool can_make_slash = false;
     private bool make_displacement = true;
     private bool make_shark_action = true;
+    private bool is_dead = false;
 
     override public void Update()
     {
@@ -37,7 +41,7 @@ public class BT_Kelpi : BT_Entity
             {
                 currentAction.isFinish = true;
             }
-            gameObject.SetActive(false);
+            is_dead = true;
         }
         else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase && kelpi_phase != Kelpi_Phases.KELPI_PHASE_2)
         {
@@ -78,6 +82,11 @@ public class BT_Kelpi : BT_Entity
             {
                 make_shark_action = false;
                 currentAction = shark_attack;
+                decide = true;
+            }
+            if (currentAction != dead && is_dead == true)
+            {
+                currentAction = dead;
                 decide = true;
             }
         }

@@ -13609,6 +13609,7 @@ GameObject:
   - component: {fileID: 694752450}
   - component: {fileID: 694752449}
   - component: {fileID: 694752455}
+  - component: {fileID: 694752457}
   m_Layer: 9
   m_Name: Kelpie
   m_TagString: Untagged
@@ -13691,6 +13692,7 @@ MonoBehaviour:
   follow_point: {fileID: 694752450}
   tail_slash: {fileID: 694752449}
   shark_attack: {fileID: 694752455}
+  dead: {fileID: 694752457}
   lives_to_change_phase: 4
 --- !u!114 &694752453
 MonoBehaviour:
@@ -13752,7 +13754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_interruptible: 0
-  name: action
+  name: SharkAttack
   shadow_sprite: {fileID: 21300100, guid: f78a4f0a2b7a3414ca9606b23ae0884b, type: 3}
   follow_speed: 0.125
   time_following_player: 2.5
@@ -13811,6 +13813,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &694752457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694752448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109422490dda7414db72d0e3b1c2085d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Dead
+  part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
 --- !u!1 &715813759
 GameObject:
   m_ObjectHideFlags: 0
@@ -16652,7 +16668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1156564479
 Transform:
   m_ObjectHideFlags: 0
@@ -20262,7 +20278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
