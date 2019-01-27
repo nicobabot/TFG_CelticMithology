@@ -62,6 +62,18 @@ TextureImporter:
     21300114: Side_Attack_3
     21300116: Side_Attack_4
     21300118: Side_Attack_5
+    21300120: Front_Attack_0
+    21300122: Front_Attack_1
+    21300124: Front_Attack_2
+    21300126: Front_Attack_3
+    21300128: Front_Attack_4
+    21300130: Front_Attack_5
+    21300132: Back_Attack_0
+    21300134: Back_Attack_1
+    21300136: Back_Attack_2
+    21300138: Back_Attack_3
+    21300140: Back_Attack_4
+    21300142: Back_Attack_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1361,6 +1373,246 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5ccc55bfab629fa4496d4188b53c6b61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3365dd8f64a0fe498cc1a2286c40e38
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 486fa1aaf22bd344fb7b3c49cbf677e3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2cc86c3069f05d449953135aa2f45c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec0fa8093fb0ea4ca56f01f879db901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088423322060f194580412b6536e5247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 340
+        width: 55
+        height: 68
+      alignment: 9
+      pivot: {x: 0.54, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 930b84e774da33245bb49cb1b8fc754d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b164e462897c947952d2489c9f3c97
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c250af8a1253430498b4d2f6454aae0d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45be0a90a2984654f8c8335d5e4d4392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8ef0c401ee20d419aaa2f2702c451e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c03e2611e92aa47a209f7f10482992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 409
+        width: 54
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec66607b0601bbe4dafbd7d94e54852c
       vertices: []
       indices: 
       edges: []
