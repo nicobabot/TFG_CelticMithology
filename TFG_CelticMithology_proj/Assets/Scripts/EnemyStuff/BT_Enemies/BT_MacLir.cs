@@ -17,6 +17,7 @@ public class BT_MacLir : BT_Entity
 
     [Header("Phase 1")]
     public Action_FollowPlayer follow_player;
+    public Action_MeleSlashPlayer slash_melee;
 
     [Header("Phase 2")]
     public Action_FollowPoint follow_point;
@@ -65,10 +66,14 @@ public class BT_MacLir : BT_Entity
 
         if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
         {
-            if (currentAction != follow_player)
+            if (currentAction != follow_player && can_make_slash == false)
             {
-                //make_displacement = false;
                 currentAction = follow_player;
+                decide = true;
+            }
+            if (currentAction != slash_melee && can_make_slash == true)
+            {
+                currentAction = slash_melee;
                 decide = true;
             }
         
@@ -82,6 +87,10 @@ public class BT_MacLir : BT_Entity
     {
         if (collision.CompareTag("player_combat_collider"))
         {
+            if (currentAction != null)
+            {
+                currentAction.isFinish = true;
+            }
             can_make_slash = true;
         }
     }
@@ -90,6 +99,10 @@ public class BT_MacLir : BT_Entity
     {
         if (collision.CompareTag("player_combat_collider"))
         {
+            if (currentAction != null)
+            {
+                currentAction.isFinish = true;
+            }
             can_make_slash = false;
         }
     }
