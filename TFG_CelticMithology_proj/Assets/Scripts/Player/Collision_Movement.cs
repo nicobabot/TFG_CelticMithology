@@ -13,6 +13,9 @@ public class Collision_Movement : MonoBehaviour
     public float timer_to_make_idle = 0.25f;
     float timer_to_idle = 0.0f;
 
+    float input_movement_horizontal;
+    float input_movement_vertical;
+
     // Use this for initialization
     private void Start()
     {
@@ -25,8 +28,11 @@ public class Collision_Movement : MonoBehaviour
     // Update is called once per frame
     public void Movement_Update(float new_speed, bool is_dashing = false)
     {
-        float input_movement_horizontal = Input.GetAxisRaw("Horizontal");
-        float input_movement_vertical = Input.GetAxisRaw("Vertical");
+        if (!is_dashing)
+        {
+            input_movement_horizontal = Input.GetAxisRaw("Horizontal");
+            input_movement_vertical = Input.GetAxisRaw("Vertical");
+        }
 
         //If the player is dashing we want to deactivate the combat collider to
         //be inmortal
