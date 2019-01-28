@@ -8,7 +8,6 @@ public class Action_DamageStatic : ActionBase
 
     public float time_doing_damage = 0.5f;
     public Color damage;
-    public Image live_bar;
 
     float time_damage = 0.0f;
     SpriteRenderer sprite_rend;
@@ -17,9 +16,6 @@ public class Action_DamageStatic : ActionBase
     override public BT_Status StartAction()
     {
         sprite_rend = gameObject.GetComponent<SpriteRenderer>();
-
-        //Live bar
-        live_bar.fillAmount -= 1.0f / (int)myBT.myBB.GetParameter("total_live");
 
         normal_color = sprite_rend.color;
         return BT_Status.RUNNING;

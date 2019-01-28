@@ -8,7 +8,6 @@ public class Action_PushBack : ActionBase
     public float min_distance = 0.1f;
     public LayerMask layer_ray;
     public Color damaged_color;
-    public Image live_bar;
 
     private float timer_pushback;
 
@@ -45,10 +44,6 @@ public class Action_PushBack : ActionBase
         }
 
         regular_color = sprite_rend.color;
-
-        //Live bar
-        live_bar.fillAmount -= 1.0f / (int)myBT.myBB.GetParameter("total_live");
-
 
         float size_addition = (sprite_rend.bounds.size.y * 0.5f);
         temp_position = transform.position;

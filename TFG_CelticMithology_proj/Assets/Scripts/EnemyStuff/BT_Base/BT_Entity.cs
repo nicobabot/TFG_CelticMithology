@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public enum BT_Status
 {
@@ -11,10 +12,16 @@ public enum BT_Status
 
 public class BT_Entity : MonoBehaviour
 {
+
     private ActionBase current_action = null;
+    [Header("Enemy Entity")]
     [SerializeField] private Blackboard blackboard = null;
     public string Action_name = "";
     public Pathfinder pathfinder_scr;
+
+
+    [Header("Live bar UI")]
+    public Image Live_UI;
 
     private BT_Status status = BT_Status.WAITING;
 
@@ -173,6 +180,8 @@ public class BT_Entity : MonoBehaviour
         live += num;
         blackboard.SetParameter("live", live);
         //blackboard.SetParameter("is_enemy_hit", false);
+        //Live bar
+        Live_UI.fillAmount -= 1.0f / (int)blackboard.GetParameter("total_live");
     }
 
 }

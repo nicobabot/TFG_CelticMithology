@@ -33,10 +33,11 @@ public class Action_FollowPlayer : ActionBase
     override public BT_Status UpdateAction()
     {
         Vector3 new_position = Vector3.zero;
+        bool can_reach = false;
 
         if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
         {
-            Recalculate_Path();
+            can_reach = Recalculate_Path();
         }
 
         if (cells_changed < tiles_list.Count)
@@ -55,7 +56,10 @@ public class Action_FollowPlayer : ActionBase
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            if (can_reach)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            }
         }
 
         DetectDirection(transform.position, new_position);
@@ -63,8 +67,10 @@ public class Action_FollowPlayer : ActionBase
         return BT_Status.RUNNING;
     }
 
-    public void Recalculate_Path()
+    public bool Recalculate_Path()
     {
+        bool can_reach = false;
+
         if (tiles_list != null)
             tiles_list.Clear();
 
@@ -77,7 +83,9 @@ public class Action_FollowPlayer : ActionBase
 
         cell_pos = myBT.pathfinder_scr.walkability.LocalToCell(transform.position);
 
-        tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y));
+        tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y), out can_reach);
+
+        return can_reach;
     }
 
     public Direction DetectDirection(Vector3 my_position, Vector3 new_position)

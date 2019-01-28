@@ -31,7 +31,7 @@ public class Pathfinder : MonoBehaviour
 
     }
 
-    public List<PathNode> CalculatePath(PathNode origin, PathNode destiny)
+    public List<PathNode> CalculatePath(PathNode origin, PathNode destiny, out bool can_reach)
     {
         //Clean both lists
         open_list.Clear();
@@ -93,6 +93,8 @@ public class Pathfinder : MonoBehaviour
 
         FillPathList();
 
+        if (path_list.Count > 0) can_reach = true;
+        else can_reach = false;
 
         return path_list;
 
