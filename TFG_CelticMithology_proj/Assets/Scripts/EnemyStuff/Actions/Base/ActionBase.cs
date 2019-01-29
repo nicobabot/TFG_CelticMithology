@@ -23,7 +23,7 @@ public class ActionBase : MonoBehaviour {
     public bool isFinish
     {
         get { return is_finish; }
-        set { is_finish =value; }
+        set { if(!isInterruptible)is_finish =value; }
 
     }
 

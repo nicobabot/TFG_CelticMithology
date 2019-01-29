@@ -120,6 +120,17 @@ public class Slash_Attack : MonoBehaviour
                     Kelpi_Blackboard bb_kelpi = parent.GetComponent<Kelpi_Blackboard>();
                     bb_kelpi.is_enemy_hit.SetValue(true);
                 }
+                BT_MacLir Maclir = parent.GetComponent<BT_MacLir>();
+                if (Maclir != null)
+                {
+                    if (Maclir.currentAction != null)
+                    {
+                        Maclir.currentAction.isFinish = true;
+                    }
+                    Maclir.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    MacLir_Blackboard bb_maclir = parent.GetComponent<MacLir_Blackboard>();
+                    bb_maclir.is_enemy_hit.SetValue(true);
+                }
             }
             else
             {

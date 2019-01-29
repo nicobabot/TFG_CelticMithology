@@ -29,7 +29,8 @@ public class Action_MeleSlashPlayer : ActionBase
         }
 
         follow_player_scr = GetComponent<Action_FollowPlayer>();
-
+        player_detection_slash = null;
+        timer_attack = 0.0f;
         dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
     }
@@ -46,15 +47,35 @@ public class Action_MeleSlashPlayer : ActionBase
 
         if (player_detection_slash != null)
         {
+            Transform parent = player_detection_slash.transform.parent;
+            if (parent != null)
+            {
+                Player_Manager player_manager = parent.GetComponent<Player_Manager>();
+                player_manager.GetDamage(transform);
+            }
+
             //damage player
         }
 
         if (timer_attack > time_to_make_slash)
         {
+            Disable_Colliders_Attack();
+            go.SetActive(false);
+            player_detection_slash = null;
             timer_attack = 0.0f;
-            isFinish = true;
+            return BT_Status.SUCCESS;
         }
         return BT_Status.RUNNING;
+    }
+
+    public void Disable_Colliders_Attack()
+    {
+        int num_col = father_colliders.transform.childCount;
+
+        for (int i=0; i < num_col; i++)
+        {
+            father_colliders.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     override public BT_Status EndAction()

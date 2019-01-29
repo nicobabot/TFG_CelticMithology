@@ -18,6 +18,7 @@ public class BT_MacLir : BT_Entity
     [Header("Phase 1")]
     public Action_FollowPlayer follow_player;
     public Action_MeleSlashPlayer slash_melee;
+    public Action_PushBack pushback;
 
     [Header("Phase 2")]
     public Action_FollowPoint follow_point;
@@ -64,19 +65,24 @@ public class BT_MacLir : BT_Entity
     {
         bool decide = false;
 
-        if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
+        if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1 && currentAction == null)
         {
-            if (currentAction != follow_player && can_make_slash == false)
+            if (currentAction != follow_player && can_make_slash == false && (bool)myBB.GetParameter("is_enemy_hit") == false)
             {
+                slash_melee.Disable_Colliders_Attack();
                 currentAction = follow_player;
                 decide = true;
             }
-            if (currentAction != slash_melee && can_make_slash == true)
+            else if (currentAction != slash_melee && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
             {
                 currentAction = slash_melee;
                 decide = true;
             }
-        
+            else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+            {
+                currentAction = pushback;
+                decide = true;
+            }
         }
 
         return decide;

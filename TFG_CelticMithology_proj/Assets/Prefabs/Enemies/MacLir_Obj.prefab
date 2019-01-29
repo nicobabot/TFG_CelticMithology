@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4502673559111080}
   m_Layer: 0
-  m_Name: Collider_Tail_Damage
+  m_Name: Collider_Slash_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 114637890576069532}
   - component: {fileID: 114003903925842540}
   - component: {fileID: 114560733636161834}
+  - component: {fileID: 114112446714757022}
   - component: {fileID: 114640861086575388}
   m_Layer: 9
   m_Name: MacLir
@@ -698,7 +699,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02660513, y: -0.026605159}
+  m_Offset: {x: 0.019927919, y: 0.022929981}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -709,7 +710,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85810494, y: 0.8048946}
+  m_Size: {x: 0.8911284, y: 0.8139013}
   m_EdgeRadius: 0
 --- !u!61 &61671845614139390
 BoxCollider2D:
@@ -826,6 +827,25 @@ MonoBehaviour:
   name: FollowPlay
   time_to_change_cell: 1
   speed: 5
+--- !u!114 &114112446714757022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973778447095654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f1d15ae88307047a20faa3813012a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Slash
+  time_to_make_slash: 0.5
+  father_colliders: {fileID: 1178703927707218}
+  player_mask:
+    serializedVersion: 2
+    m_Bits: 1024
+  get_damage_collider: {fileID: 61961002685255148}
 --- !u!114 &114426324134048838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -852,10 +872,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: FollowPoint
-  points_father: {fileID: 0}
+  points_father: {fileID: 1178703927707218}
   velocity: 5
-  col_detect_player: {fileID: 0}
-  collider_enemy: {fileID: 0}
+  col_detect_player: {fileID: 61541390465126628}
+  collider_enemy: {fileID: 61961002685255148}
 --- !u!114 &114637890576069532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,6 +893,7 @@ MonoBehaviour:
   Live_UI: {fileID: 114730741810820194}
   maclir_phase: 0
   follow_player: {fileID: 114003903925842540}
+  slash_melee: {fileID: 114112446714757022}
   follow_point: {fileID: 114560733636161834}
   dead: {fileID: 114640861086575388}
   lives_to_change_phase_2: 5
