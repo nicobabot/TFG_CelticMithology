@@ -108,6 +108,7 @@ public class Player_Manager : MonoBehaviour
 
         if (current_state == Player_States.DASHING_PLAYER && timer_dash <= time_dashing)
         {
+            anim.SetBool("player_roll", true);
             timer_dash += Time.deltaTime;
             movement_script.Movement_Update(dash_speed, true);
         }
@@ -133,6 +134,7 @@ public class Player_Manager : MonoBehaviour
         }
         else
         {
+            anim.SetBool("player_roll", false);
             timer_dash = 0.0f;
             movement_script.Movement_Update(movement_speed);
         }
