@@ -74,6 +74,15 @@ TextureImporter:
     21300138: Back_Attack_3
     21300140: Back_Attack_4
     21300142: Back_Attack_5
+    21300144: Side_Roll_0
+    21300146: Side_Roll_1
+    21300148: Side_Roll_2
+    21300150: Side_Roll_3
+    21300152: Side_Roll_4
+    21300154: Side_Roll_5
+    21300156: Side_Roll_6
+    21300158: Side_Roll_7
+    21300160: Side_Roll_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1613,6 +1622,186 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ec66607b0601bbe4dafbd7d94e54852c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7706e5c05dd9c40a62eb9fcb9f10f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b164fff3b354dbf42bda9898c24fcc4c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9f7fe80ac194d469dbfc8278d8474b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2cbc4e8dc92e44b909ac6af1314a2e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2835891945fbaa54ab6e8279f56ff333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_5
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6fc5238e0a90f419f77ffd6841cd03
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_6
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90024723e9a203345a24fde17c1b20db
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_7
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b18285708ab6f849811ae638b47bf55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side_Roll_8
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 483
+        width: 51
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd62a8752be89ec439e5a306defa955e
       vertices: []
       indices: 
       edges: []
