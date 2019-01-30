@@ -57,6 +57,11 @@ public class Action_FollowPoint : ActionBase {
             Direction dir = follow_player_scr.DetectDirection(transform.position, player.transform.position);
             collider_enemy.enabled = true;
             col_detect_player.enabled = true;
+            BT_MacLir mac_lir_bt = GetComponent<BT_MacLir>();
+            if (mac_lir_bt != null)
+            {
+                mac_lir_bt.Set_Invoke_State(true);
+            }
             isFinish = true;
         }
         else

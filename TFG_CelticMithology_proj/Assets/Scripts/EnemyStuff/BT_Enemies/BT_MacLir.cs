@@ -22,6 +22,7 @@ public class BT_MacLir : BT_Entity
 
     [Header("Phase 2")]
     public Action_FollowPoint follow_point;
+    public Action_InvokeEnemies invoke_enemies;
 
 
     [Header("Death State")]
@@ -36,6 +37,8 @@ public class BT_MacLir : BT_Entity
 
     private bool is_dead = false;
     private bool can_make_slash = false;
+    private bool can_make_displacement = true;
+    private bool can_invoke_enemies = false;
 
     override public void Update()
     {
@@ -65,29 +68,56 @@ public class BT_MacLir : BT_Entity
     {
         bool decide = false;
 
-        if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1 && currentAction == null)
+        if (currentAction == null)
         {
-            if (currentAction != follow_player && can_make_slash == false && (bool)myBB.GetParameter("is_enemy_hit") == false)
+            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
             {
-                slash_melee.Disable_Colliders_Attack();
-                currentAction = follow_player;
-                decide = true;
+                if (currentAction != follow_player && can_make_slash == false && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                {
+                    slash_melee.Disable_Colliders_Attack();
+                    currentAction = follow_player;
+                    decide = true;
+                }
+                else if (currentAction != slash_melee && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                {
+                    currentAction = slash_melee;
+                    decide = true;
+                }
+                else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                {
+                    currentAction = pushback;
+                    decide = true;
+                }
             }
-            else if (currentAction != slash_melee && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
+            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_2)
             {
-                currentAction = slash_melee;
-                decide = true;
-            }
-            else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
-            {
-                currentAction = pushback;
-                decide = true;
+
+                //1st Go to a point
+                //2nd Spawn enemies
+                // Timer or hit then change p
+                if (currentAction != follow_point && (can_make_displacement == true || (bool)myBB.GetParameter("is_enemy_hit") == true) && can_invoke_enemies == false)
+                {
+                    can_make_displacement = false;
+                    currentAction = follow_point;
+                    myBB.SetParameter("is_enemy_hit", false);
+                    decide = true;
+                }
+                else if (currentAction != invoke_enemies && can_invoke_enemies == true)
+                {
+                    currentAction = invoke_enemies;
+                    decide = true;
+                }
+
             }
         }
 
         return decide;
     }
 
+    public void Set_Invoke_State(bool invoke_state)
+    {
+        can_invoke_enemies = invoke_state;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
