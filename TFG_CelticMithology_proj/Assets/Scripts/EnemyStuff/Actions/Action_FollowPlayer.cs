@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Action_FollowPlayer : ActionBase
 {
+    public bool use_pathfinding = true;
     public float time_to_change_cell = 1.0f;
     public float speed = 5.0f;
     private float timer_changing = 0.0f;
@@ -17,6 +18,8 @@ public class Action_FollowPlayer : ActionBase
     private PathNode actual_node;
     private GameObject player;
 
+    bool can_reach = true;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -25,44 +28,74 @@ public class Action_FollowPlayer : ActionBase
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
 
-        Recalculate_Path();
+        can_reach = Recalculate_Path();
 
         return BT_Status.RUNNING;
     }
 
     override public BT_Status UpdateAction()
     {
-        Vector3 new_position = Vector3.zero;
-        bool can_reach = false;
 
-        if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
+
+        if (use_pathfinding)
         {
-            can_reach = Recalculate_Path();
-        }
+            Vector3 new_position = Vector3.zero;
 
-        if (cells_changed < tiles_list.Count)
-        {
-            actual_node = tiles_list[cells_changed];
-            int x_tile = actual_node.GetTileX();
-            int y_tile = actual_node.GetTileY();
-            new_position = myBT.pathfinder_scr.walkability.CellToLocal(new Vector3Int(x_tile, y_tile, 0));
 
-            transform.position = Vector3.MoveTowards(transform.position, new_position, speed * Time.deltaTime);
-
-            if (transform.position == new_position)
+            if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
             {
-                cells_changed++;
+                can_reach = Recalculate_Path();
             }
+
+            if (cells_changed < tiles_list.Count)
+            {
+                actual_node = tiles_list[cells_changed];
+                int x_tile = actual_node.GetTileX();
+                int y_tile = actual_node.GetTileY();
+                new_position = myBT.pathfinder_scr.walkability.CellToLocal(new Vector3Int(x_tile, y_tile, 0));
+
+                transform.position = Vector3.MoveTowards(transform.position, new_position, speed * Time.deltaTime);
+
+                if (transform.position == new_position)
+                {
+                    cells_changed++;
+                }
+            }
+            else
+            {
+
+                if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
+                {
+                    can_reach = Recalculate_Path();
+                }
+
+                if (can_reach)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                }
+            }
+
+            DetectDirection(transform.position, new_position);
+
         }
         else
         {
+
+            //can_reach = Recalculate_Path();
+            if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
+            {
+                can_reach = Recalculate_Path();
+            }
+
             if (can_reach)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             }
+
+            DetectDirection(transform.position, player.transform.position);
         }
 
-        DetectDirection(transform.position, new_position);
+
 
         return BT_Status.RUNNING;
     }

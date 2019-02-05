@@ -93,11 +93,30 @@ public class Pathfinder : MonoBehaviour
 
         FillPathList();
 
-        if (path_list.Count > 0) can_reach = true;
+
+
+        if (Can_Reach_Destiny(destiny) == true) can_reach = true;
         else can_reach = false;
 
         return path_list;
 
+    }
+
+    bool Can_Reach_Destiny(PathNode destiny)
+    {
+        bool can_reach = false;
+
+        foreach(PathNode node in path_list)
+        {
+
+            if (node.GetTileX() == destiny.GetTileX() && node.GetTileY() == destiny.GetTileY())
+            {
+                can_reach = true;
+            }
+
+        }
+
+        return can_reach;
     }
 
     public PathNode GetLowestScoreNode()

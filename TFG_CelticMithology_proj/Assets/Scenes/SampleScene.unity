@@ -11940,7 +11940,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1310819217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.64, y: -1.82, z: 0}
+  m_LocalPosition: {x: -27.69, y: 14.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 885635150}
@@ -14087,6 +14087,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338160220401512, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: use_pathfinding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338160220401512, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: is_interruptible
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14916,6 +14926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: Follow Player
+  use_pathfinding: 1
   time_to_change_cell: 1
   speed: 4
 --- !u!114 &2070622287
