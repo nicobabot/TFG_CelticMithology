@@ -126,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695589486418046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.97, y: 5.14, z: 0}
+  m_LocalPosition: {x: -32.66, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4723109769201910}
@@ -257,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09226608, y: 0.7853787}
+  m_Offset: {x: -0.043384552, y: 0.7517724}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -268,7 +268,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8287926, y: 0.83673525}
+  m_Size: {x: 1.0854263, y: 1.0994749}
   m_EdgeRadius: 0
 --- !u!114 &114269682889604714
 MonoBehaviour:
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: Follow Player
+  use_pathfinding: 0
   time_to_change_cell: 1
   speed: 4
 --- !u!114 &114369092777936648

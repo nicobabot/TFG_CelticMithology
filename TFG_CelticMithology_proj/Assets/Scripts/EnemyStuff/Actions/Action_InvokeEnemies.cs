@@ -25,6 +25,8 @@ public class Action_InvokeEnemies : ActionBase
         }
 
         total_time_spawning = num_enemy_spawn * time_to_spawn_next_enemy;
+        timer_spawning = 0.0f;
+        timer_spawning_other_enemy = 0.0f;
 
         return BT_Status.RUNNING;
     }

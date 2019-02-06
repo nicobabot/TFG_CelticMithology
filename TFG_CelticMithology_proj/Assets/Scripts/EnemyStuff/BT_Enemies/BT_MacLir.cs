@@ -104,6 +104,7 @@ public class BT_MacLir : BT_Entity
                 }
                 else if (currentAction != invoke_enemies && can_invoke_enemies == true)
                 {
+                    can_invoke_enemies = false;
                     currentAction = invoke_enemies;
                     decide = true;
                 }

@@ -1363,6 +1363,10 @@ Prefab:
       propertyPath: player.my_value
       value: 
       objectReference: {fileID: 1310819217}
+    - target: {fileID: 1973778447095654, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
   m_IsPrefabAsset: 0
@@ -14036,7 +14040,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -34.2
+      value: -32.66
       objectReference: {fileID: 0}
     - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_LocalPosition.y
@@ -14066,39 +14070,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
-        type: 2}
-      propertyPath: fader_scr
-      value: 
-      objectReference: {fileID: 2056421631}
-    - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
-        type: 2}
-      propertyPath: player.my_value
-      value: 
-      objectReference: {fileID: 1310819217}
     - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
       propertyPath: pathfinder_scr
       value: 
       objectReference: {fileID: 143351903}
-    - target: {fileID: 1284433600826120, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114338160220401512, guid: f62b5f1958961ca4487e2ac1e277bf19,
+    - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
-      propertyPath: use_pathfinding
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114338160220401512, guid: f62b5f1958961ca4487e2ac1e277bf19,
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
-      propertyPath: is_interruptible
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
   m_IsPrefabAsset: 0
