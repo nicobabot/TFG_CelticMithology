@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1201571811359080
 GameObject:
   m_ObjectHideFlags: 1
@@ -1007,6 +1007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: FollowPlay
+  use_pathfinding: 1
   time_to_change_cell: 1
   speed: 5
 --- !u!114 &114757070850782422
@@ -1076,6 +1077,7 @@ MonoBehaviour:
   blackboard: {fileID: 114828064204465284}
   Action_name: 
   pathfinder_scr: {fileID: 0}
+  enemy_type: 3
   Live_UI: {fileID: 114757070850782422}
   kelpi_phase: 0
   follow_point: {fileID: 114290896619171778}

@@ -83,7 +83,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1733613355456968
 GameObject:
   m_ObjectHideFlags: 1
@@ -387,6 +387,7 @@ MonoBehaviour:
   blackboard: {fileID: 114269682889604714}
   Action_name: 
   pathfinder_scr: {fileID: 0}
+  enemy_type: 1
   Live_UI: {fileID: 114369092777936648}
   chase: {fileID: 114338160220401512}
   pushback: {fileID: 114584380096645760}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Action_InvokeEnemies : ActionBase
 {
     public GameObject melee_enemy;
+    public BoxCollider2D collider_enemy;
     public uint num_enemy_spawn = 5;
     public float time_to_spawn_next_enemy = 0.0f;
     public float radius = 2.0f;
@@ -27,6 +28,8 @@ public class Action_InvokeEnemies : ActionBase
         total_time_spawning = num_enemy_spawn * time_to_spawn_next_enemy;
         timer_spawning = 0.0f;
         timer_spawning_other_enemy = 0.0f;
+
+        collider_enemy.enabled = false;
 
         return BT_Status.RUNNING;
     }
@@ -55,6 +58,7 @@ public class Action_InvokeEnemies : ActionBase
         else
         {
             isFinish = true;
+            collider_enemy.enabled = true;
         }
 
         return BT_Status.RUNNING;

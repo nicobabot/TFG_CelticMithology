@@ -17,6 +17,7 @@ public class Action_MeleSlashPlayer : ActionBase
     private GameObject player;
     private float timer_attack = 0.0f;
     private bool slash_done = false;
+    private bool is_player_detected = false;
     private Collider2D player_detection_slash;
     private Direction dir_collider;
 
@@ -30,6 +31,7 @@ public class Action_MeleSlashPlayer : ActionBase
 
         follow_player_scr = GetComponent<Action_FollowPlayer>();
         player_detection_slash = null;
+        is_player_detected = false;
         timer_attack = 0.0f;
         dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
@@ -40,7 +42,7 @@ public class Action_MeleSlashPlayer : ActionBase
         timer_attack += Time.deltaTime;
         GameObject go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
 
-        get_damage_collider.enabled = false;
+        //get_damage_collider.enabled = false;
         go.SetActive(true);
         BoxCollider2D col = go.GetComponent<BoxCollider2D>();
         player_detection_slash = Physics2D.OverlapBox(go.transform.position, col.size, 0, player_mask);
@@ -50,19 +52,21 @@ public class Action_MeleSlashPlayer : ActionBase
             Transform parent = player_detection_slash.transform.parent;
             if (parent != null)
             {
+                is_player_detected = true;
                 Player_Manager player_manager = parent.GetComponent<Player_Manager>();
                 player_manager.GetDamage(transform);
             }
 
-            //damage player
         }
 
-        if (timer_attack > time_to_make_slash)
+        if (timer_attack > time_to_make_slash || is_player_detected == true)
         {
+            is_player_detected = false;
             Disable_Colliders_Attack();
             go.SetActive(false);
             player_detection_slash = null;
             timer_attack = 0.0f;
+            //get_damage_collider.enabled = true;
             return BT_Status.SUCCESS;
         }
         return BT_Status.RUNNING;

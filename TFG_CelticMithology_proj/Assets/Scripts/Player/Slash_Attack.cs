@@ -86,6 +86,7 @@ public class Slash_Attack : MonoBehaviour
             Transform parent = col.transform.parent;
             if (parent != null)
             {
+
                 //Detect enemy type
                 BT_Soldier soldier = parent.GetComponent<BT_Soldier>();
                 if (soldier != null)

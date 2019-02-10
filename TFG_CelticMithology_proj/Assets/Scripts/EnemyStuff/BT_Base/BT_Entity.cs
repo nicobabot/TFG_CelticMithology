@@ -10,6 +10,15 @@ public enum BT_Status
     ERROR,
 }
 
+public enum Enemy_type
+{
+    UNKNOWN,
+    MEELE_ENEMY,
+    CARTONACH_ENEMY,
+    KELPIE_ENEMY,
+    MACLIR_ENEMY
+}
+
 public class BT_Entity : MonoBehaviour
 {
 
@@ -18,6 +27,8 @@ public class BT_Entity : MonoBehaviour
     [SerializeField] private Blackboard blackboard = null;
     public string Action_name = "";
     public Pathfinder pathfinder_scr;
+
+    public Enemy_type enemy_type = Enemy_type.UNKNOWN;
 
 
     [Header("Live bar UI")]
