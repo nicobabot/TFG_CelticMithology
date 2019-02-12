@@ -83,6 +83,24 @@ TextureImporter:
     21300156: Side_Roll_6
     21300158: Side_Roll_7
     21300160: Side_Roll_8
+    21300162: Front_Roll_0
+    21300164: Front_Roll_1
+    21300166: Front_Roll_2
+    21300168: Front_Roll_3
+    21300170: Front_Roll_4
+    21300172: Front_Roll_5
+    21300174: Front_Roll_6
+    21300176: Front_Roll_7
+    21300178: Front_Roll_9
+    21300180: Back_Roll_0
+    21300182: Back_Roll_1
+    21300184: Back_Roll_2
+    21300186: Back_Roll_3
+    21300188: Back_Roll_4
+    21300190: Back_Roll_5
+    21300192: Back_Roll_6
+    21300194: Back_Roll_7
+    21300196: Back_Roll_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1802,6 +1820,366 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: fd62a8752be89ec439e5a306defa955e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3fd9d545dbda9648b696bd7ae348386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb64f86cb1a90ab4db737c5bea9ca2d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b674dfc6d236e441a189e69956b69ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 041c679128941984e98670d23976362f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdeeea912baf0da4d81826449dc2896a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93440c57f4ce74c4580fd8319b98ffb1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d0953df3b976164a907e4923e1bdb7f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 548
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef37336fbc83b14bb4422bfe52d5241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Front_Roll_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 547
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9be99f7d2f604a46bbe7b3d976beac4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff910cefabf54fa4a8b51726d83c7f27
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e7ec14d8558954e8bbc2ba98e650d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2972f4c42c9d6344ebfc70087c7931cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_3
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4fa5a5b362939f4eb23b37f32ca9033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_4
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acaf1c5c94ddaa84cb6008f6c4878cce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_5
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08aca313885840d4f953885c98b1289e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_6
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d05841415b820419b325aac270701a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_7
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e3b923415b76842b4861052100aad1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Roll_8
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 601
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f158dfc602aaa9e40ac9e09dfa006e4b
       vertices: []
       indices: 
       edges: []
