@@ -1387,6 +1387,10 @@ Prefab:
       propertyPath: maclir_phase
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1968024051260442, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
   m_IsPrefabAsset: 0
@@ -11505,6 +11509,71 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1225303827}
   m_CullTransparentMesh: 0
+--- !u!1001 &1249263008
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -34.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
+    - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_Name
+      value: MeleeEnemy (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1286500546
 GameObject:
   m_ObjectHideFlags: 0
@@ -13699,6 +13768,71 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875985626}
   m_CullTransparentMesh: 0
+--- !u!1001 &1908113191
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -32.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
+    - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_Name
+      value: MeleeEnemy (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1930774045
 GameObject:
   m_ObjectHideFlags: 0
@@ -13860,25 +13994,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
-        type: 2}
-      propertyPath: pathfinder_scr
-      value: 
-      objectReference: {fileID: 143351903}
-    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
-        type: 2}
-      propertyPath: fader_scr
-      value: 
-      objectReference: {fileID: 2056421631}
     - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
       propertyPath: player.my_value
       value: 
       objectReference: {fileID: 1310819217}
-    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
+    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
   m_IsPrefabAsset: 0
@@ -15041,6 +15171,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2137292948
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -34.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318047946409012, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
+    - target: {fileID: 114269682889604714, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_Name
+      value: MeleeEnemy (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2144843929
 GameObject:
   m_ObjectHideFlags: 0
