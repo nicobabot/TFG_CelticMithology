@@ -34,6 +34,7 @@ public class Slash_Attack : MonoBehaviour
 
         AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
         float lenght_anim = anim_clip[0].clip.length;
+        //Debug.Log("Animation length: " + lenght_anim);
 
 
         timer_slash += Time.deltaTime;
@@ -47,7 +48,7 @@ public class Slash_Attack : MonoBehaviour
 
         Detect_Collision_Slash collision_slash_scr = collider_to_activate.GetComponent<Detect_Collision_Slash>();
 
-        if (timer_slash > lenght_anim*0.5f && collision_slash_scr != null && is_slash_done == false)
+        if (collision_slash_scr != null && is_slash_done == false)
         {
             enemies_found = collision_slash_scr.Is_Enemy_Collided();
             if (enemies_found.Length > 0)

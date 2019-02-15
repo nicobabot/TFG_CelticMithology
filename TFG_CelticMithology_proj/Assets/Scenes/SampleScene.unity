@@ -13860,6 +13860,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
     - target: {fileID: 114336749854109010, guid: f62b5f1958961ca4487e2ac1e277bf19,
         type: 2}
       propertyPath: fader_scr
@@ -13870,11 +13875,10 @@ Prefab:
       propertyPath: player.my_value
       value: 
       objectReference: {fileID: 1310819217}
-    - target: {fileID: 114451798988264742, guid: f62b5f1958961ca4487e2ac1e277bf19,
-        type: 2}
-      propertyPath: pathfinder_scr
-      value: 
-      objectReference: {fileID: 143351903}
+    - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
   m_IsPrefabAsset: 0
