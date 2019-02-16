@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slash_Attack))]
 [RequireComponent(typeof(Player_PushBack))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player_Manager : MonoBehaviour
 {
     public float time_dashing = 1.0f;
@@ -13,6 +14,14 @@ public class Player_Manager : MonoBehaviour
     public GameObject Menu;
     public Fader fader_scr;
     public Live_Manager live_manager_scr;
+
+    [Header("Invulnerable stuff")]
+    public float total_time_invulnerable = 1.5f;
+    public float speed_invulerable = 1.5f;
+    public Collider2D combat_collider;
+    [HideInInspector] public bool is_invulnerable = false;
+    private float timer_invulerable = 0.0f;
+
 
     public enum Player_States
     {
@@ -43,6 +52,7 @@ public class Player_Manager : MonoBehaviour
     private Player_PushBack pushback_script;
 
     private Animator anim;
+    private SpriteRenderer sprite_rend;
 
     private float timer_dash = 0.0f;
     private bool want_to_dash = false;
@@ -56,6 +66,7 @@ public class Player_Manager : MonoBehaviour
         pushback_script = GetComponent<Player_PushBack>();
 
         anim = GetComponent<Animator>();
+        sprite_rend = GetComponent<SpriteRenderer>();
 
         player_stats = GetComponent<Player_Stats>();
 
@@ -68,6 +79,25 @@ public class Player_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        if (is_invulnerable)
+        {
+            combat_collider.enabled = false;
+            timer_invulerable += Time.deltaTime;
+
+            //Maybe Here alpha effect
+            Color temp = sprite_rend.color;
+           sprite_rend.color = new Color(temp.r, temp.g, temp.b, Mathf.Sin(Time.time * speed_invulerable));
+
+            if (timer_invulerable >= total_time_invulnerable)
+            {
+                sprite_rend.color = new Color(temp.r, temp.g, temp.b, 255);
+                timer_invulerable = 0;
+                combat_collider.enabled = true;
+                is_invulnerable = false;
+            }
+        }
+
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) 
             && current_state != Player_States.PUSHBACK_PLAYER && current_state != Player_States.SLASHING_PLAYER)
@@ -125,6 +155,7 @@ public class Player_Manager : MonoBehaviour
         }
         else if (current_state == Player_States.PUSHBACK_PLAYER)
         {
+            is_invulnerable = true;
             anim.SetBool("player_attack", false);
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             pushback_script.PushBack_Update();

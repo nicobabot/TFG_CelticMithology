@@ -36,7 +36,6 @@ public class Slash_Attack : MonoBehaviour
         float lenght_anim = anim_clip[0].clip.length;
         //Debug.Log("Animation length: " + lenght_anim);
 
-
         timer_slash += Time.deltaTime;
 
         collider_to_activate = father_collider_slash_attack.transform.GetChild((int)player_manager_sct.player_direction).gameObject;
@@ -54,8 +53,9 @@ public class Slash_Attack : MonoBehaviour
             if (enemies_found.Length > 0)
             {
                 React_To_Slash();
+                is_slash_done = true;
             }
-            is_slash_done = true;
+
         }
 
 

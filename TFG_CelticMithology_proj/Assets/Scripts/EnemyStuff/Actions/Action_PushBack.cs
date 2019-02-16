@@ -61,10 +61,6 @@ public class Action_PushBack : ActionBase
 
         pushback_dir = temp_position - temp_position_player;
 
-        if ((Direction)myBT.myBB.GetParameter("direction") == Direction.UP)
-        {
-            pushback_dir = -pushback_dir;
-        }
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance, layer_ray);
         if (hit != null)

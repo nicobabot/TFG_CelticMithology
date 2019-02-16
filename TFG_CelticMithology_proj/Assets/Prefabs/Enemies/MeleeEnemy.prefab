@@ -283,10 +283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life:
     my_name: live
-    my_value: 4
+    my_value: 55
   total_life:
     my_name: total_live
-    my_value: 4
+    my_value: 55
   is_enemy_hit:
     my_name: is_enemy_hit
     my_value: 0
