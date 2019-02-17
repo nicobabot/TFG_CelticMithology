@@ -24,6 +24,8 @@ public class BT_MacLir : BT_Entity
     public Action_FollowPoint follow_point;
     public Action_InvokeEnemies invoke_enemies;
 
+    [Header("Phase 3")]
+    public Action_ChargeToPlayer charge;
 
     [Header("Death State")]
     public Action_Dead dead;
@@ -39,6 +41,7 @@ public class BT_MacLir : BT_Entity
     private bool can_make_slash = false;
     private bool can_make_displacement = true;
     private bool can_invoke_enemies = false;
+
 
     override public void Update()
     {
@@ -56,7 +59,7 @@ public class BT_MacLir : BT_Entity
         {
             maclir_phase = MacLir_Phases.MACLIR_PHASE_2;
         }
-        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase_2 && maclir_phase != MacLir_Phases.MACLIR_PHASE_2)
+        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - (lives_to_change_phase_3 + lives_to_change_phase_2) && maclir_phase != MacLir_Phases.MACLIR_PHASE_2)
         {
             maclir_phase = MacLir_Phases.MACLIR_PHASE_3;
         }
@@ -91,10 +94,6 @@ public class BT_MacLir : BT_Entity
             }
             if (maclir_phase == MacLir_Phases.MACLIR_PHASE_2)
             {
-
-                //1st Go to a point
-                //2nd Spawn enemies
-                // Timer or hit then change p
                 if (currentAction != follow_point && (can_make_displacement == true || (bool)myBB.GetParameter("is_enemy_hit") == true) && can_invoke_enemies == false)
                 {
                     can_make_displacement = false;
@@ -110,6 +109,14 @@ public class BT_MacLir : BT_Entity
                 }
 
             }
+            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_3)
+            {
+                if (currentAction != charge)
+                {
+                    currentAction = charge;
+                    decide = true;
+                }
+            }
         }
 
         return decide;
@@ -124,11 +131,20 @@ public class BT_MacLir : BT_Entity
     {
         if (collision.CompareTag("player_combat_collider"))
         {
-            if (currentAction != null)
+            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_3)
             {
-                currentAction.isFinish = true;
+                if (currentAction == charge)
+                {
+                    myBB.SetParameter("player_detected_charging", true);
+                }
             }
-            can_make_slash = true;
+            else {
+                if (currentAction != null)
+                {
+                    currentAction.isFinish = true;
+                }
+                can_make_slash = true;
+            }
         }
     }
 
