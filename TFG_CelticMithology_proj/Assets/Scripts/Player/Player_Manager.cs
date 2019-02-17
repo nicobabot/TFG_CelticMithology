@@ -103,7 +103,9 @@ public class Player_Manager : MonoBehaviour
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             current_state = Player_States.DASHING_PLAYER;
         }
-        else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton")) && current_state != Player_States.PUSHBACK_PLAYER)
+        else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton"))
+            && current_state != Player_States.PUSHBACK_PLAYER
+            && current_state != Player_States.DASHING_PLAYER)
         {
             if (!in_mine)
             {
@@ -138,6 +140,9 @@ public class Player_Manager : MonoBehaviour
         {
             anim.SetBool("player_roll", true);
             timer_dash += Time.deltaTime;
+
+            time_dashing = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+
             movement_script.Movement_Update(dash_speed, true);
         }
         else if (current_state == Player_States.SLASHING_PLAYER)
