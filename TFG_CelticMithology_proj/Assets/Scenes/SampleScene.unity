@@ -11565,7 +11565,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_Name
@@ -11944,6 +11944,10 @@ MonoBehaviour:
   Menu: {fileID: 1225303827}
   fader_scr: {fileID: 2056421631}
   live_manager_scr: {fileID: 1310819220}
+  total_time_invulnerable: 2.5
+  speed_invulerable: 10
+  combat_collider: {fileID: 152547265}
+  is_invulnerable: 0
   current_state: 0
   player_direction: 0
 --- !u!50 &1310819224
@@ -13824,7 +13828,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_Name
@@ -15227,7 +15231,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_Name

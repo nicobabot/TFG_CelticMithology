@@ -22,7 +22,6 @@ public class Player_Manager : MonoBehaviour
     [HideInInspector] public bool is_invulnerable = false;
     private float timer_invulerable = 0.0f;
 
-
     public enum Player_States
     {
         IDLE_PLAYER,
@@ -33,7 +32,7 @@ public class Player_Manager : MonoBehaviour
         PUSHBACK_PLAYER,
         IN_MENU_PLAYER
     }
-
+    [Space()]
     public Player_States current_state;
 
     public enum Player_Direction
@@ -43,7 +42,6 @@ public class Player_Manager : MonoBehaviour
         RIGHT_PLAYER,
         LEFT_PLAYER
     }
-
     public Player_Direction player_direction;
 
     private Player_Stats player_stats;
