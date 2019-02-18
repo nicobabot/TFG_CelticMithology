@@ -126,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695589486418046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.66, y: -2.7, z: 0}
+  m_LocalPosition: {x: -34.07, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4723109769201910}
@@ -427,7 +427,7 @@ MonoBehaviour:
     m_Bits: 2048
   damaged_color: {r: 1, g: 0, b: 0, a: 1}
   collide_with_enemies: {fileID: 61067610706543838}
-  want_disable_collider_pushing: 1
+  want_disable_collider_pushing: 0
 --- !u!114 &114765207040319510
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -55,11 +55,11 @@ public class BT_MacLir : BT_Entity
             }
             is_dead = true;
         }
-        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase_2 && maclir_phase != MacLir_Phases.MACLIR_PHASE_1)
+        if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase_2)
         {
             maclir_phase = MacLir_Phases.MACLIR_PHASE_2;
         }
-        else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - (lives_to_change_phase_3 + lives_to_change_phase_2) && maclir_phase != MacLir_Phases.MACLIR_PHASE_2)
+        if ((int)myBB.GetParameter("live") < ((int)myBB.GetParameter("total_live") - (lives_to_change_phase_3 + lives_to_change_phase_2)))
         {
             maclir_phase = MacLir_Phases.MACLIR_PHASE_3;
         }

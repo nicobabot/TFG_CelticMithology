@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Action_ChargeToPlayer : ActionBase
 {
@@ -8,11 +9,16 @@ public class Action_ChargeToPlayer : ActionBase
     public LayerMask wall_layer;
     public float charge_speed = 5;
     public Collider2D charge_collider;
+    public Image Charger_Filler;
+    public Collider2D get_damage;
+
     [HideInInspector]public bool can_charge = false;
+    
 
     [Header("Stunned")]
     public float Time_stunned = 1;
     private float timer_stunned = 0.0f;
+    public Image Stunned_Filler;
 
     public enum ChargingState
     {
@@ -49,8 +55,14 @@ public class Action_ChargeToPlayer : ActionBase
             state_charge = ChargingState.WAITING_TO_CHARGE;
             timer_charging += Time.deltaTime;
 
+            get_damage.enabled = false;
+
+            Charger_Filler.enabled = true;
+            Charger_Filler.fillAmount = 1 - timer_charging / time_charging_anim;
+
             if (timer_charging > time_charging_anim)
             {
+                Charger_Filler.enabled = false;
                 can_charge = true;
                 charge_collider.enabled = true;
                 CalculatePointToCharge();
@@ -62,11 +74,9 @@ public class Action_ChargeToPlayer : ActionBase
             state_charge = ChargingState.CHARGING;
             float step = Time.deltaTime * charge_speed;
 
-            transform.position = Vector3.MoveTowards(transform.position, point_to_charge, step);
-
             Vector3 mag_to_point = point_to_charge - transform.position;
 
-            if (mag_to_point.magnitude < 1.5f)
+            if (mag_to_point.magnitude < 0.3f)
             {
                 if ((bool)myBT.myBB.GetParameter("player_detected_charging"))
                 {
@@ -80,10 +90,16 @@ public class Action_ChargeToPlayer : ActionBase
                     state_charge = ChargingState.STUNNED;
                     //stunned
                     timer_stunned += Time.deltaTime;
+                    get_damage.enabled = true;
 
-                    if (timer_stunned > Time_stunned)
+                    Stunned_Filler.enabled = true;
+                    Stunned_Filler.fillAmount = 1 - timer_stunned / Time_stunned;
+
+                    if (timer_stunned > Time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
                     {
+                        Stunned_Filler.enabled = false;
                         can_charge = false;
+                        myBT.myBB.SetParameter("is_enemy_hit", false);
                         myBT.myBB.SetParameter("player_detected_charging", false);
                         ResetValues();
                     }
@@ -92,6 +108,10 @@ public class Action_ChargeToPlayer : ActionBase
                 //See if player get hit
                 //if not stun
                 //if yes next charge
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, point_to_charge, step);
             }
         }
 
@@ -116,6 +136,8 @@ public class Action_ChargeToPlayer : ActionBase
     {
         timer_stunned = 0.0f;
         timer_charging = 0.0f;
+        Stunned_Filler.fillAmount = 1.0f;
+        Charger_Filler.fillAmount = 1.0f;
     }
 
     override public BT_Status EndAction()
