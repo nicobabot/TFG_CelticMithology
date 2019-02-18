@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Action_SharkAttack : ActionBase
@@ -27,6 +28,7 @@ public class Action_SharkAttack : ActionBase
 
     [Header("Stun kelpi fail shark bite")]
     public float time_stunned = 0.75f;
+    public Image stun_filler;
     private float timer_stunned_count = 0.0f;
 
     SpriteRenderer sprite_rend;
@@ -117,11 +119,16 @@ public class Action_SharkAttack : ActionBase
                 //(bool)myBB.GetParameter("is_enemy_hit") == true
                 get_damage_collider.enabled = true;
                 state = Kelpi_State.STUNNED;
+
+                stun_filler.enabled = true;
+                stun_filler.fillAmount = 1 - timer_stunned_count / time_stunned;
+
                 //make kelpi fail attack and then wait seconds
                 timer_stunned_count += Time.deltaTime;
 
                 if (timer_stunned_count > time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
                 {
+                    stun_filler.enabled = false;
                     myBT.myBB.SetParameter("is_enemy_hit", false);
                     this.StartAction();
                 }

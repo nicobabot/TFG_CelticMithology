@@ -152,21 +152,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 114828064204465284, guid: 199a0143b67627f46b4eb9198630250e,
-        type: 2}
-      propertyPath: player.my_value
-      value: 
-      objectReference: {fileID: 1310819217}
-    - target: {fileID: 114876998397841320, guid: 199a0143b67627f46b4eb9198630250e,
-        type: 2}
-      propertyPath: pathfinder_scr
-      value: 
-      objectReference: {fileID: 143351903}
     - target: {fileID: 114387378237497122, guid: 199a0143b67627f46b4eb9198630250e,
         type: 2}
       propertyPath: fader_scr
       value: 
       objectReference: {fileID: 2056421631}
+    - target: {fileID: 114876998397841320, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114828064204465284, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
     - target: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
       propertyPath: m_IsActive
       value: 0
