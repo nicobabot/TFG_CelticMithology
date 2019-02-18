@@ -98,7 +98,8 @@ public class Player_Manager : MonoBehaviour
 
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) 
-            && current_state != Player_States.PUSHBACK_PLAYER && current_state != Player_States.SLASHING_PLAYER)
+            && current_state != Player_States.PUSHBACK_PLAYER && current_state != Player_States.SLASHING_PLAYER
+            && current_state != Player_States.IDLE_PLAYER)
         {
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             current_state = Player_States.DASHING_PLAYER;
