@@ -155,6 +155,7 @@ public class Player_Manager : MonoBehaviour
         else if (current_state == Player_States.FALLING_PLAYER)
         {
             //todo
+            is_invulnerable = true;
 
             //Start Animation
             anim.SetBool("player_fall", true);
