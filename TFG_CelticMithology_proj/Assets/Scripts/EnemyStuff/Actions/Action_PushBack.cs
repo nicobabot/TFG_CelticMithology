@@ -9,6 +9,10 @@ public class Action_PushBack : ActionBase
     public LayerMask layer_ray;
     public Color damaged_color;
 
+    [Header("Collision while pushin activated?")]
+    public Collider2D collide_with_enemies;
+    public bool want_disable_collider_pushing = false;
+
     private float timer_pushback;
 
     private GameObject player;
@@ -61,10 +65,6 @@ public class Action_PushBack : ActionBase
 
         pushback_dir = temp_position - temp_position_player;
 
-        if ((Direction)myBT.myBB.GetParameter("direction") == Direction.UP)
-        {
-            pushback_dir = -pushback_dir;
-        }
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pushback_dir.normalized, push_distance, layer_ray);
         if (hit != null)
@@ -81,6 +81,9 @@ public class Action_PushBack : ActionBase
         pushback_point = transform.position + pushback_dir;
 
         timer_pushback = 0.0f;
+
+        if(want_disable_collider_pushing)
+        collide_with_enemies.enabled = false;
 
         return BT_Status.RUNNING;
     }
@@ -107,6 +110,8 @@ public class Action_PushBack : ActionBase
             sprite_rend.color = regular_color;
             rb.velocity = Vector2.zero;
             myBT.myBB.SetParameter("is_enemy_hit", false);
+            if (want_disable_collider_pushing)
+                collide_with_enemies.enabled = true;
             isFinish = true;
             return BT_Status.RUNNING;
         }
@@ -121,6 +126,8 @@ public class Action_PushBack : ActionBase
         {
             sprite_rend.color = regular_color;
             myBT.myBB.SetParameter("is_enemy_hit", false);
+            if (want_disable_collider_pushing)
+                collide_with_enemies.enabled = true;
             isFinish = true;
         }
 

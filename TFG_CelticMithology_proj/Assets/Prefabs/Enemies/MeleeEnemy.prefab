@@ -426,6 +426,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   damaged_color: {r: 1, g: 0, b: 0, a: 1}
+  collide_with_enemies: {fileID: 61067610706543838}
+  want_disable_collider_pushing: 1
 --- !u!114 &114765207040319510
 MonoBehaviour:
   m_ObjectHideFlags: 1

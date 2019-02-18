@@ -6,7 +6,7 @@ public class Player_PushBack : MonoBehaviour
 {
     public float pushback_force;
     public float time_doing_pushback = 0.1f;
-    public Transform enemy_pos;
+    [HideInInspector]public Transform enemy_pos;
     private float timer_pushback = 0.0f;
     private Player_Manager player_manager_sct;
     private Rigidbody2D rb;

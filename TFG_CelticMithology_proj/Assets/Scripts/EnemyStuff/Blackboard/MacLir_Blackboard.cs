@@ -7,6 +7,7 @@ public class MacLir_Blackboard : Blackboard
     public ParameterInt life;
     public ParameterInt total_life;
     public ParameterBool is_enemy_hit;
+    public ParameterBool player_detected_while_charging;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
 
@@ -18,6 +19,7 @@ public class MacLir_Blackboard : Blackboard
         list.Add(life);
         list.Add(total_life);
         list.Add(is_enemy_hit);
+        list.Add(player_detected_while_charging);
         list.Add(player);
         list.Add(direction);
     }
