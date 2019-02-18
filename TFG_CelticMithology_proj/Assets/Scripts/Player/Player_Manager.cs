@@ -56,6 +56,8 @@ public class Player_Manager : MonoBehaviour
     private bool want_to_dash = false;
     private bool in_mine = false;
 
+    private float timer_fall = 0.0f;
+
     // Use this for initialization
     private void Start()
     {
@@ -153,9 +155,20 @@ public class Player_Manager : MonoBehaviour
         else if (current_state == Player_States.FALLING_PLAYER)
         {
             //todo
-            Vector3 temp_vect = Vector3.zero;
-            transform.position = temp_vect;
-            current_state = Player_States.IDLE_PLAYER;
+
+            //Start Animation
+            anim.SetBool("player_fall", true);
+            if (timer_fall >= anim.GetCurrentAnimatorClipInfo(0)[0].clip.length)
+            {
+                timer_fall = 0.0f;
+                Vector3 temp_vect = Vector3.zero;
+                transform.position = temp_vect;
+                anim.SetBool("player_fall", false);
+                current_state = Player_States.IDLE_PLAYER;
+            }
+            else timer_fall += Time.deltaTime;
+
+            
         }
         else if (current_state == Player_States.PUSHBACK_PLAYER)
         {
