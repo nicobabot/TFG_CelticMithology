@@ -77,13 +77,14 @@ GameObject:
   - component: {fileID: 114338160220401512}
   - component: {fileID: 114584380096645760}
   - component: {fileID: 114542910818935120}
+  - component: {fileID: 95906131706385626}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1733613355456968
 GameObject:
   m_ObjectHideFlags: 1
@@ -235,8 +236,8 @@ BoxCollider2D:
   m_Offset: {x: -0.079535484, y: 0.7873962}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.56, y: 1.76}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.16, y: 1.28}
     newSize: {x: 3.018868, y: 3.018868}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -270,6 +271,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0854263, y: 1.0994749}
   m_EdgeRadius: 0
+--- !u!95 &95906131706385626
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695589486418046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a107cddcb19c75c4a8895ee19787a9f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114269682889604714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +446,7 @@ MonoBehaviour:
     m_Bits: 2048
   damaged_color: {r: 1, g: 0, b: 0, a: 1}
   collide_with_enemies: {fileID: 61067610706543838}
-  want_disable_collider_pushing: 0
+  want_disable_collider_pushing: 1
 --- !u!114 &114765207040319510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5069,8 +5088,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300026, guid: f78a4f0a2b7a3414ca9606b23ae0884b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.92679024, a: 1}
+  m_Sprite: {fileID: 21300040, guid: 953c1a1b7e09fdc418dc0c1c13dfe20c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
