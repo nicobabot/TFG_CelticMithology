@@ -34,6 +34,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     public GameObject floorTile;
 
+    Procedural_Room[] rooms;
 
     public enum TileType
     {
@@ -59,13 +60,26 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     void Start () {
         //DrawMapWithTiles();
 
+        rooms = new Procedural_Room[numRooms];
+
         Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom);
+        rooms[0] = room_temp;
+
         room_temp.DrawRoom();
 
         ExitDirectionPoint point = room_temp.exits[Random.RandomRange(0, room_temp.exits.Length)];
 
         Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom);
+        rooms[1] = room_temp2;
+
         room_temp2.DrawRoom();
+
+        ExitDirectionPoint point2 = room_temp2.exits[Random.RandomRange(0, room_temp2.exits.Length)];
+
+        Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom);
+        rooms[2] = room_temp3;
+        room_temp3.DrawRoom();
+
 
     }
 
@@ -81,6 +95,29 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 temp.transform.position = grid.CellToWorld(new Vector3Int(_startingPos.x + i, _startingPos.y + j, 0));
             }
         }
+    }
+
+    public bool PointIsInsideAnyRoom(Vector3 point)
+    {
+
+        bool ret = false;
+
+        foreach(Procedural_Room room_temp in rooms)
+        {
+            if(room_temp!=null)
+            ret = room_temp.IsInsideRoom(point);
+
+            if (ret == true) break;
+        }
+
+
+        return ret;
+
+    }
+
+    public GameObject InstantiateWithTile()
+    {
+        return Instantiate(floorTile, transform);
     }
 
 	// Update is called once per frame

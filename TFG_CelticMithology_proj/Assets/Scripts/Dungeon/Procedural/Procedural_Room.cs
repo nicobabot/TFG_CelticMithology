@@ -9,7 +9,7 @@ public class ExitDirectionPoint
     public Vector3Int nextRoomPos;
 }
 
-public class Procedural_Room : MonoBehaviour
+public class Procedural_Room
 {
     public ExitDirectionPoint[] exits;
 
@@ -17,6 +17,8 @@ public class Procedural_Room : MonoBehaviour
     private int _y_pos;
     private int _tilewidth;
     private int _tileheight;
+
+    private Tilemap grid;
 
     private ProceduralDungeonGenerator.TileType[][] room;
 
@@ -29,7 +31,11 @@ public class Procedural_Room : MonoBehaviour
         _tilewidth = new_tilewidth;
         _tileheight = new_tileheight;
 
-        numExits = Random.Range(1, 5);
+        grid = ProceduralDungeonGenerator.mapGenerator.grid;
+
+        //numExits = Random.Range(1, 5);
+
+        numExits = 1;
 
         SetExits();
 
@@ -42,27 +48,38 @@ public class Procedural_Room : MonoBehaviour
 
     }
 
-    void SetExits()
+    void SetExits(bool test = false)
     {
 
-        // exits = new ExitDirectionPoint[numExits];
-
-        exits = new ExitDirectionPoint[1];
+         exits = new ExitDirectionPoint[numExits];
 
         for (int i = 0; i < exits.Length; i++)
         {
-            // exits[i].dir = (ProceduralDungeonGenerator.ExitDirection)Random.Range(0, 4);
-
             exits[i] = new ExitDirectionPoint();
-            exits[i].dir = ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT;
+            do {
+                exits[i].dir = (ProceduralDungeonGenerator.ExitDirection)Random.Range(0, 4);
 
-            switch (exits[i].dir)
-            {
-                case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
-                    exits[i].nextRoomPos.x = _x_pos + _tilewidth + 1;
-                    exits[i].nextRoomPos.y = _y_pos;
-                    break;
-            }
+                switch (exits[i].dir)
+                {
+                    case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
+                        exits[i].nextRoomPos.x = _x_pos + _tilewidth + 1;
+                        exits[i].nextRoomPos.y = _y_pos;
+                        break;
+                    case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
+                        exits[i].nextRoomPos.x = _x_pos - _tilewidth - 1;
+                        exits[i].nextRoomPos.y = _y_pos;
+                        break;
+                    case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
+                        exits[i].nextRoomPos.x = _x_pos;
+                        exits[i].nextRoomPos.y = _y_pos + _tileheight + 1;
+                        break;
+                    case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
+                        exits[i].nextRoomPos.x = _x_pos;
+                        exits[i].nextRoomPos.y = _y_pos - _tileheight - 1;
+                        break;
+                }
+            } while (ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(exits[i].nextRoomPos)));
+            
 
         }
 
@@ -75,13 +92,13 @@ public class Procedural_Room : MonoBehaviour
             for(int j=0; j< _tileheight; j++)
             {
 
-                Vector3 tile_pos = ProceduralDungeonGenerator.mapGenerator.grid.CellToWorld(new Vector3Int(_x_pos + i, _y_pos + j, 0));
+                Vector3 tile_pos = grid.CellToWorld(new Vector3Int(_x_pos + i, _y_pos + j, 0));
 
 
                 switch (room[i][j])
                 {
                     case ProceduralDungeonGenerator.TileType.LEFT_WALL:
-                        GameObject temp = Instantiate(ProceduralDungeonGenerator.mapGenerator.floorTile, ProceduralDungeonGenerator.mapGenerator.transform);
+                        GameObject temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile();
                         temp.transform.position = tile_pos;
                         break;
                 }
@@ -89,11 +106,11 @@ public class Procedural_Room : MonoBehaviour
         }
     }
 
-    bool IsInsideRoom(Vector3 point)
+    public bool IsInsideRoom(Vector3 point)
     {
         bool ret = false;
-
-        if (point.x < _x_pos + _tilewidth && point.y < _y_pos + _tilewidth)
+        
+        if (point.x >= _x_pos && point.x < _x_pos + _tilewidth && point.y >= _y_pos && point.y < _y_pos + _tilewidth)
         {
             ret = true;
         }
