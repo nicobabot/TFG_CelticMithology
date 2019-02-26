@@ -22,14 +22,18 @@ public class Procedural_Room
 
     private ProceduralDungeonGenerator.TileType[][] room;
 
+    private GameObject Room_Go;
+
     private int numExits = 0;
 
-    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight)
+    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room)
     {
         _x_pos = new_x_pos;
         _y_pos = new_y_pos;
         _tilewidth = new_tilewidth;
         _tileheight = new_tileheight;
+
+        Room_Go = new GameObject("Room " + num_room.ToString());
 
         grid = ProceduralDungeonGenerator.mapGenerator.grid;
 
@@ -45,6 +49,110 @@ public class Procedural_Room
         {
             room[i] = new ProceduralDungeonGenerator.TileType[_tilewidth];
         }
+
+        SetGroundAndWall();
+        SetColliders();
+    }
+
+    void SetGroundAndWall()
+    {
+
+        for (int j = 0; j < _tileheight; j++)
+        {
+            for (int i = 0; i < _tilewidth; i++)
+            {
+
+                DetectIfIsWall(i,j);
+
+            }
+        }
+    }
+
+    void DetectIfIsWall(int i, int j)
+    {
+        if(i == 0)
+        {
+            if (j == 0)
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_UP_CORNER;
+            }
+            else if (j == (_tileheight - 1))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_UP_CORNER;
+            }
+            else {
+                room[i][j] = ProceduralDungeonGenerator.TileType.UP_WALL;
+            }
+        } 
+        else if (i == (_tilewidth-1))
+        {
+            if (j == 0)
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOWN_CORNER;
+            }
+            else if (j == (_tileheight - 1))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOWN_CORNER;
+            }
+            else
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_WALL;
+            }
+        }
+        else if (j == 0)
+        {
+            if(i != 0 && i != (_tilewidth - 1))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_WALL;
+            }
+        }
+        else if(j == (_tileheight - 1))
+        {
+            if(i != 0 && i != (_tilewidth - 1))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_WALL;
+            }
+        }
+        else
+        {
+            room[i][j] = ProceduralDungeonGenerator.TileType.FLOOR;
+        }
+    }
+
+    void SetColliders()
+    {
+        //Left wall collider
+        GameObject collider_left_go = new GameObject();
+        collider_left_go.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight*0.5f)-0.5f));
+        collider_left_go.transform.SetParent(Room_Go.transform);
+
+        BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
+        left_collider.size = new Vector2(1,_tileheight);
+
+
+        //Right wall collider
+        GameObject collider_right_go = new GameObject();
+        collider_right_go.transform.position = new Vector3(_x_pos + (_tilewidth-1), _y_pos + ((_tileheight * 0.5f) - 0.5f));
+        collider_right_go.transform.SetParent(Room_Go.transform);
+
+        BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
+        right_collider.size = new Vector2(1, _tileheight);
+
+        //Up wall collider
+        GameObject collider_up_go = new GameObject();
+        collider_up_go.transform.position = new Vector3(_x_pos + ((_tileheight * 0.5f) - 0.5f), _y_pos + (_tileheight-1));
+        collider_up_go.transform.SetParent(Room_Go.transform);
+
+        BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
+        up_collider.size = new Vector2(_tilewidth, 1);
+
+        //Down wall collider
+        GameObject collider_down_go = new GameObject();
+        collider_down_go.transform.position = new Vector3(_x_pos + ((_tileheight * 0.5f) - 0.5f), _y_pos);
+        collider_down_go.transform.SetParent(Room_Go.transform);
+
+        BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
+        down_collider.size = new Vector2(_tilewidth, 1);
 
     }
 
@@ -87,7 +195,10 @@ public class Procedural_Room
 
     public void DrawRoom()
     {
-        for(int i=0; i< _tilewidth; i++)
+
+        GameObject temp = null;
+
+        for (int i=0; i< _tilewidth; i++)
         {
             for(int j=0; j< _tileheight; j++)
             {
@@ -97,8 +208,19 @@ public class Procedural_Room
 
                 switch (room[i][j])
                 {
-                    case ProceduralDungeonGenerator.TileType.LEFT_WALL:
-                        GameObject temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile();
+                    case ProceduralDungeonGenerator.TileType.FLOOR:
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false,false, Room_Go.transform);
+                        temp.transform.position = tile_pos;
+                        break;
+                    case ProceduralDungeonGenerator.TileType.LEFT_DOWN_CORNER:
+                    case ProceduralDungeonGenerator.TileType.LEFT_UP_CORNER:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_DOWN_CORNER:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_UP_CORNER:
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, true, Room_Go.transform);
+                        temp.transform.position = tile_pos;
+                        break;
+                    default:
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, false, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
                 }

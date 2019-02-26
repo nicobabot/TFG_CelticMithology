@@ -51,10 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17fe9083ccf00946980842b293e8c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 8195094280295321792, guid: 15fd071167ef7fb4bb5340106d77d6a3, type: 2}
+  grid: {fileID: 0}
   tilesWidthMap: 100
   tilesHeightMap: 100
   numRooms: 5
   tilesWidthRoom: 10
   tilesHeightRoom: 10
   floorTile: {fileID: 1466677337081252, guid: 9c0c98f4190a067418e7af806e1df8e2, type: 2}
+  wallTile: {fileID: 1550786581246124, guid: 4a545dd1639a114498a14d7a48e9ec34, type: 2}
+  cornerTile: {fileID: 1550786581246124, guid: 2ac0b225b00e4104aa73bfe66727feee, type: 2}

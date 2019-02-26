@@ -33,12 +33,15 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public int tilesHeightRoom;
 
     public GameObject floorTile;
+    public GameObject wallTile;
+    public GameObject cornerTile;
 
     Procedural_Room[] rooms;
 
     public enum TileType
     {
         LEFT_WALL, RIGHT_WALL, UP_WALL, DOWN_WALL,
+        LEFT_DOWN_CORNER, LEFT_UP_CORNER, RIGHT_DOWN_CORNER, RIGHT_UP_CORNER,
         FLOOR,
         HOLE,
     }
@@ -62,21 +65,25 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         rooms = new Procedural_Room[numRooms];
 
-        Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom);
+        int count_rooms = 0;
+
+        Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom, count_rooms);
         rooms[0] = room_temp;
 
         room_temp.DrawRoom();
 
         ExitDirectionPoint point = room_temp.exits[Random.RandomRange(0, room_temp.exits.Length)];
 
-        Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom);
+        count_rooms++;
+        Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
         rooms[1] = room_temp2;
 
         room_temp2.DrawRoom();
 
         ExitDirectionPoint point2 = room_temp2.exits[Random.RandomRange(0, room_temp2.exits.Length)];
 
-        Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom);
+        count_rooms++;
+        Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
         rooms[2] = room_temp3;
         room_temp3.DrawRoom();
 
@@ -115,13 +122,25 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     }
 
-    public GameObject InstantiateWithTile()
+    public GameObject InstantiateWithTile(bool is_wall = false, bool is_corner=false, Transform parent = null)
     {
-        return Instantiate(floorTile, transform);
+        if (parent != null)
+        {
+            if (!is_wall && !is_corner)
+                return Instantiate(floorTile, parent);
+            else if (is_corner) return Instantiate(cornerTile, parent);
+            else return Instantiate(wallTile, parent);
+        }
+        return null;
     }
 
-	// Update is called once per frame
-	void Update () {
+    public GameObject InstantiateGO(GameObject go)
+    {
+        return Instantiate(go);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
