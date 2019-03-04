@@ -26,7 +26,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public Tilemap grid;
     [SerializeField] private int tilesWidthMap;
     [SerializeField] private int tilesHeightMap;
-    [SerializeField] private int numRooms;
+    [SerializeField] private int maxim_depth;
 
     [Header("Room values")]
     public int tilesWidthRoom;
@@ -35,8 +35,9 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject floorTile;
     public GameObject wallTile;
     public GameObject cornerTile;
+    int count_rooms = 0;
 
-    Procedural_Room[] rooms;
+    List<Procedural_Room> rooms;
 
     public enum TileType
     {
@@ -63,30 +64,87 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     void Start () {
         //DrawMapWithTiles();
 
-        rooms = new Procedural_Room[numRooms];
+        rooms = new List<Procedural_Room>();
 
-        int count_rooms = 0;
+        //int count_rooms = 0;
 
-        Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        rooms[0] = room_temp;
+        //Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom, count_rooms);
+        //rooms[0] = room_temp;
 
+        //room_temp.DrawRoom();
+
+        //ExitDirectionPoint point = room_temp.exits[Random.RandomRange(0, room_temp.exits.Length)];
+
+        //count_rooms++;
+        //Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+        //rooms[1] = room_temp2;
+
+        //room_temp2.DrawRoom();
+
+        //ExitDirectionPoint point2 = room_temp2.exits[Random.RandomRange(0, room_temp2.exits.Length)];
+
+        //count_rooms++;
+        //Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+        //rooms[2] = room_temp3;
+        //room_temp3.DrawRoom();
+
+        //----------------------------------------------------------------------
+        Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms);
+        rooms.Add(room_temp);
         room_temp.DrawRoom();
 
-        ExitDirectionPoint point = room_temp.exits[Random.RandomRange(0, room_temp.exits.Length)];
+        GenerateRoomFirstChildFirst(room_temp,0);
 
+    }
+
+    void GenerateRoomLastChildFirst(Procedural_Room room, int level)
+    {
+
+        Procedural_Room creation_room;
+        ExitDirectionPoint creation_point = new ExitDirectionPoint();
         count_rooms++;
-        Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        rooms[1] = room_temp2;
 
-        room_temp2.DrawRoom();
+        if (level == maxim_depth)
+        {
+            return;
+        }
 
-        ExitDirectionPoint point2 = room_temp2.exits[Random.RandomRange(0, room_temp2.exits.Length)];
+        for (int i = 0; i < room.usableExits.Count; i++)
+        {
+            creation_point = room.usableExits[i];
 
-        count_rooms++;
-        Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        rooms[2] = room_temp3;
-        room_temp3.DrawRoom();
+            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+            rooms.Add(creation_room);
+            creation_room.DrawRoom();
 
+            GenerateRoomLastChildFirst(creation_room, level + 1);
+        }
+    }
+
+    void GenerateRoomFirstChildFirst(Procedural_Room room, int level)
+    {
+
+        Procedural_Room creation_room;
+        ExitDirectionPoint creation_point = new ExitDirectionPoint();
+        
+        if(level == maxim_depth)
+        {
+            return;
+        }
+
+        for(int i= room.usableExits.Count-1; i >= 0; i--)
+        {
+            creation_point = room.usableExits[i];
+            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+            rooms.Add(creation_room);
+            count_rooms++;
+            creation_room.DrawRoom();
+        }
+
+        for (int j = count_rooms; j > count_rooms - room.usableExits.Count-1; j--)
+        {
+            GenerateRoomFirstChildFirst(rooms[j], level + 1);
+        }
 
     }
 

@@ -11,7 +11,8 @@ public class ExitDirectionPoint
 
 public class Procedural_Room
 {
-    public ExitDirectionPoint[] exits;
+    public List<ExitDirectionPoint> usableExits;
+    private List<ExitDirectionPoint> exits;
 
     private int _x_pos;
     private int _y_pos;
@@ -37,9 +38,13 @@ public class Procedural_Room
 
         grid = ProceduralDungeonGenerator.mapGenerator.grid;
 
-        //numExits = Random.Range(1, 5);
+        PosibleExits();
 
-        numExits = 1;
+        if (exits.Count != 0) {
+            numExits = Random.Range(1, exits.Count);
+        } else numExits = 0;
+
+        //numExits = 1;
 
         SetExits();
 
@@ -56,7 +61,6 @@ public class Procedural_Room
 
     void SetGroundAndWall()
     {
-
         for (int j = 0; j < _tileheight; j++)
         {
             for (int i = 0; i < _tilewidth; i++)
@@ -159,38 +163,108 @@ public class Procedural_Room
     void SetExits(bool test = false)
     {
 
-         exits = new ExitDirectionPoint[numExits];
+        ProceduralDungeonGenerator.ExitDirection new_dir = new ProceduralDungeonGenerator.ExitDirection();
 
-        for (int i = 0; i < exits.Length; i++)
+
+        for (int i = 0; i < numExits; i++)
         {
-            exits[i] = new ExitDirectionPoint();
-            do {
-                exits[i].dir = (ProceduralDungeonGenerator.ExitDirection)Random.Range(0, 4);
+            ExitDirectionPoint temp = new ExitDirectionPoint();
+            do
+            {
+                new_dir = (ProceduralDungeonGenerator.ExitDirection)Random.Range(0, 4);
 
-                switch (exits[i].dir)
+            } while (IsAlreadyExitDirection(new_dir) == true);
+
+
+            temp = GetExitInfo(new_dir);
+            if(temp!=null)
+            usableExits.Add(temp);
+        }
+    }
+
+
+
+    void PosibleExits()
+    {
+        exits = new List<ExitDirectionPoint>();
+        usableExits = new List<ExitDirectionPoint>();
+
+        ExitDirectionPoint temp;
+        
+        //Right
+        Vector3Int rightExit = new Vector3Int(_x_pos + _tilewidth + 1, _y_pos, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(rightExit)))
+        {
+            ExitDirectionPoint temp_right = new ExitDirectionPoint();
+            temp_right.dir = ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT;
+            temp_right.nextRoomPos = rightExit;
+            exits.Add(temp_right);
+        }
+
+        Vector3Int leftExit = new Vector3Int(_x_pos - _tilewidth - 1, _y_pos, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(leftExit)))
+        {
+            ExitDirectionPoint temp_left = new ExitDirectionPoint();
+            temp_left.dir = ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT;
+            temp_left.nextRoomPos = leftExit;
+            exits.Add(temp_left);
+        }
+
+        Vector3Int upExit = new Vector3Int(_x_pos, _y_pos + _tileheight + 1, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(upExit)))
+        {
+            ExitDirectionPoint temp_up = new ExitDirectionPoint();
+            temp_up.dir = ProceduralDungeonGenerator.ExitDirection.UP_EXIT;
+            temp_up.nextRoomPos = upExit;
+            exits.Add(temp_up);
+        }
+
+        Vector3Int downExit = new Vector3Int(_x_pos, _y_pos - _tileheight - 1, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(downExit)))
+        {
+            ExitDirectionPoint temp_down = new ExitDirectionPoint();
+            temp_down.dir = ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT;
+            temp_down.nextRoomPos = downExit;
+            exits.Add(temp_down);
+        }
+
+    }
+
+    bool IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection mydir)
+    {
+        bool ret = false;
+        for (int i = 0; i < usableExits.Count; i++)
+        {
+            if (usableExits[i] != null)
+            {
+                if(usableExits[i].dir== mydir)
                 {
-                    case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
-                        exits[i].nextRoomPos.x = _x_pos + _tilewidth + 1;
-                        exits[i].nextRoomPos.y = _y_pos;
-                        break;
-                    case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
-                        exits[i].nextRoomPos.x = _x_pos - _tilewidth - 1;
-                        exits[i].nextRoomPos.y = _y_pos;
-                        break;
-                    case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
-                        exits[i].nextRoomPos.x = _x_pos;
-                        exits[i].nextRoomPos.y = _y_pos + _tileheight + 1;
-                        break;
-                    case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
-                        exits[i].nextRoomPos.x = _x_pos;
-                        exits[i].nextRoomPos.y = _y_pos - _tileheight - 1;
-                        break;
+                    ret = true;
                 }
-            } while (ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(exits[i].nextRoomPos)));
-            
+            }
 
         }
 
+        return ret;
+    }
+
+    ExitDirectionPoint GetExitInfo(ProceduralDungeonGenerator.ExitDirection mydir)
+    {
+        ExitDirectionPoint temp = null;
+
+        for (int i = 0; i < exits.Count; i++)
+        {
+            if (exits[i] != null)
+            {
+                if (exits[i].dir == mydir)
+                {
+                    temp = exits[i];
+                }
+            }
+
+        }
+
+        return temp;
     }
 
     public void DrawRoom()
