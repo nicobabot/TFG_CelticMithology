@@ -54,7 +54,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   tilesWidthMap: 100
   tilesHeightMap: 100
-  numRooms: 5
+  maxim_depth: 10
   tilesWidthRoom: 10
   tilesHeightRoom: 10
   floorTile: {fileID: 1466677337081252, guid: 9c0c98f4190a067418e7af806e1df8e2, type: 2}

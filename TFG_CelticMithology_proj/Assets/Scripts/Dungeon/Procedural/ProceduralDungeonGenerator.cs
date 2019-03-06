@@ -36,6 +36,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject wallTile;
     public GameObject cornerTile;
     int count_rooms = 0;
+    private int realDepth = 0;
 
     List<Procedural_Room> rooms;
 
@@ -93,7 +94,9 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         rooms.Add(room_temp);
         room_temp.DrawRoom();
 
-        GenerateRoomFirstChildFirst(room_temp,0);
+        realDepth = maxim_depth / room_temp.usableExits.Count;
+
+        GenerateRoomLastChildFirst(room_temp,0);
 
     }
 
@@ -104,7 +107,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         ExitDirectionPoint creation_point = new ExitDirectionPoint();
         count_rooms++;
 
-        if (level == maxim_depth)
+        if (level == realDepth)
         {
             return;
         }

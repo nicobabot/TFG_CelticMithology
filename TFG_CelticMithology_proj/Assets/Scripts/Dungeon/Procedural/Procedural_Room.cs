@@ -40,19 +40,21 @@ public class Procedural_Room
 
         PosibleExits();
 
-        if (exits.Count != 0) {
-            numExits = Random.Range(1, exits.Count);
-        } else numExits = 0;
+        //if (exits.Count != 0) {
+        //    numExits = Random.Range(1, exits.Count);
+        //} else numExits = 0;
 
-        //numExits = 1;
+
+        numExits = exits.Count - 1;
+
 
         SetExits();
 
-        room = new ProceduralDungeonGenerator.TileType[_tileheight][];
+        room = new ProceduralDungeonGenerator.TileType[_tilewidth][];
 
         for (int i = 0; i < _tilewidth; i++)
         {
-            room[i] = new ProceduralDungeonGenerator.TileType[_tilewidth];
+            room[i] = new ProceduralDungeonGenerator.TileType[_tileheight];
         }
 
         SetGroundAndWall();
@@ -144,7 +146,7 @@ public class Procedural_Room
 
         //Up wall collider
         GameObject collider_up_go = new GameObject();
-        collider_up_go.transform.position = new Vector3(_x_pos + ((_tileheight * 0.5f) - 0.5f), _y_pos + (_tileheight-1));
+        collider_up_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos + (_tileheight - 1));
         collider_up_go.transform.SetParent(Room_Go.transform);
 
         BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
@@ -152,7 +154,7 @@ public class Procedural_Room
 
         //Down wall collider
         GameObject collider_down_go = new GameObject();
-        collider_down_go.transform.position = new Vector3(_x_pos + ((_tileheight * 0.5f) - 0.5f), _y_pos);
+        collider_down_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos);
         collider_down_go.transform.SetParent(Room_Go.transform);
 
         BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
@@ -164,7 +166,6 @@ public class Procedural_Room
     {
 
         ProceduralDungeonGenerator.ExitDirection new_dir = new ProceduralDungeonGenerator.ExitDirection();
-
 
         for (int i = 0; i < numExits; i++)
         {
