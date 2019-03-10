@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9541,11 +9541,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4964181500167312, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -33.72
+      value: -33.66
       objectReference: {fileID: 0}
     - target: {fileID: 4964181500167312, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 20.28
+      value: 6.51
       objectReference: {fileID: 0}
     - target: {fileID: 4964181500167312, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9571,26 +9571,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114511137262656710, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
-        type: 2}
-      propertyPath: fader_scr
-      value: 
-      objectReference: {fileID: 2056421631}
-    - target: {fileID: 114077702958719138, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
-        type: 2}
-      propertyPath: pathfinder_scr
-      value: 
-      objectReference: {fileID: 143351903}
-    - target: {fileID: 114025381025053472, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
-        type: 2}
-      propertyPath: player.my_value
-      value: 
-      objectReference: {fileID: 1310819217}
     - target: {fileID: 114516821803504682, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
         type: 2}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 1606013942}
+    - target: {fileID: 114025381025053472, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 114077702958719138, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114077702958719138, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 114511137262656710, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
   m_IsPrefabAsset: 0
@@ -13876,7 +13881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}

@@ -23,6 +23,30 @@ TextureImporter:
     21300036: Goblin_See_8
     21300038: Goblin_See_9
     21300040: Goblin_See_10
+    21300042: Cartonach_side_idle_0
+    21300044: Cartonach_side_idle_1
+    21300046: Cartonach_side_idle_2
+    21300048: Cartonach_side_idle_3
+    21300050: Cartonach_side_idle_4
+    21300052: Cartonach_side_idle_5
+    21300054: Cartonach_side_idle_6
+    21300056: Cartonach_side_idle_7
+    21300058: Cartonach_front_idle_0
+    21300060: Cartonach_front_idle_1
+    21300062: Cartonach_front_idle_2
+    21300064: Cartonach_front_idle_3
+    21300066: Cartonach_front_idle_4
+    21300068: Cartonach_front_idle_5
+    21300070: Cartonach_front_idle_6
+    21300072: Cartonach_front_idle_7
+    21300074: Cartonach_back_idle_0
+    21300076: Cartonach_back_idle_1
+    21300078: Cartonach_back_idle_2
+    21300080: Cartonach_back_idle_3
+    21300082: Cartonach_back_idle_4
+    21300084: Cartonach_back_idle_5
+    21300086: Cartonach_back_idle_6
+    21300088: Cartonach_back_idle_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -531,6 +555,486 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 534e4b6147121014e808e21f13c8ca0c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e147e52dcef0c14197dcffd74f5c3cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4ab8482374d1d74fb99217a3f6fc581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814abb04b5f42c84d982942fcc2c181e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bc458d9bbf37a4b8f08320fc029ffc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85605941e00403641899691fd3ac5da1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417114dd94a4f3047b8ccb18694d557e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537b6cca5bd06414e9d6d65ba3695669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_idle_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 137
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d01b211ba2052745ab46990c6f5ebb3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2f0c50fe94aee42bb47fa4505bac1e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c0cfa0f8d16e44cb3f7978a27c0c9b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43df47b9054360c46be65deb99d02c5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cebc092cde9bf64ebfdadd41e37ff04
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efcfdc65ef2cd0e498b9aead0fe62431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a593f6e163bab124ca7b9d14f29ac295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31eabf746d40a964fb05d1a5c246685b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_idle_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 98
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d154b9c24314e914c9857ad5c676ac73
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178b574392495304ab9be4117637a9e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30eeb7e0dd2c4294cb71ea361c8cb03d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea0458e5ace262d4f83034dd3a00ed8d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 632ad9197c34fdd41a071727cc7381bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1628a4168d913f43a486f4c8646d83c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c231853199deb4f9d156f58b68c0f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704fd5d1d00de9749acd97ea15eebd1e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_idle_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 60
+        width: 21
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e300555fd397564aa75976ff57371ad
       vertices: []
       indices: 
       edges: []
