@@ -162,7 +162,7 @@ public class Player_Manager : MonoBehaviour
             if (timer_fall >= anim.GetCurrentAnimatorClipInfo(0)[0].clip.length)
             {
                 timer_fall = 0.0f;
-                Vector3 temp_vect = Vector3.zero;
+                Vector3 temp_vect = new Vector3(-25.0f, 2.0f, 0.0f);
                 transform.position = temp_vect;
                 anim.SetBool("player_fall", false);
                 current_state = Player_States.IDLE_PLAYER;
