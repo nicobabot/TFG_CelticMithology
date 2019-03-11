@@ -53,7 +53,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         RIGHT_EXIT,
         LEFT_EXIT,
         UP_EXIT,
-        DOWN_EXIT
+        DOWN_EXIT,
+        NONE_DIR
     }
 
     private void Awake()
@@ -67,30 +68,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         rooms = new List<Procedural_Room>();
 
-        //int count_rooms = 0;
-
-        //Procedural_Room room_temp = new Procedural_Room(0,0, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        //rooms[0] = room_temp;
-
-        //room_temp.DrawRoom();
-
-        //ExitDirectionPoint point = room_temp.exits[Random.RandomRange(0, room_temp.exits.Length)];
-
-        //count_rooms++;
-        //Procedural_Room room_temp2 = new Procedural_Room(point.nextRoomPos.x, point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        //rooms[1] = room_temp2;
-
-        //room_temp2.DrawRoom();
-
-        //ExitDirectionPoint point2 = room_temp2.exits[Random.RandomRange(0, room_temp2.exits.Length)];
-
-        //count_rooms++;
-        //Procedural_Room room_temp3 = new Procedural_Room(point2.nextRoomPos.x, point2.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
-        //rooms[2] = room_temp3;
-        //room_temp3.DrawRoom();
-
-        //----------------------------------------------------------------------
-        Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms);
+        Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms, ExitDirection.NONE_DIR);
         rooms.Add(room_temp);
         room_temp.DrawRoom();
 
@@ -116,7 +94,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         {
             creation_point = room.usableExits[i];
 
-            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir));
             rooms.Add(creation_room);
             creation_room.DrawRoom();
 
@@ -138,7 +116,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         for(int i= room.usableExits.Count-1; i >= 0; i--)
         {
             creation_point = room.usableExits[i];
-            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms);
+            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, creation_point.dir);
             rooms.Add(creation_room);
             count_rooms++;
             creation_room.DrawRoom();
@@ -149,6 +127,29 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             GenerateRoomFirstChildFirst(rooms[j], level + 1);
         }
 
+    }
+
+    ExitDirection OppositeDirection(ExitDirection dir)
+    {
+        ExitDirection oppositeDir = ExitDirection.NONE_DIR;
+
+        switch (dir)
+        {
+            case ExitDirection.RIGHT_EXIT:
+                oppositeDir = ExitDirection.LEFT_EXIT;
+                break;
+            case ExitDirection.LEFT_EXIT:
+                oppositeDir = ExitDirection.RIGHT_EXIT;
+                break;
+            case ExitDirection.UP_EXIT:
+                oppositeDir = ExitDirection.DOWN_EXIT;
+                break;
+            case ExitDirection.DOWN_EXIT:
+                oppositeDir = ExitDirection.UP_EXIT;
+                break;
+        }
+
+        return oppositeDir;
     }
 
     void DrawMapWithTiles()

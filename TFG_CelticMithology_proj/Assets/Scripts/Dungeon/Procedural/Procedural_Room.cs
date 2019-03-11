@@ -27,7 +27,7 @@ public class Procedural_Room
 
     private int numExits = 0;
 
-    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room)
+    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room, ProceduralDungeonGenerator.ExitDirection dir)
     {
         _x_pos = new_x_pos;
         _y_pos = new_y_pos;
@@ -38,7 +38,17 @@ public class Procedural_Room
 
         grid = ProceduralDungeonGenerator.mapGenerator.grid;
 
+        exits = new List<ExitDirectionPoint>();
+        usableExits = new List<ExitDirectionPoint>();
+
+        //usableExits
+        if (dir != ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
+        {
+            PosibleExits(dir);
+        }
         PosibleExits();
+        
+
 
         //if (exits.Count != 0) {
         //    numExits = Random.Range(1, exits.Count);
@@ -128,46 +138,26 @@ public class Procedural_Room
     void SetColliders()
     {
         //Left wall collider
-        GameObject collider_left_go = new GameObject();
-        collider_left_go.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight*0.5f)-0.5f));
-        collider_left_go.transform.SetParent(Room_Go.transform);
-
-        BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
-        left_collider.size = new Vector2(1,_tileheight);
-
+        AddLeftColliders();
 
         //Right wall collider
-        GameObject collider_right_go = new GameObject();
-        collider_right_go.transform.position = new Vector3(_x_pos + (_tilewidth-1), _y_pos + ((_tileheight * 0.5f) - 0.5f));
-        collider_right_go.transform.SetParent(Room_Go.transform);
-
-        BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
-        right_collider.size = new Vector2(1, _tileheight);
+        AddRightColliders();
 
         //Up wall collider
-        GameObject collider_up_go = new GameObject();
-        collider_up_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos + (_tileheight - 1));
-        collider_up_go.transform.SetParent(Room_Go.transform);
-
-        BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
-        up_collider.size = new Vector2(_tilewidth, 1);
+        AddUpColliders();
 
         //Down wall collider
-        GameObject collider_down_go = new GameObject();
-        collider_down_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos);
-        collider_down_go.transform.SetParent(Room_Go.transform);
-
-        BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
-        down_collider.size = new Vector2(_tilewidth, 1);
+        AddDownColliders();
 
     }
 
     void SetExits(bool test = false)
     {
+        usableExits.Add(exits[0]);
 
         ProceduralDungeonGenerator.ExitDirection new_dir = new ProceduralDungeonGenerator.ExitDirection();
 
-        for (int i = 0; i < numExits; i++)
+        for (int i = 1; i < numExits; i++)
         {
             ExitDirectionPoint temp = new ExitDirectionPoint();
             do
@@ -185,50 +175,205 @@ public class Procedural_Room
 
 
 
-    void PosibleExits()
+    void PosibleExits(ProceduralDungeonGenerator.ExitDirection dir = ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
     {
-        exits = new List<ExitDirectionPoint>();
-        usableExits = new List<ExitDirectionPoint>();
+        if (dir== ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
+        {
+            if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+            {
+                ComprovationRight();
+            }
+            if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
+            {
+                ComprovationLeft();
+            }
+            if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
+            {
+                ComprovationDown();
+            }
+            if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
+            {
+                ComprovationUp();
+            }
+        }
+        else
+        {
+            switch (dir)
+            {
+                case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
+                    ComprovationRight(true);
+                    break;
+                case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
+                    ComprovationLeft(true);
+                    break;
+                case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
+                    ComprovationDown(true);
+                    break;
+                case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
+                    ComprovationUp(true);
+                    break;
+            }
+        }
 
-        ExitDirectionPoint temp;
-        
-        //Right
-        Vector3Int rightExit = new Vector3Int(_x_pos + _tilewidth + 1, _y_pos, 0);
-        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(rightExit)))
+    }
+
+    void ComprovationRight(bool noNeedComp = false)
+    {
+        Vector3Int rightExit = new Vector3Int(_x_pos + _tilewidth, _y_pos, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(rightExit)) || noNeedComp)
         {
             ExitDirectionPoint temp_right = new ExitDirectionPoint();
             temp_right.dir = ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT;
             temp_right.nextRoomPos = rightExit;
             exits.Add(temp_right);
         }
-
-        Vector3Int leftExit = new Vector3Int(_x_pos - _tilewidth - 1, _y_pos, 0);
-        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(leftExit)))
+    }
+    void ComprovationLeft(bool noNeedComp = false)
+    {
+        Vector3Int leftExit = new Vector3Int(_x_pos - _tilewidth, _y_pos, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(leftExit)) || noNeedComp)
         {
             ExitDirectionPoint temp_left = new ExitDirectionPoint();
             temp_left.dir = ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT;
             temp_left.nextRoomPos = leftExit;
             exits.Add(temp_left);
         }
-
-        Vector3Int upExit = new Vector3Int(_x_pos, _y_pos + _tileheight + 1, 0);
-        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(upExit)))
+    }
+    void ComprovationUp(bool noNeedComp = false)
+    {
+        Vector3Int upExit = new Vector3Int(_x_pos, _y_pos + _tileheight, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(upExit)) || noNeedComp)
         {
             ExitDirectionPoint temp_up = new ExitDirectionPoint();
             temp_up.dir = ProceduralDungeonGenerator.ExitDirection.UP_EXIT;
             temp_up.nextRoomPos = upExit;
             exits.Add(temp_up);
         }
-
-        Vector3Int downExit = new Vector3Int(_x_pos, _y_pos - _tileheight - 1, 0);
-        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(downExit)))
+    }
+    void ComprovationDown(bool noNeedComp = false)
+    {
+        Vector3Int downExit = new Vector3Int(_x_pos, _y_pos - _tileheight, 0);
+        if (!ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(grid.CellToWorld(downExit)) || noNeedComp)
         {
             ExitDirectionPoint temp_down = new ExitDirectionPoint();
             temp_down.dir = ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT;
             temp_down.nextRoomPos = downExit;
             exits.Add(temp_down);
         }
+    }
 
+    void AddRightColliders()
+    {
+        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+        {
+            GameObject collider_right_go = new GameObject();
+            collider_right_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight * 0.5f) - 0.5f));
+            collider_right_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
+            right_collider.size = new Vector2(1, _tileheight);
+        }
+        else
+        {
+            GameObject collider_right_go_1 = new GameObject();
+            collider_right_go_1.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight / 5) - 0.5f));
+            collider_right_go_1.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D right_collider1 = collider_right_go_1.AddComponent<BoxCollider2D>();
+            right_collider1.size = new Vector2(1, (_tileheight / 5) * 2);
+
+            GameObject collider_right_go_2 = new GameObject();
+            collider_right_go_2.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight / 5) * (5 - 1) - 0.5f));
+            collider_right_go_2.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D right_collider2 = collider_right_go_2.AddComponent<BoxCollider2D>();
+            right_collider2.size = new Vector2(1, (_tileheight / 5) * 2);
+        }
+    }
+    void AddLeftColliders()
+    {
+        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
+        {
+            GameObject collider_left_go = new GameObject();
+            collider_left_go.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight * 0.5f) - 0.5f));
+            collider_left_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
+            left_collider.size = new Vector2(1, _tileheight);
+        }
+        else
+        {
+            GameObject collider_left_go_1 = new GameObject();
+            collider_left_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
+            collider_left_go_1.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D left_collider1 = collider_left_go_1.AddComponent<BoxCollider2D>();
+            left_collider1.size = new Vector2(1, (_tileheight / 5) * 2);
+
+            GameObject collider_left_go_2 = new GameObject();
+            collider_left_go_2.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) * (5 - 1) - 0.5f));
+            collider_left_go_2.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D left_collider2 = collider_left_go_2.AddComponent<BoxCollider2D>();
+            left_collider2.size = new Vector2(1, (_tileheight / 5) * 2);
+        }
+    }
+    void AddUpColliders()
+    {
+        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
+        {
+            GameObject collider_up_go = new GameObject();
+            collider_up_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos + (_tileheight - 1));
+            collider_up_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
+            up_collider.size = new Vector2(_tilewidth, 1);
+        }
+        else
+        {
+            GameObject collider_up_go_1 = new GameObject();
+            //collider_up_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
+            collider_up_go_1.transform.position = new Vector3(_x_pos + (((_tilewidth / 5)) - 0.5f), _y_pos + (_tileheight - 1));
+            collider_up_go_1.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D up_collider1 = collider_up_go_1.AddComponent<BoxCollider2D>();
+            up_collider1.size = new Vector2((_tilewidth / 5) * 2, 1);
+
+            GameObject collider_up_go_2 = new GameObject();
+            collider_up_go_2.transform.position = new Vector3(_x_pos + ((_tilewidth / 5) * (5 - 1)) - 0.5f, _y_pos + (_tileheight - 1));
+            collider_up_go_2.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D up_collider2 = collider_up_go_2.AddComponent<BoxCollider2D>();
+            up_collider2.size = new Vector2((_tilewidth / 5) * 2, 1);
+        }
+    }
+    void AddDownColliders()
+    {
+        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
+        {
+            GameObject collider_down_go = new GameObject();
+            collider_down_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos);
+            collider_down_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
+            down_collider.size = new Vector2(_tilewidth, 1);
+        }
+        else
+        {
+            GameObject collider_down_go_1 = new GameObject();
+            collider_down_go_1.transform.position = new Vector3(_x_pos + (((_tilewidth / 5)) - 0.5f), _y_pos);
+            collider_down_go_1.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D down_collider1 = collider_down_go_1.AddComponent<BoxCollider2D>();
+            down_collider1.size = new Vector2((_tilewidth / 5) * 2, 1);
+
+            GameObject collider_down_go_2 = new GameObject();
+            collider_down_go_2.transform.position = new Vector3(_x_pos + ((_tilewidth / 5) * (5 - 1)) - 0.5f, _y_pos);
+            collider_down_go_2.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D down_collider2 = collider_down_go_2.AddComponent<BoxCollider2D>();
+            down_collider2.size = new Vector2((_tilewidth / 5) * 2, 1);
+        }
     }
 
     bool IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection mydir)
@@ -307,7 +452,12 @@ public class Procedural_Room
     {
         bool ret = false;
         
-        if (point.x >= _x_pos && point.x < _x_pos + _tilewidth && point.y >= _y_pos && point.y < _y_pos + _tilewidth)
+        if(point.x == 0 && point.y == 0)
+        {
+            int i = 23;
+        }
+
+        if (point.x >= _x_pos && point.x < _x_pos + _tilewidth && point.y >= _y_pos && point.y < _y_pos + _tileheight)
         {
             ret = true;
         }
