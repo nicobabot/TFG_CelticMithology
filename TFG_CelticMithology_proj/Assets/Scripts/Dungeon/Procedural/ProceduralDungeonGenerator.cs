@@ -35,8 +35,10 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject floorTile;
     public GameObject wallTile;
     public GameObject cornerTile;
+
+    [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
-    private int realDepth = 0;
+
 
     List<Procedural_Room> rooms;
 
@@ -65,14 +67,15 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //DrawMapWithTiles();
+        realDepth = maxim_depth / 4;
 
         rooms = new List<Procedural_Room>();
 
-        Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms, ExitDirection.NONE_DIR);
+        Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms, ExitDirection.NONE_DIR, 0);
         rooms.Add(room_temp);
         room_temp.DrawRoom();
 
-        realDepth = maxim_depth / room_temp.usableExits.Count;
+
 
         GenerateRoomLastChildFirst(room_temp,0);
 
@@ -94,40 +97,46 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         {
             creation_point = room.usableExits[i];
 
-            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir));
-            rooms.Add(creation_room);
-            creation_room.DrawRoom();
+            if (creation_point.needRoomCreation)
+            {
+                creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level);
+                if (creation_room.wantToDraw)
+                {
+                    rooms.Add(creation_room);
+                    creation_room.DrawRoom();
 
-            GenerateRoomLastChildFirst(creation_room, level + 1);
+                    GenerateRoomLastChildFirst(creation_room, level + 1);
+                }
+            }
         }
     }
 
-    void GenerateRoomFirstChildFirst(Procedural_Room room, int level)
-    {
+    //void GenerateRoomFirstChildFirst(Procedural_Room room, int level)
+    //{
 
-        Procedural_Room creation_room;
-        ExitDirectionPoint creation_point = new ExitDirectionPoint();
+    //    Procedural_Room creation_room;
+    //    ExitDirectionPoint creation_point = new ExitDirectionPoint();
         
-        if(level == maxim_depth)
-        {
-            return;
-        }
+    //    if(level == maxim_depth)
+    //    {
+    //        return;
+    //    }
 
-        for(int i= room.usableExits.Count-1; i >= 0; i--)
-        {
-            creation_point = room.usableExits[i];
-            creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, creation_point.dir);
-            rooms.Add(creation_room);
-            count_rooms++;
-            creation_room.DrawRoom();
-        }
+    //    for(int i= room.usableExits.Count-1; i >= 0; i--)
+    //    {
+    //        creation_point = room.usableExits[i];
+    //        creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, creation_point.dir);
+    //        rooms.Add(creation_room);
+    //        count_rooms++;
+    //        creation_room.DrawRoom();
+    //    }
 
-        for (int j = count_rooms; j > count_rooms - room.usableExits.Count-1; j--)
-        {
-            GenerateRoomFirstChildFirst(rooms[j], level + 1);
-        }
+    //    for (int j = count_rooms; j > count_rooms - room.usableExits.Count-1; j--)
+    //    {
+    //        GenerateRoomFirstChildFirst(rooms[j], level + 1);
+    //    }
 
-    }
+    //}
 
     ExitDirection OppositeDirection(ExitDirection dir)
     {

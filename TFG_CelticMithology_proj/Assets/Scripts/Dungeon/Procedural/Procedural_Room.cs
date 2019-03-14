@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ExitDirectionPoint
 {
+    public bool needRoomCreation = true;
     public ProceduralDungeonGenerator.ExitDirection dir;
     public Vector3Int nextRoomPos;
 }
@@ -12,6 +13,7 @@ public class ExitDirectionPoint
 public class Procedural_Room
 {
     public List<ExitDirectionPoint> usableExits;
+    public bool wantToDraw = true;
     private List<ExitDirectionPoint> exits;
 
     private int _x_pos;
@@ -27,7 +29,7 @@ public class Procedural_Room
 
     private int numExits = 0;
 
-    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room, ProceduralDungeonGenerator.ExitDirection dir)
+    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room, ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
     {
         _x_pos = new_x_pos;
         _y_pos = new_y_pos;
@@ -47,16 +49,25 @@ public class Procedural_Room
             PosibleExits(dir);
         }
         PosibleExits();
-        
-
 
         //if (exits.Count != 0) {
         //    numExits = Random.Range(1, exits.Count);
         //} else numExits = 0;
 
-
-        numExits = exits.Count - 1;
-
+        //Need an algorithm to see how much depth will rest to think about the exits;
+        int tempExitsNum = exits.Count - 1;
+        if (levelDepth + tempExitsNum <= ProceduralDungeonGenerator.mapGenerator.realDepth)
+        {
+            numExits = tempExitsNum;
+        }
+        else
+        {
+            do
+            {
+                tempExitsNum -= 1;
+            } while (levelDepth + tempExitsNum > ProceduralDungeonGenerator.mapGenerator.realDepth && tempExitsNum > 0);
+            numExits = tempExitsNum;
+        }
 
         SetExits();
 
@@ -67,8 +78,16 @@ public class Procedural_Room
             room[i] = new ProceduralDungeonGenerator.TileType[_tileheight];
         }
 
-        SetGroundAndWall();
-        SetColliders();
+        //if (numExits < 1)
+        //{
+        //    ProceduralDungeonGenerator.Destroy(Room_Go);
+        //    wantToDraw = false;
+        //}
+        //else
+        //{
+            SetGroundAndWall();
+            SetColliders();
+        //}
     }
 
     void SetGroundAndWall()
@@ -153,11 +172,15 @@ public class Procedural_Room
 
     void SetExits(bool test = false)
     {
-        usableExits.Add(exits[0]);
+        if (numExits > 0)
+        {
+            usableExits.Add(exits[0]);
+            numExits--;
+        }
 
         ProceduralDungeonGenerator.ExitDirection new_dir = new ProceduralDungeonGenerator.ExitDirection();
 
-        for (int i = 1; i < numExits; i++)
+        for (int i = 0; i < numExits; i++)
         {
             ExitDirectionPoint temp = new ExitDirectionPoint();
             do
@@ -225,6 +248,7 @@ public class Procedural_Room
             ExitDirectionPoint temp_right = new ExitDirectionPoint();
             temp_right.dir = ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT;
             temp_right.nextRoomPos = rightExit;
+            temp_right.needRoomCreation = !noNeedComp;
             exits.Add(temp_right);
         }
     }
@@ -236,6 +260,7 @@ public class Procedural_Room
             ExitDirectionPoint temp_left = new ExitDirectionPoint();
             temp_left.dir = ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT;
             temp_left.nextRoomPos = leftExit;
+            temp_left.needRoomCreation = !noNeedComp;
             exits.Add(temp_left);
         }
     }
@@ -247,6 +272,7 @@ public class Procedural_Room
             ExitDirectionPoint temp_up = new ExitDirectionPoint();
             temp_up.dir = ProceduralDungeonGenerator.ExitDirection.UP_EXIT;
             temp_up.nextRoomPos = upExit;
+            temp_up.needRoomCreation = !noNeedComp;
             exits.Add(temp_up);
         }
     }
@@ -258,6 +284,7 @@ public class Procedural_Room
             ExitDirectionPoint temp_down = new ExitDirectionPoint();
             temp_down.dir = ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT;
             temp_down.nextRoomPos = downExit;
+            temp_down.needRoomCreation = !noNeedComp;
             exits.Add(temp_down);
         }
     }
@@ -451,13 +478,8 @@ public class Procedural_Room
     public bool IsInsideRoom(Vector3 point)
     {
         bool ret = false;
-        
-        if(point.x == 0 && point.y == 0)
-        {
-            int i = 23;
-        }
 
-        if (point.x >= _x_pos && point.x < _x_pos + _tilewidth && point.y >= _y_pos && point.y < _y_pos + _tileheight)
+        if (point.x >= _x_pos && point.x <= _x_pos + _tilewidth && point.y >= _y_pos && point.y <= _y_pos + _tileheight)
         {
             ret = true;
         }
