@@ -25,11 +25,14 @@ public class Procedural_Room
 
     private ProceduralDungeonGenerator.TileType[][] room;
 
+    private bool hasFirstExit = false;
+
     private GameObject Room_Go;
 
     private int numExits = 0;
 
-    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room, ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
+    public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room,
+        ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
     {
         _x_pos = new_x_pos;
         _y_pos = new_y_pos;
@@ -46,6 +49,7 @@ public class Procedural_Room
         //usableExits
         if (dir != ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
         {
+            hasFirstExit = true;
             PosibleExits(dir);
         }
         PosibleExits();
@@ -69,25 +73,32 @@ public class Procedural_Room
             numExits = tempExitsNum;
         }
 
-        SetExits();
-
-        room = new ProceduralDungeonGenerator.TileType[_tilewidth][];
-
-        for (int i = 0; i < _tilewidth; i++)
+        if (tempExitsNum != 0)
         {
-            room[i] = new ProceduralDungeonGenerator.TileType[_tileheight];
-        }
 
-        //if (numExits < 1)
-        //{
-        //    ProceduralDungeonGenerator.Destroy(Room_Go);
-        //    wantToDraw = false;
-        //}
-        //else
-        //{
+            SetExits();
+
+            room = new ProceduralDungeonGenerator.TileType[_tilewidth][];
+
+            for (int i = 0; i < _tilewidth; i++)
+            {
+                room[i] = new ProceduralDungeonGenerator.TileType[_tileheight];
+            }
+
+            //if (numExits < 1)
+            //{
+            //    ProceduralDungeonGenerator.Destroy(Room_Go);
+            //    wantToDraw = false;
+            //}
+
             SetGroundAndWall();
             SetColliders();
-        //}
+        }
+        else
+        {
+            wantToDraw = false;
+        }
+
     }
 
     void SetGroundAndWall()
@@ -172,7 +183,8 @@ public class Procedural_Room
 
     void SetExits(bool test = false)
     {
-        if (numExits > 0)
+
+        if (numExits > 0 && hasFirstExit == true)
         {
             usableExits.Add(exits[0]);
             numExits--;
