@@ -67,7 +67,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //DrawMapWithTiles();
-        realDepth = maxim_depth / 4;
+        realDepth = maxim_depth / 3;
 
         rooms = new List<Procedural_Room>();
 
@@ -78,6 +78,14 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
 
         GenerateRoomLastChildFirst(room_temp,0);
+
+        foreach (Procedural_Room testRoom in rooms)
+        {
+            if(testRoom != null)
+            {
+                testRoom.SetColliders();
+            }
+        }
 
     }
 
@@ -97,7 +105,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         {
             creation_point = room.usableExits[i];
 
-            if (creation_point.needRoomCreation)
+            if (creation_point.needRoomCreation && !PointIsInsideAnyRoom(creation_point.nextRoomPos))
             {
                 creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level);
                 if (creation_room.wantToDraw)

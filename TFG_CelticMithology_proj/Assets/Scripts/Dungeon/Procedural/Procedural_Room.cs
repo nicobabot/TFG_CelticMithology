@@ -30,6 +30,7 @@ public class Procedural_Room
     private GameObject Room_Go;
 
     private int numExits = 0;
+    private int countCollidersExits = 0;
 
     public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room,
         ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
@@ -92,7 +93,7 @@ public class Procedural_Room
             //}
 
             SetGroundAndWall();
-            SetColliders();
+           // SetColliders();
         }
         else
         {
@@ -165,8 +166,10 @@ public class Procedural_Room
         }
     }
 
-    void SetColliders()
+    public void SetColliders()
     {
+        countCollidersExits = 0;
+
         //Left wall collider
         AddLeftColliders();
 
@@ -183,16 +186,16 @@ public class Procedural_Room
 
     void SetExits(bool test = false)
     {
-
+        int i = 0;
         if (numExits > 0 && hasFirstExit == true)
         {
             usableExits.Add(exits[0]);
-            numExits--;
+            i++;
         }
 
         ProceduralDungeonGenerator.ExitDirection new_dir = new ProceduralDungeonGenerator.ExitDirection();
 
-        for (int i = 0; i < numExits; i++)
+        for (; i < numExits; i++)
         {
             ExitDirectionPoint temp = new ExitDirectionPoint();
             do
@@ -303,17 +306,17 @@ public class Procedural_Room
 
     void AddRightColliders()
     {
-        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
+        bool isInsideRoom = false;
+        if (exitTemp != null)
         {
-            GameObject collider_right_go = new GameObject();
-            collider_right_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight * 0.5f) - 0.5f));
-            collider_right_go.transform.SetParent(Room_Go.transform);
-
-            BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
-            right_collider.size = new Vector2(1, _tileheight);
+            isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
-        else
+
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT) && countCollidersExits < numExits && isInsideRoom)
         {
+            countCollidersExits++;
+
             GameObject collider_right_go_1 = new GameObject();
             collider_right_go_1.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight / 5) - 0.5f));
             collider_right_go_1.transform.SetParent(Room_Go.transform);
@@ -328,20 +331,29 @@ public class Procedural_Room
             BoxCollider2D right_collider2 = collider_right_go_2.AddComponent<BoxCollider2D>();
             right_collider2.size = new Vector2(1, (_tileheight / 5) * 2);
         }
+        else { 
+            GameObject collider_right_go = new GameObject();
+            collider_right_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight * 0.5f) - 0.5f));
+            collider_right_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
+            right_collider.size = new Vector2(1, _tileheight);
+        }
     }
     void AddLeftColliders()
     {
-        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
-        {
-            GameObject collider_left_go = new GameObject();
-            collider_left_go.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight * 0.5f) - 0.5f));
-            collider_left_go.transform.SetParent(Room_Go.transform);
 
-            BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
-            left_collider.size = new Vector2(1, _tileheight);
-        }
-        else
+        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
+        bool isInsideRoom = false;
+        if (exitTemp != null)
         {
+            isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
+        }
+
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT) && countCollidersExits < numExits && isInsideRoom)
+        {
+            countCollidersExits++;
+
             GameObject collider_left_go_1 = new GameObject();
             collider_left_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
             collider_left_go_1.transform.SetParent(Room_Go.transform);
@@ -356,20 +368,28 @@ public class Procedural_Room
             BoxCollider2D left_collider2 = collider_left_go_2.AddComponent<BoxCollider2D>();
             left_collider2.size = new Vector2(1, (_tileheight / 5) * 2);
         }
+        else { 
+            GameObject collider_left_go = new GameObject();
+            collider_left_go.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight * 0.5f) - 0.5f));
+            collider_left_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
+            left_collider.size = new Vector2(1, _tileheight);
+        }
     }
     void AddUpColliders()
     {
-        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
+        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
+        bool isInsideRoom = false;
+        if (exitTemp != null)
         {
-            GameObject collider_up_go = new GameObject();
-            collider_up_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos + (_tileheight - 1));
-            collider_up_go.transform.SetParent(Room_Go.transform);
-
-            BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
-            up_collider.size = new Vector2(_tilewidth, 1);
+            isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
-        else
+
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT) && countCollidersExits < numExits && isInsideRoom)
         {
+            countCollidersExits++;
+
             GameObject collider_up_go_1 = new GameObject();
             //collider_up_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
             collider_up_go_1.transform.position = new Vector3(_x_pos + (((_tilewidth / 5)) - 0.5f), _y_pos + (_tileheight - 1));
@@ -385,20 +405,30 @@ public class Procedural_Room
             BoxCollider2D up_collider2 = collider_up_go_2.AddComponent<BoxCollider2D>();
             up_collider2.size = new Vector2((_tilewidth / 5) * 2, 1);
         }
+        else
+        {
+            GameObject collider_up_go = new GameObject();
+            collider_up_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos + (_tileheight - 1));
+            collider_up_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
+            up_collider.size = new Vector2(_tilewidth, 1);
+        }
+
     }
     void AddDownColliders()
     {
-        if (!IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
+        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
+        bool isInsideRoom = false;
+        if (exitTemp != null)
         {
-            GameObject collider_down_go = new GameObject();
-            collider_down_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos);
-            collider_down_go.transform.SetParent(Room_Go.transform);
-
-            BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
-            down_collider.size = new Vector2(_tilewidth, 1);
+            isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
-        else
+
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT) && countCollidersExits < numExits && isInsideRoom)
         {
+            countCollidersExits++;
+
             GameObject collider_down_go_1 = new GameObject();
             collider_down_go_1.transform.position = new Vector3(_x_pos + (((_tilewidth / 5)) - 0.5f), _y_pos);
             collider_down_go_1.transform.SetParent(Room_Go.transform);
@@ -412,6 +442,15 @@ public class Procedural_Room
 
             BoxCollider2D down_collider2 = collider_down_go_2.AddComponent<BoxCollider2D>();
             down_collider2.size = new Vector2((_tilewidth / 5) * 2, 1);
+        }
+        else
+        {
+            GameObject collider_down_go = new GameObject();
+            collider_down_go.transform.position = new Vector3(_x_pos + (_tilewidth - 1) * 0.5f, _y_pos);
+            collider_down_go.transform.SetParent(Room_Go.transform);
+
+            BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
+            down_collider.size = new Vector2(_tilewidth, 1);
         }
     }
 
@@ -491,7 +530,7 @@ public class Procedural_Room
     {
         bool ret = false;
 
-        if (point.x >= _x_pos && point.x <= _x_pos + _tilewidth && point.y >= _y_pos && point.y <= _y_pos + _tileheight)
+        if (point.x >= _x_pos && point.x < _x_pos + _tilewidth && point.y >= _y_pos && point.y < _y_pos + _tileheight)
         {
             ret = true;
         }
