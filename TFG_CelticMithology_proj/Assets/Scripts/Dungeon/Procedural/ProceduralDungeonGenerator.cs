@@ -35,6 +35,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject floorTile;
     public GameObject wallTile;
     public GameObject cornerTile;
+    public GameObject doorTile;
 
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
@@ -46,6 +47,12 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     {
         LEFT_WALL, RIGHT_WALL, UP_WALL, DOWN_WALL,
         LEFT_DOWN_CORNER, LEFT_UP_CORNER, RIGHT_DOWN_CORNER, RIGHT_UP_CORNER,
+
+        LEFT_DOOR_PREV_0, LEFT_DOOR_1, LEFT_DOOR_2, LEFT_DOOR_PREV_3,
+        RIGHT_DOOR_PREV_0, RIGHT_DOOR_1, RIGHT_DOOR_2, RIGHT_DOOR_PREV_3,
+        UP_DOOR_PREV_0, UP_DOOR_1, UP_DOOR_2, UP_DOOR_PREV_3,
+        DOWN_DOOR_PREV_0, DOWN_DOOR_1, DOWN_DOOR_2, DOWN_DOOR_PREV_3,
+
         FLOOR,
         HOLE,
     }
@@ -73,7 +80,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms, ExitDirection.NONE_DIR, 0);
         rooms.Add(room_temp);
-        room_temp.DrawRoom();
+        //room_temp.DrawRoom();
 
 
 
@@ -84,8 +91,12 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             if(testRoom != null)
             {
                 testRoom.SetColliders();
+                testRoom.SetDoors();
+                testRoom.DrawRoom();
             }
         }
+
+
 
     }
 
@@ -98,6 +109,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         if (level == realDepth)
         {
+            int it = FindInRooms(room);
+            rooms[it].usableExits[0].isUsed = true;
             return;
         }
 
@@ -105,46 +118,25 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         {
             creation_point = room.usableExits[i];
 
+            bool wantToCreate = creation_point.needRoomCreation;
+            if (!wantToCreate) {
+                int it = FindInRooms(room);
+                rooms[it].usableExits[i].isUsed = true;
+            }
+
             if (creation_point.needRoomCreation && !PointIsInsideAnyRoom(creation_point.nextRoomPos))
             {
+                int it = FindInRooms(room);
+                rooms[it].usableExits[i].isUsed = true;
                 creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level);
                 if (creation_room.wantToDraw)
                 {
                     rooms.Add(creation_room);
-                    creation_room.DrawRoom();
-
                     GenerateRoomLastChildFirst(creation_room, level + 1);
                 }
             }
         }
     }
-
-    //void GenerateRoomFirstChildFirst(Procedural_Room room, int level)
-    //{
-
-    //    Procedural_Room creation_room;
-    //    ExitDirectionPoint creation_point = new ExitDirectionPoint();
-        
-    //    if(level == maxim_depth)
-    //    {
-    //        return;
-    //    }
-
-    //    for(int i= room.usableExits.Count-1; i >= 0; i--)
-    //    {
-    //        creation_point = room.usableExits[i];
-    //        creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, creation_point.dir);
-    //        rooms.Add(creation_room);
-    //        count_rooms++;
-    //        creation_room.DrawRoom();
-    //    }
-
-    //    for (int j = count_rooms; j > count_rooms - room.usableExits.Count-1; j--)
-    //    {
-    //        GenerateRoomFirstChildFirst(rooms[j], level + 1);
-    //    }
-
-    //}
 
     ExitDirection OppositeDirection(ExitDirection dir)
     {
@@ -185,13 +177,15 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     public bool PointIsInsideAnyRoom(Vector3 point)
     {
-
         bool ret = false;
 
         foreach(Procedural_Room room_temp in rooms)
         {
-            if(room_temp!=null)
-            ret = room_temp.IsInsideRoom(point);
+            if (room_temp != null)
+            {
+                ret = room_temp.IsInsideRoom(point);
+                //thisRoom = room_temp;
+            }
 
             if (ret == true) break;
         }
@@ -201,13 +195,30 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     }
 
-    public GameObject InstantiateWithTile(bool is_wall = false, bool is_corner=false, Transform parent = null)
+    int FindInRooms(Procedural_Room myRoom)
+    {
+        int it = -1;
+
+        for (int i=0; i< rooms.Count; i++)
+        {
+            if (rooms[i].Compare(myRoom))
+            {
+                it = i;
+                break;
+            }
+        }
+
+        return it;
+    }
+
+    public GameObject InstantiateWithTile(bool is_wall = false, bool is_corner=false, bool is_door = false, Transform parent = null)
     {
         if (parent != null)
         {
-            if (!is_wall && !is_corner)
+            if (!is_wall && !is_corner && !is_door)
                 return Instantiate(floorTile, parent);
             else if (is_corner) return Instantiate(cornerTile, parent);
+            else if(is_door) return Instantiate(doorTile, parent);
             else return Instantiate(wallTile, parent);
         }
         return null;

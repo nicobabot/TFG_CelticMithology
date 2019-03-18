@@ -8,6 +8,7 @@ public class ExitDirectionPoint
     public bool needRoomCreation = true;
     public ProceduralDungeonGenerator.ExitDirection dir;
     public Vector3Int nextRoomPos;
+    public bool isUsed = false;
 }
 
 public class Procedural_Room
@@ -15,6 +16,8 @@ public class Procedural_Room
     public List<ExitDirectionPoint> usableExits;
     public bool wantToDraw = true;
     private List<ExitDirectionPoint> exits;
+
+    private List<ProceduralDungeonGenerator.ExitDirection> colliderFinalColliders;
 
     private int _x_pos;
     private int _y_pos;
@@ -46,6 +49,7 @@ public class Procedural_Room
 
         exits = new List<ExitDirectionPoint>();
         usableExits = new List<ExitDirectionPoint>();
+        colliderFinalColliders = new List<ProceduralDungeonGenerator.ExitDirection>();
 
         //usableExits
         if (dir != ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
@@ -93,13 +97,25 @@ public class Procedural_Room
             //}
 
             SetGroundAndWall();
-           // SetColliders();
+            // SetColliders();
         }
         else
         {
             wantToDraw = false;
         }
 
+    }
+
+    public bool Compare(Procedural_Room it)
+    {
+        bool ret = false;
+
+        if(it._x_pos == _x_pos && it._y_pos == _y_pos && it._tilewidth == _tilewidth && it._tileheight == _tileheight)
+        {
+            ret = true;
+        }
+
+        return ret;
     }
 
     void SetGroundAndWall()
@@ -111,6 +127,111 @@ public class Procedural_Room
 
                 DetectIfIsWall(i,j);
 
+            }
+        }
+    }
+
+
+    public void SetDoors()
+    {
+        for (int j = 0; j < _tileheight; j++)
+        {
+            for (int i = 0; i < _tilewidth; i++)
+            {
+                DetectIfIsDoor(i, j);
+            }
+        }
+    }
+
+    void DetectIfIsDoor(int i, int j)
+    {
+        //IsColliderExit
+        if (i == 0)
+        {
+            if (IsColliderExit(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
+            {
+                if (j == _tileheight / 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOOR_1;
+                }
+                else if (j == (_tileheight / 2) - 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOOR_2;
+                }
+                else if (j == (_tileheight / 2) + 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_3;
+                }
+                else if (j == (_tileheight / 2) - 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_0;
+                }
+            }
+        }
+        else if (i == (_tilewidth - 1))
+        {
+            if (IsColliderExit(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+            {
+                if (j == _tileheight / 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOOR_1;
+                }
+                else if (j == (_tileheight / 2) - 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOOR_2;
+                }
+                else if (j == (_tileheight / 2) + 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_3;
+                }
+                else if (j == (_tileheight / 2) - 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_0;
+                }
+            }
+        }
+        else if (j == 0)
+        {
+            if (IsColliderExit(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
+            {
+                if (i == _tilewidth / 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.UP_DOOR_1;
+                }
+                else if (i == (_tilewidth / 2) - 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.UP_DOOR_2;
+                }
+                else if (i == (_tilewidth / 2) + 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_3;
+                }
+                else if (i == (_tilewidth / 2) - 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_0;
+                }
+            }
+        }
+        else if (j == (_tileheight - 1))
+        {
+            if (IsColliderExit(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
+            {
+                if (i == _tilewidth / 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_DOOR_1;
+                }
+                else if (i == (_tilewidth / 2) - 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_DOOR_2;
+                }
+                else if (i == (_tilewidth / 2) + 1)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_3;
+                }
+                else if (i == (_tilewidth / 2) - 2)
+                {
+                    room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_0;
+                }
             }
         }
     }
@@ -306,16 +427,19 @@ public class Procedural_Room
 
     void AddRightColliders()
     {
-        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
+        ExitDirectionPoint exitTemp = GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
         bool isInsideRoom = false;
         if (exitTemp != null)
         {
             isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
 
-        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT) && countCollidersExits < numExits && isInsideRoom)
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT) && countCollidersExits < numExits 
+            && isInsideRoom && exitTemp.isUsed)
         {
             countCollidersExits++;
+
+            colliderFinalColliders.Add(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
 
             GameObject collider_right_go_1 = new GameObject();
             collider_right_go_1.transform.position = new Vector3(_x_pos + (_tilewidth - 1), _y_pos + ((_tileheight / 5) - 0.5f));
@@ -343,16 +467,19 @@ public class Procedural_Room
     void AddLeftColliders()
     {
 
-        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
+        ExitDirectionPoint exitTemp = GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
         bool isInsideRoom = false;
         if (exitTemp != null)
         {
             isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
 
-        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT) && countCollidersExits < numExits && isInsideRoom)
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT) && countCollidersExits < numExits
+            && isInsideRoom && exitTemp.isUsed)
         {
             countCollidersExits++;
+
+            colliderFinalColliders.Add(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
 
             GameObject collider_left_go_1 = new GameObject();
             collider_left_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
@@ -379,16 +506,19 @@ public class Procedural_Room
     }
     void AddUpColliders()
     {
-        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
+        ExitDirectionPoint exitTemp = GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
         bool isInsideRoom = false;
         if (exitTemp != null)
         {
             isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
 
-        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT) && countCollidersExits < numExits && isInsideRoom)
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.UP_EXIT) && countCollidersExits < numExits 
+            && isInsideRoom && exitTemp.isUsed)
         {
             countCollidersExits++;
+
+            colliderFinalColliders.Add(ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
 
             GameObject collider_up_go_1 = new GameObject();
             //collider_up_go_1.transform.position = new Vector3(_x_pos, _y_pos + ((_tileheight / 5) - 0.5f));
@@ -418,16 +548,19 @@ public class Procedural_Room
     }
     void AddDownColliders()
     {
-        ExitDirectionPoint exitTemp = GetExitInfo(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
+        ExitDirectionPoint exitTemp = GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
         bool isInsideRoom = false;
         if (exitTemp != null)
         {
             isInsideRoom = ProceduralDungeonGenerator.mapGenerator.PointIsInsideAnyRoom(exitTemp.nextRoomPos);
         }
 
-        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT) && countCollidersExits < numExits && isInsideRoom)
+        if (IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT) && countCollidersExits < numExits 
+            && isInsideRoom && exitTemp.isUsed)
         {
             countCollidersExits++;
+
+            colliderFinalColliders.Add(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
 
             GameObject collider_down_go_1 = new GameObject();
             collider_down_go_1.transform.position = new Vector3(_x_pos + (((_tilewidth / 5)) - 0.5f), _y_pos);
@@ -472,6 +605,21 @@ public class Procedural_Room
         return ret;
     }
 
+    bool IsColliderExit(ProceduralDungeonGenerator.ExitDirection mydir)
+    {
+        bool ret = false;
+        for (int i = 0; i < colliderFinalColliders.Count; i++)
+        {
+                if (colliderFinalColliders[i] == mydir)
+                {
+                    ret = true;
+                }
+
+        }
+
+        return ret;
+    }
+
     ExitDirectionPoint GetExitInfo(ProceduralDungeonGenerator.ExitDirection mydir)
     {
         ExitDirectionPoint temp = null;
@@ -483,6 +631,25 @@ public class Procedural_Room
                 if (exits[i].dir == mydir)
                 {
                     temp = exits[i];
+                }
+            }
+
+        }
+
+        return temp;
+    }
+
+    ExitDirectionPoint GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection mydir)
+    {
+        ExitDirectionPoint temp = null;
+
+        for (int i = 0; i < usableExits.Count; i++)
+        {
+            if (usableExits[i] != null)
+            {
+                if (usableExits[i].dir == mydir)
+                {
+                    temp = usableExits[i];
                 }
             }
 
@@ -507,18 +674,38 @@ public class Procedural_Room
                 switch (room[i][j])
                 {
                     case ProceduralDungeonGenerator.TileType.FLOOR:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false,false, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false,false, false, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
                     case ProceduralDungeonGenerator.TileType.LEFT_DOWN_CORNER:
                     case ProceduralDungeonGenerator.TileType.LEFT_UP_CORNER:
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOWN_CORNER:
                     case ProceduralDungeonGenerator.TileType.RIGHT_UP_CORNER:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, true, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, true, false, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
+                    case ProceduralDungeonGenerator.TileType.UP_DOOR_1:
+                    case ProceduralDungeonGenerator.TileType.UP_DOOR_2:
+                    case ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_0:
+                    case ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_3:
+                    case ProceduralDungeonGenerator.TileType.DOWN_DOOR_1:
+                    case ProceduralDungeonGenerator.TileType.DOWN_DOOR_2:
+                    case ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_0:
+                    case ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_3:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_1:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_2:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_0:
+                    case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_3:
+                    case ProceduralDungeonGenerator.TileType.LEFT_DOOR_1:
+                    case ProceduralDungeonGenerator.TileType.LEFT_DOOR_2:
+                    case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_0:
+                    case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_3:
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, false, true, Room_Go.transform);
+                        temp.transform.position = tile_pos;
+                        break;
+
                     default:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, false, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, false, false, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
                 }
