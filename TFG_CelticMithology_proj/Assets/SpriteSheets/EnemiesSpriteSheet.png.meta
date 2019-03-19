@@ -47,6 +47,27 @@ TextureImporter:
     21300084: Cartonach_back_idle_5
     21300086: Cartonach_back_idle_6
     21300088: Cartonach_back_idle_7
+    21300090: Cartonach_back_Shoot_0
+    21300092: Cartonach_back_Shoot_1
+    21300094: Cartonach_back_Shoot_2
+    21300096: Cartonach_back_Shoot_3
+    21300098: Cartonach_back_Shoot_4
+    21300100: Cartonach_back_Shoot_5
+    21300102: Cartonach_back_Shoot_6
+    21300104: Cartonach_front_Shoot_0
+    21300106: Cartonach_front_Shoot_1
+    21300108: Cartonach_front_Shoot_2
+    21300110: Cartonach_front_Shoot_3
+    21300112: Cartonach_front_Shoot_4
+    21300114: Cartonach_front_Shoot_5
+    21300116: Cartonach_front_Shoot_6
+    21300118: Cartonach_side_Shoot_0
+    21300120: Cartonach_side_Shoot_1
+    21300122: Cartonach_side_Shoot_2
+    21300124: Cartonach_side_Shoot_3
+    21300126: Cartonach_side_Shoot_4
+    21300128: Cartonach_side_Shoot_5
+    21300130: Cartonach_side_Shoot_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1035,6 +1056,426 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1e300555fd397564aa75976ff57371ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94aaa88a884f8944386d8468038055ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13238b9e3f6bf4458c1d922becf9864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce26b1a38a02028498b96c51279e574d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1c30c75f240694685096b70e1a4b34
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b77594c0cfdc985449ee117298cade07
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae746a6a91136534397cacada3bc226f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_back_Shoot_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 175
+        width: 34
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d7d2f838d502e40ae86492e45cd43c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d06d6e89102f1eb4b9bb3ac57ea77b4e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c0bab6fd882d75488597d24d4688e48
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ac1f2de692db54f85b62483cb4debf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 316aa3ceb1b9eb34bac7ac562e1aba2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76ad533f722cd604f924b27def192fa2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ad5dacce54dcd488388d11038b713c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_front_Shoot_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 217
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f04f3079c866fe4a87f0a286c22b137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46cc40014a582d545b5232d2f8d32e69
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab121f1a8d50324292b2d377ea1ad00
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12b3de41c5a435f41aa88c3ce1f1eecf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d3deca44cd77a4d979da32636a4af8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a1cb83dfbff6040a7c65b4311e5c8b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968bc626108fc654e8f8e362e75296af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cartonach_side_Shoot_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 261
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb9fa58b56008541a5256f06678d55d
       vertices: []
       indices: 
       edges: []

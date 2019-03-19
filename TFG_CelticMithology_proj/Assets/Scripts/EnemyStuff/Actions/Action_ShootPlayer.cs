@@ -21,6 +21,9 @@ public class Action_ShootPlayer : ActionBase {
     private Vector3 hitpoint_wall;
     private Action_FollowPlayer follow_player_scr;
 
+    private Animator anim;
+    float animation_timer = 0.0f;
+
     override public BT_Status StartAction()
     {
         timer_spawn_proj = time_to_spawn_projectile;
@@ -54,6 +57,13 @@ public class Action_ShootPlayer : ActionBase {
 
         if (timer_spawn_proj > time_to_spawn_projectile)
         {
+            //Start shoot animation
+            anim = GetComponent<Animator>();
+            anim.SetBool("enemy_idle", false);
+
+            AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
+            float lenght_anim = anim_clip[0].clip.length;
+
             if (!only_stright_shots)
             {
                 Calculate_Direction();
@@ -62,15 +72,24 @@ public class Action_ShootPlayer : ActionBase {
             {
                 Calculate_Stright_Direction();
             }
-            GameObject my_projectile = Instantiate(projectile);
-            my_projectile.SetActive(true);
-            my_projectile.transform.position = transform.position;
-            Projectile_Behaviour projectile_scr = my_projectile.GetComponent<Projectile_Behaviour>();
-            if (projectile_scr != null)
+
+            if (animation_timer >= (lenght_anim * 0.75f))
             {
-                projectile_scr.CreateProjectile(pushback_dir, hitpoint_wall, projectile_min_distance, projectile_velocity);
+                GameObject my_projectile = Instantiate(projectile);
+                my_projectile.SetActive(true);
+                my_projectile.transform.position = transform.position;
+                Projectile_Behaviour projectile_scr = my_projectile.GetComponent<Projectile_Behaviour>();
+                if (projectile_scr != null)
+                {
+                    projectile_scr.CreateProjectile(pushback_dir, hitpoint_wall, projectile_min_distance, projectile_velocity);
+                }
+
+                anim.SetBool("enemy_idle", true);
+                timer_spawn_proj = 0.0f;
+                animation_timer = 0.0f;
             }
-            timer_spawn_proj = 0.0f;
+            else animation_timer += Time.deltaTime;
+
         }
 
         return BT_Status.RUNNING;
@@ -98,6 +117,7 @@ public class Action_ShootPlayer : ActionBase {
         {
             case Direction.RIGHT:
                 pushback_dir = transform.right;
+                //anim.SetFloat()
                 break;
             case Direction.LEFT:
                 pushback_dir = -transform.right;
