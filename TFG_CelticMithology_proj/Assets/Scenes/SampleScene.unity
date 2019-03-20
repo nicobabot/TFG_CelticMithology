@@ -169,7 +169,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191174297207392, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1614,7 +1614,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1968024051260442, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4027992325150412, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -13821,7 +13821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_Name
@@ -17577,7 +17577,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_Name
@@ -18849,11 +18849,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4349519852148070, guid: 9c0398df7aeb93e439b08deaf20f29ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -25.72
+      value: -27.81
       objectReference: {fileID: 0}
     - target: {fileID: 4349519852148070, guid: 9c0398df7aeb93e439b08deaf20f29ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.72
+      value: 18.32
       objectReference: {fileID: 0}
     - target: {fileID: 4349519852148070, guid: 9c0398df7aeb93e439b08deaf20f29ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20656,6 +20656,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1695589486418046, guid: f62b5f1958961ca4487e2ac1e277bf19, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338160220401512, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -20840,6 +20845,10 @@ Prefab:
     - target: {fileID: 1922859857836306, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
       propertyPath: m_Name
       value: Caorthannach (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922859857836306, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
