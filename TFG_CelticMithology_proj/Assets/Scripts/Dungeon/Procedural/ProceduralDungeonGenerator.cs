@@ -110,6 +110,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         if (level == realDepth)
         {
             int it = FindInRooms(room);
+            if(rooms[it].usableExits.Count>0)
             rooms[it].usableExits[0].isUsed = true;
             return;
         }
