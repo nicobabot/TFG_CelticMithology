@@ -17,6 +17,8 @@ public class Procedural_Room
     public bool wantToDraw = true;
     private List<ExitDirectionPoint> exits;
 
+    public List<BoxCollider2D> doors;
+
     private List<ProceduralDungeonGenerator.ExitDirection> colliderFinalColliders;
 
     private int _x_pos;
@@ -31,9 +33,12 @@ public class Procedural_Room
     private bool hasFirstExit = false;
 
     private GameObject Room_Go;
+    RunTimeRoomControl controlRoom;
 
     private int numExits = 0;
     private int countCollidersExits = 0;
+    private int _mylevel = 0;
+    private int _myNumRoom = 0;
 
     public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room,
         ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
@@ -43,12 +48,16 @@ public class Procedural_Room
         _tilewidth = new_tilewidth;
         _tileheight = new_tileheight;
 
+        _mylevel = levelDepth;
+        _myNumRoom = num_room;
+
         Room_Go = new GameObject("Room " + num_room.ToString());
 
         grid = ProceduralDungeonGenerator.mapGenerator.grid;
 
         exits = new List<ExitDirectionPoint>();
         usableExits = new List<ExitDirectionPoint>();
+        doors = new List<BoxCollider2D>();
         colliderFinalColliders = new List<ProceduralDungeonGenerator.ExitDirection>();
 
         if (dir != ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
@@ -85,12 +94,24 @@ public class Procedural_Room
             }
 
             SetGroundAndWall();
+
+            controlRoom = Room_Go.AddComponent<RunTimeRoomControl>();
+
         }
         else
         {
             wantToDraw = false;
         }
 
+    }
+
+    public RunTimeRoomControl GetRunTimeControllScr()
+    {
+        if (controlRoom == null)
+        {
+            return null;
+        }
+        return controlRoom;
     }
 
     public bool Compare(Procedural_Room it)
@@ -103,6 +124,15 @@ public class Procedural_Room
         }
 
         return ret;
+    }
+
+    public void InitializeRoomRunTimeValues()
+    {
+        if (wantToDraw)
+        {
+            controlRoom.InitializeRoomValues(ProceduralDungeonGenerator.mapGenerator.DetectPlayer, doors, _x_pos, _y_pos, 
+                _tileheight,_tilewidth, _mylevel, _myNumRoom);
+        }
     }
 
     void SetGroundAndWall()
@@ -307,6 +337,8 @@ public class Procedural_Room
 
                     BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
                     right_collider.size = new Vector2(1, _tileheight/5);
+                    right_collider.isTrigger = true;
+                    doors.Add(right_collider);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
                     GameObject collider_left_go = new GameObject("ColliderDoor Left");
@@ -315,6 +347,8 @@ public class Procedural_Room
 
                     BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
                     left_collider.size = new Vector2(1, _tileheight/5);
+                    left_collider.isTrigger = true;
+                    doors.Add(left_collider);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
                     GameObject collider_up_go = new GameObject("ColliderDoor Up");
@@ -323,6 +357,8 @@ public class Procedural_Room
 
                     BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
                     up_collider.size = new Vector2(_tilewidth/5, 1);
+                    up_collider.isTrigger = true;
+                    doors.Add(up_collider);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
                     GameObject collider_down_go = new GameObject("ColliderDoor Down");
@@ -331,6 +367,8 @@ public class Procedural_Room
 
                     BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
                     down_collider.size = new Vector2(_tilewidth/5, 1);
+                    down_collider.isTrigger = true;
+                    doors.Add(down_collider);
                     break;
             }
         }

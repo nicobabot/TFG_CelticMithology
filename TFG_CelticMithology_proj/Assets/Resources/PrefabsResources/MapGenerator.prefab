@@ -54,9 +54,10 @@ MonoBehaviour:
   grid: {fileID: 0}
   tilesWidthMap: 100
   tilesHeightMap: 100
-  maxim_depth: 15
+  maxim_depth: 50
   tilesWidthRoom: 20
   tilesHeightRoom: 20
+  DetectPlayer: {fileID: 0}
   floorTile: {fileID: 1466677337081252, guid: 9c0c98f4190a067418e7af806e1df8e2, type: 2}
   wallTile: {fileID: 1550786581246124, guid: 4a545dd1639a114498a14d7a48e9ec34, type: 2}
   cornerTile: {fileID: 1550786581246124, guid: 2ac0b225b00e4104aa73bfe66727feee, type: 2}

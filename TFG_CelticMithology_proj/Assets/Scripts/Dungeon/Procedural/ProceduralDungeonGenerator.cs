@@ -32,6 +32,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public int tilesWidthRoom;
     public int tilesHeightRoom;
 
+    public BoxCollider2D DetectPlayer;
+
     public GameObject floorTile;
     public GameObject wallTile;
     public GameObject cornerTile;
@@ -92,6 +94,10 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             {
                 testRoom.SetColliders();
                 testRoom.SetDoors();
+
+                //InitializeRoomsRunTimeValues
+                testRoom.InitializeRoomRunTimeValues();
+
                 testRoom.DrawRoom();
             }
         }
@@ -194,6 +200,26 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         return ret;
 
+    }
+
+    public Procedural_Room GetRoomByPoint(Vector3 point)
+    {
+        Procedural_Room roomRet = null;
+        bool ret = false;
+
+        foreach (Procedural_Room room_temp in rooms)
+        {
+            if (room_temp != null)
+            {
+                ret = room_temp.IsInsideRoom(point);
+                if (ret)
+                {
+                    roomRet = room_temp;
+                    break;
+                }
+            }
+        }
+        return roomRet;
     }
 
     int FindInRooms(Procedural_Room myRoom)
