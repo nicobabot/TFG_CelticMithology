@@ -82,12 +82,12 @@ public class Action_FollowPlayer : ActionBase
         {
 
             //can_reach = Recalculate_Path();
-            if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
-            {
-                can_reach = Recalculate_Path();
-            }
+            //if (myBT.pathfinder_scr.walkability.LocalToCell(player.transform.position) != cell_destiny_pos)
+            //{
+            //    can_reach = Recalculate_Path();
+            //}
 
-            if (can_reach)
+            //if (can_reach)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             }
@@ -102,22 +102,27 @@ public class Action_FollowPlayer : ActionBase
 
     public bool Recalculate_Path()
     {
-        bool can_reach = false;
+        bool can_reach = true;
 
-        if (tiles_list != null)
-            tiles_list.Clear();
+        if (use_pathfinding)
+        {
+            can_reach = false;
 
-        timer_changing = 0;
-        cells_changed = 0;
+            if (tiles_list != null)
+                tiles_list.Clear();
 
-        destiny_pos = player.transform.position;
+            timer_changing = 0;
+            cells_changed = 0;
 
-        cell_destiny_pos = myBT.pathfinder_scr.walkability.LocalToCell(destiny_pos);
+            destiny_pos = player.transform.position;
 
-        cell_pos = myBT.pathfinder_scr.walkability.LocalToCell(transform.position);
+            cell_destiny_pos = myBT.pathfinder_scr.walkability.LocalToCell(destiny_pos);
 
-        tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y), out can_reach);
+            cell_pos = myBT.pathfinder_scr.walkability.LocalToCell(transform.position);
 
+            tiles_list = myBT.pathfinder_scr.CalculatePath(new PathNode(cell_pos.x, cell_pos.y), new PathNode(cell_destiny_pos.x, cell_destiny_pos.y), out can_reach);
+
+        }
         return can_reach;
     }
 

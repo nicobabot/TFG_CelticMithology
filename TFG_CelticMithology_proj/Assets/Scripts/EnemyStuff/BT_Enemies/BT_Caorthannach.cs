@@ -23,7 +23,7 @@ public class BT_Caorthannach : BT_Entity
         float direction = (value_y - (-1)) / (2);
         anim.SetFloat("enemy_direction", direction);
 
-        Debug.Log(value_x);
+        //Debug.Log(value_x);
 
         if (value_x < 0.0f)
              GetComponent<SpriteRenderer>().flipX = true;

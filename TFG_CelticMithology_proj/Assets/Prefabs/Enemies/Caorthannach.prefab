@@ -231,7 +231,7 @@ BoxCollider2D:
   m_Offset: {x: -0.079535484, y: 0.7873962}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.84, y: 1.48}
     newSize: {x: 0.84, y: 1.48}
     adaptiveTilingThreshold: 0.5
@@ -281,7 +281,7 @@ MonoBehaviour:
     my_value: 0
   player:
     my_name: player
-    my_value: {fileID: 0}
+    my_value: {fileID: 1289332331540074, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
   direction:
     my_name: direction
     my_value: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   dead: {fileID: 114746696178397502}
   damage_static: {fileID: 114785552933936718}
   anim: {fileID: 95672729717372942}
-  player: {fileID: 0}
+  player: {fileID: 1289332331540074, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
 --- !u!114 &114152889214978770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: Follow Player
-  use_pathfinding: 1
+  use_pathfinding: 0
   time_to_change_cell: 1
   speed: 4
 --- !u!114 &114343184806376618
@@ -416,9 +416,9 @@ MonoBehaviour:
   layer_wall:
     serializedVersion: 2
     m_Bits: 2048
-  projectile: {fileID: 0}
+  projectile: {fileID: 1682421969592024, guid: d4ce94043e64502449fc181d4bbe2a61, type: 2}
   time_to_spawn_projectile: 2
-  only_stright_shots: 1
+  only_stright_shots: 0
   projectile_min_distance: 0.1
   projectile_velocity: 5
 --- !u!114 &114746696178397502

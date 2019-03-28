@@ -28,6 +28,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     [SerializeField] private int tilesHeightMap;
     [SerializeField] private int maxim_depth;
 
+    public GameObject Player;
+
     [Header("Room values")]
     public int tilesWidthRoom;
     public int tilesHeightRoom;
@@ -38,6 +40,10 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject wallTile;
     public GameObject cornerTile;
     public GameObject doorTile;
+
+    [Header("Enemy prefabs")]
+    public GameObject meleeEnemey;
+    public GameObject caorthannach;
 
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
@@ -84,8 +90,6 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         rooms.Add(room_temp);
         //room_temp.DrawRoom();
 
-
-
         GenerateRoomLastChildFirst(room_temp,0);
 
         foreach (Procedural_Room testRoom in rooms)
@@ -101,9 +105,6 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 testRoom.DrawRoom();
             }
         }
-
-
-
     }
 
     void GenerateRoomLastChildFirst(Procedural_Room room, int level)
