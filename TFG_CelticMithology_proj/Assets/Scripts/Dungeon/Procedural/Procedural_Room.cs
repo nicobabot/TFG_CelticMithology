@@ -17,7 +17,7 @@ public class Procedural_Room
     public bool wantToDraw = true;
     private List<ExitDirectionPoint> exits;
 
-    public List<BoxCollider2D> doors;
+    public Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> doors;
 
     private List<ProceduralDungeonGenerator.ExitDirection> colliderFinalColliders;
 
@@ -57,7 +57,7 @@ public class Procedural_Room
 
         exits = new List<ExitDirectionPoint>();
         usableExits = new List<ExitDirectionPoint>();
-        doors = new List<BoxCollider2D>();
+        doors = new Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection>();
         colliderFinalColliders = new List<ProceduralDungeonGenerator.ExitDirection>();
 
         if (dir != ProceduralDungeonGenerator.ExitDirection.NONE_DIR)
@@ -339,7 +339,7 @@ public class Procedural_Room
                     BoxCollider2D right_collider = collider_right_go.AddComponent<BoxCollider2D>();
                     right_collider.size = new Vector2(1, _tileheight/5);
                     right_collider.isTrigger = true;
-                    doors.Add(right_collider);
+                    doors.Add(right_collider, ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
                     GameObject collider_left_go = new GameObject("ColliderDoor Left");
@@ -350,7 +350,7 @@ public class Procedural_Room
                     BoxCollider2D left_collider = collider_left_go.AddComponent<BoxCollider2D>();
                     left_collider.size = new Vector2(1, _tileheight/5);
                     left_collider.isTrigger = true;
-                    doors.Add(left_collider);
+                    doors.Add(left_collider, ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
                     GameObject collider_up_go = new GameObject("ColliderDoor Up");
@@ -361,7 +361,7 @@ public class Procedural_Room
                     BoxCollider2D up_collider = collider_up_go.AddComponent<BoxCollider2D>();
                     up_collider.size = new Vector2(_tilewidth/5, 1);
                     up_collider.isTrigger = true;
-                    doors.Add(up_collider);
+                    doors.Add(up_collider, ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
                     break;
                 case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
                     GameObject collider_down_go = new GameObject("ColliderDoor Down");
@@ -372,7 +372,7 @@ public class Procedural_Room
                     BoxCollider2D down_collider = collider_down_go.AddComponent<BoxCollider2D>();
                     down_collider.size = new Vector2(_tilewidth/5, 1);
                     down_collider.isTrigger = true;
-                    doors.Add(down_collider);
+                    doors.Add(down_collider, ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
                     break;
             }
         }

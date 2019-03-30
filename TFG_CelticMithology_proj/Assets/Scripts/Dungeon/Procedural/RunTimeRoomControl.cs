@@ -2,16 +2,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+//using Random.range
 
 public class EnemiesRoom
 {
     public GameObject myEnemy;
     public Enemy_type myEnemyType;
+    public int mydificultyPoints;
 
-    public EnemiesRoom(Enemy_type newMyEnemyType, GameObject newMyEnemy)
+    public EnemiesRoom(Enemy_type newMyEnemyType, GameObject newMyEnemy, int difPoints)
     {
         myEnemyType = newMyEnemyType;
         myEnemy = newMyEnemy;
+        mydificultyPoints = difPoints;
     }
 }
 
@@ -42,7 +45,8 @@ public class EnemyPos
 
 public class RunTimeRoomControl : MonoBehaviour {
 
-    [HideInInspector]public List<BoxCollider2D> mydoors;
+    
+    [HideInInspector]public Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> mydoors;
     private BoxCollider2D _myComponent;
 
     private List<RunTimeRoomControl> _myneighbourgs;
@@ -66,7 +70,12 @@ public class RunTimeRoomControl : MonoBehaviour {
     private int _enemiesDead = 0;
     private int _enemiesInRoomCount = 0;
 
-    public void InitializeRoomValues(BoxCollider2D detectPlayerValue, List<BoxCollider2D> doors,
+    private int _maximumPoints = 20;
+    private int _counterPints = 0;
+
+    private bool _continueSpawning = true;
+
+    public void InitializeRoomValues(BoxCollider2D detectPlayerValue, Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> doors,
     int x, int y, int width, int height, int level, int numRoom)
     {
         _x_pos = x;
@@ -106,44 +115,87 @@ public class RunTimeRoomControl : MonoBehaviour {
         _enemyPositions = new List<EnemyPos>();
 
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + 1, 0), EnemyPositionEnum.LEFT_BOT_CORNER));
+
+        if(!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + 1, 0), EnemyPositionEnum.MIDDLE_BOT_POS));
+
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + 1, 0), EnemyPositionEnum.RIGHT_BOT_CORNER));
+        //-------------------------
+
 
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.LEFT_TOP_CORNER));
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
+
+        if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
+
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.RIGHT_TOP_CORNER));
+        //-----------------------
 
         float _middleDownPosition = ((_tileheight) / 6) * 2;
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+        if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
+
+        if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
+        //---------------------------
 
         float _middleUpperPosition = ((_tileheight) / 6) * 4;
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+        if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
+
+        if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
     }
 
     public void SetEnemies()
     {
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5));
     }
 
     void SpawnEnemies()
     {
         //First test to spawn
 
-        _enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[0].myEnemyType, Instantiate(_possibleEnemies[0].myEnemy)));
-        _enemiesInRoom[0].myEnemy.transform.position = _enemyPositions[4]._position;
-        _enemyPositions[4]._alreadyUsed = true;
+        //_enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[0].myEnemyType, Instantiate(_possibleEnemies[0].myEnemy), _possibleEnemies[0].mydificultyPoints));
+        //_enemiesInRoom[0].myEnemy.transform.position = _enemyPositions[4]._position;
+        //_enemyPositions[4]._alreadyUsed = true;
 
 
-        _enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[1].myEnemyType, Instantiate(_possibleEnemies[1].myEnemy)));
-        _enemiesInRoom[1].myEnemy.transform.position = _enemyPositions[6]._position;
-        _enemyPositions[6]._alreadyUsed = true;
+        //_enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[1].myEnemyType, Instantiate(_possibleEnemies[1].myEnemy), _possibleEnemies[1].mydificultyPoints));
+        //_enemiesInRoom[1].myEnemy.transform.position = _enemyPositions[6]._position;
+        //_enemyPositions[6]._alreadyUsed = true;
+
+        if (_continueSpawning)
+        {
+            foreach (EnemiesRoom enemy in _possibleEnemies)
+            {
+                if(NumberEnemiesOfType(enemy.myEnemyType) <= 2)
+                {
+                    EnemyPos enemyPos = GetPositionToSpawnNotUsed();
+
+                    GameObject go = Instantiate(enemy.myEnemy);
+                    go.transform.position = enemyPos._position;
+                    _enemiesInRoom.Add(new EnemiesRoom(enemy.myEnemyType, go, enemy.mydificultyPoints));
+                    _counterPints += enemy.mydificultyPoints;
+                }
+            }
+
+            if (_counterPints == _maximumPoints)
+            {
+                _continueSpawning = true;
+            }
+            else
+            {
+                SpawnEnemies();
+            }
+        }
 
         _enemiesInRoomCount = _enemiesInRoom.Count;
     }
@@ -169,6 +221,21 @@ public class RunTimeRoomControl : MonoBehaviour {
         }
 	}
 
+    EnemyPos GetPositionToSpawnNotUsed()
+    {
+        EnemyPos ret;
+        int randPos = 0;
+
+        do
+        {
+            randPos = UnityEngine.Random.Range(0, _enemyPositions.Count);
+        } while (_enemyPositions[randPos]._alreadyUsed);
+
+        _enemyPositions[randPos]._alreadyUsed = true;
+        ret = _enemyPositions[randPos];
+
+        return ret;
+    }
 
     void DetectEnemyLives()
     {
@@ -229,7 +296,19 @@ public class RunTimeRoomControl : MonoBehaviour {
             }
         }
     }
-    
+
+    int NumberEnemiesOfType(Enemy_type type)
+    {
+        int retNum = 0;
+        foreach (EnemiesRoom enemy in _enemiesInRoom)
+        {
+            if(enemy.myEnemyType == type)
+            {
+                retNum++;
+            }
+        }
+        return retNum;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -237,16 +316,19 @@ public class RunTimeRoomControl : MonoBehaviour {
         {
             //closeDoors
             _playerInsideRoom = true;
-            ActivateDeactivateDoors(false);
-            ActivateEnemies();
+            if (!_roomFinished)
+            {
+                ActivateDeactivateDoors(false);
+                ActivateEnemies();
+            }
         }
     }
 
     void ActivateDeactivateDoors(bool needTrigger)
     {
-        for(int i=0; i<mydoors.Count; i++)
+        foreach (KeyValuePair<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> door in mydoors)
         {
-            mydoors[i].isTrigger = needTrigger;
+            door.Key.isTrigger = needTrigger;
         }
     }
 

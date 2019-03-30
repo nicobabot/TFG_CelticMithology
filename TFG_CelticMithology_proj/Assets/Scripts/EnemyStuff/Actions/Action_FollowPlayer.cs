@@ -146,14 +146,14 @@ public class Action_FollowPlayer : ActionBase
         if (dif_x > dif_y)
         {
             dir_y = Direction.NEUTRAL;
-            Debug.Log("Going " + dir_x.ToString());
+            //Debug.Log("Going " + dir_x.ToString());
             myBT.myBB.SetParameter("direction", dir_x);
             return dir_x;
         }
         else
         {
             dir_x = Direction.NEUTRAL;
-            Debug.Log("Going " + dir_y.ToString());
+            //Debug.Log("Going " + dir_y.ToString());
             myBT.myBB.SetParameter("direction", dir_y);
             return dir_y;
         }
