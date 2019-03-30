@@ -46,22 +46,24 @@ public class BT_Caorthannach : BT_Entity
     {
         bool decide = false;
 
-        if (currentAction != shoot && (bool)myBB.GetParameter("is_enemy_hit") == false && is_dead == false)
+        if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            currentAction = shoot;
-            decide = true;
+            if (currentAction != shoot && (bool)myBB.GetParameter("is_enemy_hit") == false && is_dead == false)
+            {
+                currentAction = shoot;
+                decide = true;
+            }
+            else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
+            {
+                currentAction = damage_static;
+                decide = true;
+            }
+            else if (currentAction != dead && is_dead == true)
+            {
+                currentAction = dead;
+                decide = true;
+            }
         }
-        else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
-        {
-            currentAction = damage_static;
-            decide = true;
-        }
-        else if (currentAction != dead && is_dead == true)
-        {
-            currentAction = dead;
-            decide = true;
-        }
-
 
         return decide;
     }

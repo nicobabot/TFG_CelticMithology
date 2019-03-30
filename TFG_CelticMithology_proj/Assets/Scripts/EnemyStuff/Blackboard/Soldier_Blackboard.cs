@@ -5,6 +5,7 @@
     public ParameterBool is_enemy_hit;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
+    public ParameterBool playerIsInsideRoom;
 
     // Use this for initialization
     override public void Start()
@@ -17,5 +18,7 @@
         player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
+        playerIsInsideRoom.myValue = false;
+        list.Add(playerIsInsideRoom);
     }
 }

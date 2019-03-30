@@ -54,7 +54,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   tilesWidthMap: 100
   tilesHeightMap: 100
-  maxim_depth: 5
+  maxim_depth: 20
   Player: {fileID: 0}
   tilesWidthRoom: 20
   tilesHeightRoom: 20

@@ -53,16 +53,18 @@ public class RunTimeRoomControl : MonoBehaviour {
     private List<EnemiesRoom> _possibleEnemies;
 
     private bool _playerInsideRoom = false;
+    private bool _roomFinished = false;
 
     private int _x_pos;
     private int _y_pos;
     private int _tilewidth;
     private int _tileheight;
 
-    private int mylevel = 0;
-    private int mynumRoom = 0;
+    private int _mylevel = 0;
+    private int _mynumRoom = 0;
 
-    private int enemiesDead = 0;
+    private int _enemiesDead = 0;
+    private int _enemiesInRoomCount = 0;
 
     public void InitializeRoomValues(BoxCollider2D detectPlayerValue, List<BoxCollider2D> doors,
     int x, int y, int width, int height, int level, int numRoom)
@@ -73,23 +75,25 @@ public class RunTimeRoomControl : MonoBehaviour {
         _tileheight = height;
 
 
-        mylevel = level;
+        _mylevel = level;
 
-        mynumRoom = numRoom;
+        _mynumRoom = numRoom;
 
         mydoors = doors;
 
         _enemiesInRoom = new List<EnemiesRoom>();
         _possibleEnemies = new List<EnemiesRoom>();
 
-        SetPosiblePointsEnemies();
 
-        SetEnemies();
-
-        SpawnEnemies();
-
-        if (mylevel != 0 || mynumRoom != 0)
+        if (_mylevel != 0 || _mynumRoom != 0)
         {
+
+            SetPosiblePointsEnemies();
+
+            SetEnemies();
+
+            SpawnEnemies();
+
             _myComponent = gameObject.AddComponent<BoxCollider2D>();
             _myComponent.isTrigger = true;
             _myComponent.offset = new Vector2(detectPlayerValue.offset.x + _x_pos, detectPlayerValue.offset.y + _y_pos);
@@ -140,6 +144,8 @@ public class RunTimeRoomControl : MonoBehaviour {
         _enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[1].myEnemyType, Instantiate(_possibleEnemies[1].myEnemy)));
         _enemiesInRoom[1].myEnemy.transform.position = _enemyPositions[6]._position;
         _enemyPositions[6]._alreadyUsed = true;
+
+        _enemiesInRoomCount = _enemiesInRoom.Count;
     }
 
     // Use this for initialization
@@ -150,10 +156,14 @@ public class RunTimeRoomControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (_playerInsideRoom)
+        if (_playerInsideRoom && !_roomFinished)
         {
-            if (enemiesDead == _enemiesInRoom.Count)
+            DetectEnemyLives();
+
+            if (_enemiesDead >= _enemiesInRoomCount)
             {
+                _playerInsideRoom = false;
+                _roomFinished = true;
                 ActivateDeactivateDoors(true);
             }
         }
@@ -174,7 +184,8 @@ public class RunTimeRoomControl : MonoBehaviour {
                     {
                         if (((Soldier_Blackboard)bb).life.myValue <= 0)
                         {
-                            enemiesDead++;
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
                         }
                     }
                     break;
@@ -184,8 +195,35 @@ public class RunTimeRoomControl : MonoBehaviour {
                     {
                         if (((Caorthannach_Blackboard)bb).life.myValue <= 0)
                         {
-                            enemiesDead++;
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
                         }
+                    }
+                    break;
+            }
+        }
+    }
+
+    void ActivateEnemies()
+    {
+        Blackboard bb;
+
+        foreach (EnemiesRoom enemiesRoom in _enemiesInRoom)
+        {
+            switch (enemiesRoom.myEnemyType)
+            {
+                case Enemy_type.MEELE_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<Soldier_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((Soldier_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+                case Enemy_type.CARTONACH_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<Caorthannach_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((Caorthannach_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
             }
@@ -200,13 +238,7 @@ public class RunTimeRoomControl : MonoBehaviour {
             //closeDoors
             _playerInsideRoom = true;
             ActivateDeactivateDoors(false);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "player_movement_collider")
-        {
-            _playerInsideRoom = false;
+            ActivateEnemies();
         }
     }
 

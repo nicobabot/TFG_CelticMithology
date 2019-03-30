@@ -36,26 +36,29 @@ public class BT_Soldier : BT_Entity
     {
         bool decide = false;
 
-        if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false && is_dead == false)
+        if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            currentAction = chase;
-            decide = true;
+            if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false && is_dead == false)
+            {
+                currentAction = chase;
+                decide = true;
+            }
+            else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
+            {
+                currentAction = pushback;
+                decide = true;
+            }
+            else if (currentAction != dead && is_dead == true)
+            {
+                currentAction = dead;
+                decide = true;
+            }
+            /*else if (can_start_combat == true)
+            {
+                currentAction = melee_attack;
+                decide = true;
+            }*/
         }
-        else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
-        {
-            currentAction = pushback;
-            decide = true;
-        }
-        else if (currentAction != dead && is_dead == true)
-        {
-            currentAction = dead;
-            decide = true;
-        }
-        /*else if (can_start_combat == true)
-        {
-            currentAction = melee_attack;
-            decide = true;
-        }*/
 
         return decide;
     }
