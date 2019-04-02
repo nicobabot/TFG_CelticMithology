@@ -9,12 +9,14 @@ public class EnemiesRoom
     public GameObject myEnemy;
     public Enemy_type myEnemyType;
     public int mydificultyPoints;
+    public int maxEnemiesOfType;
 
-    public EnemiesRoom(Enemy_type newMyEnemyType, GameObject newMyEnemy, int difPoints)
+    public EnemiesRoom(Enemy_type newMyEnemyType, GameObject newMyEnemy, int difPoints, int newMaxEnemiesOfType=0)
     {
         myEnemyType = newMyEnemyType;
         myEnemy = newMyEnemy;
         mydificultyPoints = difPoints;
+        maxEnemiesOfType = newMaxEnemiesOfType;
     }
 }
 
@@ -59,6 +61,8 @@ public class RunTimeRoomControl : MonoBehaviour {
     private bool _playerInsideRoom = false;
     private bool _roomFinished = false;
 
+    private int[] numEnemyTypes;
+
     private int _x_pos;
     private int _y_pos;
     private int _tilewidth;
@@ -71,7 +75,7 @@ public class RunTimeRoomControl : MonoBehaviour {
     private int _enemiesInRoomCount = 0;
 
     private int _maximumPoints = 20;
-    private int _counterPints = 0;
+    private int _counterPoints = 0;
 
     private bool _continueSpawning = true;
 
@@ -101,7 +105,12 @@ public class RunTimeRoomControl : MonoBehaviour {
 
             SetEnemies();
 
-            SpawnEnemies();
+            numEnemyTypes = new int[_possibleEnemies.Count];
+
+            ClearEnemyTypeArray();
+
+                //SpawnEnemies();
+            SpawnEnemiesIterativeMode();
 
             _myComponent = gameObject.AddComponent<BoxCollider2D>();
             _myComponent.isTrigger = true;
@@ -155,8 +164,8 @@ public class RunTimeRoomControl : MonoBehaviour {
 
     public void SetEnemies()
     {
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
     }
 
     void SpawnEnemies()
@@ -183,11 +192,11 @@ public class RunTimeRoomControl : MonoBehaviour {
                     GameObject go = Instantiate(enemy.myEnemy);
                     go.transform.position = enemyPos._position;
                     _enemiesInRoom.Add(new EnemiesRoom(enemy.myEnemyType, go, enemy.mydificultyPoints));
-                    _counterPints += enemy.mydificultyPoints;
+                    _counterPoints += enemy.mydificultyPoints;
                 }
             }
 
-            if (_counterPints == _maximumPoints)
+            if (_counterPoints == _maximumPoints)
             {
                 _continueSpawning = true;
             }
@@ -198,6 +207,82 @@ public class RunTimeRoomControl : MonoBehaviour {
         }
 
         _enemiesInRoomCount = _enemiesInRoom.Count;
+    }
+
+    void SpawnEnemiesIterativeMode()
+    {
+
+        int counterType = 0;
+        int counterTotal = 0;
+
+        while (counterTotal != _possibleEnemies.Count) {
+
+            do
+            {
+                counterType = UnityEngine.Random.Range(0, _possibleEnemies.Count);
+            } while (IsEnemyTypeUsed(counterType));
+
+            numEnemyTypes[counterTotal] = counterType;
+
+            counterTotal++;
+
+            EnemiesRoom enemy = _possibleEnemies[counterType];
+
+
+            if (_counterPoints == _maximumPoints)
+                break;
+
+            int numOfEnemyType = UnityEngine.Random.Range(0, enemy.maxEnemiesOfType + 1);
+            for (int i = 1; i < numOfEnemyType; i++)
+            {
+
+                EnemyPos enemyPos = GetPositionToSpawnNotUsed();
+
+                if (enemyPos == null && _counterPoints + enemy.mydificultyPoints > _maximumPoints)
+                    break;
+
+                GameObject go = Instantiate(enemy.myEnemy);
+                go.transform.position = enemyPos._position;
+                _enemiesInRoom.Add(new EnemiesRoom(enemy.myEnemyType, go, enemy.mydificultyPoints));
+                _counterPoints += enemy.mydificultyPoints;
+
+                if (_counterPoints == _maximumPoints)
+                    break;
+
+            }
+        }
+
+
+        while(_enemiesInRoom.Count == 0)
+        {
+            ClearEnemyTypeArray();
+            SpawnEnemiesIterativeMode();
+        }
+
+        _enemiesInRoomCount = _enemiesInRoom.Count;
+
+    }
+
+    bool IsEnemyTypeUsed(int it)
+    {
+        bool ret = false;
+        for(int i=0; i< numEnemyTypes.Length; i++)
+        {
+            if(numEnemyTypes[i] == it)
+            {
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    void ClearEnemyTypeArray()
+    {
+        for (int i = 0; i < numEnemyTypes.Length; i++)
+        {
+            numEnemyTypes[i] = -1;
+        }
     }
 
     // Use this for initialization
@@ -226,6 +311,9 @@ public class RunTimeRoomControl : MonoBehaviour {
         EnemyPos ret;
         int randPos = 0;
 
+        if (AreAllPositionsUsed())
+            return null;
+
         do
         {
             randPos = UnityEngine.Random.Range(0, _enemyPositions.Count);
@@ -235,6 +323,21 @@ public class RunTimeRoomControl : MonoBehaviour {
         ret = _enemyPositions[randPos];
 
         return ret;
+    }
+
+    bool AreAllPositionsUsed()
+    {
+        int ret = 0;
+
+        foreach (EnemyPos pos in _enemyPositions)
+        {
+           if(pos._alreadyUsed)
+            {
+                ret++;
+            }
+        }
+
+        return ret == _enemyPositions.Count;
     }
 
     void DetectEnemyLives()
