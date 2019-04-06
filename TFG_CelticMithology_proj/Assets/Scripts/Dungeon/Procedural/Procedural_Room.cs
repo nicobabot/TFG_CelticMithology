@@ -40,8 +40,10 @@ public class Procedural_Room
     private int _mylevel = 0;
     private int _myNumRoom = 0;
 
+    private bool _wantBoss = false;
+
     public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room,
-        ProceduralDungeonGenerator.ExitDirection dir, int levelDepth)
+        ProceduralDungeonGenerator.ExitDirection dir, int levelDepth, bool newWantBoss = false)
     {
         _x_pos = new_x_pos;
         _y_pos = new_y_pos;
@@ -50,6 +52,8 @@ public class Procedural_Room
 
         _mylevel = levelDepth;
         _myNumRoom = num_room;
+
+        _wantBoss = newWantBoss;
 
         Room_Go = new GameObject("Room " + num_room.ToString());
 
@@ -131,7 +135,7 @@ public class Procedural_Room
         if (wantToDraw)
         {
             controlRoom.InitializeRoomValues(ProceduralDungeonGenerator.mapGenerator.DetectPlayer, doors, _x_pos, _y_pos, 
-                _tileheight,_tilewidth, _mylevel, _myNumRoom);
+                _tileheight,_tilewidth, _mylevel, _myNumRoom, _wantBoss);
         }
     }
 

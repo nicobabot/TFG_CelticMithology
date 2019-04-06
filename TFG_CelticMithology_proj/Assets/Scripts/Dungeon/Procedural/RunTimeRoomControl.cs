@@ -78,15 +78,17 @@ public class RunTimeRoomControl : MonoBehaviour {
     private int _counterPoints = 0;
 
     private bool _continueSpawning = true;
+    private bool _wantBoss = true;
 
     public void InitializeRoomValues(BoxCollider2D detectPlayerValue, Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> doors,
-    int x, int y, int width, int height, int level, int numRoom)
+    int x, int y, int width, int height, int level, int numRoom, bool newWantBoss = false)
     {
         _x_pos = x;
         _y_pos = y;
         _tilewidth = width;
         _tileheight = height;
 
+        _wantBoss = newWantBoss;
 
         _mylevel = level;
 
@@ -101,16 +103,32 @@ public class RunTimeRoomControl : MonoBehaviour {
         if (_mylevel != 0 || _mynumRoom != 0)
         {
 
-            SetPosiblePointsEnemies();
+            if (!_wantBoss)
+            {
+                SetPosiblePointsEnemies();
 
-            SetEnemies();
+                SetEnemies();
 
-            numEnemyTypes = new int[_possibleEnemies.Count];
+                numEnemyTypes = new int[_possibleEnemies.Count];
 
-            ClearEnemyTypeArray();
+                ClearEnemyTypeArray();
 
                 //SpawnEnemies();
-            SpawnEnemiesIterativeMode();
+                SpawnEnemiesIterativeMode();
+            }
+            else
+            {
+                _enemyPositions = new List<EnemyPos>();
+
+                float _middleDownPosition = ((_tileheight) / 6) * 2;
+                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
+
+                _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
+
+                GameObject go = Instantiate(_possibleEnemies[0].myEnemy);
+                go.transform.position = _enemyPositions[0]._position;
+                _enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[0].myEnemyType, go, _possibleEnemies[0].mydificultyPoints));
+            }
 
             _myComponent = gameObject.AddComponent<BoxCollider2D>();
             _myComponent.isTrigger = true;
@@ -370,6 +388,17 @@ public class RunTimeRoomControl : MonoBehaviour {
                         }
                     }
                     break;
+                case Enemy_type.MACLIR_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<MacLir_Blackboard>();
+                    if (bb != null)
+                    {
+                        if (((MacLir_Blackboard)bb).life.myValue <= 0)
+                        {
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -394,6 +423,13 @@ public class RunTimeRoomControl : MonoBehaviour {
                     if (bb != null)
                     {
                         ((Caorthannach_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+                case Enemy_type.MACLIR_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<MacLir_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((MacLir_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
             }

@@ -10,6 +10,7 @@ public class MacLir_Blackboard : Blackboard
     public ParameterBool player_detected_while_charging;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
+    public ParameterBool playerIsInsideRoom;
 
     // Use this for initialization
     override public void Start()
@@ -20,7 +21,9 @@ public class MacLir_Blackboard : Blackboard
         list.Add(total_life);
         list.Add(is_enemy_hit);
         list.Add(player_detected_while_charging);
+        player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
+        list.Add(playerIsInsideRoom);
     }
 }

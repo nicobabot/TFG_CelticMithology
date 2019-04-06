@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Parameter : System.Object
@@ -150,6 +151,50 @@ public class ParameterGameObject : Parameter
     override public void SetValue(object value)
     {
         myValue = (GameObject)value;
+    }
+}
+
+[System.Serializable]
+public class ParameterSpriteRend : Parameter
+{
+    [SerializeField] private SpriteRenderer my_value;
+
+    public SpriteRenderer myValue
+    {
+        get { return my_value; }
+        set { my_value = value; }
+    }
+
+    override public object GetValue()
+    {
+        return myValue;
+    }
+
+    override public void SetValue(object value)
+    {
+        myValue = (SpriteRenderer)value;
+    }
+}
+
+[System.Serializable]
+public class ParameterAnimator: Parameter
+{
+    [SerializeField] private Animator my_value;
+
+    public Animator myValue
+    {
+        get { return my_value; }
+        set { my_value = value; }
+    }
+
+    override public object GetValue()
+    {
+        return myValue;
+    }
+
+    override public void SetValue(object value)
+    {
+        myValue = (Animator)value;
     }
 }
 

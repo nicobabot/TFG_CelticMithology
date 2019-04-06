@@ -394,6 +394,12 @@ MonoBehaviour:
   playerIsInsideRoom:
     my_name: playerInsideRoom
     my_value: 0
+  mySpriteRend:
+    my_name: mySpriteRend
+    my_value: {fileID: 212359941512818284}
+  myAnimator:
+    my_name: myAnimator
+    my_value: {fileID: 95751960235074200}
 --- !u!114 &114391262130249558
 MonoBehaviour:
   m_ObjectHideFlags: 1

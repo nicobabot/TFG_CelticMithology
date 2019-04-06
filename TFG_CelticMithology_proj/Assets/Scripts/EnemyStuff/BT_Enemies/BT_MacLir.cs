@@ -70,51 +70,53 @@ public class BT_MacLir : BT_Entity
     override public bool MakeDecision()
     {
         bool decide = false;
-
-        if (currentAction == null)
+        if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
+            if (currentAction == null)
             {
-                if (currentAction != follow_player && can_make_slash == false && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
                 {
-                    slash_melee.Disable_Colliders_Attack();
-                    currentAction = follow_player;
-                    decide = true;
+                    if (currentAction != follow_player && can_make_slash == false && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    {
+                        slash_melee.Disable_Colliders_Attack();
+                        currentAction = follow_player;
+                        decide = true;
+                    }
+                    else if (currentAction != slash_melee && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    {
+                        currentAction = slash_melee;
+                        decide = true;
+                    }
+                    else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                    {
+                        currentAction = pushback;
+                        decide = true;
+                    }
                 }
-                else if (currentAction != slash_melee && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                if (maclir_phase == MacLir_Phases.MACLIR_PHASE_2)
                 {
-                    currentAction = slash_melee;
-                    decide = true;
-                }
-                else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
-                {
-                    currentAction = pushback;
-                    decide = true;
-                }
-            }
-            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_2)
-            {
-                if (currentAction != follow_point && (can_make_displacement == true || (bool)myBB.GetParameter("is_enemy_hit") == true) && can_invoke_enemies == false)
-                {
-                    can_make_displacement = false;
-                    currentAction = follow_point;
-                    myBB.SetParameter("is_enemy_hit", false);
-                    decide = true;
-                }
-                else if (currentAction != invoke_enemies && can_invoke_enemies == true)
-                {
-                    can_invoke_enemies = false;
-                    currentAction = invoke_enemies;
-                    decide = true;
-                }
+                    if (currentAction != follow_point && (can_make_displacement == true || (bool)myBB.GetParameter("is_enemy_hit") == true) && can_invoke_enemies == false)
+                    {
+                        can_make_displacement = false;
+                        currentAction = follow_point;
+                        myBB.SetParameter("is_enemy_hit", false);
+                        decide = true;
+                    }
+                    else if (currentAction != invoke_enemies && can_invoke_enemies == true)
+                    {
+                        can_invoke_enemies = false;
+                        currentAction = invoke_enemies;
+                        decide = true;
+                    }
 
-            }
-            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_3)
-            {
-                if (currentAction != charge)
+                }
+                if (maclir_phase == MacLir_Phases.MACLIR_PHASE_3)
                 {
-                    currentAction = charge;
-                    decide = true;
+                    if (currentAction != charge)
+                    {
+                        currentAction = charge;
+                        decide = true;
+                    }
                 }
             }
         }

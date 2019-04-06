@@ -44,10 +44,13 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     [Header("Enemy prefabs")]
     public GameObject meleeEnemey;
     public GameObject caorthannach;
+    public GameObject macLir;
 
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
 
+    private bool _AddBoss = false;
+    private int _counterBoss = 0;
 
     List<Procedural_Room> rooms;
 
@@ -114,6 +117,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         ExitDirectionPoint creation_point = new ExitDirectionPoint();
         count_rooms++;
 
+        if (level + 1 == realDepth && !_AddBoss && _counterBoss == 0)
+        {
+            _AddBoss = true;
+        }
+
         if (level == realDepth)
         {
             int it = FindInRooms(room);
@@ -136,7 +144,14 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             {
                 int it = FindInRooms(room);
                 rooms[it].usableExits[i].isUsed = true;
-                creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level);
+
+                if(_AddBoss)
+                _counterBoss++;
+
+                creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level, _AddBoss);
+
+                _AddBoss = false;
+
                 if (creation_room.wantToDraw)
                 {
                     rooms.Add(creation_room);

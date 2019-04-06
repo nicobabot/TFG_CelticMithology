@@ -6,6 +6,8 @@
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
+    public ParameterSpriteRend mySpriteRend;
+    public ParameterAnimator myAnimator;
 
     // Use this for initialization
     override public void Start()
@@ -20,5 +22,7 @@
         list.Add(direction);
         playerIsInsideRoom.myValue = false;
         list.Add(playerIsInsideRoom);
+        list.Add(mySpriteRend);
+        list.Add(myAnimator);
     }
 }

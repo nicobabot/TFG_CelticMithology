@@ -880,7 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: FollowPlay
-  use_pathfinding: 1
+  use_pathfinding: 0
   time_to_change_cell: 1
   speed: 5
 --- !u!114 &114112446714757022
@@ -1164,6 +1164,9 @@ MonoBehaviour:
     my_value: {fileID: 0}
   direction:
     my_name: direction
+    my_value: 0
+  playerIsInsideRoom:
+    my_name: playerInsideRoom
     my_value: 0
 --- !u!212 &212041254939779294
 SpriteRenderer:

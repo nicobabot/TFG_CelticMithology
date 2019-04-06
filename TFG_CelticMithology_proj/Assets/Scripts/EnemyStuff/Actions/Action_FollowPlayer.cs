@@ -18,6 +18,15 @@ public class Action_FollowPlayer : ActionBase
     private PathNode actual_node;
     private GameObject player;
 
+    private SpriteRenderer mySpriteRend;
+    private Animator myAnimator;
+
+    private float timeWaiting = 0.65f;
+    private float timerWait = 0.0f;
+    private bool waitOnce = false;
+    private bool canMove = true;
+
+
     bool can_reach = true;
 
     override public BT_Status StartAction()
@@ -28,8 +37,19 @@ public class Action_FollowPlayer : ActionBase
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
 
-        can_reach = Recalculate_Path();
+        mySpriteRend = (SpriteRenderer)myBT.myBB.GetParameter("mySpriteRend");
 
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        timerWait = 0.0f;
+
+        if (myAnimator != null)
+        {
+            myAnimator.SetBool("enemy_startwalking", true);
+            myAnimator.SetFloat("offsetAnimation", Random.Range(0.0f, 1.0f));
+        }
+
+        can_reach = Recalculate_Path();
         return BT_Status.RUNNING;
     }
 
@@ -88,16 +108,48 @@ public class Action_FollowPlayer : ActionBase
             //}
 
             //if (can_reach)
+            if (myBT.enemy_type == Enemy_type.MEELE_ENEMY && !waitOnce)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+               
+                canMove = WaitFirstAnimationFinished();
+
+                if(canMove)
+                    waitOnce = true;
             }
 
-            DetectDirection(transform.position, player.transform.position);
+            if (canMove)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+                Direction mydir = DetectDirection(transform.position, player.transform.position);
+
+                if (mydir == Direction.RIGHT && mySpriteRend != null)
+                {
+                    mySpriteRend.flipX = false;
+                }
+                else if (mydir == Direction.LEFT && mySpriteRend != null)
+                {
+                    mySpriteRend.flipX = true;
+                }
+            }
+
         }
 
-
-
         return BT_Status.RUNNING;
+    }
+
+    bool WaitFirstAnimationFinished()
+    {
+        bool ret = false;
+
+        timerWait += Time.deltaTime;
+
+        if (timerWait>= timeWaiting)
+        {
+            ret = true;
+        }
+
+        return ret;
     }
 
     public bool Recalculate_Path()
