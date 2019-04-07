@@ -45,12 +45,16 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject meleeEnemey;
     public GameObject caorthannach;
     public GameObject macLir;
+    public GameObject kelpie;
 
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
 
     private bool _AddBoss = false;
     private int _counterBoss = 0;
+
+    private bool _AddMiniBoss = false;
+    private int _counterMiniBoss = 0;
 
     List<Procedural_Room> rooms;
 
@@ -121,6 +125,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         {
             _AddBoss = true;
         }
+        else if (level == realDepth*0.5 && !_AddMiniBoss && _counterMiniBoss == 0)
+        {
+            _AddMiniBoss = true;
+        }
+
 
         if (level == realDepth)
         {
@@ -145,12 +154,15 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 int it = FindInRooms(room);
                 rooms[it].usableExits[i].isUsed = true;
 
-                if(_AddBoss)
-                _counterBoss++;
+                if (_AddBoss)
+                    _counterBoss++;
+                else if (_AddMiniBoss)
+                    _counterMiniBoss++;
 
-                creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level, _AddBoss);
+                creation_room = new Procedural_Room(creation_point.nextRoomPos.x, creation_point.nextRoomPos.y, tilesWidthRoom, tilesHeightRoom, count_rooms, OppositeDirection(creation_point.dir), level, _AddBoss, _AddMiniBoss);
 
                 _AddBoss = false;
+                _AddMiniBoss = false;
 
                 if (creation_room.wantToDraw)
                 {

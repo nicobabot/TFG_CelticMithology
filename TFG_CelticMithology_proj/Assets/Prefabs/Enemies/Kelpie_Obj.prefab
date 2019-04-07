@@ -1081,6 +1081,9 @@ MonoBehaviour:
   direction:
     my_name: direction
     my_value: 0
+  playerIsInsideRoom:
+    my_name: playerInsideRoom
+    my_value: 0
 --- !u!114 &114876998397841320
 MonoBehaviour:
   m_ObjectHideFlags: 1

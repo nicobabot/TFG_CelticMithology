@@ -57,41 +57,45 @@ public class BT_Kelpi : BT_Entity
     {
         bool decide = false;
 
-        if (kelpi_phase == Kelpi_Phases.KELPI_PHASE_1) {
-            if (currentAction != follow_point && make_displacement == true)
-            {
-                make_displacement = false;
-                currentAction = follow_point;
-                decide = true;
-            }
-            else if (currentAction != tail_slash && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
-            {
-                currentAction = tail_slash;
-                decide = true;
-            }
-            else if (currentAction != follow_point && (bool)myBB.GetParameter("is_enemy_hit") == true)
-            {
-                tail_slash.Reset_Tail_Slash();
-                currentAction = follow_point;
-                myBB.SetParameter("is_enemy_hit", false);
-                decide = true;
-            }
-        }
-        else
+        if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            if (currentAction != shark_attack && make_shark_action == true)
+
+            if (kelpi_phase == Kelpi_Phases.KELPI_PHASE_1)
             {
-                make_shark_action = false;
-                currentAction = shark_attack;
-                decide = true;
+                if (currentAction != follow_point && make_displacement == true)
+                {
+                    make_displacement = false;
+                    currentAction = follow_point;
+                    decide = true;
+                }
+                else if (currentAction != tail_slash && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                {
+                    currentAction = tail_slash;
+                    decide = true;
+                }
+                else if (currentAction != follow_point && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                {
+                    tail_slash.Reset_Tail_Slash();
+                    currentAction = follow_point;
+                    myBB.SetParameter("is_enemy_hit", false);
+                    decide = true;
+                }
             }
-            if (currentAction != dead && is_dead == true)
+            else
             {
-                currentAction = dead;
-                decide = true;
+                if (currentAction != shark_attack && make_shark_action == true)
+                {
+                    make_shark_action = false;
+                    currentAction = shark_attack;
+                    decide = true;
+                }
+                if (currentAction != dead && is_dead == true)
+                {
+                    currentAction = dead;
+                    decide = true;
+                }
             }
         }
-
         return decide;
     }
 

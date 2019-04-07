@@ -9,6 +9,7 @@ public class Kelpi_Blackboard : Blackboard
     public ParameterBool is_enemy_hit;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
+    public ParameterBool playerIsInsideRoom;
 
     // Use this for initialization
     override public void Start()
@@ -18,7 +19,9 @@ public class Kelpi_Blackboard : Blackboard
         list.Add(life);
         list.Add(total_life);
         list.Add(is_enemy_hit);
+        player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
+        list.Add(playerIsInsideRoom);
     }
 }

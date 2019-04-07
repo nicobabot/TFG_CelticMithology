@@ -79,9 +79,10 @@ public class RunTimeRoomControl : MonoBehaviour {
 
     private bool _continueSpawning = true;
     private bool _wantBoss = true;
+    private bool _wantMiniBoss = true;
 
     public void InitializeRoomValues(BoxCollider2D detectPlayerValue, Dictionary<BoxCollider2D, ProceduralDungeonGenerator.ExitDirection> doors,
-    int x, int y, int width, int height, int level, int numRoom, bool newWantBoss = false)
+    int x, int y, int width, int height, int level, int numRoom, bool newWantBoss = false, bool newWantMiniBoss = false)
     {
         _x_pos = x;
         _y_pos = y;
@@ -89,6 +90,7 @@ public class RunTimeRoomControl : MonoBehaviour {
         _tileheight = height;
 
         _wantBoss = newWantBoss;
+        _wantMiniBoss = newWantMiniBoss;
 
         _mylevel = level;
 
@@ -103,7 +105,7 @@ public class RunTimeRoomControl : MonoBehaviour {
         if (_mylevel != 0 || _mynumRoom != 0)
         {
 
-            if (!_wantBoss)
+            if (!_wantBoss && !_wantMiniBoss)
             {
                 SetPosiblePointsEnemies();
 
@@ -116,7 +118,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                 //SpawnEnemies();
                 SpawnEnemiesIterativeMode();
             }
-            else
+            else if(_wantBoss  && !_wantMiniBoss)
             {
                 _enemyPositions = new List<EnemyPos>();
 
@@ -124,6 +126,19 @@ public class RunTimeRoomControl : MonoBehaviour {
                 _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
 
                 _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
+
+                GameObject go = Instantiate(_possibleEnemies[0].myEnemy);
+                go.transform.position = _enemyPositions[0]._position;
+                _enemiesInRoom.Add(new EnemiesRoom(_possibleEnemies[0].myEnemyType, go, _possibleEnemies[0].mydificultyPoints));
+            }
+            else if (!_wantBoss && _wantMiniBoss)
+            {
+                _enemyPositions = new List<EnemyPos>();
+
+                float _middleDownPosition = ((_tileheight) / 6) * 2;
+                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
+
+                _possibleEnemies.Add(new EnemiesRoom(Enemy_type.KELPIE_ENEMY, ProceduralDungeonGenerator.mapGenerator.kelpie, 5, 4));
 
                 GameObject go = Instantiate(_possibleEnemies[0].myEnemy);
                 go.transform.position = _enemyPositions[0]._position;
@@ -388,6 +403,17 @@ public class RunTimeRoomControl : MonoBehaviour {
                         }
                     }
                     break;
+                case Enemy_type.KELPIE_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<Kelpi_Blackboard>();
+                    if (bb != null)
+                    {
+                        if (((Kelpi_Blackboard)bb).life.myValue <= 0)
+                        {
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
+                        }
+                    }
+                    break;
                 case Enemy_type.MACLIR_ENEMY:
                     bb = enemiesRoom.myEnemy.GetComponent<MacLir_Blackboard>();
                     if (bb != null)
@@ -423,6 +449,13 @@ public class RunTimeRoomControl : MonoBehaviour {
                     if (bb != null)
                     {
                         ((Caorthannach_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+                case Enemy_type.KELPIE_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<Kelpi_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((Kelpi_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
                 case Enemy_type.MACLIR_ENEMY:

@@ -465,6 +465,12 @@ Prefab:
       propertyPath: DetectPlayer
       value: 
       objectReference: {fileID: 1414390740}
+    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
+        type: 2}
+      propertyPath: kelpie
+      value: 
+      objectReference: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1, type: 2}
   m_IsPrefabAsset: 0
