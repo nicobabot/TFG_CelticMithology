@@ -309,7 +309,6 @@ MonoBehaviour:
   dead: {fileID: 114746696178397502}
   damage_static: {fileID: 114785552933936718}
   anim: {fileID: 95672729717372942}
-  player: {fileID: 1289332331540074, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
 --- !u!114 &114152889214978770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,7 +417,7 @@ MonoBehaviour:
   name: Shoot
   layer_wall:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 10240
   projectile: {fileID: 1682421969592024, guid: d4ce94043e64502449fc181d4bbe2a61, type: 2}
   time_to_spawn_projectile: 2
   only_stright_shots: 0
@@ -487,7 +486,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300042, guid: 953c1a1b7e09fdc418dc0c1c13dfe20c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

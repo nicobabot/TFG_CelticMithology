@@ -12,14 +12,13 @@ public class BT_Caorthannach : BT_Entity
     private bool is_dead = false;
 
     public Animator anim;
-    public GameObject player;
 
     override public void Update()
     {
         //Debug.Log(Vector3.Dot((player.transform.position - transform.position).normalized, Vector3.up));
 
-        float value_y = Vector3.Dot((player.transform.position - transform.position).normalized, Vector3.up);
-        float value_x = Vector3.Dot((player.transform.position - transform.position).normalized, Vector3.right);
+        float value_y = Vector3.Dot((((GameObject)myBB.GetParameter("player")).transform.position - transform.position).normalized, Vector3.up);
+        float value_x = Vector3.Dot((((GameObject)myBB.GetParameter("player")).transform.position - transform.position).normalized, Vector3.right);
         float direction = (value_y - (-1)) / (2);
         anim.SetFloat("enemy_direction", direction);
 

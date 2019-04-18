@@ -31,6 +31,7 @@ public class Projectile_Behaviour : MonoBehaviour {
         {
             //Particles
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         
     }
