@@ -17,7 +17,8 @@
         list.Add(life);
         list.Add(total_life);
         list.Add(is_enemy_hit);
-        player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
+        if (ProceduralDungeonGenerator.mapGenerator != null)
+            player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
         playerIsInsideRoom.myValue = false;
