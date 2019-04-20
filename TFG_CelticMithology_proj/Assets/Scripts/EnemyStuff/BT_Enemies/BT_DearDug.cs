@@ -9,6 +9,9 @@ public class BT_DearDug : BT_Entity
     public Action_PushBack pushback;
     public Action_MeleSlashPlayer slash;
     public Action_Dead dead;
+
+    public GameObject father_colliders;
+
     // public Action_MeleeAttack melee_attack;
     private bool can_start_combat = false;
     private bool is_dead = false;
@@ -69,6 +72,16 @@ public class BT_DearDug : BT_Entity
         return decide;
     }
 
+    void DisableColliders()
+    {
+        int childs = father_colliders.transform.childCount;
+
+        for(int i=0; i<childs; i++)
+        {
+            father_colliders.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Can start combat
@@ -93,6 +106,8 @@ public class BT_DearDug : BT_Entity
                      currentAction.isFinish = true;
                  }*/
             }
+
+            DisableColliders();
 
             can_start_combat = false;
         }

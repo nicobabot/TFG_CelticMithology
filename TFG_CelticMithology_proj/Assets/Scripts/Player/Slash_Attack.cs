@@ -133,6 +133,18 @@ public class Slash_Attack : MonoBehaviour
                     MacLir_Blackboard bb_maclir = parent.GetComponent<MacLir_Blackboard>();
                     bb_maclir.is_enemy_hit.SetValue(true);
                 }
+                BT_DearDug DearDug = parent.GetComponent<BT_DearDug>();
+                if (DearDug != null)
+                {
+                    if (DearDug.currentAction != null)
+                    {
+                        DearDug.currentAction.isFinish = true;
+                    }
+                    DearDug.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    DearDug_Blackboard dearDugBB = parent.GetComponent<DearDug_Blackboard>();
+                    dearDugBB.is_enemy_hit.SetValue(true);
+                }
+
             }
             else
             {
