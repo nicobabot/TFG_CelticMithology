@@ -40,8 +40,8 @@ public class BT_DearDug : BT_Entity
     {
         bool decide = false;
 
-        //if ((bool)myBB.GetParameter("playerInsideRoom"))
-        //{
+        if ((bool)myBB.GetParameter("playerInsideRoom"))
+        {
             if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false && is_dead == false)
             {
                 currentAction = chase;
@@ -67,7 +67,7 @@ public class BT_DearDug : BT_Entity
                 currentAction = melee_attack;
                 decide = true;
             }*/
-        //}
+        }
 
         return decide;
     }

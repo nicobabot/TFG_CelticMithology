@@ -44,6 +44,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     [Header("Enemy prefabs")]
     public GameObject meleeEnemey;
     public GameObject caorthannach;
+    public GameObject dearDug;
     public GameObject macLir;
     public GameObject kelpie;
 

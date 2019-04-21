@@ -199,6 +199,7 @@ public class RunTimeRoomControl : MonoBehaviour {
     {
         _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
         _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DEARDUG_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
     }
 
     void SpawnEnemies()
@@ -425,6 +426,17 @@ public class RunTimeRoomControl : MonoBehaviour {
                         }
                     }
                     break;
+                case Enemy_type.DEARDUG_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<DearDug_Blackboard>();
+                    if (bb != null)
+                    {
+                        if (((DearDug_Blackboard)bb).life.myValue <= 0)
+                        {
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -463,6 +475,13 @@ public class RunTimeRoomControl : MonoBehaviour {
                     if (bb != null)
                     {
                         ((MacLir_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+                case Enemy_type.DEARDUG_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<DearDug_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((DearDug_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
             }

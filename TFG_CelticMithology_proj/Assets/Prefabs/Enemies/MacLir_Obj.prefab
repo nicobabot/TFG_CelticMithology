@@ -510,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968024051260442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.73, y: 1.76, z: 1.7501272}
+  m_LocalPosition: {x: 3.079423, y: -13.025576, z: 1.7501272}
   m_LocalScale: {x: 2.1629, y: 2.1629, z: 2.1629}
   m_Children:
   - {fileID: 4135879258205446}
@@ -862,7 +862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: InvokeEnemies
-  melee_enemy: {fileID: 0}
+  melee_enemy: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
+    type: 2}
   collider_enemy: {fileID: 61961002685255148}
   num_enemy_spawn: 5
   time_to_spawn_next_enemy: 1.5
@@ -901,6 +902,7 @@ MonoBehaviour:
   player_mask:
     serializedVersion: 2
     m_Bits: 1024
+  filler: {fileID: 0}
   get_damage_collider: {fileID: 61961002685255148}
 --- !u!114 &114189490166257498
 MonoBehaviour:
@@ -1202,7 +1204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0b93c2763f36f73439a6fa3f2a31c51a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1248,7 +1250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0b93c2763f36f73439a6fa3f2a31c51a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1294,7 +1296,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0b93c2763f36f73439a6fa3f2a31c51a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1386,7 +1388,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0b93c2763f36f73439a6fa3f2a31c51a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
