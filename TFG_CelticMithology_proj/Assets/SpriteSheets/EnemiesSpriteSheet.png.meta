@@ -68,6 +68,7 @@ TextureImporter:
     21300126: Cartonach_side_Shoot_4
     21300128: Cartonach_side_Shoot_5
     21300130: Cartonach_side_Shoot_6
+    21300132: EnemiesSpriteSheet_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1476,6 +1477,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1eb9fa58b56008541a5256f06678d55d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemiesSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 305
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304acb47261992c4aa01b00986ae8431
       vertices: []
       indices: 
       edges: []
