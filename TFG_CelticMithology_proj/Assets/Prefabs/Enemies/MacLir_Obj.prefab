@@ -981,7 +981,7 @@ MonoBehaviour:
   name: Charge
   wall_layer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 10240
   charge_speed: 12.5
   charge_collider: {fileID: 61541390465126628}
   Charger_Filler: {fileID: 114467014229976358}

@@ -125,10 +125,7 @@ public class Action_ChargeToPlayer : ActionBase
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir_to_player.normalized, Mathf.Infinity, wall_layer);
         if (hit != null)
         {
-            if (hit.transform.CompareTag("wall"))
-            {
                 point_to_charge = hit.point;
-            }
         }
     }
 

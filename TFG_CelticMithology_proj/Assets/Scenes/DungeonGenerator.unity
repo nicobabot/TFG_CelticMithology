@@ -413,11 +413,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114015923741442574, guid: c1b063ff6072a2b47be115da838d66e2,
-        type: 2}
-      propertyPath: Father_UI_Player_Live
-      value: 
-      objectReference: {fileID: 1026802551}
     - target: {fileID: 114308716956029978, guid: c1b063ff6072a2b47be115da838d66e2,
         type: 2}
       propertyPath: Menu
@@ -428,6 +423,16 @@ Prefab:
       propertyPath: fader_scr
       value: 
       objectReference: {fileID: 1193013987}
+    - target: {fileID: 114015923741442574, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: Father_UI_Player_Live
+      value: 
+      objectReference: {fileID: 1026802551}
+    - target: {fileID: 114308716956029978, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: speed_invulerable
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
   m_IsPrefabAsset: 0

@@ -624,7 +624,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289332331540074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3692d109130baa4cbdc4324f7d9f92d, type: 3}
   m_Name: 
@@ -697,7 +697,7 @@ MonoBehaviour:
   fader_scr: {fileID: 0}
   live_manager_scr: {fileID: 114015923741442574}
   total_time_invulnerable: 2.5
-  speed_invulerable: 15
+  speed_invulerable: 30
   combat_collider: {fileID: 61068958462534306}
   is_invulnerable: 0
   current_state: 0

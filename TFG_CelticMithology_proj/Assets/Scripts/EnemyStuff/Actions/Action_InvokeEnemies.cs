@@ -49,7 +49,10 @@ public class Action_InvokeEnemies : ActionBase
 
                 timer_spawning_other_enemy = 0;
                 Vector2 point_to_spawn = transform.position + Random.insideUnitSphere * radius;
+
                 GameObject temp_go = Instantiate(melee_enemy);
+                Soldier_Blackboard soldierBt = temp_go.GetComponent<Soldier_Blackboard>();
+                soldierBt.playerIsInsideRoom.SetValue(true);
                 temp_go.SetActive(true);
                 temp_go.transform.position = point_to_spawn;
 

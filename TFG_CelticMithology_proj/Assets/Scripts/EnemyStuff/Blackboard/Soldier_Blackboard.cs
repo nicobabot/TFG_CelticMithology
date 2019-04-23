@@ -21,7 +21,6 @@
             player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
-        playerIsInsideRoom.myValue = false;
         list.Add(playerIsInsideRoom);
         list.Add(mySpriteRend);
         list.Add(myAnimator);
