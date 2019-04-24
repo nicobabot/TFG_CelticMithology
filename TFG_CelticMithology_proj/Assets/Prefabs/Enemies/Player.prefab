@@ -631,6 +631,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Father_UI_Player_Live: {fileID: 0}
   hearts_division: 2
+  StartPosition: {x: 65.9, y: 57.7}
+  numHearts: 4
+  heartPrefab: {fileID: 1930992032869798, guid: 7d471390f73364c4f81def4bb979899f,
+    type: 2}
+  offsetHeart: 25
 --- !u!114 &114090892925912684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,7 +702,7 @@ MonoBehaviour:
   fader_scr: {fileID: 0}
   live_manager_scr: {fileID: 114015923741442574}
   total_time_invulnerable: 2.5
-  speed_invulerable: 30
+  speed_invulerable: 22
   combat_collider: {fileID: 61068958462534306}
   is_invulnerable: 0
   current_state: 0

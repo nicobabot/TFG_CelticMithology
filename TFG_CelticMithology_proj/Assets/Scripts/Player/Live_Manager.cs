@@ -7,6 +7,11 @@ public class Live_Manager : MonoBehaviour
     private int lives = 0;
     public int hearts_division = 2;
 
+    public Vector2 StartPosition;
+    public int numHearts = 4;
+    public GameObject heartPrefab;
+    public float offsetHeart = 1.5f;
+
     // Use this for initialization
     private void Start()
     {
@@ -16,8 +21,68 @@ public class Live_Manager : MonoBehaviour
         }
         else
         {
-            lives = Father_UI_Player_Live.transform.childCount * hearts_division;
+            lives = numHearts;
+
+            HearthPositioning();
         }
+
+    }
+
+    void HearthPositioning()
+    {
+        //float heartWidth = heartSprite.rect.width;
+
+       /* GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+        //go.transform.position = StartPosition;
+        RectTransform rectTrans = go.GetComponent<RectTransform>();*/
+
+        for (int i = 0; i < numHearts; i++)
+        {
+            GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+            go.name = "Live" + i;
+            RectTransform rectTrans = go.GetComponent<RectTransform>();
+            rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * i, StartPosition.y, rectTrans.position.z);
+        }
+
+    }
+
+    public void AddHeart()
+    {
+        GameObject[] childs_temporal_vector;
+        int num_childs = Father_UI_Player_Live.transform.childCount;
+        childs_temporal_vector = new GameObject[num_childs];
+        int temp_index = 0;
+        for (int i = num_childs; i > 0; i--)
+        {
+            childs_temporal_vector[temp_index] = Father_UI_Player_Live.transform.GetChild(i - 1).gameObject;
+            temp_index++;
+        }
+
+        Image img_comp = childs_temporal_vector[0].GetComponent<Image>();
+        if (img_comp.fillAmount == 1)
+        {
+            GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+            go.name = "Live" + lives;
+            RectTransform rectTrans = go.GetComponent<RectTransform>();
+            Transform trans = childs_temporal_vector[0].transform;
+            rectTrans.position = new Vector3(trans.position.x + (rectTrans.rect.width + offsetHeart), trans.position.y, trans.position.z);
+        }
+        else if (img_comp.fillAmount == 0.5f)
+        {
+            img_comp.fillAmount += 0.5f;
+
+            GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+            go.name = "Live" + lives;
+            RectTransform rectTrans = go.GetComponent<RectTransform>();
+            Transform trans = childs_temporal_vector[0].transform;
+            rectTrans.position = new Vector3(trans.position.x + (rectTrans.rect.width + offsetHeart), trans.position.y, trans.position.z);
+
+            Image img = go.GetComponent<Image>();
+            img.fillAmount -= 0.5f;
+
+        }
+
+      
     }
 
     // Update is called once per frame
@@ -28,6 +93,7 @@ public class Live_Manager : MonoBehaviour
             DetectedDamage();
         }
     }
+
 
     public void DetectedDamage()
     {
@@ -60,6 +126,12 @@ public class Live_Manager : MonoBehaviour
                 else if (filled == Mathf.Clamp(value_sliced, 0.0f, filled))
                 {
                     img_comp.fillAmount -= slice;
+
+                    if (img_comp.fillAmount == 0.0f)
+                    {
+                        Destroy(go);
+                    }
+
                     modification = true;
                     break;
                 }
