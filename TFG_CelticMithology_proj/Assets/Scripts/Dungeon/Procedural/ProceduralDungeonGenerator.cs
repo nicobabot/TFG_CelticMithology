@@ -48,6 +48,9 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject macLir;
     public GameObject kelpie;
 
+    [Header("Upgrade")]
+    public GameObject UpgradeObject;
+
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
 
@@ -134,6 +137,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
         if (level == realDepth)
         {
+
+            Vector3 posUpgrade = room.GetMiddlePositionRoom();
+            GameObject go = Instantiate(UpgradeObject);
+            go.transform.position = posUpgrade;
+
             int it = FindInRooms(room);
             if(rooms[it].usableExits.Count>0)
             rooms[it].usableExits[0].isUsed = true;

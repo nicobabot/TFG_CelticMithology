@@ -193,7 +193,8 @@ public class BT_Entity : MonoBehaviour
         blackboard.SetParameter("live", live);
         //blackboard.SetParameter("is_enemy_hit", false);
         //Live bar
-        Live_UI.fillAmount -= 1.0f / (int)blackboard.GetParameter("total_live");
+
+        Live_UI.fillAmount -= (1.0f / (int)blackboard.GetParameter("total_live")) * Mathf.Abs(num);
     }
 
 }

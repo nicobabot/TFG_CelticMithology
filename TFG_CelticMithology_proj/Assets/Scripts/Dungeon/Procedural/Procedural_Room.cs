@@ -111,6 +111,11 @@ public class Procedural_Room
 
     }
 
+    public Vector3 GetMiddlePositionRoom()
+    {
+        return new Vector3(_x_pos + (_tilewidth * 0.5f), (_y_pos + _tileheight * 0.5f), 0.0f);
+    }
+
     public RunTimeRoomControl GetRunTimeControllScr()
     {
         if (controlRoom == null)

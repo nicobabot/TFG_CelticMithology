@@ -84,6 +84,11 @@ public class Player_Stats: MonoBehaviour
 
     }
 
+    public void ImproveDamage()
+    {
+        Right_Hand_Object.damage += 1;
+    }
+
     public void Add_Material(uint n_mat, Material_InGame type)
     {
         switch (type)

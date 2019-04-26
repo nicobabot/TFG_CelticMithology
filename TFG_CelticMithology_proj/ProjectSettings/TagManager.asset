@@ -11,6 +11,8 @@ TagManager:
   - player_falling_collider
   - player_change_state_collider
   - door
+  - ImproveObject
+  - player_slash
   layers:
   - Default
   - TransparentFX

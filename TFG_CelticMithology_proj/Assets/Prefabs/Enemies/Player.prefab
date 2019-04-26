@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 114458362136514418}
   - component: {fileID: 114015923741442574}
   - component: {fileID: 114700408986713950}
+  - component: {fileID: 114437350724803262}
   - component: {fileID: 95889188153469264}
   m_Layer: 0
   m_Name: Player
@@ -707,6 +708,19 @@ MonoBehaviour:
   is_invulnerable: 0
   current_state: 0
   player_direction: 0
+--- !u!114 &114437350724803262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289332331540074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc35391b4b21aa47bb0a11f8e2abb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objToImprove: 5
+  improveBar: {fileID: 0}
 --- !u!114 &114458362136514418
 MonoBehaviour:
   m_ObjectHideFlags: 1
