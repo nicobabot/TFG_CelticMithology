@@ -159,7 +159,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 160
+  field of view: 170
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1722,24 +1722,6 @@ Prefab:
       propertyPath: DetectPlayer
       value: 
       objectReference: {fileID: 1414390740}
-    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
-        type: 2}
-      propertyPath: kelpie
-      value: 
-      objectReference: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e,
-        type: 2}
-    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
-        type: 2}
-      propertyPath: dearDug
-      value: 
-      objectReference: {fileID: 1889491338655396, guid: e168bdf228071db44aa9328dfe74d035,
-        type: 2}
-    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
-        type: 2}
-      propertyPath: UpgradeObject
-      value: 
-      objectReference: {fileID: 1674549648630910, guid: 26e8e8d7d4468fc4b9c1eed4bf818ed7,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1, type: 2}
   m_IsPrefabAsset: 0
@@ -3574,6 +3556,10 @@ Prefab:
     - target: {fileID: 58540320708930574, guid: c1b063ff6072a2b47be115da838d66e2,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289332331540074, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

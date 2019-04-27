@@ -67,5 +67,11 @@ MonoBehaviour:
     type: 2}
   caorthannach: {fileID: 1922859857836306, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
     type: 2}
+  bluecaorthannach: {fileID: 1647434522169574, guid: a53af89a281971942a23d99a789d8cd9,
+    type: 2}
+  dearDug: {fileID: 1889491338655396, guid: e168bdf228071db44aa9328dfe74d035, type: 2}
   macLir: {fileID: 1968024051260442, guid: f19bdd8b91a241f4da307788ac998ca2, type: 2}
+  kelpie: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
+  UpgradeObject: {fileID: 1674549648630910, guid: 26e8e8d7d4468fc4b9c1eed4bf818ed7,
+    type: 2}
   realDepth: 0

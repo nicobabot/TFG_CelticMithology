@@ -44,6 +44,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     [Header("Enemy prefabs")]
     public GameObject meleeEnemey;
     public GameObject caorthannach;
+    public GameObject bluecaorthannach;
     public GameObject dearDug;
     public GameObject macLir;
     public GameObject kelpie;
@@ -228,15 +229,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             if (room_temp != null)
             {
                 ret = room_temp.IsInsideRoom(point);
-                //thisRoom = room_temp;
             }
 
             if (ret == true) break;
         }
-
-
         return ret;
-
     }
 
     public Procedural_Room GetRoomByPoint(Vector3 point)

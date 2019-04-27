@@ -19175,6 +19175,63 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 602436165}
   m_CullTransparentMesh: 0
+--- !u!1001 &606266212
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -22.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 14.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.077814266
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793476828306094, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712424203008382, guid: a53af89a281971942a23d99a789d8cd9,
+        type: 2}
+      propertyPath: player.my_value
+      value: 
+      objectReference: {fileID: 1310819217}
+    - target: {fileID: 114597658890622636, guid: a53af89a281971942a23d99a789d8cd9,
+        type: 2}
+      propertyPath: pathfinder_scr
+      value: 
+      objectReference: {fileID: 143351903}
+    - target: {fileID: 114887417288160988, guid: a53af89a281971942a23d99a789d8cd9,
+        type: 2}
+      propertyPath: fader_scr
+      value: 
+      objectReference: {fileID: 2056421631}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a53af89a281971942a23d99a789d8cd9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &612399600
 GameObject:
   m_ObjectHideFlags: 0
@@ -21275,6 +21332,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95672729717372942, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d80674213366db409f8d1968bd277f2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba0bfbafbf4c22418271a5ea8fcbdd4, type: 2}
   m_IsPrefabAsset: 0
