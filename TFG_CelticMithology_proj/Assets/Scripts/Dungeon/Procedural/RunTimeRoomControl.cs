@@ -120,6 +120,8 @@ public class RunTimeRoomControl : MonoBehaviour {
             }
             else if(_wantBoss  && !_wantMiniBoss)
             {
+                _enemiesInRoomCount++;
+
                 _enemyPositions = new List<EnemyPos>();
 
                 float _middleDownPosition = ((_tileheight) / 6) * 2;
@@ -133,6 +135,7 @@ public class RunTimeRoomControl : MonoBehaviour {
             }
             else if (!_wantBoss && _wantMiniBoss)
             {
+                _enemiesInRoomCount++;
                 _enemyPositions = new List<EnemyPos>();
 
                 float _middleDownPosition = ((_tileheight) / 6) * 2;
@@ -199,7 +202,7 @@ public class RunTimeRoomControl : MonoBehaviour {
     {
         _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
         _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.bluecaorthannach, 3, 4));
+        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.bluecaorthannach, 5, 4));
         _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DEARDUG_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
     }
 
@@ -406,7 +409,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                     }
                     break;
                 case Enemy_type.KELPIE_ENEMY:
-                    bb = enemiesRoom.myEnemy.GetComponent<Kelpi_Blackboard>();
+                    bb = enemiesRoom.myEnemy.transform.GetChild(0).GetComponent<Kelpi_Blackboard>();
                     if (bb != null)
                     {
                         if (((Kelpi_Blackboard)bb).life.myValue <= 0)
@@ -417,7 +420,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                     }
                     break;
                 case Enemy_type.MACLIR_ENEMY:
-                    bb = enemiesRoom.myEnemy.GetComponent<MacLir_Blackboard>();
+                    bb = enemiesRoom.myEnemy.transform.GetChild(0).GetComponent<MacLir_Blackboard>();
                     if (bb != null)
                     {
                         if (((MacLir_Blackboard)bb).life.myValue <= 0)

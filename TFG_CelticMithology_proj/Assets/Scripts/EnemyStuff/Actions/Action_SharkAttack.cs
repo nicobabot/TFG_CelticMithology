@@ -130,7 +130,9 @@ public class Action_SharkAttack : ActionBase
                 {
                     stun_filler.enabled = false;
                     myBT.myBB.SetParameter("is_enemy_hit", false);
-                    this.StartAction();
+                    //this.StartAction();
+                    myBT.myBB.SetParameter("shootBall", true);
+                    isFinish = true;
                 }
 
             }

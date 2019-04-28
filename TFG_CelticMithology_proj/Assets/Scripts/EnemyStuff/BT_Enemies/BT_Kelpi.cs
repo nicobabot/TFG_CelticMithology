@@ -15,11 +15,11 @@ public class BT_Kelpi : BT_Entity
 
     public Kelpi_Phases kelpi_phase = Kelpi_Phases.KELPI_PHASE_1;
 
+
     [Header("Phase 1")]
-    public Action_FollowPoint follow_point;
-    public Action_Tail_Slash tail_slash;
-    [Header("Phase 2")]
     public Action_SharkAttack shark_attack;
+    [Header("Phase 2")]
+    public Action_ThrowBouncingBalls throwBall;
 
     [Header("Death State")]
     public Action_Dead dead;
@@ -60,33 +60,15 @@ public class BT_Kelpi : BT_Entity
         if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
 
-            if (kelpi_phase == Kelpi_Phases.KELPI_PHASE_1)
-            {
-                if (currentAction != follow_point && make_displacement == true)
+                if (currentAction != shark_attack && !(bool)myBB.GetParameter("shootBall"))
                 {
-                    make_displacement = false;
-                    currentAction = follow_point;
-                    decide = true;
-                }
-                else if (currentAction != tail_slash && can_make_slash == true && (bool)myBB.GetParameter("is_enemy_hit") == false)
-                {
-                    currentAction = tail_slash;
-                    decide = true;
-                }
-                else if (currentAction != follow_point && (bool)myBB.GetParameter("is_enemy_hit") == true)
-                {
-                    tail_slash.Reset_Tail_Slash();
-                    currentAction = follow_point;
-                    myBB.SetParameter("is_enemy_hit", false);
-                    decide = true;
-                }
-            }
-            else
-            {
-                if (currentAction != shark_attack && make_shark_action == true)
-                {
-                    make_shark_action = false;
                     currentAction = shark_attack;
+                    decide = true;
+                }
+                if (currentAction != throwBall && (bool)myBB.GetParameter("shootBall"))
+                {
+                    myBB.SetParameter("shootBall", false);
+                    currentAction = throwBall;
                     decide = true;
                 }
                 if (currentAction != dead && is_dead == true)
@@ -94,7 +76,7 @@ public class BT_Kelpi : BT_Entity
                     currentAction = dead;
                     decide = true;
                 }
-            }
+         
         }
         return decide;
     }
