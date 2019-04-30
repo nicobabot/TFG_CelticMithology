@@ -5,6 +5,8 @@ using UnityEngine;
 public class Action_Dead : ActionBase
 {
     public GameObject part_sys;
+    public GameObject healthObject;
+
     override public BT_Status StartAction()
     {
         GameObject temp = Instantiate(part_sys);
@@ -13,6 +15,13 @@ public class Action_Dead : ActionBase
         temp.GetComponent<ParticleSystem>().Play();
 
         gameObject.SetActive(false);
+
+        int result = Random.Range(1, 11);
+        if(result == 10)
+        {
+            GameObject go = Instantiate(healthObject);
+            go.transform.position = transform.position;
+        }
 
         return BT_Status.RUNNING;
     }

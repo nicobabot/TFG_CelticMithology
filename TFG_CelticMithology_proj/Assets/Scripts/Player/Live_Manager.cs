@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class Live_Manager : MonoBehaviour
 {
     public GameObject Father_UI_Player_Live;
-    private int lives = 0;
+    private float lives = 0;
+    private float maxLives = 0;
     public int hearts_division = 2;
 
     public Vector2 StartPosition;
@@ -22,6 +23,7 @@ public class Live_Manager : MonoBehaviour
         else
         {
             lives = numHearts;
+            maxLives = numHearts;
 
             HearthPositioning();
         }
@@ -38,27 +40,65 @@ public class Live_Manager : MonoBehaviour
 
         for (int i = 0; i < numHearts; i++)
         {
-            GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
-            go.name = "Live" + i;
-            RectTransform rectTrans = go.GetComponent<RectTransform>();
-            rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * i, StartPosition.y, rectTrans.position.z);
+            AddUiHeart(i);
         }
 
     }
 
-    public void AddHeart()
+    void AddUiHeart(int num)
+    {
+        GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+        go.name = "Live" + num;
+        RectTransform rectTrans = go.GetComponent<RectTransform>();
+        rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * num, StartPosition.y, rectTrans.position.z);
+    }
+
+    public void AddHeart(bool healing = false)
     {
         GameObject[] childs_temporal_vector;
         int num_childs = Father_UI_Player_Live.transform.childCount;
         childs_temporal_vector = new GameObject[num_childs];
         int temp_index = 0;
-        for (int i = num_childs; i > 0; i--)
+        for (int i = 0; i < num_childs; i++)
         {
-            childs_temporal_vector[temp_index] = Father_UI_Player_Live.transform.GetChild(i - 1).gameObject;
-            temp_index++;
+            childs_temporal_vector[i] = Father_UI_Player_Live.transform.GetChild(i).gameObject;
         }
 
-        Image img_comp = childs_temporal_vector[0].GetComponent<Image>();
+        if (healing)
+        {
+            float it = Mathf.Ceil(lives);
+
+            if (it == maxLives)
+                return;
+
+            Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
+            img.fillAmount += 0.5f;
+            lives += 0.5f;
+        }
+        else
+        {
+            float it = Mathf.Ceil(lives);
+
+            if (it == maxLives)
+            {
+                AddUiHeart((int)lives);
+            }
+            else if(it - Mathf.Round(lives) == 0)
+            {
+                Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
+                img.fillAmount += 0.5f;
+                lives += 0.5f;
+            }
+            else if(it - lives > 0)
+            {
+                Image img = childs_temporal_vector[(int)it-1].GetComponent<Image>();
+                img.fillAmount += 0.5f;
+                lives += 0.5f;
+            }
+
+        }
+
+        /*Image img_comp = childs_temporal_vector[0].GetComponent<Image>();
         if (img_comp.fillAmount == 1)
         {
             GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
@@ -80,9 +120,9 @@ public class Live_Manager : MonoBehaviour
             Image img = go.GetComponent<Image>();
             img.fillAmount -= 0.5f;
 
-        }
+        }*/
 
-      
+
     }
 
     // Update is called once per frame
@@ -97,6 +137,8 @@ public class Live_Manager : MonoBehaviour
 
     public void DetectedDamage()
     {
+        lives -= 0.5f;
+
         GameObject[] childs_temporal_vector;
         int num_childs = Father_UI_Player_Live.transform.childCount;
         childs_temporal_vector = new GameObject[num_childs];
@@ -127,10 +169,10 @@ public class Live_Manager : MonoBehaviour
                 {
                     img_comp.fillAmount -= slice;
 
-                    if (img_comp.fillAmount == 0.0f)
+                    /*if (img_comp.fillAmount == 0.0f)
                     {
                         Destroy(go);
-                    }
+                    }*/
 
                     modification = true;
                     break;
@@ -143,4 +185,14 @@ public class Live_Manager : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("health_object"))
+        {
+            int i = 345;
+        }
+    }
+
+
 }

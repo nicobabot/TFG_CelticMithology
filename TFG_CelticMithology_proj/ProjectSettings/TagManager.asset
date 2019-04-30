@@ -13,6 +13,7 @@ TagManager:
   - door
   - ImproveObject
   - player_slash
+  - health_object
   layers:
   - Default
   - TransparentFX
