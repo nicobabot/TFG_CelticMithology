@@ -57,6 +57,9 @@ public class Live_Manager : MonoBehaviour
 
     public void AddHeart(bool healing = false)
     {
+        if (lives <= 0.0f)
+            return;
+
         GameObject[] childs_temporal_vector;
         int num_childs = Father_UI_Player_Live.transform.childCount;
         childs_temporal_vector = new GameObject[num_childs];
@@ -71,9 +74,13 @@ public class Live_Manager : MonoBehaviour
             float it = Mathf.Ceil(lives);
 
             if (it == maxLives)
-                return;
+            {
+                Image imgHeal = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
+                if (imgHeal.fillAmount == 1.0f)
+                    return;
+            }
 
-            Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
+            Image img = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
             img.fillAmount += 0.5f;
             lives += 0.5f;
         }
@@ -214,7 +221,8 @@ public class Live_Manager : MonoBehaviour
     {
         if (collision.CompareTag("health_object"))
         {
-            int i = 345;
+            AddHeart(true);
+            Destroy(collision.gameObject);
         }
     }
 

@@ -16,8 +16,8 @@ public class Action_Dead : ActionBase
 
         gameObject.SetActive(false);
 
-        int result = Random.Range(1, 11);
-        if(result == 10)
+        int result = Random.Range(1, 101);
+        if(result >= 90 && result <= 100)
         {
             GameObject go = Instantiate(healthObject);
             go.transform.position = transform.position;

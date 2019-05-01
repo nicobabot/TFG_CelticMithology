@@ -962,6 +962,8 @@ MonoBehaviour:
   is_interruptible: 0
   name: Dead
   part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
+  healthObject: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a,
+    type: 2}
 --- !u!114 &114722017123814490
 MonoBehaviour:
   m_ObjectHideFlags: 1
