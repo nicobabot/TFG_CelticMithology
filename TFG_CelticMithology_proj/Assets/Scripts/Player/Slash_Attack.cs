@@ -144,6 +144,22 @@ public class Slash_Attack : MonoBehaviour
                     DearDug_Blackboard dearDugBB = parent.GetComponent<DearDug_Blackboard>();
                     dearDugBB.is_enemy_hit.SetValue(true);
                 }
+                BT_Banshee Banshee = parent.GetComponent<BT_Banshee>();
+                if (Banshee != null)
+                {
+                    if (Banshee.currentAction != null)
+                    {
+                        Banshee.currentAction.isFinish = true;
+                    }
+           
+                    Banshee_Blackboard bansheeBB = parent.GetComponent<Banshee_Blackboard>();
+                    if (Banshee.myState == BT_Banshee.BansheeState.STUNNED_BANSHEE)
+                    {
+                        Banshee.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                        bansheeBB.is_enemy_hit.SetValue(true);
+                    }
+                    else bansheeBB.want_to_hit.SetValue(true);
+                }
 
             }
             else
