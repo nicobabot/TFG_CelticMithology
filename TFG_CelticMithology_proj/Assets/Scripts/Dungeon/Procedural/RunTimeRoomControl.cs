@@ -382,8 +382,17 @@ public class RunTimeRoomControl : MonoBehaviour {
     {
         Blackboard bb;
 
-        foreach (EnemiesRoom enemiesRoom in _enemiesInRoom)
+
+
+        for(int i=0; i< _enemiesInRoom.Count; i++)
         {
+
+            if (_enemiesInRoom[i] == null)
+                continue;
+
+            EnemiesRoom enemiesRoom = _enemiesInRoom[i];
+
+
             switch (enemiesRoom.myEnemyType)
             {
                 case Enemy_type.MEELE_ENEMY:

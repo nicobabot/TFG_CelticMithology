@@ -3563,11 +3563,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114437350724803262, guid: c1b063ff6072a2b47be115da838d66e2,
-        type: 2}
-      propertyPath: improveBar
-      value: 
-      objectReference: {fileID: 1025841556}
     - target: {fileID: 114308716956029978, guid: c1b063ff6072a2b47be115da838d66e2,
         type: 2}
       propertyPath: Menu
@@ -3578,36 +3573,16 @@ Prefab:
       propertyPath: fader_scr
       value: 
       objectReference: {fileID: 1193013987}
+    - target: {fileID: 114437350724803262, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: improveBar
+      value: 
+      objectReference: {fileID: 1025841556}
     - target: {fileID: 114015923741442574, guid: c1b063ff6072a2b47be115da838d66e2,
         type: 2}
       propertyPath: Father_UI_Player_Live
       value: 
       objectReference: {fileID: 1026802551}
-    - target: {fileID: 1372959468578422, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
-      propertyPath: m_TagString
-      value: player_slash
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815833153785368, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
-      propertyPath: m_TagString
-      value: player_slash
-      objectReference: {fileID: 0}
-    - target: {fileID: 1185103112288186, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
-      propertyPath: m_TagString
-      value: player_slash
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958462455312152, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
-      propertyPath: m_TagString
-      value: player_slash
-      objectReference: {fileID: 0}
-    - target: {fileID: 58540320708930574, guid: c1b063ff6072a2b47be115da838d66e2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1289332331540074, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
   m_IsPrefabAsset: 0

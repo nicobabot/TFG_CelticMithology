@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114563323685024666}
   m_Layer: 0
   m_Name: Slash_Collider_Up
-  m_TagString: Untagged
+  m_TagString: player_slash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 114090892925912684}
   m_Layer: 0
   m_Name: Slash_Collider_R
-  m_TagString: Untagged
+  m_TagString: player_slash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 114607714657567816}
   m_Layer: 0
   m_Name: Slash_Collider_L
-  m_TagString: Untagged
+  m_TagString: player_slash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 114264450379828276}
   m_Layer: 0
   m_Name: Slash_Collider_Down
-  m_TagString: Untagged
+  m_TagString: player_slash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   fader_scr: {fileID: 0}
   live_manager_scr: {fileID: 114015923741442574}
   total_time_invulnerable: 2.5
-  speed_invulerable: 22
+  speed_invulerable: 28
   combat_collider: {fileID: 61068958462534306}
   is_invulnerable: 0
   current_state: 0

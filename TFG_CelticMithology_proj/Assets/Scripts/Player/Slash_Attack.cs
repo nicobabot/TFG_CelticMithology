@@ -79,7 +79,7 @@ public class Slash_Attack : MonoBehaviour
 
     private void React_To_Slash()
     {
-        Debug.Log("Enemies detected: " + enemies_found.Length);
+        //Debug.Log("Enemies detected: " + enemies_found.Length);
         cam_manager.Cam_Shake();
 
         foreach (Collider2D col in enemies_found)
