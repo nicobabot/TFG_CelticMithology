@@ -45,12 +45,14 @@ public class Live_Manager : MonoBehaviour
 
     }
 
-    void AddUiHeart(int num)
+    Image AddUiHeart(int num)
     {
         GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
         go.name = "Live" + num;
         RectTransform rectTrans = go.GetComponent<RectTransform>();
         rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * num, StartPosition.y, rectTrans.position.z);
+
+        return go.GetComponent<Image>();
     }
 
     public void AddHeart(bool healing = false)
@@ -81,19 +83,41 @@ public class Live_Manager : MonoBehaviour
 
             if (it == maxLives)
             {
-                AddUiHeart((int)lives);
+                Image img = childs_temporal_vector[(int)it-1].GetComponent<Image>();
+                if (img.fillAmount == 1.0f)
+                {
+                    AddUiHeart((int)lives);
+                    lives += 1.0f;
+                }
+                else if (img.fillAmount == 0.5f)
+                {
+                    img.fillAmount += 0.5f;
+
+                    Image imgTwo = AddUiHeart((int)lives + 1);
+                    imgTwo.fillAmount = 0.5f;
+
+                    lives += 1;
+                }
             }
             else if(it - Mathf.Round(lives) == 0)
             {
                 Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
-                img.fillAmount += 0.5f;
-                lives += 0.5f;
+                img.fillAmount += 1.0f;
+                lives += 1.0f;
             }
             else if(it - lives > 0)
             {
                 Image img = childs_temporal_vector[(int)it-1].GetComponent<Image>();
                 img.fillAmount += 0.5f;
                 lives += 0.5f;
+
+                if(childs_temporal_vector[(int)it] != null)
+                {
+                    Image imgTwo = childs_temporal_vector[(int)it].GetComponent<Image>();
+                    imgTwo.fillAmount += 0.5f;
+                    lives += 0.5f;
+                }
+
             }
 
         }
