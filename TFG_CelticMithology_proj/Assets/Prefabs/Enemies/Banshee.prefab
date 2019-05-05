@@ -505,7 +505,7 @@ MonoBehaviour:
     my_value: 0
   playerIsInsideRoom:
     my_name: playerInsideRoom
-    my_value: 1
+    my_value: 0
   mySpriteRend:
     my_name: mySpriteRend
     my_value: {fileID: 212045397180594756}
@@ -5280,7 +5280,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086350905282248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.96972656}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00393, y: 0.00393, z: 0.00393}
   m_Children: []
   m_Father: {fileID: 224016055584914438}

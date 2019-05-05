@@ -28,7 +28,7 @@ public class BT_MacLir : BT_Entity
     public Action_ChargeToPlayer charge;
 
     [Header("Death State")]
-    public Action_Dead dead;
+    public Action_DeadBoss dead;
 
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;

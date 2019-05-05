@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 114526353634957026}
   - component: {fileID: 114001029451051244}
   - component: {fileID: 114539409879906268}
-  - component: {fileID: 114640861086575388}
+  - component: {fileID: 114696757566369400}
   m_Layer: 0
   m_Name: MacLir
   m_TagString: Untagged
@@ -1030,25 +1030,9 @@ MonoBehaviour:
   follow_point: {fileID: 114560733636161834}
   invoke_enemies: {fileID: 114001029451051244}
   charge: {fileID: 114539409879906268}
-  dead: {fileID: 114640861086575388}
+  dead: {fileID: 114696757566369400}
   lives_to_change_phase_2: 10
   lives_to_change_phase_3: 5
---- !u!114 &114640861086575388
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1973778447095654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109422490dda7414db72d0e3b1c2085d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_interruptible: 0
-  name: Dead
-  part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
-  healthObject: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a,
-    type: 2}
 --- !u!114 &114679350954369994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1049,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114696757566369400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973778447095654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e89543c6fba2e419d87c5f52c6e611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Dead
+  part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
+  portalObject: {fileID: 1833004233313392, guid: c636ac9c51c1bec4ba0fa0bd2f75bb30,
+    type: 2}
 --- !u!114 &114730741810820194
 MonoBehaviour:
   m_ObjectHideFlags: 1

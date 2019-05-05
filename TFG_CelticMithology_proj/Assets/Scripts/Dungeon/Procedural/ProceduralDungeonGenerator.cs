@@ -24,6 +24,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     [Header("Map values")]
     public Tilemap grid;
+    public int numDungeon;
     [SerializeField] private int tilesWidthMap;
     [SerializeField] private int tilesHeightMap;
     [SerializeField] private int maxim_depth;
@@ -46,6 +47,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject caorthannach;
     public GameObject bluecaorthannach;
     public GameObject dearDug;
+    public GameObject banshee;
     public GameObject macLir;
     public GameObject kelpie;
 

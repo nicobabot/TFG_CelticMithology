@@ -200,10 +200,21 @@ public class RunTimeRoomControl : MonoBehaviour {
 
     public void SetEnemies()
     {
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.bluecaorthannach, 5, 4));
-        _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DEARDUG_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
+
+        if (ProceduralDungeonGenerator.mapGenerator.numDungeon == 0 ||
+            ProceduralDungeonGenerator.mapGenerator.numDungeon == 1)
+        {
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.bluecaorthannach, 5, 4));
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DEARDUG_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
+        }
+        //Need to add something to detect if is the dungeon you want
+        if (ProceduralDungeonGenerator.mapGenerator.numDungeon == 1)
+        {
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.BANSHEE_ENEMY, ProceduralDungeonGenerator.mapGenerator.banshee, 7, 2));
+        }
+
     }
 
     void SpawnEnemies()
@@ -284,10 +295,12 @@ public class RunTimeRoomControl : MonoBehaviour {
                 _enemiesInRoom.Add(new EnemiesRoom(enemy.myEnemyType, go, enemy.mydificultyPoints));
                 _counterPoints += enemy.mydificultyPoints;
 
-                if (_counterPoints == _maximumPoints)
+                if (_counterPoints >= _maximumPoints)
                     break;
 
             }
+            if (_counterPoints >= _maximumPoints)
+                break;
         }
 
 
@@ -450,6 +463,17 @@ public class RunTimeRoomControl : MonoBehaviour {
                         }
                     }
                     break;
+                case Enemy_type.BANSHEE_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponent<Banshee_Blackboard>();
+                    if (bb != null)
+                    {
+                        if (((Banshee_Blackboard)bb).life.myValue <= 0)
+                        {
+                            _enemiesInRoom.Remove(enemiesRoom);
+                            _enemiesDead++;
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -497,6 +521,14 @@ public class RunTimeRoomControl : MonoBehaviour {
                         ((DearDug_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
+                case Enemy_type.BANSHEE_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<Banshee_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((Banshee_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+
             }
         }
     }
