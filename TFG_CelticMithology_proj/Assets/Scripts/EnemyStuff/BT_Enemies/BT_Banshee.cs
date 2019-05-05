@@ -8,6 +8,7 @@ public class BT_Banshee : BT_Entity
     public Action_FollowPlayer chase;
     public Action_PushBack pushback;
     public Action_DissapearAppear dissappear;
+    public Action_Stunned stunned;
     public Action_Dead dead;
 
     public enum BansheeState
@@ -20,6 +21,7 @@ public class BT_Banshee : BT_Entity
     // public Action_MeleeAttack melee_attack;
     private bool can_start_combat = false;
     private bool is_dead = false;
+    private bool want_stun = false;
 
     override public void Start()
     {
@@ -48,19 +50,25 @@ public class BT_Banshee : BT_Entity
 
         if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && !(bool)myBB.GetParameter("want_to_hit") 
-                && can_start_combat == false && is_dead == false)
+            if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && !(bool)myBB.GetParameter("want_to_hit")
+               && !(bool)myBB.GetParameter("is_enemy_stunned") && can_start_combat == false && is_dead == false)
             {
                 myState = BansheeState.OTHER_BANSHEE;
                 currentAction = chase;
                 decide = true;
             }
-            else if (currentAction != dissappear && (bool)myBB.GetParameter("want_to_hit"))
+            else if (currentAction != dissappear && (bool)myBB.GetParameter("want_to_hit") && !(bool)myBB.GetParameter("is_enemy_stunned"))
             {
                 myState = BansheeState.OTHER_BANSHEE;
                 //Dissappear and appear close
                 myBB.SetParameter("want_to_hit", false);
                 currentAction = dissappear;
+                decide = true;
+            }
+            else if (currentAction != stunned /*&& (bool)myBB.GetParameter("want_to_hit")*/ && (bool)myBB.GetParameter("is_enemy_stunned"))
+            {
+                myState = BansheeState.STUNNED_BANSHEE;
+                currentAction = stunned;
                 decide = true;
             }
             else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
@@ -95,6 +103,20 @@ public class BT_Banshee : BT_Entity
 
             can_start_combat = true;
         }
+
+        if (collision.tag == "player_change_state_collider")
+        {
+            Player_Manager pm = collision.GetComponentInParent<Player_Manager>();
+            if (pm != null && pm.current_state == Player_Manager.Player_States.DASHING_PLAYER 
+                && currentAction != stunned && !(bool)myBB.GetParameter("is_enemy_stunned"))
+            {
+                if (currentAction != null)
+                    currentAction.isFinish = true;
+
+                myBB.SetParameter("is_enemy_stunned", true);
+            }
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

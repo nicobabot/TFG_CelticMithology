@@ -4,6 +4,7 @@
     public ParameterInt total_life;
     public ParameterBool is_enemy_hit;
     public ParameterBool want_to_hit;
+    public ParameterBool is_enemy_stunned;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
@@ -19,6 +20,7 @@
         list.Add(total_life);
         list.Add(is_enemy_hit);
         list.Add(want_to_hit);
+        list.Add(is_enemy_stunned);
         if (ProceduralDungeonGenerator.mapGenerator != null)
             player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);

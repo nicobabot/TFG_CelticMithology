@@ -11,6 +11,23 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1844524072703014}
   m_IsPrefabAsset: 1
+--- !u!1 &1086350905282248
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224586031538974628}
+  - component: {fileID: 222961717322992124}
+  - component: {fileID: 114123067695896996}
+  m_Layer: 0
+  m_Name: Damage_Filler_Banshee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1097457476714868
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +130,7 @@ GameObject:
   - component: {fileID: 114726001324082034}
   - component: {fileID: 114247999389955124}
   - component: {fileID: 114676479464775606}
+  - component: {fileID: 114434604533289434}
   - component: {fileID: 95521505276361720}
   m_Layer: 0
   m_Name: Banshee
@@ -303,6 +321,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
   fader_scr: {fileID: 0}
+--- !u!114 &114123067695896996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086350905282248}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.96933126, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 0
+  m_FillOrigin: 2
 --- !u!114 &114247999389955124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,6 +364,21 @@ MonoBehaviour:
   part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
   healthObject: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a,
     type: 2}
+--- !u!114 &114434604533289434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844524072703014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f399a22f1a8ea44a267225d0abf7d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: stunned
+  Time_stunned: 2
+  Stunned_Filler: {fileID: 114123067695896996}
 --- !u!114 &114620913315429450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,6 +446,7 @@ MonoBehaviour:
   chase: {fileID: 114941675584341526}
   pushback: {fileID: 114726001324082034}
   dissappear: {fileID: 114676479464775606}
+  stunned: {fileID: 114434604533289434}
   dead: {fileID: 114247999389955124}
   myState: 0
 --- !u!114 &114726001324082034
@@ -432,6 +493,9 @@ MonoBehaviour:
     my_value: 0
   want_to_hit:
     my_name: want_to_hit
+    my_value: 0
+  is_enemy_stunned:
+    my_name: is_enemy_stunned
     my_value: 0
   player:
     my_name: player
@@ -5137,6 +5201,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!222 &222961717322992124
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086350905282248}
+  m_CullTransparentMesh: 0
 --- !u!222 &222979862206778778
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -5175,6 +5246,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224440047732713530}
+  - {fileID: 224586031538974628}
   m_Father: {fileID: 4464886571185982}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5199,5 +5271,23 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224586031538974628
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086350905282248}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.96972656}
+  m_LocalScale: {x: 0.00393, y: 0.00393, z: 0.00393}
+  m_Children: []
+  m_Father: {fileID: 224016055584914438}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.342}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
