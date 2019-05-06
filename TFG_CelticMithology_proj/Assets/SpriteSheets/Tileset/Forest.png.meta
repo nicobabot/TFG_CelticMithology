@@ -95,8 +95,8 @@ TextureImporter:
       name: Forest_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 1
+        y: 69
         width: 32
         height: 32
       alignment: 0
@@ -115,8 +115,8 @@ TextureImporter:
       name: Forest_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 35
+        y: 69
         width: 32
         height: 32
       alignment: 0
@@ -135,8 +135,8 @@ TextureImporter:
       name: Forest_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 69
+        y: 69
         width: 32
         height: 32
       alignment: 0
@@ -155,8 +155,8 @@ TextureImporter:
       name: Forest_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 1
+        y: 35
         width: 32
         height: 32
       alignment: 0
@@ -175,8 +175,8 @@ TextureImporter:
       name: Forest_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 35
+        y: 35
         width: 32
         height: 32
       alignment: 0
@@ -195,8 +195,8 @@ TextureImporter:
       name: Forest_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 69
+        y: 35
         width: 32
         height: 32
       alignment: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: Forest_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 1
+        y: 1
         width: 32
         height: 32
       alignment: 0
@@ -227,6 +227,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5079290ffd1de8a4ba3c33a019297add
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest_7
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ff9b6802dd55e4596b29e1a18bc1df
       vertices: []
       indices: 
       edges: []
