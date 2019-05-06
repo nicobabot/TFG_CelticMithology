@@ -38,6 +38,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public BoxCollider2D DetectPlayer;
 
     public GameObject floorTile;
+    public Sprite[] floorTilesSprites;
     public GameObject wallTile;
     public GameObject cornerTile;
     public GameObject doorTile;
@@ -279,9 +280,31 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         if (parent != null)
         {
             if (!is_wall && !is_corner && !is_door)
-                return Instantiate(floorTile, parent);
+            {
+                GameObject go = new GameObject();
+                SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
+
+                int normalOrSpecial = Random.Range(0, 10);
+                int randTile = 0;
+                Sprite tileSprite;
+
+                if (normalOrSpecial < 6)
+                {
+                    //floor tile
+                    tileSprite = floorTilesSprites[0];
+                }
+                else
+                {
+                    randTile = Random.Range(1, floorTilesSprites.Length);
+                    tileSprite = floorTilesSprites[randTile];
+                }
+
+                rend.sprite = tileSprite;
+
+                return go;
+            }
             else if (is_corner) return Instantiate(cornerTile, parent);
-            else if(is_door) return Instantiate(doorTile, parent);
+            else if (is_door) return Instantiate(doorTile, parent);
             else return Instantiate(wallTile, parent);
         }
         return null;

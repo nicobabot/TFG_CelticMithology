@@ -80,9 +80,12 @@ public class Live_Manager : MonoBehaviour
                     return;
             }
 
-            Image img = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
-            img.fillAmount += 0.5f;
-            lives += 0.5f;
+            if ((int)it - 1 < childs_temporal_vector.Length && (int)it - 1 > 0)
+            {
+                Image img = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
+                img.fillAmount += 0.5f;
+                lives += 0.5f;
+            }
         }
         else
         {
