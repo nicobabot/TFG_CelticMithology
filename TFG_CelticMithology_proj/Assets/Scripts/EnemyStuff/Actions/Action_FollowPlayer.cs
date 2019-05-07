@@ -43,7 +43,7 @@ public class Action_FollowPlayer : ActionBase
 
         timerWait = 0.0f;
 
-        if (myAnimator != null)
+        if (myAnimator != null && myBT.enemy_type != Enemy_type.KELPIE_ENEMY)
         {
             myAnimator.SetBool("enemy_startwalking", true);
             myAnimator.SetFloat("offsetAnimation", Random.Range(0.0f, 1.0f));

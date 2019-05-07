@@ -577,7 +577,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199058521907896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.25, y: 1.76, z: 1.7501272}
+  m_LocalPosition: {x: -28.449448, y: 2.4653606, z: 1.7501272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751294745930452}
@@ -1054,10 +1054,16 @@ MonoBehaviour:
     my_value: 0
   playerIsInsideRoom:
     my_name: playerInsideRoom
-    my_value: 0
+    my_value: 1
   shootBall:
     my_name: shootBall
     my_value: 0
+  mySpriteRend:
+    my_name: mySpriteRend
+    my_value: {fileID: 212083185375127534}
+  myAnimator:
+    my_name: myAnimator
+    my_value: {fileID: 95865427003089886}
 --- !u!114 &114876998397841320
 MonoBehaviour:
   m_ObjectHideFlags: 1

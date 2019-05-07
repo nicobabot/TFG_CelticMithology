@@ -11,6 +11,8 @@ public class Kelpi_Blackboard : Blackboard
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
     public ParameterBool shootBall;
+    public ParameterSpriteRend mySpriteRend;
+    public ParameterAnimator myAnimator;
 
     // Use this for initialization
     override public void Start()
@@ -26,5 +28,7 @@ public class Kelpi_Blackboard : Blackboard
         list.Add(direction);
         list.Add(playerIsInsideRoom);
         list.Add(shootBall);
+        list.Add(mySpriteRend);
+        list.Add(myAnimator);
     }
 }

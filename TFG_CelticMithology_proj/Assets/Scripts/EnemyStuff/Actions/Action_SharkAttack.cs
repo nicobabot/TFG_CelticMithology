@@ -39,6 +39,8 @@ public class Action_SharkAttack : ActionBase
     float timer_follow = 0.0f;
     bool shark_attack_done = false;
 
+    private Animator myAnimator;
+
     float standard_y_sprite_player;
     float standard_y_sprite_enemy;
     float sprite_enemy_x = 0;
@@ -52,6 +54,8 @@ public class Action_SharkAttack : ActionBase
         sprite_rend_player = player.GetComponent<SpriteRenderer>();
         normal_sprite = sprite_rend.sprite;
 
+
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
 
         standard_y_sprite_player = sprite_rend_player.bounds.size.y;
         standard_y_sprite_enemy = sprite_rend.bounds.size.y;
@@ -92,10 +96,14 @@ public class Action_SharkAttack : ActionBase
 
             if (timer_follow > time_following_player)
             {
-                sprite_rend.sprite = normal_sprite;
+                //sprite_rend.sprite = normal_sprite;
                 //Activate colliders
                 shark_collider.enabled = true;
                 player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
+
+                GoUnderground(false);
+                //MakeCoroutine to create colider when animation is ending
+
                 shark_attack_done = true;
                 timer_follow = 0;
             }
@@ -106,6 +114,7 @@ public class Action_SharkAttack : ActionBase
         {
             if (player_found != null)
             {
+                GoUnderground(true);
                 shark_collider.enabled = false;
                 sprite_rend.sprite = shadow_sprite;
                 Transform parent = player_found.transform.parent;
@@ -128,6 +137,7 @@ public class Action_SharkAttack : ActionBase
 
                 if (timer_stunned_count > time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
                 {
+                    GoUnderground(true);
                     stun_filler.enabled = false;
                     myBT.myBB.SetParameter("is_enemy_hit", false);
                     //this.StartAction();
@@ -139,6 +149,12 @@ public class Action_SharkAttack : ActionBase
         }
 
         return BT_Status.RUNNING;
+    }
+
+    void GoUnderground(bool GoUnder)
+    {
+        myAnimator.SetBool("KelpieAttack", !GoUnder);
+        myAnimator.SetBool("KelpieGoUnderground", GoUnder);
     }
 
     private void OnDrawGizmos()
