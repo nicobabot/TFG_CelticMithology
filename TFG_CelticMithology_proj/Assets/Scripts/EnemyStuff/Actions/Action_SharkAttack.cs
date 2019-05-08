@@ -37,6 +37,10 @@ public class Action_SharkAttack : ActionBase
     Sprite normal_sprite;
     Collider2D player_found;
     float timer_follow = 0.0f;
+
+    bool animationAttackDone = false;
+    float timerAnimationAttack = 0.0f;
+
     bool shark_attack_done = false;
 
     private Animator myAnimator;
@@ -76,36 +80,56 @@ public class Action_SharkAttack : ActionBase
 
         if (shark_attack_done == false)
         {
-            Vector3 player_pos = player.transform.position;
-            player_pos.y += standard_y_sprite_player * 0.5f;
-            player_pos.y -= standard_y_sprite_enemy * 0.5f;
-            Vector3 my_pos = transform.position;
 
-            Vector3 diff = player_pos - my_pos;
-
-            float step = Time.deltaTime * follow_speed;
-
-            transform.position = Vector3.MoveTowards(my_pos, player_pos, follow_speed);
-
-           // if (diff.magnitude < distance_to_arrive_player)
-            //{
-            timer_follow += Time.deltaTime;
-
-            sprite_rend.size += new Vector2(50, 50);
-
-
-            if (timer_follow > time_following_player)
+            if (!animationAttackDone)
             {
-                //sprite_rend.sprite = normal_sprite;
-                //Activate colliders
+                Vector3 player_pos = player.transform.position;
+                player_pos.y += standard_y_sprite_player * 0.5f;
+                player_pos.y -= standard_y_sprite_enemy * 0.5f;
+                Vector3 my_pos = transform.position;
+
+                Vector3 diff = player_pos - my_pos;
+
+                float step = Time.deltaTime * follow_speed;
+
+                transform.position = Vector3.MoveTowards(my_pos, player_pos, follow_speed);
+
+                // if (diff.magnitude < distance_to_arrive_player)
+                //{
+                timer_follow += Time.deltaTime;
+
+                sprite_rend.size += new Vector2(50, 50);
+
+
+                if (timer_follow > time_following_player)
+                {
+                    //sprite_rend.sprite = normal_sprite;
+                    //Activate colliders
+                    GoUnderground(false);
+                    timerAnimationAttack += Time.deltaTime;
+
+                    if (timerAnimationAttack >= 0.20f)
+                    {
+                        timerAnimationAttack = 0;
+                        animationAttackDone = true;
+                    }
+                }
+            }
+            else
+            {
                 shark_collider.enabled = true;
                 player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
-
-                GoUnderground(false);
-                //MakeCoroutine to create colider when animation is ending
-
-                shark_attack_done = true;
                 timer_follow = 0;
+
+                timerAnimationAttack += Time.deltaTime;
+
+                if (timerAnimationAttack >= 0.53f || player_found!=null)
+                {
+                    timerAnimationAttack = 0;
+                    animationAttackDone = false;
+                    shark_attack_done = true;
+                }
+
             }
 
             // }
@@ -114,35 +138,67 @@ public class Action_SharkAttack : ActionBase
         {
             if (player_found != null)
             {
-                GoUnderground(true);
-                shark_collider.enabled = false;
-                sprite_rend.sprite = shadow_sprite;
-                Transform parent = player_found.transform.parent;
-                Player_Manager player_manager = parent.GetComponent<Player_Manager>();
-                player_manager.GetDamage(transform);
-                player_found = null;
-                shark_attack_done = false;
+                if (!animationAttackDone)
+                {
+                    GoUnderground(true);
+                    animationAttackDone = true;
+                }
+                else
+                {
+
+                    timerAnimationAttack += Time.deltaTime;
+
+                    if (timerAnimationAttack >= 0.38f)
+                    {
+                        timerAnimationAttack = 0;
+                        shark_collider.enabled = false;
+                        //sprite_rend.sprite = shadow_sprite;
+                        Transform parent = player_found.transform.parent;
+                        Player_Manager player_manager = parent.GetComponent<Player_Manager>();
+                        player_manager.GetDamage(transform);
+                        player_found = null;
+                        shark_attack_done = false;
+                        animationAttackDone = false;
+                    }
+                }
+
             }
             else
             {
-                //(bool)myBB.GetParameter("is_enemy_hit") == true
-                get_damage_collider.enabled = true;
-                state = Kelpi_State.STUNNED;
-
-                stun_filler.enabled = true;
-                stun_filler.fillAmount = 1 - timer_stunned_count / time_stunned;
-
-                //make kelpi fail attack and then wait seconds
-                timer_stunned_count += Time.deltaTime;
-
-                if (timer_stunned_count > time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
+                if (!animationAttackDone)
                 {
-                    GoUnderground(true);
-                    stun_filler.enabled = false;
-                    myBT.myBB.SetParameter("is_enemy_hit", false);
-                    //this.StartAction();
-                    myBT.myBB.SetParameter("shootBall", true);
-                    isFinish = true;
+                    //(bool)myBB.GetParameter("is_enemy_hit") == true
+                    get_damage_collider.enabled = true;
+                    state = Kelpi_State.STUNNED;
+
+                    stun_filler.enabled = true;
+                    stun_filler.fillAmount = 1 - timer_stunned_count / time_stunned;
+
+                    timer_stunned_count += Time.deltaTime;
+
+                    if (timer_stunned_count > time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
+                    {
+                        GoUnderground(true);
+                        animationAttackDone = true;
+                    }
+
+                }
+                else
+                {
+                    //make kelpi fail attack and then wait seconds
+                    timerAnimationAttack += Time.deltaTime;
+
+                    if (timerAnimationAttack >= 0.38f)
+                    {
+                        animationAttackDone = false;
+                        timerAnimationAttack = 0;
+                        stun_filler.enabled = false;
+                        myBT.myBB.SetParameter("is_enemy_hit", false);
+                        //this.StartAction();
+                        myBT.myBB.SetParameter("shootBall", true);
+                        isFinish = true;
+                    }
+                    
                 }
 
             }
@@ -150,6 +206,7 @@ public class Action_SharkAttack : ActionBase
 
         return BT_Status.RUNNING;
     }
+
 
     void GoUnderground(bool GoUnder)
     {

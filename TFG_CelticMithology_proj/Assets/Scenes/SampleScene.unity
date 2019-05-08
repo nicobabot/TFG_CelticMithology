@@ -6360,7 +6360,7 @@ Prefab:
       objectReference: {fileID: 1310819217}
     - target: {fileID: 1333637350356556, guid: 658aee750418dfd40ab630ac2810d729, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 658aee750418dfd40ab630ac2810d729, type: 2}
@@ -33213,22 +33213,36 @@ Prefab:
       propertyPath: player.my_value
       value: 
       objectReference: {fileID: 1310819217}
-    - target: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
-      propertyPath: m_Name
-      value: Kelpie_Obj (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114904640043942134, guid: 199a0143b67627f46b4eb9198630250e,
         type: 2}
       propertyPath: WaterBall
       value: 
       objectReference: {fileID: 26695049}
-    - target: {fileID: 224477479279246650, guid: 199a0143b67627f46b4eb9198630250e,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 3.27
+    - target: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
+      propertyPath: m_Name
+      value: Kelpie_Obj (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114290896619171778, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
+    - target: {fileID: 61780360608369790, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.020001411
+      objectReference: {fileID: 0}
+    - target: {fileID: 61780360608369790, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.6784409
+      objectReference: {fileID: 0}
+    - target: {fileID: 61780360608369790, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.9333363
+      objectReference: {fileID: 0}
+    - target: {fileID: 61780360608369790, guid: 199a0143b67627f46b4eb9198630250e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.4973724
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2012823044

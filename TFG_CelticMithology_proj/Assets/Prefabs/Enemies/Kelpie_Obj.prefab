@@ -281,7 +281,6 @@ GameObject:
   - component: {fileID: 114876998397841320}
   - component: {fileID: 114722017123814490}
   - component: {fileID: 114904640043942134}
-  - component: {fileID: 114290896619171778}
   - component: {fileID: 114194693441872762}
   - component: {fileID: 114458210980657820}
   - component: {fileID: 95865427003089886}
@@ -921,23 +920,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114290896619171778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1754499469707220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60487cfebb3486b4bb19ff821bced67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_interruptible: 0
-  name: FollowPoint
-  points_father: {fileID: 1484992951962790}
-  velocity: 5
-  col_detect_player: {fileID: 61855387875080640}
-  collider_enemy: {fileID: 61584455710706258}
 --- !u!114 &114322410319245416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1054,7 +1036,7 @@ MonoBehaviour:
     my_value: 0
   playerIsInsideRoom:
     my_name: playerInsideRoom
-    my_value: 1
+    my_value: 0
   shootBall:
     my_name: shootBall
     my_value: 0
@@ -1098,7 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: ThrowBalls
-  WaterBall: {fileID: 0}
+  WaterBall: {fileID: 1333637350356556, guid: 658aee750418dfd40ab630ac2810d729, type: 2}
   Collider: {fileID: 61584455710706258}
   followPlayer: {fileID: 114722017123814490}
   rightTrans: {fileID: 4564568084033088}
@@ -1431,7 +1413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.02, y: 2.0006}
+  m_AnchoredPosition: {x: 0.02, y: 3.27}
   m_SizeDelta: {x: 2.03, y: 0.9105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224885141382988808
