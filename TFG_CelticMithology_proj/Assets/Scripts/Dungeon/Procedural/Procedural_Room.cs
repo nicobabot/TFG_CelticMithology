@@ -32,7 +32,7 @@ public class Procedural_Room
 
     private bool hasFirstExit = false;
 
-    private GameObject Room_Go;
+    [HideInInspector]public GameObject Room_Go;
     RunTimeRoomControl controlRoom;
 
     private int numExits = 0;
@@ -102,7 +102,6 @@ public class Procedural_Room
             SetGroundAndWall();
 
             controlRoom = Room_Go.AddComponent<RunTimeRoomControl>();
-
         }
         else
         {
@@ -114,6 +113,14 @@ public class Procedural_Room
     public Vector3 GetMiddlePositionRoom()
     {
         return new Vector3(_x_pos + (_tilewidth * 0.5f), (_y_pos + _tileheight * 0.5f), 0.0f);
+    }
+    public Vector3 GetStarterRoom()
+    {
+        return new Vector3(_x_pos, _y_pos, 0.0f);
+    }
+    public int GetLevelDepth()
+    {
+        return _mylevel;
     }
 
     public RunTimeRoomControl GetRunTimeControllScr()

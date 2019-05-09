@@ -42,6 +42,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject wallTile;
     public GameObject cornerTile;
     public GameObject doorTile;
+    public GameObject shadowRoom;
 
     [Header("Enemy prefabs")]
     public GameObject meleeEnemey;
@@ -62,6 +63,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     private int _counterBoss = 0;
 
     private bool _AddMiniBoss = false;
+    private bool _FirstShadowNot = false;
     private int _counterMiniBoss = 0;
 
     List<Procedural_Room> rooms;
@@ -118,6 +120,15 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 testRoom.InitializeRoomRunTimeValues();
 
                 testRoom.DrawRoom();
+
+                if (testRoom.GetLevelDepth() > 0 || _FirstShadowNot)
+                {
+                    Vector3 posShadow = testRoom.GetStarterRoom();
+                    GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
+                    goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                }
+                else _FirstShadowNot = true;
+
             }
         }
     }
@@ -282,6 +293,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             if (!is_wall && !is_corner && !is_door)
             {
                 GameObject go = new GameObject();
+                go.transform.parent = parent;
                 SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
 
                 int normalOrSpecial = Random.Range(0, 10);
@@ -310,7 +322,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         return null;
     }
 
-    public GameObject InstantiateGO(GameObject go)
+    public GameObject InstantiateGO(GameObject go, Transform trans = null)
     {
         return Instantiate(go);
     }
