@@ -178,6 +178,7 @@ public class Action_SharkAttack : ActionBase
 
                     if (timer_stunned_count > time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
                     {
+                        sprite_rend.color = Color.red;
                         GoUnderground(true);
                         animationAttackDone = true;
                     }
@@ -190,6 +191,7 @@ public class Action_SharkAttack : ActionBase
 
                     if (timerAnimationAttack >= 0.38f)
                     {
+                        sprite_rend.color = Color.white;
                         animationAttackDone = false;
                         timerAnimationAttack = 0;
                         stun_filler.enabled = false;
