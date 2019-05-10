@@ -10,6 +10,7 @@ TextureImporter:
     21300010: Forest_5
     21300012: Forest_6
     21300014: Forest_7
+    21300016: Forest_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -247,6 +248,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 08ff9b6802dd55e4596b29e1a18bc1df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c870405b49101854bac3528d7cb763dc
       vertices: []
       indices: 
       edges: []
