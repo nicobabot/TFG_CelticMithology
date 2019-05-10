@@ -124,8 +124,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 if (testRoom.GetLevelDepth() > 0 || _FirstShadowNot)
                 {
                     Vector3 posShadow = testRoom.GetStarterRoom();
-                    GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
-                    goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                    //GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
+                    //goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
                 }
                 else _FirstShadowNot = true;
 
@@ -300,15 +300,23 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 int randTile = 0;
                 Sprite tileSprite;
 
-                if (normalOrSpecial < 6)
+                if (normalOrSpecial < 9)
                 {
                     //floor tile
                     tileSprite = floorTilesSprites[0];
                 }
                 else
                 {
-                    randTile = Random.Range(1, floorTilesSprites.Length);
-                    tileSprite = floorTilesSprites[randTile];
+                    int specialOrClover = Random.Range(0, 20);
+                    if (specialOrClover < 18)
+                    {
+                        randTile = Random.Range(1, floorTilesSprites.Length - 2);
+                        tileSprite = floorTilesSprites[randTile];
+                    }
+                    else
+                    {
+                        tileSprite = floorTilesSprites[floorTilesSprites.Length - 1];
+                    }
                 }
 
                 rend.sprite = tileSprite;

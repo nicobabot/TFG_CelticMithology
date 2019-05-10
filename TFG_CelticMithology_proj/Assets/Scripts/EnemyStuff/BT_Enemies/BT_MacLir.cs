@@ -117,6 +117,11 @@ public class BT_MacLir : BT_Entity
                         currentAction = charge;
                         decide = true;
                     }
+                    if (currentAction != dead && is_dead == true)
+                    {
+                        currentAction = dead;
+                        decide = true;
+                    }
                 }
             }
         }
