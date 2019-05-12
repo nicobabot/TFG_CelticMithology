@@ -19,14 +19,13 @@ public class BT_Dagda : BT_Entity
     public Action_PushBack pushback;
 
     [Header("Phase 2")]
-
+    public Action_Escape escape;
 
     [Header("Death State")]
     public Action_DeadBoss dead;
 
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;
-
 
     private bool is_dead = false;
     private bool can_make_slash = false;
@@ -82,8 +81,20 @@ public class BT_Dagda : BT_Entity
                 }
                 if (dagda_phase == Dagda_Phases.DAGDA_PHASE_2)
                 {
-
-
+                    if (currentAction != escape && !(bool)myBB.GetParameter("is_enemy_hit") == true)
+                    {
+                        currentAction = escape;
+                        decide = true;
+                    }
+                    else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit"))
+                    {
+                        int count = (int)myBB.GetParameter("pointdir");
+                        count+=1;
+                        myBB.SetParameter("pointdir", count);
+                        myBB.SetParameter("changepath", true);
+                        currentAction = pushback;
+                        decide = true;
+                    }
                 }
             }
         }

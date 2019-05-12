@@ -39,9 +39,14 @@ public class Action_MeleSlashPlayer : ActionBase
         follow_player_scr = GetComponent<Action_FollowPlayer>();
         player_detection_slash = null;
         is_player_detected = false;
-        damageDagda.enabled = false;
-        damageDagda.gameObject.transform.localPosition = new Vector3(damageDagda.gameObject.transform.localPosition.x, yStartDagdaText);
-        damageDagda.alpha = 1.0f;
+
+        if (damageDagda != null)
+        {
+            damageDagda.enabled = false;
+            damageDagda.gameObject.transform.localPosition = new Vector3(damageDagda.gameObject.transform.localPosition.x, yStartDagdaText);
+            damageDagda.alpha = 1.0f;
+        }
+
         timer_attack = 0.0f;
         dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;

@@ -10,6 +10,8 @@ public class Dagda_Blackboard : Blackboard
     public ParameterBool player_detected_while_charging;
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
+    public ParameterInt pointsDir;
+    public ParameterBool pointsDirChangePath;
     public ParameterBool playerIsInsideRoom;
 
     // Use this for initialization
@@ -25,6 +27,8 @@ public class Dagda_Blackboard : Blackboard
             player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
+        list.Add(pointsDir);
+        list.Add(pointsDirChangePath);
         list.Add(playerIsInsideRoom);
     }
 }

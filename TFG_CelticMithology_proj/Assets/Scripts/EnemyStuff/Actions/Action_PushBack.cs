@@ -88,15 +88,15 @@ public class Action_PushBack : ActionBase
         return BT_Status.RUNNING;
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + pushback_dir);
         Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
         Gizmos.DrawWireSphere(temp_position, 0.1f);
         Gizmos.DrawWireSphere(temp_position_player, 0.1f);
-        /*Gizmos.DrawWireSphere(temp_position, 0.1f);
-        Gizmos.DrawWireSphere(temp_position_player, 0.1f);*/
-    }
+        Gizmos.DrawWireSphere(temp_position, 0.1f);
+        Gizmos.DrawWireSphere(temp_position_player, 0.1f);
+    }*/
 
     override public BT_Status UpdateAction()
     {
