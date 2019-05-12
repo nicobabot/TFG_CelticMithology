@@ -42,6 +42,12 @@ public class Player_PushBack : MonoBehaviour
 
     void Reset_Values()
     {
+        if (player_manager_sct.noNeedInvulnerable)
+        {
+            player_manager_sct.noNeedInvulnerable = false;
+            player_manager_sct.is_invulnerable = false;
+        }
+
         rb.velocity = Vector2.zero;
         timer_pushback = 0;
         enemy_pos = null;

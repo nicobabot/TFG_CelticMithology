@@ -160,6 +160,18 @@ public class Slash_Attack : MonoBehaviour
                     }
                     else bansheeBB.want_to_hit.SetValue(true);
                 }
+                BT_Dagda Dagda = parent.GetComponent<BT_Dagda>();
+                if (Dagda != null)
+                {
+                    if (Dagda.currentAction != null)
+                    {
+                        Dagda.currentAction.isFinish = true;
+                    }
+
+                    Dagda_Blackboard dagdaBB = parent.GetComponent<Dagda_Blackboard>();
+                    Dagda.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    dagdaBB.is_enemy_hit.SetValue(true);
+                }
 
             }
             else

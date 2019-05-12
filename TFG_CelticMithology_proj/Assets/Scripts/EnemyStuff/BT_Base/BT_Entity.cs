@@ -18,7 +18,8 @@ public enum Enemy_type
     KELPIE_ENEMY,
     MACLIR_ENEMY,
     DEARDUG_ENEMY,
-    BANSHEE_ENEMY
+    BANSHEE_ENEMY,
+    DAGDA_ENEMY
 }
 
 public class BT_Entity : MonoBehaviour

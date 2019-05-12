@@ -124,8 +124,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 if (testRoom.GetLevelDepth() > 0 || _FirstShadowNot)
                 {
                     Vector3 posShadow = testRoom.GetStarterRoom();
-                    //GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
-                    //goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                    GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
+                    goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
                 }
                 else _FirstShadowNot = true;
 

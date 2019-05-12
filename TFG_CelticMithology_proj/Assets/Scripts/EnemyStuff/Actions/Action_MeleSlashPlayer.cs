@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
 [RequireComponent(typeof(Action_FollowPlayer))]
 public class Action_MeleSlashPlayer : ActionBase
@@ -10,6 +12,9 @@ public class Action_MeleSlashPlayer : ActionBase
     public float time_to_make_slash;
     public GameObject father_colliders;
     public LayerMask player_mask;
+    public TextMeshProUGUI damageDagda;
+    public float yStartDagdaText;
+    public float yEndDagdaText;
     public Image filler;
 
     [Header("The collider that player detects to make damage the enemy")]
@@ -34,6 +39,9 @@ public class Action_MeleSlashPlayer : ActionBase
         follow_player_scr = GetComponent<Action_FollowPlayer>();
         player_detection_slash = null;
         is_player_detected = false;
+        damageDagda.enabled = false;
+        damageDagda.gameObject.transform.localPosition = new Vector3(damageDagda.gameObject.transform.localPosition.x, yStartDagdaText);
+        damageDagda.alpha = 1.0f;
         timer_attack = 0.0f;
         dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
@@ -76,7 +84,13 @@ public class Action_MeleSlashPlayer : ActionBase
                     {
                         is_player_detected = true;
                         Player_Manager player_manager = parent.GetComponent<Player_Manager>();
-                        player_manager.GetDamage(transform);
+                        if (myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
+                        {
+                            player_manager.GetDamage(transform, false);
+                            damageDagda.enabled = true;
+                            damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.5f).OnComplete(()=>damageDagda.DOFade(0.0f, 0.5f));
+                        }
+                        else player_manager.GetDamage(transform);
                     }
 
                 }

@@ -20,6 +20,7 @@ public class Player_Manager : MonoBehaviour
     public float speed_invulerable = 1.5f;
     public Collider2D combat_collider;
     [HideInInspector] public bool is_invulnerable = false;
+    [HideInInspector] public bool noNeedInvulnerable = false;
     private float timer_invulerable = 0.0f;
 
     public enum Player_States
@@ -80,7 +81,7 @@ public class Player_Manager : MonoBehaviour
     private void Update()
     {
 
-        if (is_invulnerable)
+        if (is_invulnerable && !noNeedInvulnerable)
         {
             combat_collider.enabled = false;
             timer_invulerable += Time.deltaTime;
@@ -155,6 +156,17 @@ public class Player_Manager : MonoBehaviour
         else if (current_state == Player_States.FALLING_PLAYER)
         {
             //todo
+
+            /*
+             * 
+              if (noNeedInvulnerable)
+            {
+                is_invulnerable = false;
+                noNeedInvulnerable = false;
+            }
+            else
+             * */
+
             is_invulnerable = true;
 
             //Start Animation
@@ -199,9 +211,10 @@ public class Player_Manager : MonoBehaviour
         return in_mine;
     }
 
-    public void GetDamage(Transform enemy_push)
+    public void GetDamage(Transform enemy_push, bool realDamage = true)
     {
         Set_Enemy_Pushback(enemy_push);
+        noNeedInvulnerable = !realDamage;
         current_state = Player_States.PUSHBACK_PLAYER;
         //fader_scr.Fade_image.enabled = true;
         //fader_scr.FadeOut(false, true);
