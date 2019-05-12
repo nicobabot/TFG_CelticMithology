@@ -39,6 +39,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     public GameObject floorTile;
     public Sprite[] floorTilesSprites;
+    public Sprite[] cornersTilesSprites;
     public GameObject wallTile;
     public GameObject cornerTile;
     public GameObject doorTile;
@@ -286,11 +287,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         return it;
     }
 
-    public GameObject InstantiateWithTile(bool is_wall = false, bool is_corner=false, bool is_door = false, Transform parent = null)
+    public GameObject InstantiateWithTile(bool is_wall = false, bool is_door = false, Transform parent = null)
     {
         if (parent != null)
         {
-            if (!is_wall && !is_corner && !is_door)
+            if (!is_wall && !is_door)
             {
                 GameObject go = new GameObject();
                 go.transform.parent = parent;
@@ -323,11 +324,36 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
                 return go;
             }
-            else if (is_corner) return Instantiate(cornerTile, parent);
             else if (is_door) return Instantiate(doorTile, parent);
             else return Instantiate(wallTile, parent);
         }
         return null;
+    }
+
+    public GameObject InstantiateCornerTile(TileType type, Transform parent = null)
+    {
+
+        GameObject go = new GameObject();
+        go.transform.parent = parent;
+        SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
+
+        switch (type)
+        {
+            case TileType.LEFT_UP_CORNER:
+                rend.sprite = cornersTilesSprites[0];
+                break;
+            case TileType.RIGHT_UP_CORNER:
+                rend.sprite = cornersTilesSprites[1];
+                break;
+            case TileType.LEFT_DOWN_CORNER:
+                rend.sprite = cornersTilesSprites[2];
+                break;
+            case TileType.RIGHT_DOWN_CORNER:
+                rend.sprite = cornersTilesSprites[3];
+                break;
+        }
+
+        return go;
     }
 
     public GameObject InstantiateGO(GameObject go, Transform trans = null)
