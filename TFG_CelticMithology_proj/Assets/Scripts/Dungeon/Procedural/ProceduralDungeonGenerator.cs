@@ -1,7 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+
+[Serializable]
+public class WallsSprites
+{
+    public Sprite[] tiles;
+}
 
 public class ProceduralDungeonGenerator : MonoBehaviour {
 
@@ -40,9 +47,19 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject floorTile;
     public Sprite[] floorTilesSprites;
     public Sprite[] cornersTilesSprites;
+
+    [Header("Tiles wall")]
+    public int tileNumUsing = 0;
+    [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 2 - UP WALL \nELEMENT 1 - DOWN WALL")]
+    public WallsSprites[] wallTilesSprites;
+
+
+    [Space(10)]
+    [Header("Tiles along")]
     public GameObject wallTile;
     public GameObject cornerTile;
     public GameObject doorTile;
+    public GameObject borderWallTile;
     public GameObject shadowRoom;
 
     [Header("Enemy prefabs")]
@@ -73,6 +90,11 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     {
         LEFT_WALL, RIGHT_WALL, UP_WALL, DOWN_WALL,
         LEFT_DOWN_CORNER, LEFT_UP_CORNER, RIGHT_DOWN_CORNER, RIGHT_UP_CORNER,
+
+        LEFTUP_RIGHT_BORDER, LEFTUP_DOWN_BORDER,
+        RIGHTUP_LEFT_BORDER, RIGHTUP_DOWN_BORDER,
+        LEFTDOWN_UP_BORDER, LEFTDOWN_RIGHT_BORDER,
+        RIGHTDOWN_LEFT_BORDER, RIGHTDOWN_UP_BORDER,
 
         LEFT_DOOR_PREV_0, LEFT_DOOR_1, LEFT_DOOR_2, LEFT_DOOR_PREV_3,
         RIGHT_DOOR_PREV_0, RIGHT_DOOR_1, RIGHT_DOOR_2, RIGHT_DOOR_PREV_3,
@@ -287,17 +309,17 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         return it;
     }
 
-    public GameObject InstantiateWithTile(bool is_wall = false, bool is_door = false, Transform parent = null)
+    public GameObject InstantiateWithTile(bool is_door = false, Transform parent = null)
     {
         if (parent != null)
         {
-            if (!is_wall && !is_door)
+            if (!is_door)
             {
                 GameObject go = new GameObject();
                 go.transform.parent = parent;
                 SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
 
-                int normalOrSpecial = Random.Range(0, 10);
+                int normalOrSpecial = UnityEngine.Random.Range(0, 10);
                 int randTile = 0;
                 Sprite tileSprite;
 
@@ -308,10 +330,10 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 }
                 else
                 {
-                    int specialOrClover = Random.Range(0, 20);
+                    int specialOrClover = UnityEngine.Random.Range(0, 20);
                     if (specialOrClover < 18)
                     {
-                        randTile = Random.Range(1, floorTilesSprites.Length - 2);
+                        randTile = UnityEngine.Random.Range(1, floorTilesSprites.Length - 2);
                         tileSprite = floorTilesSprites[randTile];
                     }
                     else
@@ -325,7 +347,6 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 return go;
             }
             else if (is_door) return Instantiate(doorTile, parent);
-            else return Instantiate(wallTile, parent);
         }
         return null;
     }
@@ -353,6 +374,40 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 break;
         }
 
+        return go;
+    }
+
+    public GameObject InstantiateWallTile(TileType type, Transform parent = null)
+    {
+
+        GameObject go = new GameObject();
+        go.transform.parent = parent;
+        SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
+
+        switch (type)
+        {
+            case TileType.LEFT_WALL:
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                rend.flipX = true;
+                break;
+            case TileType.RIGHT_WALL:
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                break;
+            case TileType.UP_WALL:
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[2];
+                break;
+            case TileType.DOWN_WALL:
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[3];
+                rend.flipY = true;
+                break;
+        }
+
+        return go;
+    }
+
+    public GameObject InstantiateCornerBorderTile(TileType type, Transform parent = null)
+    {
+        GameObject go = Instantiate(borderWallTile, parent);
         return go;
     }
 

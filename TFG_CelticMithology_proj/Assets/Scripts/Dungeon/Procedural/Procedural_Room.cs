@@ -279,12 +279,20 @@ public class Procedural_Room
             {
                 room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_DOWN_CORNER;
             }
+            else if (j == 1)
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTDOWN_UP_BORDER;
+            }
+            else if (j == (_tileheight - 2))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTUP_DOWN_BORDER;
+            }
             else if (j == (_tileheight - 1))
             {
                 room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_UP_CORNER;
             }
             else {
-                room[i][j] = ProceduralDungeonGenerator.TileType.UP_WALL;
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_WALL;
             }
         } 
         else if (i == (_tilewidth-1))
@@ -293,27 +301,52 @@ public class Procedural_Room
             {
                 room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_DOWN_CORNER;
             }
+            else if (j == 1)
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTDOWN_UP_BORDER;
+            }
+            else if (j == (_tileheight - 2))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTUP_DOWN_BORDER;
+            }
             else if (j == (_tileheight - 1))
             {
                 room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_UP_CORNER;
             }
             else
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_WALL;
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHT_WALL;
             }
         }
         else if (j == 0)
         {
-            if(i != 0 && i != (_tilewidth - 1))
+            if (i == 1)
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTUP_RIGHT_BORDER;
+            }
+            else if (i == (_tilewidth - 2))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTUP_LEFT_BORDER;
+            }
+            else if(i != 0 && i != (_tilewidth - 1))
             {
                 room[i][j] = ProceduralDungeonGenerator.TileType.DOWN_WALL;
             }
+          
         }
         else if(j == (_tileheight - 1))
         {
-            if(i != 0 && i != (_tilewidth - 1))
+            if (i == 1)
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.LEFT_WALL;
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTDOWN_RIGHT_BORDER;
+            }
+            else if (i == (_tilewidth - 2))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTDOWN_LEFT_BORDER;
+            }
+            else if (i != 0 && i != (_tilewidth - 1))
+            {
+                room[i][j] = ProceduralDungeonGenerator.TileType.UP_WALL;
             }
         }
         else
@@ -788,9 +821,22 @@ public class Procedural_Room
                 switch (room[i][j])
                 {
                     case ProceduralDungeonGenerator.TileType.FLOOR:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, false, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
+
+                    case ProceduralDungeonGenerator.TileType.LEFTUP_RIGHT_BORDER:
+                    case ProceduralDungeonGenerator.TileType.LEFTUP_DOWN_BORDER:
+                    case ProceduralDungeonGenerator.TileType.RIGHTUP_LEFT_BORDER:
+                    case ProceduralDungeonGenerator.TileType.RIGHTUP_DOWN_BORDER:
+                    case ProceduralDungeonGenerator.TileType.LEFTDOWN_UP_BORDER:
+                    case ProceduralDungeonGenerator.TileType.LEFTDOWN_RIGHT_BORDER:
+                    case ProceduralDungeonGenerator.TileType.RIGHTDOWN_LEFT_BORDER:
+                    case ProceduralDungeonGenerator.TileType.RIGHTDOWN_UP_BORDER:
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateCornerBorderTile(room[i][j], Room_Go.transform);
+                        temp.transform.position = tile_pos;
+                        break;
+
                     case ProceduralDungeonGenerator.TileType.LEFT_DOWN_CORNER:
                     case ProceduralDungeonGenerator.TileType.LEFT_UP_CORNER:
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOWN_CORNER:
@@ -815,12 +861,12 @@ public class Procedural_Room
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_2:
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_0:
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_3:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(false, true, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
 
                     default:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, false, Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWallTile(room[i][j], Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
                 }

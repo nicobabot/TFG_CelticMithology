@@ -76,9 +76,18 @@ MonoBehaviour:
   - {fileID: 21300018, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
   - {fileID: 21300024, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
   - {fileID: 21300022, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+  tileNumUsing: 0
+  wallTilesSprites:
+  - tiles:
+    - {fileID: 21300026, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300026, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300030, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300018, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
   wallTile: {fileID: 1550786581246124, guid: 4a545dd1639a114498a14d7a48e9ec34, type: 2}
   cornerTile: {fileID: 1550786581246124, guid: 2ac0b225b00e4104aa73bfe66727feee, type: 2}
   doorTile: {fileID: 1144147838282928, guid: fd42ef7e8b9bdf84eb6b3a80bb986fc3, type: 2}
+  borderWallTile: {fileID: 1936513366201222, guid: cdb747594e2ccc849ae960e311a81549,
+    type: 2}
   shadowRoom: {fileID: 1689727895043100, guid: 8812b637009c5ee4aa16b142d3d44653, type: 2}
   meleeEnemey: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
     type: 2}
