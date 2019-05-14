@@ -50,7 +50,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     [Header("Tiles wall")]
     public int tileNumUsing = 0;
-    [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 2 - UP WALL \nELEMENT 1 - DOWN WALL")]
+    [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 3 - UP WALL \nELEMENT 4 - DOWN WALL")]
     public WallsSprites[] wallTilesSprites;
 
 
@@ -400,6 +400,37 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 rend.sprite = wallTilesSprites[tileNumUsing].tiles[3];
                 rend.flipY = true;
                 break;
+
+            #region BordersTiles
+
+            case TileType.LEFTDOWN_RIGHT_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                break;
+            case TileType.LEFTDOWN_UP_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                break;
+
+            case TileType.LEFTUP_RIGHT_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[2];
+                break;
+            case TileType.LEFTUP_DOWN_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[3];
+                break;
+
+            case TileType.RIGHTUP_LEFT_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                break;
+            case TileType.RIGHTUP_DOWN_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                break;
+
+            case TileType.RIGHTDOWN_LEFT_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                break;
+            case TileType.RIGHTDOWN_UP_BORDER:
+                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                break;
+                #endregion
         }
 
         return go;
