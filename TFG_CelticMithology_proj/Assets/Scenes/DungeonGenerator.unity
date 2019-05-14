@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1768,6 +1768,18 @@ Prefab:
       propertyPath: DetectPlayer
       value: 
       objectReference: {fileID: 1414390740}
+    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
+        type: 2}
+      propertyPath: wallTilesSprites.Array.data[0].tiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05,
+        type: 3}
+    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
+        type: 2}
+      propertyPath: wallTilesSprites.Array.data[0].tiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1, type: 2}
   m_IsPrefabAsset: 0
