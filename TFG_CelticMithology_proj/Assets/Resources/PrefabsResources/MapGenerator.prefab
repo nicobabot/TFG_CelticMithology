@@ -83,6 +83,8 @@ MonoBehaviour:
     - {fileID: 21300026, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
     - {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
     - {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300028, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300036, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
   doorPrefabVertical: {fileID: 1255556595100800, guid: 4bb6e56fbac24054983ccc0fcf2ff60b,
     type: 2}
   doorPrefabHorizontal: {fileID: 1160289615149414, guid: a2326bb28de50f7498a16e0ff223164c,

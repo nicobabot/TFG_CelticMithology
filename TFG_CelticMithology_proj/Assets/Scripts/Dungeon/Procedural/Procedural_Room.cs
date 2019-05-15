@@ -322,11 +322,11 @@ public class Procedural_Room
         {
             if (i == 1)
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTUP_RIGHT_BORDER;
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTDOWN_RIGHT_BORDER;
             }
             else if (i == (_tilewidth - 2))
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTUP_LEFT_BORDER;
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTDOWN_LEFT_BORDER;
             }
             else if(i != 0 && i != (_tilewidth - 1))
             {
@@ -338,11 +338,11 @@ public class Procedural_Room
         {
             if (i == 1)
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTDOWN_RIGHT_BORDER;
+                room[i][j] = ProceduralDungeonGenerator.TileType.LEFTUP_RIGHT_BORDER;
             }
             else if (i == (_tilewidth - 2))
             {
-                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTDOWN_LEFT_BORDER;
+                room[i][j] = ProceduralDungeonGenerator.TileType.RIGHTUP_LEFT_BORDER;
             }
             else if (i != 0 && i != (_tilewidth - 1))
             {
@@ -890,7 +890,7 @@ public class Procedural_Room
                     case ProceduralDungeonGenerator.TileType.LEFTDOWN_RIGHT_BORDER:
                     case ProceduralDungeonGenerator.TileType.RIGHTDOWN_LEFT_BORDER:
                     case ProceduralDungeonGenerator.TileType.RIGHTDOWN_UP_BORDER:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateCornerBorderTile(room[i][j], Room_Go.transform);
+                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWallTile(room[i][j], Room_Go.transform);
                         temp.transform.position = tile_pos;
                         break;
 

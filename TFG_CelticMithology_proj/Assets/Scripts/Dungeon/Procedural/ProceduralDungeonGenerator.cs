@@ -51,7 +51,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     [Header("Tiles wall")]
     public int tileNumUsing = 0;
-    [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 3 - UP WALL \nELEMENT 4 - DOWN WALL")]
+    [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 3 - UP WALL \nELEMENT 4 - DOWN WALL\n" +
+        "ELEMENT 5 - LEFT/RIGHT WALL BORDER\nELEMENT 6 -  UP/DOWN WALL BORDER")]
     public WallsSprites[] wallTilesSprites;
 
 
@@ -432,31 +433,39 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             #region BordersTiles
 
             case TileType.LEFTDOWN_RIGHT_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[5];
+                rend.flipX = true;
+                rend.flipY = true;
                 break;
             case TileType.LEFTDOWN_UP_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[4];
+                rend.flipX = true;
                 break;
 
             case TileType.LEFTUP_RIGHT_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[2];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[5];
+                rend.flipX = true;
                 break;
             case TileType.LEFTUP_DOWN_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[3];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[4];
+                rend.flipX = true;
+                rend.flipY = true;
                 break;
 
             case TileType.RIGHTUP_LEFT_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[5];
                 break;
             case TileType.RIGHTUP_DOWN_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[4];
+                rend.flipY = true;
                 break;
 
             case TileType.RIGHTDOWN_LEFT_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[0];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[5];
+                rend.flipY = true;
                 break;
             case TileType.RIGHTDOWN_UP_BORDER:
-                //rend.sprite = wallTilesSprites[tileNumUsing].tiles[1];
+                rend.sprite = wallTilesSprites[tileNumUsing].tiles[4];
                 break;
                 #endregion
         }
