@@ -786,6 +786,63 @@ public class Procedural_Room
         return temp;
     }
 
+    public void InstantiateDoorPrefabs()
+    {
+        foreach(ExitDirectionPoint exit in usableExits)
+        {
+            if (exit == null || !exit.isUsed) continue;
+
+            Vector2 posInstantiate = Vector2.zero;
+            GameObject go = null;
+
+            switch (exit.dir)
+            {
+                case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
+                    posInstantiate.x = _x_pos;
+                    posInstantiate.y = _y_pos + (_tileheight*0.5f) -0.5f;
+
+                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
+
+                    go.transform.localPosition = posInstantiate;
+
+                    break;
+
+                case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
+                    posInstantiate.x = _x_pos + _tilewidth - 1.0f;
+                    posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f;
+
+                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
+
+                    go.transform.localPosition = posInstantiate;
+
+                    break;
+
+                case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
+                    posInstantiate.x = _x_pos + (_tilewidth*0.5f) - 0.5f; ;
+                    posInstantiate.y = _y_pos;
+
+                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
+
+                    go.transform.localPosition = posInstantiate;
+
+                    break;
+
+                case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
+                    posInstantiate.x = _x_pos + (_tilewidth * 0.5f) - 0.5f; ;
+                    posInstantiate.y = _y_pos + _tileheight - 1.0f;
+
+                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
+
+                    go.transform.localPosition = posInstantiate;
+
+                    break;
+            }
+
+            ProceduralDungeonGenerator.mapGenerator.myDoors.Add(go);
+
+        }
+    }
+
     ExitDirectionPoint GetExitInfoUsable(ProceduralDungeonGenerator.ExitDirection mydir)
     {
         ExitDirectionPoint temp = null;

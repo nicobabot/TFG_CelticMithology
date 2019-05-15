@@ -350,6 +350,7 @@ public class RunTimeRoomControl : MonoBehaviour {
 
             if (_enemiesDead >= _enemiesInRoomCount)
             {
+                ProceduralDungeonGenerator.mapGenerator.ActivateDeactivateDoors(true);
                 _playerInsideRoom = false;
                 _roomFinished = true;
                 ActivateDeactivateDoors(true);
@@ -554,6 +555,7 @@ public class RunTimeRoomControl : MonoBehaviour {
             _playerInsideRoom = true;
             if (!_roomFinished)
             {
+                ProceduralDungeonGenerator.mapGenerator.ActivateDeactivateDoors(false);
                 ActivateDeactivateDoors(false);
                 ActivateEnemies();
             }

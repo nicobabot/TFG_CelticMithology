@@ -81,8 +81,14 @@ MonoBehaviour:
   - tiles:
     - {fileID: 21300026, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
     - {fileID: 21300026, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
-    - {fileID: 21300030, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
-    - {fileID: 21300018, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+    - {fileID: 21300034, guid: fdf465f423db97c45bde1a55b3eadf05, type: 3}
+  doorPrefabVertical: {fileID: 1255556595100800, guid: 4bb6e56fbac24054983ccc0fcf2ff60b,
+    type: 2}
+  doorPrefabHorizontal: {fileID: 1160289615149414, guid: a2326bb28de50f7498a16e0ff223164c,
+    type: 2}
+  doorTest: {fileID: 95119624712510936, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}
+  myDoors: []
   wallTile: {fileID: 1550786581246124, guid: 4a545dd1639a114498a14d7a48e9ec34, type: 2}
   cornerTile: {fileID: 1550786581246124, guid: 2ac0b225b00e4104aa73bfe66727feee, type: 2}
   doorTile: {fileID: 1144147838282928, guid: fd42ef7e8b9bdf84eb6b3a80bb986fc3, type: 2}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using UnityEditor.Animations;
 
 [Serializable]
 public class WallsSprites
@@ -55,6 +56,16 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
 
     [Space(10)]
+    [Header("Door Prefabs")]
+    public GameObject doorPrefabVertical;
+    public GameObject doorPrefabHorizontal;
+    public Animator doorTest;
+    [HideInInspector] public List<GameObject> myDoors;
+
+   /* public Animator doorAnimatorVertical;
+    public Animator doorAnimatorHorizontal;
+    public AnimatorController doorAnimator;*/
+
     [Header("Tiles along")]
     public GameObject wallTile;
     public GameObject cornerTile;
@@ -125,6 +136,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         realDepth = maxim_depth / 3;
 
         rooms = new List<Procedural_Room>();
+        myDoors = new List<GameObject>();
 
         Procedural_Room room_temp = new Procedural_Room(0, 0, tilesWidthRoom, tilesHeightRoom, count_rooms, ExitDirection.NONE_DIR, 0);
         rooms.Add(room_temp);
@@ -138,6 +150,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             {
                 testRoom.SetColliders();
                 testRoom.SetDoors();
+
+                testRoom.InstantiateDoorPrefabs();
 
                 //InitializeRoomsRunTimeValues
                 testRoom.InitializeRoomRunTimeValues();
@@ -241,6 +255,20 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         }
 
         return oppositeDir;
+    }
+
+    public void ActivateDeactivateDoors(bool openDoor)
+    {
+        foreach(GameObject go in myDoors)
+        {
+            if (go == null) continue;
+
+            Animator anim = go.GetComponent<Animator>();
+
+            if (anim == null) continue;
+
+            anim.SetBool("OpenDoor", openDoor);
+        }
     }
 
     void DrawMapWithTiles()
