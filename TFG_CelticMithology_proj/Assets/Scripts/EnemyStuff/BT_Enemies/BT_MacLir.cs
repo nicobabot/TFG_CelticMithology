@@ -146,11 +146,14 @@ public class BT_MacLir : BT_Entity
                 }
             }
             else {
-                if (currentAction != null)
+                if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
                 {
-                    currentAction.isFinish = true;
+                    if (currentAction != null)
+                    {
+                        currentAction.isFinish = true;
+                    }
+                    can_make_slash = true;
                 }
-                can_make_slash = true;
             }
         }
     }
@@ -159,11 +162,14 @@ public class BT_MacLir : BT_Entity
     {
         if (collision.CompareTag("player_combat_collider"))
         {
-            if (currentAction != null)
+            if (maclir_phase == MacLir_Phases.MACLIR_PHASE_1)
             {
-                currentAction.isFinish = true;
+                if (currentAction != null)
+                {
+                    currentAction.isFinish = true;
+                }
+                can_make_slash = false;
             }
-            can_make_slash = false;
         }
     }
 

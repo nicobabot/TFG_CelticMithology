@@ -798,8 +798,8 @@ public class Procedural_Room
             switch (exit.dir)
             {
                 case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
-                    posInstantiate.x = _x_pos;
-                    posInstantiate.y = _y_pos + (_tileheight*0.5f) -0.5f;
+                    posInstantiate.x = _x_pos + 0.01f;
+                    posInstantiate.y = _y_pos + (_tileheight*0.5f) - 0.5f + 0.01f;
 
                     go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
 
@@ -808,8 +808,8 @@ public class Procedural_Room
                     break;
 
                 case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
-                    posInstantiate.x = _x_pos + _tilewidth - 1.0f;
-                    posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f;
+                    posInstantiate.x = _x_pos + _tilewidth - 1.0f + 0.01f;
+                    posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f + 0.01f;
 
                     go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
 
