@@ -46,9 +46,14 @@ public class BT_Dullahan : BT_Entity
         {
             if (currentAction == null)
             {
-                if (currentAction != wanderAttack)
+                if (currentAction != wanderAttack && (bool)myBB.GetParameter("is_enemy_hit") == false)
                 {
                     currentAction = wanderAttack;
+                    decide = true;
+                }
+                else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                {
+                    currentAction = pushback;
                     decide = true;
                 }
             }

@@ -16862,7 +16862,10 @@ MonoBehaviour:
   is_interruptible: 0
   name: wander
   RandomCalculatorGO: {fileID: 1643625687}
-  speed: 1
+  speed: 3
+  slashCol:
+  - {fileID: 1582730060}
+  - {fileID: 1198867101}
 --- !u!114 &797291991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16907,7 +16910,7 @@ MonoBehaviour:
     my_value: 0
   player:
     my_name: player
-    my_value: {fileID: 0}
+    my_value: {fileID: 1310819217}
   direction:
     my_name: direction
     my_value: 0
@@ -20897,6 +20900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1198867102}
   - component: {fileID: 1198867103}
+  - component: {fileID: 1198867104}
   m_Layer: 0
   m_Name: ColliderAttack_Right
   m_TagString: Untagged
@@ -20945,6 +20949,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.33, y: 1.5165013}
   m_EdgeRadius: 0
+--- !u!114 &1198867104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1198867101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78de69b240054f7438e1f235a89da463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  need_enemy_type_detection: 1
+  fader_scr: {fileID: 2056421631}
 --- !u!1 &1223756898
 GameObject:
   m_ObjectHideFlags: 0
@@ -22414,6 +22431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1582730061}
   - component: {fileID: 1582730062}
+  - component: {fileID: 1582730063}
   m_Layer: 0
   m_Name: ColliderAttack_Left
   m_TagString: Untagged
@@ -22462,6 +22480,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.1918316, y: 1.6774762}
   m_EdgeRadius: 0
+--- !u!114 &1582730063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1582730060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78de69b240054f7438e1f235a89da463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  need_enemy_type_detection: 1
+  fader_scr: {fileID: 2056421631}
 --- !u!1001 &1606013941
 Prefab:
   m_ObjectHideFlags: 0
@@ -23962,6 +23993,10 @@ Prefab:
     - target: {fileID: 1255556595100800, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}
       propertyPath: m_Name
       value: MydoorVertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 1255556595100800, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}

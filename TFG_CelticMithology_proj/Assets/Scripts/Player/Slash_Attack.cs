@@ -172,6 +172,18 @@ public class Slash_Attack : MonoBehaviour
                     Dagda.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
                     dagdaBB.is_enemy_hit.SetValue(true);
                 }
+                BT_Dullahan Dullahan = parent.GetComponent<BT_Dullahan>();
+                if (Dullahan != null)
+                {
+                    if (Dullahan.currentAction != null)
+                    {
+                        Dullahan.currentAction.isFinish = true;
+                    }
+
+                    Dullahan_Blackboard dullahanBB = parent.GetComponent<Dullahan_Blackboard>();
+                    Dullahan.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    dullahanBB.is_enemy_hit.SetValue(true);
+                }
 
             }
             else
