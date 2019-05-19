@@ -7,8 +7,10 @@ public class Action_WanderAttack : ActionBase
 
     [SerializeField] private Transform RandomCalculatorGO;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject[] slashCol;
     private CircleCollider2D circCollider;
 
+    //private DirectionAttack dirAtt;
     private Vector2 destiny_pos = Vector3.zero;
     private bool needToGetDir = true;
     private SpriteRenderer mySpriteRend;
@@ -36,6 +38,7 @@ public class Action_WanderAttack : ActionBase
 
     override public BT_Status UpdateAction()
     {
+
         if (needToGetDir)
         {
             needToGetDir = false;
@@ -59,6 +62,18 @@ public class Action_WanderAttack : ActionBase
         Vector2 myPos = new Vector2(RandomCalculatorGO.position.x, RandomCalculatorGO.position.y);
 
         destiny_pos = myPos + (Random.insideUnitCircle * circCollider.radius);
+
+        if (transform.position.x > destiny_pos.x)
+        {
+            slashCol[0].SetActive(true);
+            slashCol[1].SetActive(false);
+        }
+        else
+        {
+            slashCol[0].SetActive(false);
+            slashCol[1].SetActive(true);
+        }
+
     }
 
     override public BT_Status EndAction()
