@@ -87,7 +87,10 @@ public class Action_ThrowBouncingBalls : ActionBase
 
                     if (bounce != null)
                     {
-                        Direction dir = followPlayer.DetectDirection(transform.position, player.transform.position);
+                        Direction dir;
+                        if (transform.position.x > player.transform.position.x) dir = Direction.LEFT;
+                        else dir = Direction.RIGHT;
+
                         switch (dir)
                         {
                             case Direction.LEFT:

@@ -334,8 +334,8 @@ Camera:
   m_GameObject: {fileID: 1435853756487790}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time_dashing: 0.25
-  movement_speed: 5
+  movement_speed: 8
   dash_speed: 15
   Menu: {fileID: 0}
   fader_scr: {fileID: 0}
@@ -706,6 +706,7 @@ MonoBehaviour:
   speed_invulerable: 28
   combat_collider: {fileID: 61068958462534306}
   is_invulnerable: 0
+  noNeedInvulnerable: 0
   current_state: 0
   player_direction: 0
 --- !u!114 &114437350724803262

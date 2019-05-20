@@ -5,6 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Dullahan_Blackboard))]
 public class BT_Dullahan : BT_Entity
 {
+
+    public enum PashesDullahan
+    {
+        DULLAHAN_PHASE1,
+        DULLAHAN_PHASE2
+    }
+    public PashesDullahan phaseDull;
+
     [Header("Phase 1")]
     public Action_FollowPlayer follow_player;
     public Action_MeleSlashPlayer slash_melee;
@@ -46,15 +54,26 @@ public class BT_Dullahan : BT_Entity
         {
             if (currentAction == null)
             {
-                if (currentAction != wanderAttack && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                if (phaseDull == PashesDullahan.DULLAHAN_PHASE1)
                 {
-                    currentAction = wanderAttack;
-                    decide = true;
+                    if (currentAction != wanderAttack && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    {
+                        currentAction = wanderAttack;
+                        decide = true;
+                    }
+                    else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                    {
+                        currentAction = pushback;
+                        decide = true;
+                    }
                 }
-                else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                else if (phaseDull == PashesDullahan.DULLAHAN_PHASE2)
                 {
-                    currentAction = pushback;
-                    decide = true;
+                    if (currentAction != follow_player && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    {
+                        currentAction = follow_player;
+                        decide = true;
+                    }
                 }
             }
         }

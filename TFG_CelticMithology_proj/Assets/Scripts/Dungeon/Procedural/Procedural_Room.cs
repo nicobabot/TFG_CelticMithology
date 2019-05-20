@@ -803,6 +803,7 @@ public class Procedural_Room
 
                     go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
 
+                    FlipDoorTiles(go, false, true);
                     go.transform.localPosition = posInstantiate;
 
                     break;
@@ -823,6 +824,7 @@ public class Procedural_Room
 
                     go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
 
+                    FlipDoorTiles(go, false, true);
                     go.transform.localPosition = posInstantiate;
 
                     break;
@@ -840,6 +842,23 @@ public class Procedural_Room
 
             ProceduralDungeonGenerator.mapGenerator.myDoors.Add(go);
 
+        }
+    }
+
+    void FlipDoorTiles(GameObject go, bool flipX, bool flipY)
+    {
+        for(int i=0; i<go.transform.childCount; i++)
+        {
+            Transform childTrans = go.transform.GetChild(i);
+
+            if (childTrans == null) continue;
+
+            SpriteRenderer spriteRend = childTrans.GetComponent<SpriteRenderer>();
+
+            if (spriteRend == null) continue;
+
+            spriteRend.flipX = flipX;
+            spriteRend.flipY = flipY;
         }
     }
 
