@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-[RequireComponent(typeof(Action_FollowPlayer))]
+[RequireComponent(typeof(Action_FollowPlayerRanged))]
 public class Action_MeleSlashPlayer : ActionBase
 {
 
@@ -20,7 +20,7 @@ public class Action_MeleSlashPlayer : ActionBase
     [Header("The collider that player detects to make damage the enemy")]
     public BoxCollider2D get_damage_collider;
 
-    private Action_FollowPlayer follow_player_scr;
+    private Action_FollowPlayerRanged follow_player_scr;
     private GameObject player;
     private float timer_attack = 0.0f;
     private bool slash_done = false;
@@ -36,7 +36,7 @@ public class Action_MeleSlashPlayer : ActionBase
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
 
-        follow_player_scr = GetComponent<Action_FollowPlayer>();
+        follow_player_scr = GetComponent<Action_FollowPlayerRanged>();
         player_detection_slash = null;
         is_player_detected = false;
 

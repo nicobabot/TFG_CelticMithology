@@ -236,7 +236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749900188301326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.81, y: 18.32, z: 0}
+  m_LocalPosition: {x: -28.19, y: 3.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4620791113981142}
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Father_UI_Player_Live: {fileID: 0}
   hearts_division: 2
-  StartPosition: {x: 0, y: 0}
+  StartPosition: {x: -241.7, y: -168}
   numHearts: 4
   heartPrefab: {fileID: 1930992032869798, guid: 7d471390f73364c4f81def4bb979899f,
     type: 2}
@@ -779,10 +779,11 @@ MonoBehaviour:
   Menu: {fileID: 0}
   fader_scr: {fileID: 0}
   live_manager_scr: {fileID: 114734002383664402}
-  total_time_invulnerable: 2.5
+  total_time_invulnerable: 1.5
   speed_invulerable: 15
   combat_collider: {fileID: 61291238478553270}
   is_invulnerable: 0
+  noNeedInvulnerable: 0
   current_state: 0
   player_direction: 0
 --- !u!114 &114957325025303006

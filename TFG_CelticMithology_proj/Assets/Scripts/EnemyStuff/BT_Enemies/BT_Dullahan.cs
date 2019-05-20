@@ -14,16 +14,18 @@ public class BT_Dullahan : BT_Entity
     public PashesDullahan phaseDull;
 
     [Header("Phase 1")]
-    public Action_FollowPlayer follow_player;
+    public Action_FollowPlayerRanged follow_player;
     public Action_MeleSlashPlayer slash_melee;
     public Action_PushBack pushback;
     public Action_WanderAttack wanderAttack;
 
     [Header("Death State")]
-    public Action_DeadBoss dead;
+    public Action_Dead dead;
 
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;
+
+    public GameObject[] colPhase1;
 
     private bool is_dead = false;
     private bool can_make_slash = false;
@@ -42,6 +44,12 @@ public class BT_Dullahan : BT_Entity
                 currentAction.isFinish = true;
             }
             is_dead = true;
+        }
+
+        if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase_2)
+        {
+            DisableColliders();
+            phaseDull = PashesDullahan.DULLAHAN_PHASE2;
         }
 
         base.Update();
@@ -69,9 +77,24 @@ public class BT_Dullahan : BT_Entity
                 }
                 else if (phaseDull == PashesDullahan.DULLAHAN_PHASE2)
                 {
-                    if (currentAction != follow_player && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    if (currentAction != dead && is_dead == true)
+                    {
+                        currentAction = dead;
+                        decide = true;
+                    }
+                    else if (currentAction != follow_player && !can_make_slash && (bool)myBB.GetParameter("is_enemy_hit") == false)
                     {
                         currentAction = follow_player;
+                        decide = true;
+                    }
+                    else if (currentAction != slash_melee && can_make_slash && (bool)myBB.GetParameter("is_enemy_hit") == false)
+                    {
+                        currentAction = slash_melee;
+                        decide = true;
+                    }
+                    else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                    {
+                        currentAction = pushback;
                         decide = true;
                     }
                 }
@@ -79,6 +102,14 @@ public class BT_Dullahan : BT_Entity
         }
 
         return decide;
+    }
+
+    void DisableColliders()
+    {
+        foreach(GameObject go in colPhase1)
+        {
+            go.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
