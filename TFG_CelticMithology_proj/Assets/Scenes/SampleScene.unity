@@ -16487,6 +16487,10 @@ Prefab:
       propertyPath: fader_scr
       value: 
       objectReference: {fileID: 2056421631}
+    - target: {fileID: 1313348512758646, guid: c73fc546794e3c7428b7d94b5a5a91bb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c73fc546794e3c7428b7d94b5a5a91bb, type: 2}
   m_IsPrefabAsset: 0
@@ -22756,6 +22760,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 1255556595100800, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bb6e56fbac24054983ccc0fcf2ff60b, type: 2}
   m_IsPrefabAsset: 0
@@ -23424,7 +23432,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1199058521907896, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 199a0143b67627f46b4eb9198630250e, type: 2}
