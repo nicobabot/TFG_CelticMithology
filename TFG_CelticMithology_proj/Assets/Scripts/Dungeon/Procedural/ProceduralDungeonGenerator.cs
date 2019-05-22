@@ -345,6 +345,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
             if (!is_door)
             {
                 GameObject go = new GameObject();
+                go.layer = 15;
                 go.transform.parent = parent;
                 SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
 
@@ -384,6 +385,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     {
 
         GameObject go = new GameObject();
+        go.layer = 15;
         go.transform.parent = parent;
         SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
 
@@ -410,6 +412,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     {
 
         GameObject go = new GameObject();
+        go.layer = 15;
         go.transform.parent = parent;
         SpriteRenderer rend = go.AddComponent<SpriteRenderer>();
 

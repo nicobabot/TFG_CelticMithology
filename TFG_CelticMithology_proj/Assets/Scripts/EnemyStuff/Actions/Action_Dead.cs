@@ -23,6 +23,8 @@ public class Action_Dead : ActionBase
             go.transform.position = transform.position;
         }
 
+        Destroy(gameObject);
+
         return BT_Status.RUNNING;
     }
 

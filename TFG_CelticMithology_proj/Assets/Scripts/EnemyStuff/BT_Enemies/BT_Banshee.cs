@@ -50,7 +50,13 @@ public class BT_Banshee : BT_Entity
 
         if ((bool)myBB.GetParameter("playerInsideRoom"))
         {
-            if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && !(bool)myBB.GetParameter("want_to_hit")
+            if (currentAction != dead && is_dead == true)
+            {
+                myState = BansheeState.OTHER_BANSHEE;
+                currentAction = dead;
+                decide = true;
+            }
+            else if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && !(bool)myBB.GetParameter("want_to_hit")
                && !(bool)myBB.GetParameter("is_enemy_stunned") && can_start_combat == false && is_dead == false)
             {
                 myState = BansheeState.OTHER_BANSHEE;
@@ -75,12 +81,6 @@ public class BT_Banshee : BT_Entity
             {
                 myState = BansheeState.OTHER_BANSHEE;
                 currentAction = pushback;
-                decide = true;
-            }
-            else if (currentAction != dead && is_dead == true)
-            {
-                myState = BansheeState.OTHER_BANSHEE;
-                currentAction = dead;
                 decide = true;
             }
             /*else if (can_start_combat == true)

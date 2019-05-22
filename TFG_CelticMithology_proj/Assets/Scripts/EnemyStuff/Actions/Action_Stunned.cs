@@ -9,6 +9,7 @@ public class Action_Stunned : ActionBase
     public float Time_stunned = 1;
     public Image Stunned_Filler;
 
+    private float timerStun = 0;
     private GameObject player;
     private Coroutine stunnedRoutine;
     bool wantFinished = false;
@@ -24,13 +25,13 @@ public class Action_Stunned : ActionBase
 
         wantFinished = false;
         Stunned_Filler.enabled = true;
-        Stunned_Filler.fillAmount = 1.0f;
-        stunnedRoutine = StartCoroutine(StunnedTime());
+        Stunned_Filler.fillAmount = 0.0f;
+        //stunnedRoutine = StartCoroutine(StunnedTime());
 
         return BT_Status.RUNNING;
     }
 
-    IEnumerator StunnedTime()
+    /*IEnumerator StunnedTime()
     {
         //Throw animation
         myTween = Stunned_Filler.DOFillAmount(0.0f, Time_stunned);//.WaitForCompletion();
@@ -39,15 +40,18 @@ public class Action_Stunned : ActionBase
         yield return test;
 
         EndValues();
-    }
+    }*/
 
     override public BT_Status UpdateAction()
     {
 
-        if ((bool)myBT.myBB.GetParameter("is_enemy_hit"))
+        timerStun += Time.deltaTime;
+        Stunned_Filler.fillAmount += Time.deltaTime / Time_stunned;
+
+        if (timerStun >= Time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit"))
         {
-            StopCoroutine(stunnedRoutine);
-            myTween.Kill();
+            //StopCoroutine(stunnedRoutine);
+            //myTween.Kill();
             EndValues();
         }
 
@@ -59,6 +63,7 @@ public class Action_Stunned : ActionBase
         myBT.myBB.SetParameter("is_enemy_stunned", false);
         Stunned_Filler.enabled = false;
         Stunned_Filler.fillAmount = 1;
+        timerStun = 0;
         isFinish = true;
         wantFinished = false;
     }

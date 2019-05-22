@@ -20,7 +20,9 @@ public class Action_MeleSlashPlayer : ActionBase
     [Header("The collider that player detects to make damage the enemy")]
     public BoxCollider2D get_damage_collider;
 
-    private Action_FollowPlayerRanged follow_player_scr;
+    private Action_FollowPlayerRanged follow_playerRanged_scr;
+    private Action_FollowPlayer follow_player_scr;
+
     private GameObject player;
     private float timer_attack = 0.0f;
     private bool slash_done = false;
@@ -35,8 +37,10 @@ public class Action_MeleSlashPlayer : ActionBase
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
+        if(myBT.enemy_type == Enemy_type.DULLAHAN)
+            follow_playerRanged_scr = GetComponent<Action_FollowPlayerRanged>();
+        else follow_player_scr = GetComponent<Action_FollowPlayer>();
 
-        follow_player_scr = GetComponent<Action_FollowPlayerRanged>();
         player_detection_slash = null;
         is_player_detected = false;
 
@@ -48,7 +52,9 @@ public class Action_MeleSlashPlayer : ActionBase
         }
 
         timer_attack = 0.0f;
-        dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
+        if (myBT.enemy_type == Enemy_type.DULLAHAN)
+            dir_collider = follow_playerRanged_scr.DetectDirection(transform.position, player.transform.position);
+        else dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
     }
 
