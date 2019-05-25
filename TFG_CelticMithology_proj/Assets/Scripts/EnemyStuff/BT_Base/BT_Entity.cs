@@ -20,7 +20,9 @@ public enum Enemy_type
     DEARDUG_ENEMY,
     BANSHEE_ENEMY,
     DAGDA_ENEMY,
-    DULLAHAN
+    DULLAHAN_ENEMY,
+    MORRIGAN_ENEMY,
+    CROW_ENEMY
 }
 
 public class BT_Entity : MonoBehaviour

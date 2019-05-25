@@ -1,4 +1,8 @@
-﻿public class Soldier_Blackboard : Blackboard
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Morrigan_Blackboard : Blackboard
 {
     public ParameterInt life;
     public ParameterInt total_life;
@@ -6,10 +10,9 @@
     public ParameterGameObject player;
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
+    public ParameterBool invokedCrows;
     public ParameterSpriteRend mySpriteRend;
     public ParameterAnimator myAnimator;
-
-   // public bool InDungeonmGenerator = true;
 
     // Use this for initialization
     override public void Start()
@@ -24,7 +27,9 @@
         list.Add(player);
         list.Add(direction);
         list.Add(playerIsInsideRoom);
+        list.Add(invokedCrows);
         list.Add(mySpriteRend);
         list.Add(myAnimator);
     }
 }
+

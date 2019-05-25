@@ -37,7 +37,7 @@ public class Action_MeleSlashPlayer : ActionBase
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
-        if(myBT.enemy_type == Enemy_type.DULLAHAN)
+        if(myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
             follow_playerRanged_scr = GetComponent<Action_FollowPlayerRanged>();
         else follow_player_scr = GetComponent<Action_FollowPlayer>();
 
@@ -52,7 +52,7 @@ public class Action_MeleSlashPlayer : ActionBase
         }
 
         timer_attack = 0.0f;
-        if (myBT.enemy_type == Enemy_type.DULLAHAN)
+        if (myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
             dir_collider = follow_playerRanged_scr.DetectDirection(transform.position, player.transform.position);
         else dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;

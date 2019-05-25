@@ -184,7 +184,18 @@ public class Slash_Attack : MonoBehaviour
                     Dullahan.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
                     dullahanBB.is_enemy_hit.SetValue(true);
                 }
+                BT_Morrigan Morrigan = parent.GetComponent<BT_Morrigan>();
+                if (Morrigan != null)
+                {
+                    if (Morrigan.currentAction != null)
+                    {
+                        Morrigan.currentAction.isFinish = true;
+                    }
 
+                    Morrigan_Blackboard morriganBB = parent.GetComponent<Morrigan_Blackboard>();
+                    Morrigan.Enemy_Live_Modification(-player_stats.Right_Hand_Object.damage);
+                    morriganBB.is_enemy_hit.SetValue(true);
+                }
             }
             else
             {

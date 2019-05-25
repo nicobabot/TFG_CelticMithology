@@ -8,12 +8,17 @@ public class BT_Soldier : BT_Entity
     public Action_FollowPlayer chase;
     public Action_PushBack pushback;
     public Action_Dead dead;
-   // public Action_MeleeAttack melee_attack;
+    // public Action_MeleeAttack melee_attack;
+    
+    //Only crow type;
+    [HideInInspector] public bool crowCanGo = false;
+
     private bool can_start_combat = false;
     private bool is_dead = false;
 
     override public void Start()
     {
+
     }
 
     override public void Update()
@@ -36,7 +41,12 @@ public class BT_Soldier : BT_Entity
     {
         bool decide = false;
 
-        if ((bool)myBB.GetParameter("playerInsideRoom"))
+        bool canGo = false;
+        if (enemy_type == Enemy_type.CROW_ENEMY)
+            canGo = crowCanGo;
+        else canGo = true;
+
+        if ((bool)myBB.GetParameter("playerInsideRoom") && canGo)
         {
             if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false && is_dead == false)
             {
