@@ -18,6 +18,9 @@ public class BT_Morrigan : BT_Entity
     public Action_FollowPlayer follow_player;
     public Action_FollowPoint followPoint;
 
+    [Header("Phase 2")]
+    public Action_SkeletonInvoke invokeSkeleton;
+
     public Action_PushBack pushback;
 
     [Header("Death State")]
@@ -33,6 +36,8 @@ public class BT_Morrigan : BT_Entity
     private bool can_make_slash = false;
     private bool phaseTwoDone = false;
     private bool phaseThreeDone = false;
+
+    private bool wantToInvoke = true;
 
     private int crowMaxLive = 2;
     private int crowLive = 2;
@@ -98,8 +103,15 @@ public class BT_Morrigan : BT_Entity
                 }
                 else if (phaseMorr == PashesMorrigan.MORRIGAN_PHASE2)
                 {
-                    if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
+                    if (currentAction != invokeSkeleton && (bool)myBB.GetParameter("is_enemy_hit") == false && wantToInvoke)
                     {
+                        wantToInvoke = false;
+                        currentAction = invokeSkeleton;
+                        decide = true;
+                    }
+                    if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true && !wantToInvoke)
+                    {
+                        wantToInvoke = false;
                         currentAction = pushback;
                         decide = true;
                     }
