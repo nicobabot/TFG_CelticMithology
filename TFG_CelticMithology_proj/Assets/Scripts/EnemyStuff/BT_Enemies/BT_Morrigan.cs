@@ -15,7 +15,8 @@ public class BT_Morrigan : BT_Entity
 
     [Header("Phase 1")]
     public Action_CrowInvocation invokeCrows;
-    public Action_FollowPlayerRanged follow_player;
+    public Action_FollowPlayer follow_player;
+    public Action_FollowPoint followPoint;
 
     public Action_PushBack pushback;
 
@@ -32,6 +33,9 @@ public class BT_Morrigan : BT_Entity
     private bool can_make_slash = false;
     private bool phaseTwoDone = false;
     private bool phaseThreeDone = false;
+
+    private int crowMaxLive = 2;
+    private int crowLive = 2;
 
     override public void Update()
     {
@@ -69,17 +73,24 @@ public class BT_Morrigan : BT_Entity
             {
                 if (phaseMorr == PashesMorrigan.MORRIGAN_PHASE1)
                 {
-                    if (currentAction != invokeCrows && !(bool)myBB.GetParameter("invokedCrows"))
+                    if (currentAction != invokeCrows && (!(bool)myBB.GetParameter("invokedCrows")))
                     {
+                        crowLive = crowMaxLive;
                         currentAction = invokeCrows;
+                        decide = true;
+                    }
+                    if (currentAction != followPoint && (bool)myBB.GetParameter("invokedCrows") && crowLive <= 0)
+                    {
+                        currentAction = followPoint;
                         decide = true;
                     }
                     else if(currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
                     {
+                        crowLive--;
                         currentAction = pushback;
                         decide = true;
                     }
-                    else if (currentAction != invokeCrows && (bool)myBB.GetParameter("invokedCrows"))
+                    else if (currentAction != invokeCrows && (bool)myBB.GetParameter("invokedCrows") && crowLive > 0)
                     {
                         currentAction = follow_player;
                         decide = true;

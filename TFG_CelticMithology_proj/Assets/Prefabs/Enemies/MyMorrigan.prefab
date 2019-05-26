@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1143865204409386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4834263904120880}
+  m_Layer: 0
+  m_Name: MiddlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1148829782586678
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329480084322448}
   - component: {fileID: 61029547860269370}
-  - component: {fileID: 58610937659744444}
+  - component: {fileID: 114819798268490766}
   m_Layer: 0
   m_Name: DetectPlayer
   m_TagString: Untagged
@@ -153,7 +168,8 @@ GameObject:
   - component: {fileID: 114684443764616402}
   - component: {fileID: 114076594539579298}
   - component: {fileID: 114803578902918784}
-  - component: {fileID: 114559851818684238}
+  - component: {fileID: 114495075101155086}
+  - component: {fileID: 114622228019412322}
   - component: {fileID: 114115876643757954}
   - component: {fileID: 114512871910799144}
   m_Layer: 0
@@ -277,6 +293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4243283935543900}
+  - {fileID: 4834263904120880}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -375,6 +392,19 @@ Transform:
   m_Father: {fileID: 4319949982526436}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.091}
+--- !u!4 &4834263904120880
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143865204409386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.2, y: 1.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4249951630651264}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4982418468974922
 Transform:
   m_ObjectHideFlags: 1
@@ -408,28 +438,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58610937659744444
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1647131770669004}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.13
 --- !u!61 &61029547860269370
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647131770669004}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -446,7 +461,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5979862, y: 0.81768477}
+  m_Size: {x: 0.42, y: 0.67}
   m_EdgeRadius: 0
 --- !u!61 &61276189633338348
 BoxCollider2D:
@@ -566,7 +581,8 @@ MonoBehaviour:
   Live_UI: {fileID: 114203295403040454}
   phaseMorr: 0
   invokeCrows: {fileID: 114803578902918784}
-  follow_player: {fileID: 114559851818684238}
+  follow_player: {fileID: 114495075101155086}
+  followPoint: {fileID: 114622228019412322}
   pushback: {fileID: 114115876643757954}
   dead: {fileID: 114512871910799144}
   lives_to_change_phase_2: 4
@@ -681,6 +697,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!114 &114495075101155086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694597591606434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7b9e0f442765f449c7b07e5d2054a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Follow Player
+  use_pathfinding: 0
+  time_to_change_cell: 1
+  speed: 4
 --- !u!114 &114512871910799144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,22 +729,6 @@ MonoBehaviour:
   part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
   healthObject: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a,
     type: 2}
---- !u!114 &114559851818684238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1694597591606434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf50f35ef2b8db34d872a4634274d444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_interruptible: 0
-  name: FollowPlay
-  time_to_change_cell: 1
-  speed: 5
-  range: 3
 --- !u!114 &114619933373812386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -726,6 +742,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
   fader_scr: {fileID: 0}
+--- !u!114 &114622228019412322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694597591606434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60487cfebb3486b4bb19ff821bced67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Follow Point
+  points_father: {fileID: 1143865204409386}
+  velocity: 4
+  col_detect_player: {fileID: 61816604529005670}
+  collider_enemy: {fileID: 61029547860269370}
+  moreThanOne: 0
 --- !u!114 &114684443764616402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -777,11 +811,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: crowInvoke
-  crowPrefab: {fileID: 1418050039934246, guid: 60507c4fd383ae345a92842d3f7b89b3, type: 2}
-  numCrows: 5
+  crowPrefab: {fileID: 1755513333586824, guid: 8757b7b14de285749bf256e03fe0785a, type: 2}
+  numCrows: 7
   radius: 2
   fadeDuration: 0.25
   myHitCollider: {fileID: 61816604529005670}
+--- !u!114 &114819798268490766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647131770669004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78de69b240054f7438e1f235a89da463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  need_enemy_type_detection: 1
+  fader_scr: {fileID: 0}
 --- !u!114 &114970082172124654
 MonoBehaviour:
   m_ObjectHideFlags: 1

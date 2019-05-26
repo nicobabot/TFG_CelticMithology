@@ -40,15 +40,15 @@ public class Action_CrowInvocation : ActionBase
         for (int i = 0; i < numCrows; i++)
         {
             Vector3 pos = new Vector3(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta), 0f);
-            crowsGo[i] = Instantiate(crowPrefab, transform);
+            crowsGo[i] = Instantiate(crowPrefab);
             Vector3 tempPos = transform.position + pos;
-            crowsGo[i].transform.position = new Vector3(tempPos.x, tempPos.y, 0f);
+            crowsGo[i].transform.position = new Vector3(tempPos.x, tempPos.y + 0.75f, 0f);
             theta += deltTheta;
 
             SpriteRenderer mySprite = crowsGo[i].GetComponentInChildren<SpriteRenderer>();
             yield return mySprite.DOFade(1.0f, fadeDuration).WaitForCompletion();
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
         }
 
         yield return new WaitForSeconds(1.0f);
@@ -57,11 +57,12 @@ public class Action_CrowInvocation : ActionBase
         {
             BT_Soldier crow = crowsGo[i].GetComponentInChildren<BT_Soldier>();
             crow.crowCanGo = true;
-            
-            yield return new WaitForSeconds(0.75f);
+            BoxCollider2D myCol = crowsGo[i].transform.GetChild(1).GetComponent<BoxCollider2D>();
+            myCol.enabled = true;
+            yield return new WaitForSeconds(0.35f);
         }
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         myHitCollider.enabled = true;
 

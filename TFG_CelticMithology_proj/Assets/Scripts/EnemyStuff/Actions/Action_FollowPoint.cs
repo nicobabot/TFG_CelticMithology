@@ -9,6 +9,7 @@ public class Action_FollowPoint : ActionBase {
     public float velocity = 1.0f;
     public BoxCollider2D col_detect_player;
     public BoxCollider2D collider_enemy;
+    public bool moreThanOne = true;
 
     private Action_FollowPlayer follow_player_scr;
     private GameObject player;
@@ -26,17 +27,21 @@ public class Action_FollowPoint : ActionBase {
 
         follow_player_scr = GetComponent<Action_FollowPlayer>();
 
-        do
+        if (moreThanOne)
         {
-            int point = Random.Range(0, points_father.transform.childCount);
-            point_to_follow = points_father.transform.GetChild(point).position;
-        } while (point_to_follow == last_point_followed);
+            do
+            {
+                int point = Random.Range(0, points_father.transform.childCount);
+                point_to_follow = points_father.transform.GetChild(point).position;
+            } while (point_to_follow == last_point_followed);
 
-        last_point_followed = point_to_follow;
+            last_point_followed = point_to_follow;
+        }
+        else point_to_follow = points_father.transform.position;
 
         //Make to water animation
 
-        //Change sprite to behind water
+            //Change sprite to behind water
 
         collider_enemy.enabled = false;
         col_detect_player.enabled = false;
@@ -62,6 +67,10 @@ public class Action_FollowPoint : ActionBase {
             {
                 BT_MacLir mac_lir_bt = GetComponent<BT_MacLir>();
                 mac_lir_bt.Set_Invoke_State(true);
+            }
+            else if(myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
+            {
+                myBT.myBB.SetParameter("invokedCrows", false);
             }
 
             isFinish = true;
