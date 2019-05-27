@@ -11,6 +11,7 @@ public class Morrigan_Blackboard : Blackboard
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
     public ParameterBool invokedCrows;
+    public ParameterBool playerDetectedInvSkeleton;
     public ParameterSpriteRend mySpriteRend;
     public ParameterAnimator myAnimator;
 
@@ -28,6 +29,7 @@ public class Morrigan_Blackboard : Blackboard
         list.Add(direction);
         list.Add(playerIsInsideRoom);
         list.Add(invokedCrows);
+        list.Add(playerDetectedInvSkeleton);
         list.Add(mySpriteRend);
         list.Add(myAnimator);
     }

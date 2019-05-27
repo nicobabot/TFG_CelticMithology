@@ -113,7 +113,15 @@ public class Player_Manager : MonoBehaviour
         {
             if (!in_mine)
             {
+                int dir = anim.GetInteger("player_direction");
+
+                anim.Rebind();
+
+                anim.SetInteger("player_direction", dir);
+
                 anim.SetBool("player_idle", false);
+                slash_attack_script.timer_slash = 0;
+                slash_attack_script.is_slash_done = false;
                 current_state = Player_States.SLASHING_PLAYER;
             }
             else

@@ -10,9 +10,10 @@ public class Slash_Attack : MonoBehaviour
 
     private Player_Manager player_manager_sct;
 
-    private float timer_slash = 0.0f;
+    public float timer_slash = 0.0f;
+    public bool is_slash_done = false;
     private Collider2D[] enemies_found = null;
-    private bool is_slash_done = false;
+  
 
     Animator anim;
     GameObject collider_to_activate;
