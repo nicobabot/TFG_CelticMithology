@@ -80,12 +80,27 @@ public class Live_Manager : MonoBehaviour
                     return;
             }
 
-            if ((int)it - 1 < childs_temporal_vector.Length && (int)it - 1 > 0)
+            if (lives == 0.5f)
+            {
+                Image img = childs_temporal_vector[0].GetComponent<Image>();
+                img.fillAmount += 0.5f;
+                lives += 0.5f;
+            }
+            else if (lives - Mathf.Round(lives) == 0)
+            {
+                Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
+                img.fillAmount += 0.5f;
+                lives += 0.5f;
+            }
+            else if ((int)it - 1 < childs_temporal_vector.Length && (int)it - 1 > 0)
             {
                 Image img = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
                 img.fillAmount += 0.5f;
                 lives += 0.5f;
             }
+
+          
+
         }
         else
         {
@@ -224,8 +239,11 @@ public class Live_Manager : MonoBehaviour
     {
         if (collision.CompareTag("health_object"))
         {
+            GameObject go = collision.gameObject;
+            Destroy(collision);
+            Destroy(go);
             AddHeart(true);
-            Destroy(collision.gameObject);
+
         }
     }
 

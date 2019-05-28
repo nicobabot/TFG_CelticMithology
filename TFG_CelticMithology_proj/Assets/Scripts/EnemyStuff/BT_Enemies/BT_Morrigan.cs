@@ -111,7 +111,7 @@ public class BT_Morrigan : BT_Entity
                     }
                     if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true && !wantToInvoke)
                     {
-                        wantToInvoke = false;
+                        wantToInvoke = true;
                         currentAction = pushback;
                         decide = true;
                     }

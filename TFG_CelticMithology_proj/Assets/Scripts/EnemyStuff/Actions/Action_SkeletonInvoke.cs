@@ -11,9 +11,12 @@ public class Action_SkeletonInvoke : ActionBase
 
     public GameObject rayGO;
     private Transform rayTrans;
+    private BoxCollider2D rayCol;
+    private SpriteRenderer raySpr;
 
     private GameObject player;
     private float speed = 1.0f;
+    private Coroutine rayCoroutine;
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -22,8 +25,12 @@ public class Action_SkeletonInvoke : ActionBase
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
         rayTrans = rayGO.transform;
+        rayCol = rayGO.GetComponentInChildren<BoxCollider2D>();
+        raySpr = rayGO.GetComponentInChildren<SpriteRenderer>();
 
         rayGO.SetActive(true);
+        rayCol.enabled = false;
+        raySpr.color = new Color(raySpr.color.r, raySpr.color.g, raySpr.color.b, 0.3294118f);
 
         StartCoroutine(RayShoot());
 
@@ -34,38 +41,43 @@ public class Action_SkeletonInvoke : ActionBase
     {
         SpawnSkeletons();
 
-        StartCoroutine(StartFocusingWithRay());
+        rayCoroutine = StartCoroutine(StartFocusingWithRay());
 
         yield return new WaitForSeconds(5.0f);
 
+        if ((bool)myBT.myBB.GetParameter("invSkelPlayerDet"))
+        {
+            yield return new WaitForSeconds(1.5f);
+            ExecuteRay();
+        }
+        else
+        {
+            ExecuteRay();
+        }
 
+        yield return new WaitForSeconds(1.0f);
 
+        isFinish = true;
+
+        rayGO.SetActive(false);
+    }
+
+    void ExecuteRay()
+    {
+        StopCoroutine(rayCoroutine);
+        raySpr.color = Color.white;
+        rayCol.enabled = true;
     }
 
     IEnumerator StartFocusingWithRay()
     {
-
         Vector3 vecToPlayer = player.transform.position - rayTrans.transform.position;
         vecToPlayer.z = 0;
-        Debug.DrawRay(rayTrans.position, vecToPlayer, Color.red);
-
-        float angToRotate = Vector3.Angle(rayTrans.right, vecToPlayer);
-
-        //rayTrans.rotation = Quaternion.AngleAxis(angToRotate, rayTrans.forward);
-        rayTrans.eulerAngles = new Vector3(0, 0, angToRotate);
-
-
-        /*float step = speed * Time.deltaTime;
-
-
-        //Vector3 newDir = Vector3.RotateTowards(rayTrans.forward, vecToPlayer, step, 0.0f);
-        Debug.DrawRay(rayTrans.position, newDir, Color.red);
-
-        rayTrans.rotation = Quaternion.LookRotation(newDir);*/
+        rayTrans.right = -vecToPlayer;
 
         yield return new WaitForSeconds(0.01f);
 
-        StartCoroutine(StartFocusingWithRay());
+        rayCoroutine = StartCoroutine(StartFocusingWithRay());
     }
 
     void SpawnSkeletons()
@@ -81,15 +93,9 @@ public class Action_SkeletonInvoke : ActionBase
     }
 
     override public BT_Status UpdateAction()
-    {
-        Vector3 vecToPlayer = player.transform.position - rayTrans.transform.position;
-        vecToPlayer.z = 0;
-        Debug.DrawRay(rayTrans.position, vecToPlayer, Color.red);
+    { 
 
-        float angToRotate = Vector3.Angle(rayTrans.right, vecToPlayer);
 
-        //rayTrans.rotation = Quaternion.AngleAxis(angToRotate, rayTrans.forward);
-        rayTrans.eulerAngles = new Vector3(0, 0, -angToRotate);
         return BT_Status.RUNNING;
     }
 
