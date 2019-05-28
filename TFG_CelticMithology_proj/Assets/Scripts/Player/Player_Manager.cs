@@ -31,7 +31,8 @@ public class Player_Manager : MonoBehaviour
         SLASHING_PLAYER,
         FALLING_PLAYER,
         PUSHBACK_PLAYER,
-        IN_MENU_PLAYER
+        IN_MENU_PLAYER,
+        MID_STUNNED_PLAYER
     }
     [Space()]
     public Player_States current_state;
