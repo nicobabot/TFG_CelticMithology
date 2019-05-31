@@ -109,8 +109,9 @@ public class BT_Morrigan : BT_Entity
                         currentAction = invokeSkeleton;
                         decide = true;
                     }
-                    if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true && !wantToInvoke)
+                    if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
                     {
+                        invokeSkeleton.StopRayRoutine();
                         wantToInvoke = true;
                         currentAction = pushback;
                         decide = true;

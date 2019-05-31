@@ -59,6 +59,7 @@ public class Player_Manager : MonoBehaviour
     private bool in_mine = false;
 
     private float timer_fall = 0.0f;
+    private float numOfInput = 0;
 
     // Use this for initialization
     private void Start()
@@ -161,6 +162,21 @@ public class Player_Manager : MonoBehaviour
         else if (current_state == Player_States.SLASHING_PLAYER)
         {
             slash_attack_script.Attack_Slash_Update();
+        }
+        else if (current_state == Player_States.MID_STUNNED_PLAYER)
+        {
+            movement_script.StopMoving();
+            movement_script.SpriteDir();
+
+            if (Input.anyKeyDown)
+            {
+                numOfInput++;
+                if(numOfInput >= 10)
+                {
+                    numOfInput = 0;
+                    current_state = Player_States.IDLE_PLAYER;
+                }
+            }
         }
         else if (current_state == Player_States.FALLING_PLAYER)
         {

@@ -76,8 +76,11 @@ public class Action_MeleSlashPlayer : ActionBase
 
         go.SetActive(true);
 
-        filler.enabled = true;
-        filler.fillAmount = 1 - (timer_attack/ (time_to_make_slash * 0.5f));
+        if (filler != null)
+        {
+            filler.enabled = true;
+            filler.fillAmount = 1 - (timer_attack / (time_to_make_slash * 0.5f));
+        }
 
         if (timer_attack >= (time_to_make_slash*0.5f))
         {
@@ -128,8 +131,11 @@ public class Action_MeleSlashPlayer : ActionBase
         is_player_detected = false;
         Disable_Colliders_Attack();
 
-        filler.fillAmount = 1;
-        filler.enabled = false;
+        if (filler != null)
+        {
+            filler.fillAmount = 1;
+            filler.enabled = false;
+        }
 
         player_detection_slash = null;
         timer_attack = 0.0f;

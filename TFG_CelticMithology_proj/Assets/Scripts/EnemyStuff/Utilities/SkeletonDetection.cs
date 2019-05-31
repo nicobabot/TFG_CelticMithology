@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SkeletonDetection : MonoBehaviour {
 
     public LayerMask playerLayer;
     private Morrigan_Blackboard morrBB;
     private CircleCollider2D collider;
+    private SpriteRenderer spriteRend;
     private Collider2D foundPlayer;
 
     private float timeDoingAnim = 5.0f;
@@ -16,20 +18,31 @@ public class SkeletonDetection : MonoBehaviour {
 	void Start ()
     {
         collider = GetComponent<CircleCollider2D>();
+        spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
         foundPlayer = null;
         timer = 0.0f;
+
+        spriteRend.DOFade(1.0f, timeDoingAnim).OnComplete(() => DoAction());
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        timer += Time.deltaTime;
-        if(timer >= timeDoingAnim)
+        //timer += Time.deltaTime;
+        
+       /* if (timer >= timeDoingAnim)
         {
             Is_Material_Collided();
             Destroy(gameObject);
-        }
+        }*/
 
+    }
+
+    void DoAction()
+    {
+        Is_Material_Collided();
+        Destroy(gameObject);
     }
 
     public void SetMorriganBB(Morrigan_Blackboard myMorrigan)

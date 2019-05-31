@@ -25,6 +25,63 @@ public class Collision_Movement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void StopMoving()
+    {
+        rb.velocity = Vector2.zero;
+    }
+
+    public void SpriteDir()
+    {
+        input_movement_horizontal = Input.GetAxisRaw("Horizontal");
+        input_movement_vertical = Input.GetAxisRaw("Vertical");
+
+
+        bool is_idle_hor = false;
+        bool is_idle_vert = false;
+
+        //Just to keep tracking of the direction of the player
+        if (input_movement_horizontal > 0.5f)
+        {
+            anim.SetInteger("player_direction", 0);
+            sprite_rend_scr.flipX = false;
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.RIGHT_PLAYER;
+        }
+        else if (input_movement_horizontal < -0.5f)
+        {
+            anim.SetInteger("player_direction", 0);
+            sprite_rend_scr.flipX = true;
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.LEFT_PLAYER;
+        }
+        //else is_idle_hor = true;
+
+        if (input_movement_vertical > 0.5f)
+        {
+            anim.SetInteger("player_direction", 2);
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.UP_PLAYER;
+        }
+        else if (input_movement_vertical < -0.5f)
+        {
+            anim.SetInteger("player_direction", 1);
+            play_manager_scr.player_direction = Player_Manager.Player_Direction.DOWN_PLAYER;
+        }
+        /*else is_idle_vert = true;
+
+        if (is_idle_hor && is_idle_vert)
+        {
+            timer_to_idle += Time.deltaTime;
+
+            if (timer_to_idle > timer_to_make_idle)
+            {
+                anim.SetBool("player_idle", true);
+            }
+        }
+        else
+        {
+            timer_to_idle = 0.0f;
+            anim.SetBool("player_idle", false);
+        }*/
+    }
+
     // Update is called once per frame
     public void Movement_Update(float new_speed, bool is_dashing = false)
     {
@@ -97,7 +154,6 @@ public class Collision_Movement : MonoBehaviour
             timer_to_idle = 0.0f;
             anim.SetBool("player_idle", false);
         }
-
 
         //Movement calculation
         if (input_movement_horizontal > 0.5f || input_movement_horizontal < -0.5f)

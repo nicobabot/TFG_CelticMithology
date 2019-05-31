@@ -57,7 +57,7 @@ public class Live_Manager : MonoBehaviour
 
     public void AddHeart(bool healing = false)
     {
-        if (lives <= 0.0f)
+        if (lives < 0.0f)
             return;
 
         GameObject[] childs_temporal_vector;
@@ -106,7 +106,16 @@ public class Live_Manager : MonoBehaviour
         {
             float it = Mathf.Ceil(lives);
 
-            if (it == maxLives)
+            for (int i=0; i< childs_temporal_vector.Length; i++)
+            {
+                Image img = childs_temporal_vector[i].GetComponent<Image>();
+                img.fillAmount = 1.0f;
+            }
+
+            AddUiHeart((int)childs_temporal_vector.Length);
+            lives = childs_temporal_vector.Length + 1.0f;
+
+            /*if (it >= maxLives)
             {
                 Image img = childs_temporal_vector[(int)it-1].GetComponent<Image>();
                 if (img.fillAmount == 1.0f)
@@ -143,7 +152,7 @@ public class Live_Manager : MonoBehaviour
                     lives += 0.5f;
                 }
 
-            }
+            }*/
 
         }
 

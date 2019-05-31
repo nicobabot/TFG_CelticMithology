@@ -56,12 +56,9 @@ public class UpgradeObject : MonoBehaviour {
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+   public void WantToInteract()
     {
-        if (collision.CompareTag("player_slash"))
-        {
-            playerInteract = true;
-        }
+        playerInteract = true;
     }
 
 }
