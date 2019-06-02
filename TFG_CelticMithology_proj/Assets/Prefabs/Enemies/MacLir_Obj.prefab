@@ -510,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968024051260442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.079423, y: -13.025576, z: 1.7501272}
+  m_LocalPosition: {x: 8.790556, y: 9.976689, z: 1.7501272}
   m_LocalScale: {x: 2.1629, y: 2.1629, z: 2.1629}
   m_Children:
   - {fileID: 4135879258205446}
@@ -902,6 +902,9 @@ MonoBehaviour:
   player_mask:
     serializedVersion: 2
     m_Bits: 1024
+  damageDagda: {fileID: 0}
+  yStartDagdaText: 0
+  yEndDagdaText: 0
   filler: {fileID: 0}
   get_damage_collider: {fileID: 61961002685255148}
 --- !u!114 &114189490166257498
@@ -916,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 0
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114467014229976358
 MonoBehaviour:
@@ -1007,6 +1011,7 @@ MonoBehaviour:
   velocity: 5
   col_detect_player: {fileID: 61541390465126628}
   collider_enemy: {fileID: 61961002685255148}
+  moreThanOne: 1
 --- !u!114 &114637890576069532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1070,7 @@ MonoBehaviour:
   part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
   portalObject: {fileID: 1833004233313392, guid: c636ac9c51c1bec4ba0fa0bd2f75bb30,
     type: 2}
+  middlePoint: {fileID: 4471154015877566}
 --- !u!114 &114730741810820194
 MonoBehaviour:
   m_ObjectHideFlags: 1

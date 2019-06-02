@@ -6,6 +6,7 @@ public class Action_DeadBoss : ActionBase
 {
     public GameObject part_sys;
     public GameObject portalObject;
+    public Transform middlePoint;
 
     override public BT_Status StartAction()
     {
@@ -18,7 +19,7 @@ public class Action_DeadBoss : ActionBase
 
         
         GameObject go = Instantiate(portalObject);
-        go.transform.position = transform.position;
+        go.transform.position = middlePoint.position;
 
         return BT_Status.RUNNING;
     }
