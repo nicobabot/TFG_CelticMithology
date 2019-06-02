@@ -346,6 +346,7 @@ MonoBehaviour:
   chase: {fileID: 114391262130249558}
   pushback: {fileID: 114171271921592976}
   dead: {fileID: 114223085857090852}
+  crowCanGo: 0
 --- !u!114 &114283530555944322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -457,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114929951636247830
 MonoBehaviour:

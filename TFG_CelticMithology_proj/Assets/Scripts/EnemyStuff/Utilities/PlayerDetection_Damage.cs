@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerDetection_Damage : MonoBehaviour {
 
     public bool need_enemy_type_detection = true;
+   [HideInInspector] public bool playerHitted = false;
     public Fader fader_scr;
     Live_Manager live_manager_scr;
     Player_Manager player_manager_scr;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,6 +27,7 @@ public class PlayerDetection_Damage : MonoBehaviour {
                     if (live_manager_scr != null && player_manager_scr != null)
                     {
                         player_manager_scr.GetDamage(transform);
+                        playerHitted = true;
                     }
                 }
             }

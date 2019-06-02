@@ -17,7 +17,10 @@ public class DissappearShadow : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRend.DOFade(0.0f, speedFade).OnComplete(() => Destroy(gameObject));
+        if (collision.tag == "player_movement_collider")
+        {
+            spriteRend.DOFade(0.0f, speedFade).OnComplete(() => Destroy(gameObject));
+        }
     }
 
 }

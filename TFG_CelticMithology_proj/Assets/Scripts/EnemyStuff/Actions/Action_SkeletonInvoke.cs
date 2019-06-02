@@ -16,6 +16,7 @@ public class Action_SkeletonInvoke : ActionBase
     private Transform rayTrans;
     private BoxCollider2D rayCol;
     private SpriteRenderer raySpr;
+    private PlayerDetection_Damage rayDetect;
 
     private GameObject player;
     private Player_Manager managerPlayer;
@@ -41,6 +42,7 @@ public class Action_SkeletonInvoke : ActionBase
         rayGO.SetActive(true);
         rayCol.enabled = false;
         raySpr.color = new Color(raySpr.color.r, raySpr.color.g, raySpr.color.b, 0.3294118f);
+        rayDetect = rayGO.GetComponentInChildren<PlayerDetection_Damage>();
 
         sheletonsInstancied = new Transform[numSkeletons];
 
@@ -51,6 +53,7 @@ public class Action_SkeletonInvoke : ActionBase
 
     public void StopRayRoutine()
     {
+        if(actionCoroutine!=null)
         StopCoroutine(actionCoroutine);
     }
 
@@ -84,15 +87,22 @@ public class Action_SkeletonInvoke : ActionBase
 
         yield return new WaitForSeconds(1.0f);
 
-        isFinish = true;
-        myBT.myBB.SetParameter("invSkelPlayerDet", false);
-        rayGO.SetActive(false);
+        ResetAction();
+
     }
 
     void ExecuteRay()
     {
         raySpr.color = Color.white;
         rayCol.enabled = true;
+    }
+
+    void ResetAction()
+    {
+        StopRayRoutine();
+        isFinish = true;
+        myBT.myBB.SetParameter("invSkelPlayerDet", false);
+        rayGO.SetActive(false);
     }
 
     IEnumerator StartFocusingWithRay()
@@ -145,8 +155,14 @@ public class Action_SkeletonInvoke : ActionBase
     }
 
     override public BT_Status UpdateAction()
-    { 
+    {
+        if (rayDetect.playerHitted)
+        {
+            ((BT_Morrigan)myBT).wantToInvoke = true;
+            rayDetect.playerHitted = false;
 
+            ResetAction();
+        }
 
         return BT_Status.RUNNING;
     }

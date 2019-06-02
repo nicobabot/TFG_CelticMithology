@@ -58,11 +58,15 @@ public class Action_ShootPlayer : ActionBase {
         if (timer_spawn_proj > time_to_spawn_projectile)
         {
             //Start shoot animation
+            float lenght_anim = 0;
             anim = GetComponent<Animator>();
-            anim.SetBool("enemy_idle", false);
+            if (anim)
+            {
+                anim.SetBool("enemy_idle", false);
 
-            AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
-            float lenght_anim = anim_clip[0].clip.length;
+                AnimatorClipInfo[] anim_clip = anim.GetCurrentAnimatorClipInfo(0);
+                lenght_anim = anim_clip[0].clip.length;
+            }
 
             if (!only_stright_shots)
             {
@@ -83,8 +87,9 @@ public class Action_ShootPlayer : ActionBase {
                 {
                     projectile_scr.CreateProjectile(pushback_dir, hitpoint_wall, projectile_min_distance, projectile_velocity);
                 }
+                if (anim)
+                    anim.SetBool("enemy_idle", true);
 
-                anim.SetBool("enemy_idle", true);
                 timer_spawn_proj = 0.0f;
                 animation_timer = 0.0f;
             }

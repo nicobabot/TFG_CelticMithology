@@ -21,6 +21,11 @@ public class BT_Morrigan : BT_Entity
     [Header("Phase 2")]
     public Action_SkeletonInvoke invokeSkeleton;
 
+    [Header("Phase 3")]
+    public Action_InvokeEnemies invokeEnemies;
+    public Action_ShootPlayer shootPlayer;
+
+    [Space()]
     public Action_PushBack pushback;
 
     [Header("Death State")]
@@ -37,7 +42,9 @@ public class BT_Morrigan : BT_Entity
     private bool phaseTwoDone = false;
     private bool phaseThreeDone = false;
 
-    private bool wantToInvoke = true;
+    [HideInInspector]public bool wantToInvoke = true;
+
+    [HideInInspector] public bool wantToInvokeEnemies = true;
 
     private int crowMaxLive = 2;
     private int crowLive = 2;
@@ -119,6 +126,23 @@ public class BT_Morrigan : BT_Entity
                 }
                 else if (phaseMorr == PashesMorrigan.MORRIGAN_PHASE3)
                 {
+                    if (currentAction != invokeEnemies && (bool)myBB.GetParameter("is_enemy_hit") == false && wantToInvokeEnemies)
+                    {
+                        wantToInvokeEnemies = false;
+                        currentAction = invokeEnemies;
+                        decide = true;
+                    }
+                    if (currentAction != invokeEnemies && (bool)myBB.GetParameter("is_enemy_hit") == false && !wantToInvokeEnemies)
+                    {
+                        currentAction = shootPlayer;
+                        decide = true;
+                    }
+                    if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true && !wantToInvokeEnemies)
+                    {
+                        wantToInvokeEnemies = true;
+                        currentAction = pushback;
+                        decide = true;
+                    }
                     if (currentAction != dead && is_dead == true)
                     {
                         currentAction = dead;

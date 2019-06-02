@@ -205,6 +205,8 @@ GameObject:
   - component: {fileID: 114495075101155086}
   - component: {fileID: 114622228019412322}
   - component: {fileID: 114729072178523066}
+  - component: {fileID: 114469687801387950}
+  - component: {fileID: 114615660009114678}
   - component: {fileID: 114115876643757954}
   - component: {fileID: 114512871910799144}
   m_Layer: 0
@@ -687,10 +689,14 @@ MonoBehaviour:
   follow_player: {fileID: 114495075101155086}
   followPoint: {fileID: 114622228019412322}
   invokeSkeleton: {fileID: 114729072178523066}
+  invokeEnemies: {fileID: 114469687801387950}
+  shootPlayer: {fileID: 114615660009114678}
   pushback: {fileID: 114115876643757954}
   dead: {fileID: 114512871910799144}
   lives_to_change_phase_2: 4
   lives_to_change_phase_3: 6
+  wantToInvoke: 1
+  wantToInvokeEnemies: 1
 --- !u!114 &114115876643757954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -752,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114382865530062648
 MonoBehaviour:
@@ -774,6 +781,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114469687801387950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694597591606434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa130517823ac24e9bf64b1048ff0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: InvokeEnem
+  melee_enemy: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
+    type: 2}
+  collider_enemy: {fileID: 61816604529005670}
+  num_enemy_spawn: 5
+  time_to_spawn_next_enemy: 1.5
+  radius: 2
 --- !u!114 &114492196284528692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,6 +859,27 @@ MonoBehaviour:
   part_sys: {fileID: 1548492058141780, guid: 1748bbd0fa11fb14faf1cd28ec7043f7, type: 2}
   healthObject: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a,
     type: 2}
+--- !u!114 &114615660009114678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694597591606434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdd62105078aa04fb1b6e472529a36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_interruptible: 0
+  name: Shoot
+  layer_wall:
+    serializedVersion: 2
+    m_Bits: 10240
+  projectile: {fileID: 1088267445570470, guid: b583baa0d5e2e574db73f13b62393603, type: 2}
+  time_to_spawn_projectile: 2
+  only_stright_shots: 0
+  projectile_min_distance: 0.1
+  projectile_velocity: 5
 --- !u!114 &114619933373812386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -845,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114622228019412322
 MonoBehaviour:
@@ -955,6 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114882344575211124
 MonoBehaviour:
@@ -968,6 +1017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 0
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114970082172124654
 MonoBehaviour:
