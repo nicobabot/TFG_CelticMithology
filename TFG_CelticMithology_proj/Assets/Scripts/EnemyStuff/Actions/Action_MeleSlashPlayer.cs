@@ -101,8 +101,11 @@ public class Action_MeleSlashPlayer : ActionBase
                         if (myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
                         {
                             player_manager.GetDamage(transform, false);
-                            damageDagda.enabled = true;
-                            damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.5f).OnComplete(()=>damageDagda.DOFade(0.0f, 0.5f));
+                            if (damageDagda)
+                            {
+                                damageDagda.enabled = true;
+                                damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.5f).OnComplete(() => damageDagda.DOFade(0.0f, 0.5f));
+                            }
                         }
                         else player_manager.GetDamage(transform);
                     }

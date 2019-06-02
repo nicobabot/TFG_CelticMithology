@@ -23,8 +23,8 @@ public class Dagda_Blackboard : Blackboard
         list.Add(total_life);
         list.Add(is_enemy_hit);
         list.Add(player_detected_while_charging);
-        //if (ProceduralDungeonGenerator.mapGenerator != null)
-          //  player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
+        if (ProceduralDungeonGenerator.mapGenerator != null)
+            player.myValue = ProceduralDungeonGenerator.mapGenerator.Player;
         list.Add(player);
         list.Add(direction);
         list.Add(pointsDir);

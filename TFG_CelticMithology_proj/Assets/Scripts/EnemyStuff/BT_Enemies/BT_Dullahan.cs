@@ -20,7 +20,7 @@ public class BT_Dullahan : BT_Entity
     public Action_WanderAttack wanderAttack;
 
     [Header("Death State")]
-    public Action_Dead dead;
+    public Action_DeadEnemySpawn dead;
 
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;

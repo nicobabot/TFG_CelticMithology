@@ -22,7 +22,7 @@ public class BT_Dagda : BT_Entity
     public Action_Escape escape;
 
     [Header("Death State")]
-    public Action_DeadBoss dead;
+    public Action_DeadEnemySpawn dead;
 
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;
@@ -93,6 +93,11 @@ public class BT_Dagda : BT_Entity
                         myBB.SetParameter("pointdir", count);
                         myBB.SetParameter("changepath", true);
                         currentAction = pushback;
+                        decide = true;
+                    }
+                    if (is_dead)
+                    {
+                        currentAction = dead;
                         decide = true;
                     }
                 }
