@@ -327,7 +327,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148829782586678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.3, y: 9.46, z: -0.2897772}
+  m_LocalPosition: {x: 10.72678, y: 9.081454, z: -0.2897772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4243283935543900}
@@ -925,10 +925,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life:
     my_name: live
-    my_value: 10
+    my_value: 15
   total_life:
     my_name: total_live
-    my_value: 10
+    my_value: 15
   is_enemy_hit:
     my_name: is_enemy_hit
     my_value: 0

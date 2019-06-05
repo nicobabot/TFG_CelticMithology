@@ -837,6 +837,8 @@ MonoBehaviour:
   time_slashing: 0.1
   cam_manager: {fileID: 114682669889380824}
   player_stats: {fileID: 114759484411700616}
+  timer_slash: 0
+  is_slash_done: 0
 --- !u!114 &114563323685024666
 MonoBehaviour:
   m_ObjectHideFlags: 1

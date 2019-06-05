@@ -127,7 +127,11 @@ public class RunTimeRoomControl : MonoBehaviour {
                 float _middleDownPosition = ((_tileheight) / 6) * 2;
                 _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
 
-                _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
+                if(ProceduralDungeonGenerator.mapGenerator.numDungeon==0)
+                    _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
+
+                if (ProceduralDungeonGenerator.mapGenerator.numDungeon == 1)
+                    _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DAGDA_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
 
                 GameObject go = Instantiate(_possibleEnemies[0].myEnemy);
                 go.transform.position = _enemyPositions[0]._position;
@@ -527,6 +531,13 @@ public class RunTimeRoomControl : MonoBehaviour {
                     if (bb != null)
                     {
                         ((Banshee_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+                case Enemy_type.DAGDA_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<Dagda_Blackboard>();
+                    if (bb != null)
+                    {
+                        ((Dagda_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
 

@@ -241,8 +241,9 @@ public class Player_Manager : MonoBehaviour
         Set_Enemy_Pushback(enemy_push);
         noNeedInvulnerable = !realDamage;
         current_state = Player_States.PUSHBACK_PLAYER;
-        //fader_scr.Fade_image.enabled = true;
-        //fader_scr.FadeOut(false, true);
+        fader_scr.Fade_image.enabled = true;
+        fader_scr.FadeOut(false, true);
+        if(realDamage)
         live_manager_scr.DetectedDamage();
     }
 
