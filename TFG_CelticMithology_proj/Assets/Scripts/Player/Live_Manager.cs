@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Live_Manager : MonoBehaviour
 {
@@ -186,9 +187,9 @@ public class Live_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        if (lives == 0)
         {
-            DetectedDamage();
+            SceneManager.LoadScene("DeadMenu", LoadSceneMode.Single);
         }
     }
 

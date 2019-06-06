@@ -125,7 +125,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                 _enemyPositions = new List<EnemyPos>();
 
                 float _middleDownPosition = ((_tileheight) / 6) * 2;
-                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
+                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight * 0.5f, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
 
                 if(ProceduralDungeonGenerator.mapGenerator.numDungeon==0)
                     _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
@@ -143,7 +143,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                 _enemyPositions = new List<EnemyPos>();
 
                 float _middleDownPosition = ((_tileheight) / 6) * 2;
-                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
+                _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight * 0.5f, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
 
                 _possibleEnemies.Add(new EnemiesRoom(Enemy_type.KELPIE_ENEMY, ProceduralDungeonGenerator.mapGenerator.kelpie, 5, 4));
 

@@ -27,11 +27,17 @@ public class BT_Dullahan : BT_Entity
 
     public GameObject[] colPhase1;
 
+    [HideInInspector] public Vector2 StarterPos;
+
     private bool is_dead = false;
     private bool can_make_slash = false;
     private bool can_make_displacement = true;
     private bool can_invoke_enemies = false;
 
+    override public void Start()
+    {
+        StarterPos = transform.position;
+    }
 
     override public void Update()
     {

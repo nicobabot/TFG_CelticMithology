@@ -61,6 +61,9 @@ public class Player_Manager : MonoBehaviour
     private float timer_fall = 0.0f;
     private float numOfInput = 0;
 
+    public GameObject inmortalText;
+    [HideInInspector] public bool _inmortalMode = false;
+
     // Use this for initialization
     private void Start()
     {
@@ -82,6 +85,18 @@ public class Player_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            _inmortalMode = !_inmortalMode;
+            inmortalText.SetActive(_inmortalMode);
+        }
+
+        if (_inmortalMode)
+        {
+            combat_collider.enabled = false;
+        }
+
 
         if (is_invulnerable && !noNeedInvulnerable)
         {

@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 450412665}
   - component: {fileID: 450412664}
   - component: {fileID: 450412663}
+  - component: {fileID: 450412666}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -635,9 +636,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 364040203}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 450412666}
+        m_MethodName: ExitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -682,6 +683,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450412661}
   m_CullTransparentMesh: 0
+--- !u!114 &450412666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450412661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c4aab2cbac9e44fa4baba023a4e730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577500320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1429,11 @@ Prefab:
     - target: {fileID: 1089700366558946, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20396796848916434, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: orthographic size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
@@ -2168,6 +2185,11 @@ Prefab:
     - target: {fileID: 1749812165798334, guid: 6bdc0f2ebce58e94fa6880a44afcf555, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114515222233023772, guid: 6bdc0f2ebce58e94fa6880a44afcf555,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bdc0f2ebce58e94fa6880a44afcf555, type: 2}

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
-using UnityEditor.Animations;
 
 [Serializable]
 public class WallsSprites

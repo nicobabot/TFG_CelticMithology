@@ -27,11 +27,17 @@ public class BT_Dagda : BT_Entity
     [Header("How many lives need to lose to change phase 1 -> phase 2")]
     public int lives_to_change_phase_2 = 4;
 
+    [HideInInspector] public Vector2 StarterPos;
+
     private bool is_dead = false;
     private bool can_make_slash = false;
     private bool can_make_displacement = true;
     private bool can_invoke_enemies = false;
 
+    override public void Start()
+    {
+        StarterPos = transform.position;
+    }
 
     override public void Update()
     {

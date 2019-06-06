@@ -69,6 +69,7 @@ public class BT_Morrigan : BT_Entity
         }
         else if ((int)myBB.GetParameter("live") < (int)myBB.GetParameter("total_live") - lives_to_change_phase_2 - lives_to_change_phase_3 && !phaseThreeDone)
         {
+            myBB.SetParameter("is_enemy_hit", false);
             phaseMorr = PashesMorrigan.MORRIGAN_PHASE3;
             phaseThreeDone = true;
         }

@@ -43,10 +43,12 @@ public class UpgradeObject : MonoBehaviour {
         ErrorText.enabled = true;
         ArrowGO.enabled = true;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         ErrorText.DOFade(0.0f, 0.5f);
-        yield return ArrowGO.DOFade(0.0f, 0.5f).WaitForCompletion();
+        ArrowGO.DOFade(0.0f, 0.5f);
+
+        yield return new WaitForSecondsRealtime(0.75f);
 
         ErrorText.enabled = false;
         ArrowGO.enabled = false;
@@ -56,7 +58,7 @@ public class UpgradeObject : MonoBehaviour {
 
     }
 
-   public void WantToInteract()
+    public void WantToInteract()
     {
         playerInteract = true;
     }

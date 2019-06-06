@@ -104,7 +104,7 @@ public class Collision_Movement : MonoBehaviour
         else
         {
             //If the player finished dashing we want to activate the combat collider
-            if (!combat_player_collider.enabled && play_manager_scr.is_invulnerable == false)
+            if (!combat_player_collider.enabled && play_manager_scr.is_invulnerable == false && !play_manager_scr._inmortalMode)
             {
                 combat_player_collider.enabled = true;
                 falling_player_collider.enabled = true;

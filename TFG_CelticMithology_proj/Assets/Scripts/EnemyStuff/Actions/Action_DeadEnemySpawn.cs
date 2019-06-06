@@ -19,14 +19,16 @@ public class Action_DeadEnemySpawn : ActionBase
 
         
         GameObject go = Instantiate(enemySpawn);
-        go.transform.position = middlePoint.position;
+       
         if(myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
         {
+            go.transform.position = ((BT_Dagda)myBT).StarterPos;
             Dullahan_Blackboard bb = go.GetComponentInChildren<Dullahan_Blackboard>();
             bb.playerIsInsideRoom.SetValue(true);
         }
         if (myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
         {
+            go.transform.position = ((BT_Dullahan)myBT).StarterPos;
             Morrigan_Blackboard bb = go.GetComponentInChildren<Morrigan_Blackboard>();
             bb.playerIsInsideRoom.SetValue(true);
         }
