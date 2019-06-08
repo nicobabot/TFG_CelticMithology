@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class Live_Manager : MonoBehaviour
 {
     public GameObject Father_UI_Player_Live;
+    public AudioClip healSound;
+    public AudioSource source;
+
     private float lives = 0;
     private float maxLives = 0;
     public int hearts_division = 2;
@@ -60,6 +63,9 @@ public class Live_Manager : MonoBehaviour
     {
         if (lives < 0.0f)
             return;
+
+        source.clip = healSound;
+        source.Play();
 
         GameObject[] childs_temporal_vector;
         int num_childs = Father_UI_Player_Live.transform.childCount;

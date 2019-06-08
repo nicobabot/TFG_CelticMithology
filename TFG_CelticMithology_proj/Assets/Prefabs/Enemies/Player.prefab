@@ -731,6 +731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Father_UI_Player_Live: {fileID: 0}
+  healSound: {fileID: 8300000, guid: 86fd3f042df72704588aa3075770c9b6, type: 3}
+  source: {fileID: 0}
   hearts_division: 2
   StartPosition: {x: 65.9, y: 57.7}
   numHearts: 4
