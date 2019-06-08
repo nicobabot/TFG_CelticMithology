@@ -12,6 +12,7 @@ public class Player_Manager : MonoBehaviour
     public float movement_speed = 5.0f;
     public float dash_speed = 10.0f;
     public GameObject Menu;
+    public GameObject ImproveMenu;
     public Fader fader_scr;
     public Live_Manager live_manager_scr;
 
@@ -119,7 +120,7 @@ public class Player_Manager : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && current_state != Player_States.MID_STUNNED_PLAYER
             && current_state != Player_States.PUSHBACK_PLAYER && current_state != Player_States.SLASHING_PLAYER
-            && current_state != Player_States.IDLE_PLAYER)
+            && current_state != Player_States.IDLE_PLAYER && Time.timeScale == 1)
         {
             slash_attack_script.Update_Attack_Colliders_To_None_Active();
             current_state = Player_States.DASHING_PLAYER;
@@ -153,14 +154,14 @@ public class Player_Manager : MonoBehaviour
             {
                 current_state = Player_States.IN_MENU_PLAYER;
                 Time.timeScale = 0;
+                Menu.SetActive(true);
             }
-            else
+            else if(Time.timeScale == 0 && !ImproveMenu.activeSelf)
             {
                 current_state = Player_States.IDLE_PLAYER;
                 Time.timeScale = 1;
+                Menu.SetActive(false);
             }
-
-            Menu.SetActive(!Menu.active);
 
         }
 
@@ -270,6 +271,12 @@ public class Player_Manager : MonoBehaviour
     public Player_Stats Get_Player_Stats()
     {
         return player_stats;
+    }
+
+    public void DisablePause()
+    {
+        current_state = Player_States.IDLE_PLAYER;
+        Time.timeScale = 1;
     }
 
 }

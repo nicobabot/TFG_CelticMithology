@@ -187,7 +187,7 @@ public class Live_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (lives == 0)
+        if (lives <= 0)
         {
             SceneManager.LoadScene("DeadMenu", LoadSceneMode.Single);
         }

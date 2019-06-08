@@ -282,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289332331540074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 5, z: 0}
+  m_LocalPosition: {x: 5, y: 7.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4963312882725608}
@@ -341,8 +341,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089700366558946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.3763, z: 0}
-  m_LocalScale: {x: 2.4043, y: 2.4043, z: 2.4043}
+  m_LocalPosition: {x: 0, y: -3.3589, z: 0}
+  m_LocalScale: {x: 4.427278, y: 4.427278, z: 4.427278}
   m_Children: []
   m_Father: {fileID: 4487065449136450}
   m_RootOrder: 6
@@ -450,7 +450,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -800,6 +800,7 @@ MonoBehaviour:
   movement_speed: 8
   dash_speed: 15
   Menu: {fileID: 0}
+  ImproveMenu: {fileID: 0}
   fader_scr: {fileID: 0}
   live_manager_scr: {fileID: 114015923741442574}
   total_time_invulnerable: 2.5
@@ -809,6 +810,8 @@ MonoBehaviour:
   noNeedInvulnerable: 0
   current_state: 0
   player_direction: 0
+  inmortalText: {fileID: 0}
+  _inmortalMode: 0
 --- !u!114 &114437350724803262
 MonoBehaviour:
   m_ObjectHideFlags: 1

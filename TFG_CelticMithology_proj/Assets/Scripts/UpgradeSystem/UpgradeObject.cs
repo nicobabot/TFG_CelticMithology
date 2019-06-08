@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
@@ -8,6 +9,9 @@ using DG.Tweening;
 public class UpgradeObject : MonoBehaviour {
 
     [SerializeField] private GameObject UpgradeCanvas;
+    [SerializeField] private GameObject myCanvas;
+    [SerializeField] private EventSystem myeventSystem;
+    [SerializeField] private GameObject nextGameObjectSelected;
 
     [Header("Parent Error")]
     [SerializeField] private TextMeshProUGUI ErrorText;
@@ -28,7 +32,9 @@ public class UpgradeObject : MonoBehaviour {
 
         if (playerInteract && playerImprove.CanImprove())
         {
+            myeventSystem.SetSelectedGameObject(nextGameObjectSelected);
             UpgradeCanvas.SetActive(true);
+            myCanvas.SetActive(false);
             playerInteract = false;
         }
         else if(playerInteract && !playerImprove.CanImprove())
