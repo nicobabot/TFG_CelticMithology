@@ -76,7 +76,7 @@ public class Action_ChargeToPlayer : ActionBase
 
             Vector3 mag_to_point = point_to_charge - transform.position;
 
-            if (mag_to_point.magnitude < 0.75f)
+            if (mag_to_point.magnitude < 0.85f)
             {
                 if ((bool)myBT.myBB.GetParameter("player_detected_charging"))
                 {
