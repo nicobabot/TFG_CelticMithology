@@ -43,6 +43,13 @@ public class Procedural_Room
     private bool _wantBoss = false;
     private bool _wantMiniBoss = false;
 
+
+    //test
+    bool rightDoor = false;
+    bool leftDoor = false;
+    bool upDoor = false;
+    bool downDoor = false;
+
     public Procedural_Room(int new_x_pos, int new_y_pos, int new_tilewidth, int new_tileheight, int num_room,
         ProceduralDungeonGenerator.ExitDirection dir, int levelDepth, bool newWantBoss = false, bool newWantMiniBoss = false)
     {
@@ -786,65 +793,6 @@ public class Procedural_Room
         return temp;
     }
 
-    public void InstantiateDoorPrefabs()
-    {
-        foreach(ExitDirectionPoint exit in usableExits)
-        {
-            if (exit == null || !exit.isUsed) continue;
-
-            Vector2 posInstantiate = Vector2.zero;
-            GameObject go = null;
-
-            switch (exit.dir)
-            {
-                case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
-                    posInstantiate.x = _x_pos + 0.01f;
-                    posInstantiate.y = _y_pos + (_tileheight*0.5f) - 0.5f + 0.01f;
-
-                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
-
-                    FlipDoorTiles(go, false, true);
-                    go.transform.localPosition = posInstantiate;
-
-                    break;
-
-                case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
-                    posInstantiate.x = _x_pos + _tilewidth - 1.0f + 0.01f;
-                    posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f + 0.01f;
-
-                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
-
-                    go.transform.localPosition = posInstantiate;
-
-                    break;
-
-                case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
-                    posInstantiate.x = _x_pos + (_tilewidth*0.5f) - 0.5f; ;
-                    posInstantiate.y = _y_pos;
-
-                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
-
-                    FlipDoorTiles(go, false, true);
-                    go.transform.localPosition = posInstantiate;
-
-                    break;
-
-                case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
-                    posInstantiate.x = _x_pos + (_tilewidth * 0.5f) - 0.5f; ;
-                    posInstantiate.y = _y_pos + _tileheight - 1.0f;
-
-                    go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
-
-                    go.transform.localPosition = posInstantiate;
-
-                    break;
-            }
-
-            ProceduralDungeonGenerator.mapGenerator.myDoors.Add(go);
-
-        }
-    }
-
     void FlipDoorTiles(GameObject go, bool flipX, bool flipY)
     {
         for(int i=0; i<go.transform.childCount; i++)
@@ -925,21 +873,55 @@ public class Procedural_Room
                     case ProceduralDungeonGenerator.TileType.UP_DOOR_2:
                     case ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_0:
                     case ProceduralDungeonGenerator.TileType.UP_DOOR_PREV_3:
+                        {
+                            if (!upDoor)
+                            {
+                                upDoor = true;
+                                PrintExitDoor(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT);
+                            }
+                            break;
+                        }
                     case ProceduralDungeonGenerator.TileType.DOWN_DOOR_1:
                     case ProceduralDungeonGenerator.TileType.DOWN_DOOR_2:
                     case ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_0:
                     case ProceduralDungeonGenerator.TileType.DOWN_DOOR_PREV_3:
+                        {
+                            if (!downDoor)
+                            {
+                                downDoor = true;
+                                PrintExitDoor(ProceduralDungeonGenerator.ExitDirection.UP_EXIT);
+                            }
+                            break;
+                        }
+
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_1:
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_2:
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_0:
                     case ProceduralDungeonGenerator.TileType.RIGHT_DOOR_PREV_3:
+                        {
+                            if (!rightDoor)
+                            {
+                                rightDoor = true;
+                                PrintExitDoor(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT);
+                            }
+                            break;
+                        }
+
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_1:
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_2:
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_0:
                     case ProceduralDungeonGenerator.TileType.LEFT_DOOR_PREV_3:
-                        temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, Room_Go.transform);
+                        {
+                            if (!leftDoor)
+                            {
+                                leftDoor = true;
+                                PrintExitDoor(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT);
+                            }
+                            break;
+                        }
+                        /*temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWithTile(true, Room_Go.transform);
                         temp.transform.position = tile_pos;
-                        break;
+                        break;*/
 
                     default:
                         temp = ProceduralDungeonGenerator.mapGenerator.InstantiateWallTile(room[i][j], Room_Go.transform);
@@ -950,7 +932,80 @@ public class Procedural_Room
         }
     }
 
-    public bool IsInsideRoom(Vector3 point)
+    void PrintExitDoor(ProceduralDungeonGenerator.ExitDirection type)
+    {
+        ExitDirectionPoint exitP = GetExitByDir(type);
+
+        if (exitP == null) return;
+
+        Vector2 posInstantiate = Vector2.zero;
+        GameObject go = null;
+
+        switch (exitP.dir)
+        {
+            case ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT:
+                posInstantiate.x = _x_pos + 0.01f;
+                posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f + 0.01f;
+
+                go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
+
+                FlipDoorTiles(go, false, true);
+                go.transform.localPosition = posInstantiate;
+                break;
+
+            case ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT:
+                posInstantiate.x = _x_pos + _tilewidth - 1.0f + 0.01f;
+                posInstantiate.y = _y_pos + (_tileheight * 0.5f) - 0.5f + 0.01f;
+
+                go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabVertical, Room_Go.transform);
+
+                go.transform.localPosition = posInstantiate;
+                break;
+
+            case ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT:
+                posInstantiate.x = _x_pos + (_tilewidth * 0.5f) - 0.5f; ;
+                posInstantiate.y = _y_pos;
+
+                go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
+
+                FlipDoorTiles(go, false, true);
+                go.transform.localPosition = posInstantiate;
+                break;
+
+            case ProceduralDungeonGenerator.ExitDirection.UP_EXIT:
+                posInstantiate.x = _x_pos + (_tilewidth * 0.5f) - 0.5f; ;
+                posInstantiate.y = _y_pos + _tileheight - 1.0f;
+
+                go = ProceduralDungeonGenerator.mapGenerator.InstantiateGO(ProceduralDungeonGenerator.mapGenerator.doorPrefabHorizontal, Room_Go.transform);
+
+                go.transform.localPosition = posInstantiate;
+                break;
+        }
+
+
+            ProceduralDungeonGenerator.mapGenerator.myDoors.Add(go);
+
+    }
+
+    ExitDirectionPoint GetExitByDir(ProceduralDungeonGenerator.ExitDirection type)
+    {
+        ExitDirectionPoint ret = null;
+
+        foreach (ExitDirectionPoint exit in usableExits)
+        {
+            if (exit == null) continue;
+
+            if (exit.dir == type)
+            {
+                ret = exit;
+                break;
+            }
+        }
+
+        return ret;
+    }
+
+        public bool IsInsideRoom(Vector3 point)
     {
         bool ret = false;
 

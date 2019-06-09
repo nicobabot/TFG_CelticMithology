@@ -151,9 +151,6 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
                 testRoom.SetColliders();
                 testRoom.SetDoors();
 
-                testRoom.InstantiateDoorPrefabs();
-
-                //InitializeRoomsRunTimeValues
                 testRoom.InitializeRoomRunTimeValues();
 
                 testRoom.DrawRoom();
