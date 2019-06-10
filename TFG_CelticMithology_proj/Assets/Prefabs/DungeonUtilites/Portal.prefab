@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1833004233313392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1995873, y: 4.375463, z: 0.1171875}
+  m_LocalPosition: {x: 21.20002, y: 0.47121906, z: 0.1171875}
   m_LocalScale: {x: 2.9156, y: 2.9156, z: 2.9156}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: DungeonGenerator2
+  Player: {fileID: 0}
 --- !u!212 &212880537494579420
 SpriteRenderer:
   m_ObjectHideFlags: 1

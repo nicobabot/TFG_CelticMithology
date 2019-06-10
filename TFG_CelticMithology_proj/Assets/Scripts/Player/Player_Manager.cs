@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using System.IO;
 [RequireComponent(typeof(Collision_Movement))]
 [RequireComponent(typeof(Slash_Attack))]
 [RequireComponent(typeof(Player_PushBack))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+
+[System.Serializable]
+class Stats
+{
+    public int lives = 0;
+    public int damage = 0;
+}
+
 public class Player_Manager : MonoBehaviour
 {
     public float time_dashing = 1.0f;
@@ -47,6 +55,8 @@ public class Player_Manager : MonoBehaviour
     }
     public Player_Direction player_direction;
 
+    private Stats myStats;
+
     private Player_Stats player_stats;
     private Collision_Movement movement_script;
     private Slash_Attack slash_attack_script;
@@ -65,6 +75,30 @@ public class Player_Manager : MonoBehaviour
     public GameObject inmortalText;
     [HideInInspector] public bool _inmortalMode = false;
 
+
+
+
+    private void Awake()
+    {
+       string path_to_save_file = "/JSON/playerStats.json";
+       string filePath = Application.dataPath + path_to_save_file;
+        Stats stat = new Stats();
+
+
+        string dataAsJson = File.ReadAllText(filePath);
+
+        stat = JsonUtility.FromJson<Stats>(dataAsJson);
+
+        myStats = stat;
+        //player_stats.
+        //player_stats.Right_Hand_Object = new Object_InGame();
+        player_stats = GetComponent<Player_Stats>();
+        player_stats.Right_Hand_Object = new Object_InGame();
+        player_stats.Right_Hand_Object.damage = myStats.damage;
+        live_manager_scr.numHearts = myStats.lives;
+        Debug.Log(dataAsJson);
+    }
+
     // Use this for initialization
     private void Start()
     {
@@ -74,8 +108,6 @@ public class Player_Manager : MonoBehaviour
 
         anim = GetComponent<Animator>();
         sprite_rend = GetComponent<SpriteRenderer>();
-
-        player_stats = GetComponent<Player_Stats>();
 
         timer_dash = 0.0f;
 
@@ -271,6 +303,21 @@ public class Player_Manager : MonoBehaviour
     public Player_Stats Get_Player_Stats()
     {
         return player_stats;
+    }
+
+    public void WriteInJSON()
+    {
+        string path_to_save_file = "/JSON/playerStats.json";
+        string filePath = Application.dataPath + path_to_save_file;
+
+        Stats newStat =new Stats();
+        newStat.damage = player_stats.Right_Hand_Object.damage;
+        newStat.lives = live_manager_scr.maxLives;
+
+        string myStatsJson = JsonUtility.ToJson(newStat);
+
+        File.WriteAllText(filePath, myStatsJson);
+        Debug.Log(myStatsJson);
     }
 
     public void DisablePause()

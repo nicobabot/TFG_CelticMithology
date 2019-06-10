@@ -172,12 +172,12 @@ public class RunTimeRoomControl : MonoBehaviour {
         //-------------------------
 
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.LEFT_TOP_CORNER));
+        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1.25f, _y_pos + _tileheight - 3.25f, 0), EnemyPositionEnum.LEFT_TOP_CORNER));
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight- 3.25f, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _tileheight - 2, 0), EnemyPositionEnum.RIGHT_TOP_CORNER));
+        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 3.25f, _y_pos + _tileheight - 3.25f, 0), EnemyPositionEnum.RIGHT_TOP_CORNER));
         //-----------------------
 
         float _middleDownPosition = ((_tileheight) / 6) * 2;

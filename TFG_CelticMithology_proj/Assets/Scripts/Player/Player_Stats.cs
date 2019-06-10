@@ -80,7 +80,7 @@ public class Player_Stats: MonoBehaviour
         Player_Inventory_Objects = new Object_InGame[8];
         //Pushback to all objects of the game
 
-        Right_Hand_Object = All_Game_Objects[0];
+        //Right_Hand_Object = All_Game_Objects[0];
 
     }
 
@@ -126,6 +126,11 @@ public class Object_InGame
     public ObjectType type;
     public int damage;
     public int duration;
+
+    public Object_InGame()
+    {
+
+    }
 
     Object_InGame(string name_n, Sprite sprite_object, ObjectType n_type, int n_damage, int n_duration)
     {

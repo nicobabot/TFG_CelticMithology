@@ -8,12 +8,12 @@ public class Live_Manager : MonoBehaviour
     public AudioClip healSound;
     public AudioSource source;
 
-    private float lives = 0;
-    private float maxLives = 0;
+    [HideInInspector] public float lives = 0;
+    [HideInInspector] public int maxLives = 0;
     public int hearts_division = 2;
 
     public Vector2 StartPosition;
-    public int numHearts = 4;
+    [HideInInspector]public int numHearts = 4;
     public GameObject heartPrefab;
     public float offsetHeart = 1.5f;
 
@@ -38,13 +38,13 @@ public class Live_Manager : MonoBehaviour
     {
         //float heartWidth = heartSprite.rect.width;
 
-       /* GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
-        //go.transform.position = StartPosition;
-        RectTransform rectTrans = go.GetComponent<RectTransform>();*/
+        /* GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
+         //go.transform.position = StartPosition;
+         RectTransform rectTrans = go.GetComponent<RectTransform>();*/
 
         for (int i = 0; i < numHearts; i++)
         {
-            AddUiHeart(i);
+             AddUiHeart(i);
         }
 
     }
@@ -121,6 +121,7 @@ public class Live_Manager : MonoBehaviour
 
             AddUiHeart((int)childs_temporal_vector.Length);
             lives = childs_temporal_vector.Length + 1.0f;
+            maxLives = (int)lives;
 
             /*if (it >= maxLives)
             {
