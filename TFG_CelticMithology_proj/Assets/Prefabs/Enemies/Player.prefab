@@ -733,6 +733,8 @@ MonoBehaviour:
   Father_UI_Player_Live: {fileID: 0}
   healSound: {fileID: 8300000, guid: 86fd3f042df72704588aa3075770c9b6, type: 3}
   source: {fileID: 0}
+  lives: 0
+  maxLives: 0
   hearts_division: 2
   StartPosition: {x: 65.9, y: 57.7}
   numHearts: 4
@@ -825,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc35391b4b21aa47bb0a11f8e2abb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToImprove: 5
+  objToImprove: 2
   improveBar: {fileID: 0}
 --- !u!114 &114458362136514418
 MonoBehaviour:

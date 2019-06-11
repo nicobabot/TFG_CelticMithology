@@ -85,7 +85,7 @@ public class Action_MeleSlashPlayer : ActionBase
         if (timer_attack >= (time_to_make_slash*0.5f))
         {
 
-            if (timer_attack < time_to_make_slash)
+            if (timer_attack < time_to_make_slash -0.325f)
             {
                 //get_damage_collider.enabled = false;
                 BoxCollider2D col = go.GetComponent<BoxCollider2D>();

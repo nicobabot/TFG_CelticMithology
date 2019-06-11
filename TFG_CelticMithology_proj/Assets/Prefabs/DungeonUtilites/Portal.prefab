@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: DungeonGenerator2
-  Player: {fileID: 0}
+  Player: {fileID: 114308716956029978, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
 --- !u!212 &212880537494579420
 SpriteRenderer:
   m_ObjectHideFlags: 1

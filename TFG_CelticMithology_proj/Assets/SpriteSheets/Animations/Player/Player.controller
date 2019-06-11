@@ -13,31 +13,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_roll
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: player_fall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1875,16 +1875,16 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: 1109202777522196720}
   m_StateMachineTransitions:
+  - first: {fileID: 1107262926469802538}
+    second:
+    - {fileID: 1109070960623387874}
+    - {fileID: 1109290378830551226}
   - first: {fileID: 1107262721441734110}
     second:
     - {fileID: 1109591688888081036}
     - {fileID: 1109967641669906166}
     - {fileID: 1109195425443723444}
     - {fileID: 1109380891254138440}
-  - first: {fileID: 1107262926469802538}
-    second:
-    - {fileID: 1109070960623387874}
-    - {fileID: 1109290378830551226}
   - first: {fileID: 1107524155815237726}
     second:
     - {fileID: 1109473228678887778}

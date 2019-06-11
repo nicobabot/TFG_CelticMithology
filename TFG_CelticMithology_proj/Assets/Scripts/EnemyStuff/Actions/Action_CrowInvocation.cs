@@ -12,6 +12,7 @@ public class Action_CrowInvocation : ActionBase
     public float radius = 1.0f;
     public float fadeDuration = 0.25f;
     public BoxCollider2D myHitCollider;
+    public GameObject inmortalGO;
     private GameObject player;
 
 
@@ -23,6 +24,7 @@ public class Action_CrowInvocation : ActionBase
             Debug.Log("<color=red> Player not found!_Action_CrowInvocation");
         }
         myHitCollider.enabled = false;
+        inmortalGO.SetActive(true);
 
         StartCoroutine(InvokeCrows());
 
@@ -65,6 +67,7 @@ public class Action_CrowInvocation : ActionBase
         yield return new WaitForSeconds(0.5f);
 
         myHitCollider.enabled = true;
+        inmortalGO.SetActive(false);
 
         //Throw bat transformation anim
 

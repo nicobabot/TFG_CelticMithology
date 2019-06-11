@@ -7,6 +7,7 @@ public class Action_FollowPoint : ActionBase {
 
     public GameObject points_father;
     public float velocity = 1.0f;
+    public GameObject inmortalGO;
     public BoxCollider2D col_detect_player;
     public BoxCollider2D collider_enemy;
     public bool moreThanOne = true;
@@ -45,6 +46,7 @@ public class Action_FollowPoint : ActionBase {
 
         collider_enemy.enabled = false;
         col_detect_player.enabled = false;
+        inmortalGO.SetActive(true);
 
         return BT_Status.RUNNING;
     }
@@ -62,6 +64,7 @@ public class Action_FollowPoint : ActionBase {
             Direction dir = follow_player_scr.DetectDirection(transform.position, player.transform.position);
             collider_enemy.enabled = true;
             col_detect_player.enabled = true;
+            inmortalGO.SetActive(false);
 
             if (myBT.enemy_type == Enemy_type.MACLIR_ENEMY)
             {

@@ -9,6 +9,7 @@ public class Action_SkeletonInvoke : ActionBase
     public int numSkeletons;
     public GameObject skeletontObj;
     public BoxCollider2D myHitCollider;
+    public GameObject inmortalGO;
     public float offsetBetweenSkeletons = 1.5f;
     private CircleCollider2D skeletonCol;
 
@@ -61,6 +62,7 @@ public class Action_SkeletonInvoke : ActionBase
     {
         rayGO.SetActive(true);
         myHitCollider.enabled = false;
+        inmortalGO.SetActive(true);
 
         SpawnSkeletons();
 
@@ -84,6 +86,7 @@ public class Action_SkeletonInvoke : ActionBase
         }
 
         myHitCollider.enabled = true;
+        inmortalGO.SetActive(false);
 
         yield return new WaitForSeconds(1.0f);
 

@@ -54,7 +54,6 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
         "ELEMENT 5 - LEFT/RIGHT WALL BORDER\nELEMENT 6 -  UP/DOWN WALL BORDER")]
     public WallsSprites[] wallTilesSprites;
 
-
     [Space(10)]
     [Header("Door Prefabs")]
     public GameObject doorPrefabVertical;
@@ -72,6 +71,7 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public GameObject doorTile;
     public GameObject borderWallTile;
     public GameObject shadowRoom;
+    public GameObject shadowRoomBoss;
 
     [Header("Enemy prefabs")]
     public GameObject meleeEnemey;
@@ -157,9 +157,17 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
                 if (testRoom.GetLevelDepth() > 0 || _FirstShadowNot)
                 {
-                    Vector3 posShadow = testRoom.GetStarterRoom();
-                    GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
-                    goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                    if (!testRoom._wantBoss && !testRoom._wantMiniBoss) {
+                        Vector3 posShadow = testRoom.GetStarterRoom();
+                        GameObject goShadow = Instantiate(shadowRoom, testRoom.Room_Go.transform);
+                        goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                    }
+                    else
+                    {
+                        Vector3 posShadow = testRoom.GetStarterRoom();
+                        GameObject goShadow = Instantiate(shadowRoomBoss, testRoom.Room_Go.transform);
+                        goShadow.transform.localPosition = posShadow + goShadow.transform.localPosition;
+                    }
                 }
                 else _FirstShadowNot = true;
 

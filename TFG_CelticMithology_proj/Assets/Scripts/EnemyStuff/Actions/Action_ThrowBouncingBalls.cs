@@ -7,6 +7,7 @@ public class Action_ThrowBouncingBalls : ActionBase
 {
 
     public GameObject WaterBall;
+    public GameObject InmortalGo;
     public BoxCollider2D Collider;
     public Action_FollowPlayer followPlayer;
     public Transform rightTrans;
@@ -31,6 +32,7 @@ public class Action_ThrowBouncingBalls : ActionBase
     override public BT_Status StartAction()
     {
         Collider.enabled = false;
+        InmortalGo.SetActive(true);
         timerCountBalls = timeBetweenSpawn;
         ballsSpawned = 0;
         throwBalls = false;
@@ -143,6 +145,7 @@ public class Action_ThrowBouncingBalls : ActionBase
                 myAnimator.SetBool("KelpieShoot", false);
                 doneThrow = false;
                 isFinish = true;
+                InmortalGo.SetActive(false);
             }
         }
 

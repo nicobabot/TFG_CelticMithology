@@ -699,7 +699,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313348512758646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.33, y: 7.8, z: 0.009765625}
+  m_LocalPosition: {x: 10.24, y: 6.68, z: 0.009765625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4351874405557274}
@@ -1039,6 +1039,7 @@ MonoBehaviour:
   name: InvokeEnemies
   melee_enemy: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
     type: 2}
+  ImortalGO: {fileID: 0}
   collider_enemy: {fileID: 61757295132088982}
   num_enemy_spawn: 5
   time_to_spawn_next_enemy: 1.5
@@ -1059,6 +1060,7 @@ MonoBehaviour:
   wall_layer:
     serializedVersion: 2
     m_Bits: 10240
+  inmortalGO: {fileID: 0}
   charge_speed: 12.5
   charge_collider: {fileID: 61502583933222774}
   Charger_Filler: {fileID: 114491526586714966}
@@ -1195,6 +1197,7 @@ MonoBehaviour:
   colPhase1:
   - {fileID: 1988027145992170}
   - {fileID: 1365960020854918}
+  StarterPos: {x: 0, y: 0}
 --- !u!114 &114528388918409038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1332,7 +1335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 1
   name: Slash
-  time_to_make_slash: 0.5
+  time_to_make_slash: 1.5
   father_colliders: {fileID: 1672524277713584}
   player_mask:
     serializedVersion: 2
@@ -1739,7 +1742,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1076400543869736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 0.019149171, y: 0.00155876, z: 1}
   m_Children: []
   m_Father: {fileID: 224562503430358078}
@@ -1757,7 +1760,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556353897126676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000002625}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 0.007917075, y: 0.01147976, z: 0.022353193}
   m_Children: []
   m_Father: {fileID: 224562503430358078}
@@ -1796,7 +1799,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058976058419830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 0.007924835, y: 0.011460962, z: 0.022362852}
   m_Children: []
   m_Father: {fileID: 224562503430358078}

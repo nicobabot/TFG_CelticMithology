@@ -92,6 +92,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1388262428658462
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4573341055513426}
+  - component: {fileID: 212129147341877058}
+  m_Layer: 0
+  m_Name: InmortalSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1518630155022166
 GameObject:
   m_ObjectHideFlags: 1
@@ -311,6 +327,7 @@ Transform:
   m_LocalPosition: {x: -0.019999504, y: -0.5799999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4573341055513426}
   - {fileID: 4329480084322448}
   - {fileID: 4273797097473398}
   - {fileID: 4982418468974922}
@@ -327,7 +344,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148829782586678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.72678, y: 9.081454, z: -0.2897772}
+  m_LocalPosition: {x: 12.8, y: 6.713932, z: -0.2897772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4243283935543900}
@@ -346,7 +363,7 @@ Transform:
   m_LocalScale: {x: 0.96513, y: 0.96513, z: 0.96513}
   m_Children: []
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4319949982526436
 Transform:
@@ -373,7 +390,7 @@ Transform:
   m_LocalScale: {x: 2.78978, y: 2.78978, z: 2.78978}
   m_Children: []
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4378389310652810
 Transform:
@@ -388,7 +405,7 @@ Transform:
   - {fileID: 4499687775443166}
   - {fileID: 4319949982526436}
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4414926004199084
 Transform:
@@ -417,6 +434,19 @@ Transform:
   m_Father: {fileID: 4378389310652810}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
+--- !u!4 &4573341055513426
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388262428658462}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.94, y: -0.276, z: 0}
+  m_LocalScale: {x: 0.80932593, y: 3.848859, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4243283935543900}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4592698572610390
 Transform:
   m_ObjectHideFlags: 1
@@ -455,7 +485,7 @@ Transform:
   m_Children:
   - {fileID: 4414926004199084}
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4852504779104238
 Transform:
@@ -481,7 +511,7 @@ Transform:
   m_LocalScale: {x: 0.96513, y: 0.96513, z: 0.96513}
   m_Children: []
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50263917150386860
 Rigidbody2D:
@@ -796,6 +826,7 @@ MonoBehaviour:
   name: InvokeEnem
   melee_enemy: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
     type: 2}
+  ImortalGO: {fileID: 1388262428658462}
   collider_enemy: {fileID: 61816604529005670}
   num_enemy_spawn: 5
   time_to_spawn_next_enemy: 1.5
@@ -909,6 +940,7 @@ MonoBehaviour:
   name: Follow Point
   points_father: {fileID: 1046477574082018}
   velocity: 4
+  inmortalGO: {fileID: 1388262428658462}
   col_detect_player: {fileID: 61816604529005670}
   collider_enemy: {fileID: 61029547860269370}
   moreThanOne: 0
@@ -971,6 +1003,7 @@ MonoBehaviour:
   skeletontObj: {fileID: 1158071888229198, guid: ae57dcd8bbb1ecc4bac653611ee67fde,
     type: 2}
   myHitCollider: {fileID: 61816604529005670}
+  inmortalGO: {fileID: 1388262428658462}
   offsetBetweenSkeletons: 1.5
   rayGO: {fileID: 1658196813841230}
 --- !u!114 &114803578902918784
@@ -991,6 +1024,7 @@ MonoBehaviour:
   radius: 2
   fadeDuration: 0.25
   myHitCollider: {fileID: 61816604529005670}
+  inmortalGO: {fileID: 1388262428658462}
 --- !u!114 &114819798268490766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1062,6 +1096,52 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!212 &212129147341877058
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388262428658462}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 15
+  m_Sprite: {fileID: 21300000, guid: d90a8faf6fb9540b084ef2825cc3a5dc, type: 3}
+  m_Color: {r: 1, g: 0.9160186, b: 0, a: 0.49803922}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.5, y: 0.625}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!212 &212231149358682928
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1142,7 +1222,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32767
   m_Sprite: {fileID: 21300002, guid: c993dade19555404cb82f2401f7fc462, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.32941177}
   m_FlipX: 0
@@ -1301,7 +1381,7 @@ RectTransform:
   - {fileID: 224871530123029352}
   - {fileID: 224400402280870926}
   m_Father: {fileID: 4243283935543900}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -40,8 +40,8 @@ public class Procedural_Room
     private int _mylevel = 0;
     private int _myNumRoom = 0;
 
-    private bool _wantBoss = false;
-    private bool _wantMiniBoss = false;
+    [HideInInspector]public bool _wantBoss = false;
+    [HideInInspector]public bool _wantMiniBoss = false;
 
 
     //test

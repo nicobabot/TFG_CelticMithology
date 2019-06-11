@@ -7,6 +7,7 @@ public class Action_ChargeToPlayer : ActionBase
 {
     [Header("Charge")]
     public LayerMask wall_layer;
+    public GameObject inmortalGO;
     public float charge_speed = 5;
     public Collider2D charge_collider;
     public Image Charger_Filler;
@@ -56,6 +57,7 @@ public class Action_ChargeToPlayer : ActionBase
             timer_charging += Time.deltaTime;
 
             get_damage.enabled = false;
+            inmortalGO.SetActive(true);
 
             Charger_Filler.enabled = true;
             Charger_Filler.fillAmount = 1 - timer_charging / time_charging_anim;
@@ -91,6 +93,7 @@ public class Action_ChargeToPlayer : ActionBase
                     //stunned
                     timer_stunned += Time.deltaTime;
                     get_damage.enabled = true;
+                    inmortalGO.SetActive(false);
 
                     Stunned_Filler.enabled = true;
                     Stunned_Filler.fillAmount = 1 - timer_stunned / Time_stunned;

@@ -80,23 +80,24 @@ public class Player_Manager : MonoBehaviour
 
     private void Awake()
     {
-       string path_to_save_file = "/JSON/playerStats.json";
-       string filePath = Application.dataPath + path_to_save_file;
-        Stats stat = new Stats();
+        /*string path_to_save_file = "/JSON/playerStats.json";
+        string filePath = Application.dataPath + path_to_save_file;
+         Stats stat = new Stats();
 
 
-        string dataAsJson = File.ReadAllText(filePath);
+         string dataAsJson = File.ReadAllText(filePath);
 
-        stat = JsonUtility.FromJson<Stats>(dataAsJson);
+         stat = JsonUtility.FromJson<Stats>(dataAsJson);
 
-        myStats = stat;
+         myStats = stat;*/
         //player_stats.
         //player_stats.Right_Hand_Object = new Object_InGame();
+
         player_stats = GetComponent<Player_Stats>();
         player_stats.Right_Hand_Object = new Object_InGame();
-        player_stats.Right_Hand_Object.damage = myStats.damage;
-        live_manager_scr.numHearts = myStats.lives;
-        Debug.Log(dataAsJson);
+        player_stats.Right_Hand_Object.damage = PlayerPrefs.GetInt("playerDamage"); 
+        live_manager_scr.numHearts = PlayerPrefs.GetInt("playerLive");
+        //Debug.Log(dataAsJson);
     }
 
     // Use this for initialization
@@ -163,15 +164,15 @@ public class Player_Manager : MonoBehaviour
         {
             if (!in_mine)
             {
-                int dir = anim.GetInteger("player_direction");
+                //int dir = anim.GetInteger("player_direction");
 
-                anim.Rebind();
+                //anim.Rebind();
 
-                anim.SetInteger("player_direction", dir);
+               // anim.SetInteger("player_direction", dir);
 
                 anim.SetBool("player_idle", false);
-                slash_attack_script.timer_slash = 0;
-                slash_attack_script.is_slash_done = false;
+                //slash_attack_script.timer_slash = 0;
+                //slash_attack_script.is_slash_done = false;
                 current_state = Player_States.SLASHING_PLAYER;
             }
             else
@@ -307,7 +308,7 @@ public class Player_Manager : MonoBehaviour
 
     public void WriteInJSON()
     {
-        string path_to_save_file = "/JSON/playerStats.json";
+        /*string path_to_save_file = "/JSON/playerStats.json";
         string filePath = Application.dataPath + path_to_save_file;
 
         Stats newStat =new Stats();
@@ -317,7 +318,10 @@ public class Player_Manager : MonoBehaviour
         string myStatsJson = JsonUtility.ToJson(newStat);
 
         File.WriteAllText(filePath, myStatsJson);
-        Debug.Log(myStatsJson);
+        Debug.Log(myStatsJson);*/
+
+        PlayerPrefs.SetInt("playerDamage", player_stats.Right_Hand_Object.damage);
+        PlayerPrefs.SetInt("playerLive", live_manager_scr.maxLives);
     }
 
     public void DisablePause()

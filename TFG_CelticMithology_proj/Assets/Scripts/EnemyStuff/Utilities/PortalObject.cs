@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PortalObject : MonoBehaviour {
 
     public string scene = "";
-    public Player_Manager Player;
+    private Player_Manager Player;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,7 +21,8 @@ public class PortalObject : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("player_movement_collider"))
         {
-            Player.WriteInJSON();
+            Player_Manager PlayerManager = ProceduralDungeonGenerator.mapGenerator.Player.GetComponent<Player_Manager>();
+            PlayerManager.WriteInJSON();
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         }
     }

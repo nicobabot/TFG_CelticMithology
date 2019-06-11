@@ -5,6 +5,7 @@ using UnityEngine;
 public class Action_InvokeEnemies : ActionBase
 {
     public GameObject melee_enemy;
+    public GameObject ImortalGO;
     public BoxCollider2D collider_enemy;
     public uint num_enemy_spawn = 5;
     public float time_to_spawn_next_enemy = 0.0f;
@@ -30,7 +31,7 @@ public class Action_InvokeEnemies : ActionBase
         timer_spawning_other_enemy = 0.0f;
 
         collider_enemy.enabled = false;
-
+        ImortalGO.SetActive(true);
         return BT_Status.RUNNING;
     }
 
@@ -62,6 +63,7 @@ public class Action_InvokeEnemies : ActionBase
         {
             isFinish = true;
             collider_enemy.enabled = true;
+            ImortalGO.SetActive(false);
         }
 
         return BT_Status.RUNNING;

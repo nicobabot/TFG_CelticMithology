@@ -117,17 +117,19 @@ public class Action_SharkAttack : ActionBase
             }
             else
             {
-                shark_collider.enabled = true;
-                player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
-                timer_follow = 0;
-
                 timerAnimationAttack += Time.deltaTime;
-
-                if (timerAnimationAttack >= 0.53f || player_found!=null)
+                if (timerAnimationAttack >= 0.40f || player_found != null)
                 {
-                    timerAnimationAttack = 0;
-                    animationAttackDone = false;
-                    shark_attack_done = true;
+                    shark_collider.enabled = true;
+                    player_found = Physics2D.OverlapBox(shark_collider.transform.position, shark_collider.size, 0.0f, player_layer);
+                    timer_follow = 0;
+
+                    if (timerAnimationAttack >= 1.03f || player_found != null)
+                    {
+                        timerAnimationAttack = 0;
+                        animationAttackDone = false;
+                        shark_attack_done = true;
+                    }
                 }
 
             }

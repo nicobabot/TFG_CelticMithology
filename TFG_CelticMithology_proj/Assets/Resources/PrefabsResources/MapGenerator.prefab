@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  numDungeon: 1
+  numDungeon: 0
   tilesWidthMap: 100
   tilesHeightMap: 100
   maxim_depth: 20
@@ -97,6 +97,8 @@ MonoBehaviour:
   borderWallTile: {fileID: 1936513366201222, guid: cdb747594e2ccc849ae960e311a81549,
     type: 2}
   shadowRoom: {fileID: 1689727895043100, guid: 8812b637009c5ee4aa16b142d3d44653, type: 2}
+  shadowRoomBoss: {fileID: 1974352984374806, guid: ee7a2fce2198a164fbc75be526907d66,
+    type: 2}
   meleeEnemey: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
     type: 2}
   caorthannach: {fileID: 1922859857836306, guid: bba0bfbafbf4c22418271a5ea8fcbdd4,
