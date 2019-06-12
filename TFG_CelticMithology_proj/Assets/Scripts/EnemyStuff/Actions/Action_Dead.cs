@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Action_Dead : ActionBase
 {
@@ -14,13 +15,20 @@ public class Action_Dead : ActionBase
         temp.transform.rotation = Quaternion.Euler(-180, 0, 0);
         temp.GetComponent<ParticleSystem>().Play();
 
-        gameObject.SetActive(false);
-
-        int result = Random.Range(1, 101);
-        if(result >= 80 && result <= 100)
+        if (myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
         {
-            GameObject go = Instantiate(healthObject);
-            go.transform.position = transform.position;
+            SceneManager.LoadScene("WinMenu", LoadSceneMode.Single);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+
+            int result = Random.Range(1, 101);
+            if (result >= 80 && result <= 100)
+            {
+                GameObject go = Instantiate(healthObject);
+                go.transform.position = transform.position;
+            }
         }
 
         Destroy(gameObject);

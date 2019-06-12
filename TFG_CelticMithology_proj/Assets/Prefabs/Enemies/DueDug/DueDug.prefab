@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889491338655396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0879216, y: -13.958753, z: 0}
+  m_LocalPosition: {x: 10.71, y: 6.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4853500679102400}
@@ -759,6 +759,9 @@ MonoBehaviour:
   player_mask:
     serializedVersion: 2
     m_Bits: 1024
+  damageDagda: {fileID: 0}
+  yStartDagdaText: 0
+  yEndDagdaText: 0
   filler: {fileID: 114909609046546128}
   get_damage_collider: {fileID: 0}
 --- !u!114 &114592736452193750
@@ -773,6 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114596011320922358
 MonoBehaviour:
@@ -910,6 +914,7 @@ MonoBehaviour:
   slash: {fileID: 114512147392896256}
   dead: {fileID: 114108890543436726}
   father_colliders: {fileID: 1558106582344498}
+  filler: {fileID: 114909609046546128}
 --- !u!198 &198908865508384528
 ParticleSystem:
   m_ObjectHideFlags: 1

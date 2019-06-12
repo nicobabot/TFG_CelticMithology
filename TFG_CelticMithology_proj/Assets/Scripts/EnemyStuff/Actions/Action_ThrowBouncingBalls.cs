@@ -32,7 +32,6 @@ public class Action_ThrowBouncingBalls : ActionBase
     override public BT_Status StartAction()
     {
         Collider.enabled = false;
-        InmortalGo.SetActive(true);
         timerCountBalls = timeBetweenSpawn;
         ballsSpawned = 0;
         throwBalls = false;
@@ -71,6 +70,7 @@ public class Action_ThrowBouncingBalls : ActionBase
             {
                 myAnimator.SetBool("KelpieShoot", true);
                 throwBalls = true;
+                InmortalGo.SetActive(true);
             }
         }
         else

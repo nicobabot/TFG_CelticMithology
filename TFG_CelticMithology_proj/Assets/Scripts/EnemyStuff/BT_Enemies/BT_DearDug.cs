@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BT_DearDug : BT_Entity
 {
@@ -11,6 +12,7 @@ public class BT_DearDug : BT_Entity
     public Action_Dead dead;
 
     public GameObject father_colliders;
+    public Image filler;
 
     // public Action_MeleeAttack melee_attack;
     private bool can_start_combat = false;
@@ -44,6 +46,7 @@ public class BT_DearDug : BT_Entity
         {
             if (currentAction != chase && (bool)myBB.GetParameter("is_enemy_hit") == false && can_start_combat == false && is_dead == false)
             {
+                filler.enabled = false;
                 currentAction = chase;
                 decide = true;
             }
@@ -54,6 +57,7 @@ public class BT_DearDug : BT_Entity
             }
             else if ((bool)myBB.GetParameter("is_enemy_hit") == true && is_dead == false)
             {
+                filler.enabled = false;
                 currentAction = pushback;
                 decide = true;
             }

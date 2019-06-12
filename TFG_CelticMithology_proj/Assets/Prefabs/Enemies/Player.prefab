@@ -829,6 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToImprove: 2
   improveBar: {fileID: 0}
+  panelImprove: {fileID: 0}
 --- !u!114 &114458362136514418
 MonoBehaviour:
   m_ObjectHideFlags: 1

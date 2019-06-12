@@ -17,6 +17,10 @@ public class Live_Manager : MonoBehaviour
     public GameObject heartPrefab;
     public float offsetHeart = 1.5f;
 
+    private bool _healed = true;
+    private bool _canHeal = true;
+    private float timerToHealAgain = 0.0f;
+
     // Use this for initialization
     private void Start()
     {
@@ -78,6 +82,9 @@ public class Live_Manager : MonoBehaviour
 
         if (healing)
         {
+            _healed = true;
+            _canHeal = false;
+
             float it = Mathf.Ceil(lives);
 
             if (it == maxLives)
@@ -194,6 +201,16 @@ public class Live_Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (_healed)
+        {
+            timerToHealAgain += Time.deltaTime;
+            if (timerToHealAgain>0.1f)
+            {
+                timerToHealAgain = 0;
+                _canHeal = true;
+            }
+        }
+
         if (lives <= 0)
         {
             SceneManager.LoadScene("DeadMenu", LoadSceneMode.Single);
@@ -257,9 +274,12 @@ public class Live_Manager : MonoBehaviour
         if (collision.CompareTag("health_object"))
         {
             GameObject go = collision.gameObject;
-            Destroy(collision);
-            Destroy(go);
-            AddHeart(true);
+            if (_canHeal)
+            {
+                Destroy(collision);
+                Destroy(go);
+                AddHeart(true);
+            }
 
         }
     }

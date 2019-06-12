@@ -7,15 +7,27 @@ public class ImproveManager : MonoBehaviour {
 
     [SerializeField] private int objToImprove = 5;
     [SerializeField] private Image improveBar;
+    [SerializeField] private GameObject panelImprove;
+    private Player_Manager playerManager;
     private float sliceBar=0;
 
 	// Use this for initialization
 	void Start () {
 
-        sliceBar = 1.0f / objToImprove;
+        playerManager = gameObject.GetComponent<Player_Manager>();
 
+        sliceBar = 1.0f / objToImprove;
     }
-	
+
+    private void Update()
+    {
+        if(improveBar.fillAmount == 1)
+        {
+            playerManager.SetPlayerInPause();
+            panelImprove.SetActive(true);
+        }
+    }
+
     public void AddSliceBar()
     {
         if (improveBar.fillAmount < 1.0f)

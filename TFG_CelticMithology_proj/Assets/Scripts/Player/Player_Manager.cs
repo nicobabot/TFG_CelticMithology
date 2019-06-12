@@ -160,7 +160,8 @@ public class Player_Manager : MonoBehaviour
         }
         else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton"))
             && current_state != Player_States.PUSHBACK_PLAYER
-            && current_state != Player_States.DASHING_PLAYER)
+            && current_state != Player_States.DASHING_PLAYER
+            && Time.timeScale == 1)
         {
             if (!in_mine)
             {
@@ -328,6 +329,15 @@ public class Player_Manager : MonoBehaviour
     {
         current_state = Player_States.IDLE_PLAYER;
         Time.timeScale = 1;
+    }
+
+    public void SetPlayerInPause()
+    {
+        if (Time.timeScale == 1)
+        {
+            current_state = Player_States.IN_MENU_PLAYER;
+            Time.timeScale = 0;
+        }
     }
 
 }
