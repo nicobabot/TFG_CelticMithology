@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 [Serializable]
 public class WallsSprites
@@ -84,6 +86,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     [Header("Upgrade")]
     public GameObject UpgradeObject;
+
+    public TextMeshProUGUI FloorText;
 
     [HideInInspector] public int realDepth = 0;
     int count_rooms = 0;
@@ -173,6 +177,19 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
             }
         }
+
+        StartCoroutine(FloorTextShowingRoutine());
+
+    }
+
+
+    IEnumerator FloorTextShowingRoutine()
+    {
+        FloorText.enabled = true;
+
+        yield return new WaitForSeconds(1.0f);
+
+        FloorText.DOFade(0.0f, 0.25f).OnComplete(() => FloorText.enabled = false);
     }
 
     void GenerateRoomLastChildFirst(Procedural_Room room, int level)

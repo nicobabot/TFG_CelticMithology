@@ -60,7 +60,7 @@ public class Live_Manager : MonoBehaviour
         RectTransform rectTrans = go.GetComponent<RectTransform>();
         rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * num, StartPosition.y, rectTrans.position.z);
 
-        return go.GetComponent<Image>();
+        return go.transform.GetChild(0).GetComponent<Image>();
     }
 
     public void AddHeart(bool healing = false)
@@ -89,26 +89,26 @@ public class Live_Manager : MonoBehaviour
 
             if (it == maxLives)
             {
-                Image imgHeal = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
+                Image imgHeal = childs_temporal_vector[(int)it - 1].transform.GetChild(0).GetComponent<Image>();
                 if (imgHeal.fillAmount == 1.0f)
                     return;
             }
 
             if (lives == 0.5f)
             {
-                Image img = childs_temporal_vector[0].GetComponent<Image>();
+                Image img = childs_temporal_vector[0].transform.GetChild(0).GetComponent<Image>();
                 img.fillAmount += 0.5f;
                 lives += 0.5f;
             }
             else if (lives - Mathf.Round(lives) == 0)
             {
-                Image img = childs_temporal_vector[(int)it].GetComponent<Image>();
+                Image img = childs_temporal_vector[(int)it].transform.GetChild(0).GetComponent<Image>();
                 img.fillAmount += 0.5f;
                 lives += 0.5f;
             }
             else if ((int)it - 1 < childs_temporal_vector.Length && (int)it - 1 > 0)
             {
-                Image img = childs_temporal_vector[(int)it - 1].GetComponent<Image>();
+                Image img = childs_temporal_vector[(int)it - 1].transform.GetChild(0).GetComponent<Image>();
                 img.fillAmount += 0.5f;
                 lives += 0.5f;
             }
@@ -122,7 +122,7 @@ public class Live_Manager : MonoBehaviour
 
             for (int i=0; i< childs_temporal_vector.Length; i++)
             {
-                Image img = childs_temporal_vector[i].GetComponent<Image>();
+                Image img = childs_temporal_vector[i].transform.GetChild(0).GetComponent<Image>();
                 img.fillAmount = 1.0f;
             }
 
@@ -234,7 +234,7 @@ public class Live_Manager : MonoBehaviour
 
         foreach (GameObject go in childs_temporal_vector)
         {
-            Image img_comp = go.GetComponent<Image>();
+            Image img_comp = go.transform.GetChild(0).GetComponent<Image>();
             float filled = img_comp.fillAmount;
             bool modification = false;
 
