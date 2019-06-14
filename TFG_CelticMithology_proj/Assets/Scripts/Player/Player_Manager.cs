@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
 [RequireComponent(typeof(Collision_Movement))]
 [RequireComponent(typeof(Slash_Attack))]
 [RequireComponent(typeof(Player_PushBack))]
@@ -23,6 +24,7 @@ public class Player_Manager : MonoBehaviour
     public GameObject ImproveMenu;
     public Fader fader_scr;
     public Live_Manager live_manager_scr;
+    public TextMeshProUGUI strengthText;
 
     [Header("Invulnerable stuff")]
     public float total_time_invulnerable = 1.5f;
@@ -113,12 +115,19 @@ public class Player_Manager : MonoBehaviour
         timer_dash = 0.0f;
 
         current_state = Player_States.IDLE_PLAYER;
+        strengthText.text = "Strenght lvl " + player_stats.Right_Hand_Object.damage;
+    }
 
+    public void PlayerUpdateStrenght()
+    {
+        strengthText.text = "Strenght lvl " + player_stats.Right_Hand_Object.damage;
     }
 
     // Update is called once per frame
     private void Update()
     {
+
+   
 
         if (Input.GetKeyDown(KeyCode.I))
         {

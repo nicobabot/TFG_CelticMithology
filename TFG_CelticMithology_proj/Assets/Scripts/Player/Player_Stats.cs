@@ -75,9 +75,14 @@ public class Player_Stats: MonoBehaviour
     Object_InGame[] Player_Inventory_Objects;
     public Object_InGame[] All_Game_Objects;
 
+    Player_Manager playerManager;
+
     private void Start()
     {
         Player_Inventory_Objects = new Object_InGame[8];
+
+        playerManager = GetComponent<Player_Manager>();
+
         //Pushback to all objects of the game
 
         //Right_Hand_Object = All_Game_Objects[0];
@@ -87,6 +92,7 @@ public class Player_Stats: MonoBehaviour
     public void ImproveDamage()
     {
         Right_Hand_Object.damage += 1;
+        playerManager.PlayerUpdateStrenght();
     }
 
     public void Add_Material(uint n_mat, Material_InGame type)

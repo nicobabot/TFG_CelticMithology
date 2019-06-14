@@ -344,7 +344,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148829782586678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.8, y: 6.713932, z: -0.2897772}
+  m_LocalPosition: {x: 10.01117, y: 9.996884, z: -0.2897772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4243283935543900}
@@ -999,7 +999,7 @@ MonoBehaviour:
   is_interruptible: 0
   name: InvSkel
   colInvoke: {fileID: 58024080359288334}
-  numSkeletons: 35
+  numSkeletons: 30
   skeletontObj: {fileID: 1158071888229198, guid: ae57dcd8bbb1ecc4bac653611ee67fde,
     type: 2}
   myHitCollider: {fileID: 61816604529005670}
