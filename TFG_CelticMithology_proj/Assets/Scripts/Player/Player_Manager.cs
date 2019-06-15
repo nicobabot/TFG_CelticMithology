@@ -33,7 +33,7 @@ public class Player_Manager : MonoBehaviour
     [HideInInspector] public bool is_invulnerable = false;
     [HideInInspector] public bool noNeedInvulnerable = false;
     private float timer_invulerable = 0.0f;
-
+    private ImproveManager improveScr;
     public enum Player_States
     {
         IDLE_PLAYER,
@@ -96,9 +96,12 @@ public class Player_Manager : MonoBehaviour
         //player_stats.Right_Hand_Object = new Object_InGame();
 
         player_stats = GetComponent<Player_Stats>();
+        improveScr = GetComponent<ImproveManager>();
         player_stats.Right_Hand_Object = new Object_InGame();
         player_stats.Right_Hand_Object.damage = PlayerPrefs.GetInt("playerDamage"); 
         live_manager_scr.numHearts = PlayerPrefs.GetInt("playerLive");
+        improveScr.improveBar.fillAmount = PlayerPrefs.GetFloat("playerImprove");
+
         //Debug.Log(dataAsJson);
     }
 
@@ -332,6 +335,7 @@ public class Player_Manager : MonoBehaviour
 
         PlayerPrefs.SetInt("playerDamage", player_stats.Right_Hand_Object.damage);
         PlayerPrefs.SetInt("playerLive", live_manager_scr.maxLives);
+        PlayerPrefs.SetFloat("playerImprove", improveScr.improveBar.fillAmount);
     }
 
     public void DisablePause()

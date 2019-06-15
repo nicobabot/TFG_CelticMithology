@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ImproveManager : MonoBehaviour {
 
     [SerializeField] private int objToImprove = 5;
-    [SerializeField] private Image improveBar;
+    public Image improveBar;
     [SerializeField] private GameObject panelImprove;
     private Player_Manager playerManager;
     private float sliceBar=0;

@@ -262,8 +262,6 @@ GameObject:
   - component: {fileID: 114048936634076444}
   - component: {fileID: 114371482545690112}
   - component: {fileID: 114891501983080244}
-  - component: {fileID: 114057983904441904}
-  - component: {fileID: 114479498681472526}
   - component: {fileID: 114546791332277988}
   - component: {fileID: 114940173287624098}
   m_Layer: 0
@@ -506,7 +504,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280355210869254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.756009, y: 6.849556, z: -0.026166374}
+  m_LocalPosition: {x: 10.322704, y: 5.7143974, z: -0.026166374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4939057028954460}
@@ -941,25 +939,6 @@ MonoBehaviour:
   use_pathfinding: 0
   time_to_change_cell: 1
   speed: 5
---- !u!114 &114057983904441904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1756145363764938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa130517823ac24e9bf64b1048ff0f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_interruptible: 0
-  name: InvokeEnemies
-  melee_enemy: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
-    type: 2}
-  collider_enemy: {fileID: 61732567822640902}
-  num_enemy_spawn: 5
-  time_to_spawn_next_enemy: 1.5
-  radius: 2
 --- !u!114 &114263180658848960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1032,7 +1011,8 @@ MonoBehaviour:
   player_mask:
     serializedVersion: 2
     m_Bits: 1024
-  damageDagda: {fileID: 0}
+  damageDagda: {fileID: 114342607040502446, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
+    type: 2}
   yStartDagdaText: -97
   yEndDagdaText: -391
   filler: {fileID: 114037796628230570}
@@ -1053,30 +1033,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114479498681472526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1756145363764938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6bfb90a744d93408243f2386bb95af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  is_interruptible: 0
-  name: Charge
-  wall_layer:
-    serializedVersion: 2
-    m_Bits: 10240
-  charge_speed: 12.5
-  charge_collider: {fileID: 61031625916404622}
-  Charger_Filler: {fileID: 114037796628230570}
-  get_damage: {fileID: 61732567822640902}
-  can_charge: 0
-  Time_stunned: 3.4
-  Stunned_Filler: {fileID: 114263180658848960}
-  state_charge: 0
 --- !u!114 &114546791332277988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1195,6 +1151,7 @@ MonoBehaviour:
   escape: {fileID: 114546791332277988}
   dead: {fileID: 114940173287624098}
   lives_to_change_phase_2: 4
+  StarterPos: {x: 0, y: 0}
 --- !u!212 &212063826354525914
 SpriteRenderer:
   m_ObjectHideFlags: 1

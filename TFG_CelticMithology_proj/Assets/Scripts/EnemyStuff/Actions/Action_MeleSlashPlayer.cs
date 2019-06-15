@@ -82,10 +82,21 @@ public class Action_MeleSlashPlayer : ActionBase
             filler.fillAmount = 1 - (timer_attack / (time_to_make_slash * 0.5f));
         }
 
+        float realTimeSlash = 0.0f;
+
+        if(myBT.enemy_type == Enemy_type.DAGDA_ENEMY || myBT.enemy_type == Enemy_type.DEARDUG_ENEMY)
+        {
+            realTimeSlash = time_to_make_slash;
+        }
+        else
+        {
+            realTimeSlash = time_to_make_slash - 0.325f;
+        }
+
         if (timer_attack >= (time_to_make_slash*0.5f))
         {
 
-            if (timer_attack < time_to_make_slash -0.325f)
+            if (timer_attack < realTimeSlash)
             {
                 //get_damage_collider.enabled = false;
                 BoxCollider2D col = go.GetComponent<BoxCollider2D>();

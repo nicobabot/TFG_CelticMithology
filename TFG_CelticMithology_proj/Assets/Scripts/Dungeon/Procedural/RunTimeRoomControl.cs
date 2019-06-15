@@ -163,19 +163,19 @@ public class RunTimeRoomControl : MonoBehaviour {
     {
         _enemyPositions = new List<EnemyPos>();
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + 1, 0), EnemyPositionEnum.LEFT_BOT_CORNER));
+        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1.25f, _y_pos + 1, 0), EnemyPositionEnum.LEFT_BOT_CORNER));
 
         if(!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.DOWN_EXIT))
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + 1, 0), EnemyPositionEnum.MIDDLE_BOT_POS));
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + 1, 0), EnemyPositionEnum.RIGHT_BOT_CORNER));
+        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 3.5f, _y_pos + 1, 0), EnemyPositionEnum.RIGHT_BOT_CORNER));
         //-------------------------
 
 
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1.25f, _y_pos + _tileheight - 3.25f, 0), EnemyPositionEnum.LEFT_TOP_CORNER));
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.UP_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _tileheight- 3.25f, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f - 3.5f, _y_pos + _tileheight- 3.25f, 0), EnemyPositionEnum.MIDDLE_TOP_POS));
 
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 3.25f, _y_pos + _tileheight - 3.25f, 0), EnemyPositionEnum.RIGHT_TOP_CORNER));
         //-----------------------
@@ -183,23 +183,23 @@ public class RunTimeRoomControl : MonoBehaviour {
         float _middleDownPosition = ((_tileheight) / 6) * 2;
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1.25f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
 
         _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 3.5f, _y_pos + _middleDownPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
         //---------------------------
 
         float _middleUpperPosition = ((_tileheight) / 6) * 4;
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.LEFT_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.LEFT_DOWNMIDDLE_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + 1.25f, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.LEFT_UPPERMIDDLE_POS));
 
-        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.MIDDLE_DOWNMIDDLE_POS));
+        _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth * 0.5f, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.MIDDLE_UPPERMIDDLE_POS));
 
         if (!mydoors.ContainsValue(ProceduralDungeonGenerator.ExitDirection.RIGHT_EXIT))
-            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 2, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.RIGHT_DOWNMIDDLE_POS));
+            _enemyPositions.Add(new EnemyPos(new Vector3(_x_pos + _tilewidth - 3.5f, _y_pos + _middleUpperPosition, 0), EnemyPositionEnum.RIGHT_UPPERMIDDLE_POS));
     }
 
     public void SetEnemies()
