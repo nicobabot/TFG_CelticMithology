@@ -481,6 +481,16 @@ Prefab:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1127576868}
+    - target: {fileID: 114310877950095566, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec,
+        type: 2}
+      propertyPath: playerImpr
+      value: 
+      objectReference: {fileID: 1390762834}
+    - target: {fileID: 114310877950095566, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec,
+        type: 2}
+      propertyPath: improveGo
+      value: 
+      objectReference: {fileID: 1400496643}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
   m_IsPrefabAsset: 0
@@ -2932,6 +2942,16 @@ Prefab:
       propertyPath: StartPosition.y
       value: 115
       objectReference: {fileID: 0}
+    - target: {fileID: 114437350724803262, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: buttonSelected
+      value: 
+      objectReference: {fileID: 1400496643}
+    - target: {fileID: 114437350724803262, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 1127576868}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
   m_IsPrefabAsset: 0

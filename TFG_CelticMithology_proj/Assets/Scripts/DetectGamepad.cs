@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class DetectGamepad : MonoBehaviour {
 
     public EventSystem eventSystem;
+    public ImproveManager playerImpr;
+    public GameObject improveGo;
     GameObject go;
 	// Use this for initialization
 	void Start () {
@@ -22,7 +24,11 @@ public class DetectGamepad : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(0))
             {
-                eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
+                if(playerImpr != null&& !playerImpr.isImproving)
+                    eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
+                else
+                    eventSystem.SetSelectedGameObject(improveGo);
+                
             }
 
             Cursor.lockState = CursorLockMode.Locked;
