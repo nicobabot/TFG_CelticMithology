@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -563,6 +563,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 887962597}
   m_CullTransparentMesh: 0
+--- !u!1001 &1194753236
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 232.69475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 292.54538
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1259942268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c4aab2cbac9e44fa4baba023a4e730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: 0
 --- !u!114 &1840608207
 MonoBehaviour:
   m_ObjectHideFlags: 0

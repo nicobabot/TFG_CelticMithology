@@ -9,6 +9,7 @@ public class SetValues : MonoBehaviour {
         PlayerPrefs.SetInt("playerDamage", 1);
         PlayerPrefs.SetInt("playerLive", 4);
         PlayerPrefs.SetFloat("playerImprove", 0.0f);
+        PlayerPrefs.SetInt("playerTutorial", 0);
     }
 
     // Use this for initialization
