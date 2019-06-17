@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755513333586824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.537664, y: 1.0247539, z: 0}
+  m_LocalPosition: {x: 8.874635, y: 1.758095, z: 0}
   m_LocalScale: {x: 0.61408, y: 0.61408, z: 0.61408}
   m_Children:
   - {fileID: 4693300833957300}
@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   need_enemy_type_detection: 1
+  playerHitted: 0
   fader_scr: {fileID: 0}
 --- !u!114 &114467725684176188
 MonoBehaviour:
@@ -5136,7 +5137,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 400
   m_TargetDisplay: 0
 --- !u!224 &224345784974942360
 RectTransform:

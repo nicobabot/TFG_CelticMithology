@@ -46,6 +46,8 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
 
     public BoxCollider2D DetectPlayer;
 
+    public TextMeshProUGUI damageDagda;
+
     public GameObject floorTile;
     public Sprite[] floorTilesSprites;
     public Sprite[] cornersTilesSprites;

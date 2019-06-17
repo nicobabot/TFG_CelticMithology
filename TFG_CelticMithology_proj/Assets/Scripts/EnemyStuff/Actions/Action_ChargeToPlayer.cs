@@ -33,7 +33,7 @@ public class Action_ChargeToPlayer : ActionBase
     private GameObject player;
     private Vector3 point_to_charge = Vector3.zero;
 
-    private float time_charging_anim = 5;
+    private float time_charging_anim = 1.0f;
     private float timer_charging = 0.0f;
 
     override public BT_Status StartAction()

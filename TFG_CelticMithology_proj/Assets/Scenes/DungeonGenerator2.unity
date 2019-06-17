@@ -275,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &94562530
 GameObject:
@@ -474,7 +474,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4461286641935552, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 114310877950095566, guid: 9ae01a1e31b5ed842b8cd5f8ff3e30ec,
         type: 2}
@@ -531,7 +531,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4041626730067630, guid: d5e49b07449a53c46a48b5709b01945a, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1261813522551904, guid: d5e49b07449a53c46a48b5709b01945a, type: 2}
       propertyPath: m_IsActive
@@ -599,6 +599,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4419392974482318, guid: 975b7bd270466c545a0ed3854e3f7fac,
     type: 2}
   m_PrefabInternal: {fileID: 226926256}
+--- !u!114 &233028230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114342607040502446, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
+    type: 2}
+  m_PrefabInternal: {fileID: 2089695395}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 --- !u!1 &239820636
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +834,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &366960876
 Prefab:
@@ -867,7 +873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4654860734853282, guid: 12069c14e9c269c4693b305779f7d426, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12069c14e9c269c4693b305779f7d426, type: 2}
@@ -1482,7 +1488,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.11372549, g: 0.59607846, b: 0.101960786, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1684,6 +1690,11 @@ Prefab:
       propertyPath: FloorText
       value: 
       objectReference: {fileID: 1840272038}
+    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
+        type: 2}
+      propertyPath: damageDagda
+      value: 
+      objectReference: {fileID: 233028230}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1, type: 2}
   m_IsPrefabAsset: 0
@@ -1797,7 +1808,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &737435518
 GameObject:
@@ -1871,7 +1882,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4388712427168952, guid: 8812b637009c5ee4aa16b142d3d44653, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1689727895043100, guid: 8812b637009c5ee4aa16b142d3d44653, type: 2}
       propertyPath: m_IsActive
@@ -2754,7 +2765,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4487065449136450, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114308716956029978, guid: c1b063ff6072a2b47be115da838d66e2,
         type: 2}
@@ -3036,7 +3047,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.12941177, g: 0.29803923, b: 0.48235294, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -3531,7 +3542,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616844357
 GameObject:
@@ -3578,7 +3589,7 @@ RectTransform:
   - {fileID: 580345579}
   - {fileID: 1913555981}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4544,7 +4555,7 @@ Prefab:
     - target: {fileID: 224664536266366196, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -132.99998
+      value: -97
       objectReference: {fileID: 0}
     - target: {fileID: 224664536266366196, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
         type: 2}
@@ -4585,6 +4596,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114342607040502446, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114342607040502446, guid: fb9f2454c5cbb8647a9ce1550a922cc0,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb9f2454c5cbb8647a9ce1550a922cc0, type: 2}
@@ -4715,7 +4736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113106160
 GameObject:

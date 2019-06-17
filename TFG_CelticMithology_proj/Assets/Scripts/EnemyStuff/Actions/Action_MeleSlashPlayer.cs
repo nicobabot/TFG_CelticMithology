@@ -12,7 +12,6 @@ public class Action_MeleSlashPlayer : ActionBase
     public float time_to_make_slash;
     public GameObject father_colliders;
     public LayerMask player_mask;
-    public TextMeshProUGUI damageDagda;
     public float yStartDagdaText;
     public float yEndDagdaText;
     public Image filler;
@@ -44,11 +43,11 @@ public class Action_MeleSlashPlayer : ActionBase
         player_detection_slash = null;
         is_player_detected = false;
 
-        if (damageDagda != null)
+        if (ProceduralDungeonGenerator.mapGenerator.damageDagda != null)
         {
-            damageDagda.enabled = false;
-            damageDagda.gameObject.transform.localPosition = new Vector3(damageDagda.gameObject.transform.localPosition.x, yStartDagdaText);
-            damageDagda.alpha = 1.0f;
+            ProceduralDungeonGenerator.mapGenerator.damageDagda.enabled = false;
+            ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.localPosition = new Vector3(ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.localPosition.x, yStartDagdaText);
+            ProceduralDungeonGenerator.mapGenerator.damageDagda.alpha = 1.0f;
         }
 
         timer_attack = 0.0f;
@@ -112,10 +111,10 @@ public class Action_MeleSlashPlayer : ActionBase
                         if (myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
                         {
                             player_manager.GetDamage(transform, false);
-                            if (damageDagda)
+                            if (ProceduralDungeonGenerator.mapGenerator.damageDagda)
                             {
-                                damageDagda.enabled = true;
-                                damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.5f).OnComplete(() => damageDagda.DOFade(0.0f, 0.5f));
+                                ProceduralDungeonGenerator.mapGenerator.damageDagda.enabled = true;
+                                ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.15f).OnComplete(() => ProceduralDungeonGenerator.mapGenerator.damageDagda.DOFade(0.0f, 0.5f));
                             }
                         }
                         else player_manager.GetDamage(transform);

@@ -27,7 +27,11 @@ public class BT_Dullahan : BT_Entity
 
     public GameObject[] colPhase1;
 
+    public SpriteRenderer myspriteRend;
+    public Color myColor;
+
     [HideInInspector] public Vector2 StarterPos;
+
 
     private bool is_dead = false;
     private bool can_make_slash = false;
@@ -77,6 +81,7 @@ public class BT_Dullahan : BT_Entity
                     }
                     else if (currentAction != pushback && (bool)myBB.GetParameter("is_enemy_hit") == true)
                     {
+                        myspriteRend.color = myColor;
                         currentAction = pushback;
                         decide = true;
                     }
@@ -95,6 +100,7 @@ public class BT_Dullahan : BT_Entity
                     }
                     else if (currentAction != slash_melee && can_make_slash && (bool)myBB.GetParameter("is_enemy_hit") == false)
                     {
+                        myspriteRend.color = myColor;
                         currentAction = slash_melee;
                         decide = true;
                     }

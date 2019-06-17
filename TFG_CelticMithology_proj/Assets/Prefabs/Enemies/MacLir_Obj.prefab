@@ -540,7 +540,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968024051260442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.338016, y: 5.635846, z: 0}
+  m_LocalPosition: {x: 16.119097, y: 2.7370765, z: 0}
   m_LocalScale: {x: 2.1629, y: 2.1629, z: 2.1629}
   m_Children:
   - {fileID: 4135879258205446}
@@ -933,7 +933,6 @@ MonoBehaviour:
   player_mask:
     serializedVersion: 2
     m_Bits: 1024
-  damageDagda: {fileID: 0}
   yStartDagdaText: 0
   yEndDagdaText: 0
   filler: {fileID: 0}
@@ -1526,7 +1525,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 400
   m_TargetDisplay: 0
 --- !u!224 &224001490205209882
 RectTransform:

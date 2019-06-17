@@ -19,16 +19,15 @@ public class DetectGamepad : MonoBehaviour {
 
         string[] temp = Input.GetJoystickNames();
 
-        if (temp!=null && temp[0] != "")
+        if (temp != null && temp.Length > 0 && temp[0] != "")
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
             {
-                if(playerImpr != null&& !playerImpr.isImproving)
-                    eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
-                else
+                if(playerImpr != null && playerImpr.isImproving)
                     eventSystem.SetSelectedGameObject(improveGo);
-                
+                else
+                    eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
             }
 
             Cursor.lockState = CursorLockMode.Locked;
@@ -36,6 +35,7 @@ public class DetectGamepad : MonoBehaviour {
         }
         else
         {
+            eventSystem.SetSelectedGameObject(null);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
