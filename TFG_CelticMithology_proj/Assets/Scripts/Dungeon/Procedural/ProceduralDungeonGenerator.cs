@@ -52,6 +52,9 @@ public class ProceduralDungeonGenerator : MonoBehaviour {
     public Sprite[] floorTilesSprites;
     public Sprite[] cornersTilesSprites;
 
+    public AudioClip explosionClip;
+    public AudioSource audioSourceDeads;
+
     [Header("Tiles wall")]
     public int tileNumUsing = 0;
     [Tooltip("ELEMENT 0 - LEFT WALL \nELEMENT 1 - RIGHT WALL \nELEMENT 3 - UP WALL \nELEMENT 4 - DOWN WALL\n" +

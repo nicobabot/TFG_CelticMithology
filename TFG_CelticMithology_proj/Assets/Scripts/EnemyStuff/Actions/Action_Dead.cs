@@ -8,12 +8,16 @@ public class Action_Dead : ActionBase
     public GameObject part_sys;
     public GameObject healthObject;
 
+
     override public BT_Status StartAction()
     {
         GameObject temp = Instantiate(part_sys);
-        temp.transform.position = transform.position;
+        temp.transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
         temp.transform.rotation = Quaternion.Euler(-180, 0, 0);
         temp.GetComponent<ParticleSystem>().Play();
+
+        ProceduralDungeonGenerator.mapGenerator.audioSourceDeads.clip = ProceduralDungeonGenerator.mapGenerator.explosionClip;
+        ProceduralDungeonGenerator.mapGenerator.audioSourceDeads.Play();
 
         if (myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
         {

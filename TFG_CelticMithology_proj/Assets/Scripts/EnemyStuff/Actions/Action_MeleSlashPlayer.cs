@@ -40,6 +40,9 @@ public class Action_MeleSlashPlayer : ActionBase
             follow_playerRanged_scr = GetComponent<Action_FollowPlayerRanged>();
         else follow_player_scr = GetComponent<Action_FollowPlayer>();
 
+
+        EndActionDisable();
+
         player_detection_slash = null;
         is_player_detected = false;
 
@@ -50,7 +53,6 @@ public class Action_MeleSlashPlayer : ActionBase
             ProceduralDungeonGenerator.mapGenerator.damageDagda.alpha = 1.0f;
         }
 
-        timer_attack = 0.0f;
         if (myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
             dir_collider = follow_playerRanged_scr.DetectDirection(transform.position, player.transform.position);
         else dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
