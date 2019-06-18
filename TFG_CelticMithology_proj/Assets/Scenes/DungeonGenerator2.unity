@@ -875,6 +875,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 82360285209144186, guid: 12069c14e9c269c4693b305779f7d426,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12069c14e9c269c4693b305779f7d426, type: 2}
   m_IsPrefabAsset: 0
@@ -2735,6 +2740,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114458362136514418, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: audios.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4487065449136450, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -2963,6 +2973,26 @@ Prefab:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1127576868}
+    - target: {fileID: 114458362136514418, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b27ec39e4f900e54b9021870a2f3b565, type: 3}
+    - target: {fileID: 114458362136514418, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: audios.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a54c0bb0b57b8448b4b46705190ac1e, type: 3}
+    - target: {fileID: 114458362136514418, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: audios.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f99f957d77f83444a9bb372f98f5598, type: 3}
+    - target: {fileID: 114458362136514418, guid: c1b063ff6072a2b47be115da838d66e2,
+        type: 2}
+      propertyPath: sourceAudio
+      value: 
+      objectReference: {fileID: 366960877}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b063ff6072a2b47be115da838d66e2, type: 2}
   m_IsPrefabAsset: 0

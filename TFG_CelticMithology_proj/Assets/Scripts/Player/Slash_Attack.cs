@@ -8,12 +8,18 @@ public class Slash_Attack : MonoBehaviour
     public CameraManager cam_manager;
     public Player_Stats player_stats;
 
+    public AudioSource sourceAudio;
+    public AudioClip[] audios;
+    private int lastAudioUsed = 0;
+    bool playOnce = false;
+
+
     private Player_Manager player_manager_sct;
 
     public float timer_slash = 0.0f;
     public bool is_slash_done = false;
     private Collider2D[] enemies_found = null;
-  
+
 
     Animator anim;
     GameObject collider_to_activate;
@@ -28,7 +34,10 @@ public class Slash_Attack : MonoBehaviour
 
     public void Attack_Slash_Update()
     {
-        
+
+        if (!playOnce)
+            PlayAudio();
+
         anim.SetBool("player_attack", true);
 
         rb.velocity = Vector2.zero;
@@ -62,6 +71,7 @@ public class Slash_Attack : MonoBehaviour
 
         if (timer_slash > lenght_anim)
         {
+            playOnce = false;
             anim.SetBool("player_attack", false);
             is_slash_done = false;
             timer_slash = 0;
@@ -88,7 +98,6 @@ public class Slash_Attack : MonoBehaviour
             Transform parent = col.transform.parent;
             if (parent != null)
             {
-
                 //Detect enemy type
                 BT_Soldier soldier = parent.GetComponent<BT_Soldier>();
                 if (soldier != null)
@@ -206,6 +215,21 @@ public class Slash_Attack : MonoBehaviour
 
         System.Array.Clear(enemies_found, 0, enemies_found.Length);
         //Call enemy damage function
+    }
+
+    public void PlayAudio()
+    {
+        playOnce = true;
+        sourceAudio.Stop();
+        int newClip = 0;
+        do
+        {
+            newClip = Random.Range(0, audios.Length);
+        } while (lastAudioUsed == newClip);
+
+        lastAudioUsed = newClip;
+        sourceAudio.clip = audios[Random.Range(0, audios.Length)];
+        sourceAudio.PlayOneShot(sourceAudio.clip);
     }
 
     public void Update_Attack_Colliders_To_None_Active()
