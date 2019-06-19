@@ -173,7 +173,7 @@ public class Player_Manager : MonoBehaviour
         else if ((Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Xbutton"))
             && current_state != Player_States.PUSHBACK_PLAYER
             && current_state != Player_States.DASHING_PLAYER
-            && Time.timeScale == 1)
+            && Time.timeScale == 1 && current_state != Player_States.MID_STUNNED_PLAYER)
         {
             if (!in_mine)
             {

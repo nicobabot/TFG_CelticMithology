@@ -35,7 +35,7 @@ public class BouncingBall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (rebaundsCount == numRebaunds)
+        if (rebaundsCount >= numRebaunds)
         {
             Destroy(gameObject);
         }

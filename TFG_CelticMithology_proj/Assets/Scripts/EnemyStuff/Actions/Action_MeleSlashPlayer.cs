@@ -15,6 +15,7 @@ public class Action_MeleSlashPlayer : ActionBase
     public float yStartDagdaText;
     public float yEndDagdaText;
     public Image filler;
+    public CircleCollider2D circleCol;
 
     [Header("The collider that player detects to make damage the enemy")]
     public BoxCollider2D get_damage_collider;
@@ -41,7 +42,7 @@ public class Action_MeleSlashPlayer : ActionBase
         else follow_player_scr = GetComponent<Action_FollowPlayer>();
 
 
-        EndActionDisable();
+        //EndActionDisable();
 
         player_detection_slash = null;
         is_player_detected = false;
@@ -58,6 +59,18 @@ public class Action_MeleSlashPlayer : ActionBase
         else dir_collider = follow_player_scr.DetectDirection(transform.position, player.transform.position);
         return BT_Status.RUNNING;
     }
+
+   /* private void OnDrawGizmosSelected()
+    {
+        GameObject go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
+
+        BoxCollider2D col = go.GetComponent<BoxCollider2D>();
+        Vector3 posToTest = Vector3.zero;
+        posToTest = col.transform.position + new Vector3(col.offset.x, col.offset.y);
+
+
+        Gizmos.DrawCube(posToTest, col.size);
+    }*/
 
     override public BT_Status UpdateAction()
     {
@@ -91,7 +104,7 @@ public class Action_MeleSlashPlayer : ActionBase
         }
         else
         {
-            realTimeSlash = time_to_make_slash - 0.325f;
+            realTimeSlash = time_to_make_slash - 0.49f;
         }
 
         if (timer_attack >= (time_to_make_slash*0.5f))
@@ -101,7 +114,12 @@ public class Action_MeleSlashPlayer : ActionBase
             {
                 //get_damage_collider.enabled = false;
                 BoxCollider2D col = go.GetComponent<BoxCollider2D>();
-                player_detection_slash = Physics2D.OverlapBox(go.transform.position, col.size, 0, player_mask);
+
+                Vector3 posToTest = Vector3.zero;
+
+                posToTest = col.transform.position + new Vector3(col.offset.x, col.offset.y);
+
+                player_detection_slash = Physics2D.OverlapBox(posToTest, col.size, 0, player_mask);
 
                 if (player_detection_slash != null)
                 {
@@ -130,6 +148,8 @@ public class Action_MeleSlashPlayer : ActionBase
             {
                 if (go != null)
                     go.SetActive(false);
+
+
 
                 EndActionDisable();
                 return BT_Status.SUCCESS;
