@@ -12,6 +12,7 @@ public class Live_Manager : MonoBehaviour
     [HideInInspector] public int maxLives = 0;
     public int hearts_division = 2;
 
+    public Transform liveTransform;
     public Vector2 StartPosition;
     [HideInInspector]public int numHearts = 4;
     public GameObject heartPrefab;
@@ -58,8 +59,9 @@ public class Live_Manager : MonoBehaviour
         GameObject go = Instantiate(heartPrefab, Father_UI_Player_Live.transform);
         go.name = "Live" + num;
         RectTransform rectTrans = go.GetComponent<RectTransform>();
-        rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * num, StartPosition.y, rectTrans.position.z);
-
+        //rectTrans.position = new Vector3(StartPosition.x + (rectTrans.rect.width + offsetHeart) * num, StartPosition.y, rectTrans.position.z);
+        rectTrans.position = new Vector3(liveTransform.position.x + (rectTrans.rect.width + offsetHeart) * num, liveTransform.position.y, rectTrans.position.z);
+        
         return go.transform.GetChild(0).GetComponent<Image>();
     }
 
