@@ -43,7 +43,7 @@ public class Action_MeleSlashPlayer : ActionBase
 
 
         //EndActionDisable();
-
+        timer_attack = 0;
         player_detection_slash = null;
         is_player_detected = false;
 

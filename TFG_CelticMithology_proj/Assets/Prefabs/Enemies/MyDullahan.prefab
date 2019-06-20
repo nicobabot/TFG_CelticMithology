@@ -697,7 +697,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313348512758646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3890705, y: 6.673269, z: 0.009765625}
+  m_LocalPosition: {x: 11.5405035, y: 6.5077124, z: 0.009765625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4351874405557274}
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_interruptible: 0
   name: Pushback
-  push_distance: 11
+  push_distance: 16
   time_doing_pushback: 0.135
   min_distance: 1
   layer_ray:
