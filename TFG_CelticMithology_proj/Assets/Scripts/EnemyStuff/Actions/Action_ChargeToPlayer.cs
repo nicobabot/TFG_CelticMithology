@@ -50,6 +50,8 @@ public class Action_ChargeToPlayer : ActionBase
     override public BT_Status UpdateAction()
     {
 
+        float step = 0;
+
         //Make animation of waiting for charge
         if (!can_charge)
         {
@@ -73,10 +75,15 @@ public class Action_ChargeToPlayer : ActionBase
         }
         else
         {
-            state_charge = ChargingState.CHARGING;
-            float step = Time.deltaTime * charge_speed;
+            Vector3 mag_to_point = Vector3.zero;
 
-            Vector3 mag_to_point = point_to_charge - transform.position;
+            if (state_charge != ChargingState.STUNNED)
+            {
+                state_charge = ChargingState.CHARGING;
+                step = Time.deltaTime * charge_speed;
+
+                mag_to_point = point_to_charge - transform.position;
+            }
 
             if (mag_to_point.magnitude < 0.85f)
             {
