@@ -738,7 +738,7 @@ public class Procedural_Room
     void SetLayerAndTagDoor(GameObject go)
     {
         go.tag = "door";
-        go.layer = 13;
+        go.layer = 11;
     }
 
     bool IsAlreadyExitDirection(ProceduralDungeonGenerator.ExitDirection mydir)

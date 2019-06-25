@@ -73,6 +73,7 @@ public class Player_Manager : MonoBehaviour
 
     private float timer_fall = 0.0f;
     private float numOfInput = 0;
+    private int lastInput = -1;
 
     public GameObject inmortalText;
     [HideInInspector] public bool _inmortalMode = false;
@@ -128,9 +129,7 @@ public class Player_Manager : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
-
-   
+    {   
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -230,15 +229,32 @@ public class Player_Manager : MonoBehaviour
             movement_script.StopMoving();
             movement_script.SpriteDir();
 
-            if (Input.anyKeyDown)
+            string[] temp = Input.GetJoystickNames();
+
+            if (temp != null && temp.Length > 0 && temp[0] != "")
             {
-                numOfInput++;
-                if(numOfInput >= 10)
+                AnyInputController();
+
+                if (numOfInput >= 50)
                 {
                     numOfInput = 0;
                     current_state = Player_States.IDLE_PLAYER;
                 }
             }
+            else
+            {
+                if (Input.anyKeyDown)
+                {
+                    numOfInput++;
+                    if (numOfInput >= 5)
+                    {
+                        numOfInput = 0;
+                        current_state = Player_States.IDLE_PLAYER;
+                    }
+                }
+            }
+        
+
         }
         else if (current_state == Player_States.FALLING_PLAYER)
         {
@@ -284,7 +300,36 @@ public class Player_Manager : MonoBehaviour
         {
             anim.SetBool("player_roll", false);
             timer_dash = 0.0f;
+            lastInput = -1;
             movement_script.Movement_Update(movement_speed);
+        }
+    }
+
+    void AnyInputController()
+    {
+        float input_movement_horizontal = Input.GetAxisRaw("Horizontal");
+        float input_movement_vertical = Input.GetAxisRaw("Vertical");
+
+        if (input_movement_horizontal > 0.5f && lastInput != 0)
+        {
+            numOfInput++;
+            lastInput = 0;
+        }
+        else if (input_movement_horizontal < -0.5f && lastInput != 1)
+        {
+            numOfInput++;
+            lastInput = 1;
+        }
+
+        if (input_movement_vertical > 0.5f && lastInput != 2)
+        {
+            numOfInput++;
+            lastInput = 2;
+        }
+        else if (input_movement_vertical < -0.5f && lastInput != 3)
+        {
+            numOfInput++;
+            lastInput = 3;
         }
     }
 

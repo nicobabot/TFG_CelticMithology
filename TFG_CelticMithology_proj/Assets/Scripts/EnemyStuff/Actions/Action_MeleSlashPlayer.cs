@@ -137,7 +137,12 @@ public class Action_MeleSlashPlayer : ActionBase
                                 ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.15f).OnComplete(() => ProceduralDungeonGenerator.mapGenerator.damageDagda.DOFade(0.0f, 0.5f));
                             }
                         }
-                        else player_manager.GetDamage(transform);
+                        else
+                        {
+                            player_manager.GetDamage(transform);
+                            //EndActionDisable();
+                            //return BT_Status.SUCCESS;
+                        }
                     }
 
                 }
