@@ -70,7 +70,7 @@ public class Action_PushBack : ActionBase
         if (hit != null)
         {
             foreach (RaycastHit2D hit_t in hit)
-                if (hit_t.transform.CompareTag("wall"))
+                if (hit_t.transform.CompareTag("wall") || hit_t.transform.CompareTag("door"))
                 {
                     hitpoint_wall = hit_t.point;
                     break;
@@ -88,7 +88,7 @@ public class Action_PushBack : ActionBase
         return BT_Status.RUNNING;
     }
 
-    /*private void OnDrawGizmos()
+   /* private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + pushback_dir);
         Gizmos.DrawWireSphere(hitpoint_wall, min_distance);
