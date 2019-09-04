@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 114615660009114678}
   - component: {fileID: 114115876643757954}
   - component: {fileID: 114512871910799144}
+  - component: {fileID: 95169926807610548}
   m_Layer: 0
   m_Name: Morrigan
   m_TagString: Untagged
@@ -698,6 +699,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.045002, y: 1.7500392}
   m_EdgeRadius: 0
+--- !u!95 &95169926807610548
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694597591606434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e751bc5d123b1bf42a025834bedab2eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114076594539579298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -829,7 +848,7 @@ MonoBehaviour:
   ImortalGO: {fileID: 1388262428658462}
   collider_enemy: {fileID: 61816604529005670}
   num_enemy_spawn: 5
-  time_to_spawn_next_enemy: 1.5
+  time_to_spawn_next_enemy: 0.75
   radius: 2
 --- !u!114 &114492196284528692
 MonoBehaviour:
@@ -981,10 +1000,10 @@ MonoBehaviour:
     my_value: 0
   mySpriteRend:
     my_name: mySpriteRend
-    my_value: {fileID: 0}
+    my_value: {fileID: 212292209888795932}
   myAnimator:
     my_name: myAnimator
-    my_value: {fileID: 0}
+    my_value: {fileID: 95169926807610548}
 --- !u!114 &114729072178523066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1269,8 +1288,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300118, guid: f78a4f0a2b7a3414ca9606b23ae0884b, type: 3}
-  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+  m_Sprite: {fileID: 21300094, guid: eae1e008e50ef5948b1c2980c2612647, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

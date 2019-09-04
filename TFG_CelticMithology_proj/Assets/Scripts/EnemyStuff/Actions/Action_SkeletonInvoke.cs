@@ -26,6 +26,8 @@ public class Action_SkeletonInvoke : ActionBase
     private Coroutine actionCoroutine;
     private Transform[] sheletonsInstancied;
 
+    private Animator myAnimator;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -33,6 +35,16 @@ public class Action_SkeletonInvoke : ActionBase
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
+
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        if (myAnimator)
+        {
+            myAnimator.SetInteger("Phase", 1);
+            myAnimator.SetBool("enemy_startwalking", false);
+            myAnimator.SetBool("Shoot", false);
+        }
+
         rayTrans = rayGO.transform;
         rayCol = rayGO.GetComponentInChildren<BoxCollider2D>();
         raySpr = rayGO.GetComponentInChildren<SpriteRenderer>();
@@ -62,8 +74,7 @@ public class Action_SkeletonInvoke : ActionBase
     {
         rayGO.SetActive(true);
         myHitCollider.enabled = false;
-        inmortalGO.SetActive(true);
-
+        
         SpawnSkeletons();
 
         rayCoroutine = StartCoroutine(StartFocusingWithRay());
@@ -98,6 +109,11 @@ public class Action_SkeletonInvoke : ActionBase
     {
         raySpr.color = Color.white;
         rayCol.enabled = true;
+
+        if (myAnimator)
+        {
+            myAnimator.SetBool("Shoot", true);
+        }
     }
 
     void ResetAction()

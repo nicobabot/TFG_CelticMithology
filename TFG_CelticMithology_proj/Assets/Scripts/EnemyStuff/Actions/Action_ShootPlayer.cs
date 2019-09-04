@@ -24,7 +24,9 @@ public class Action_ShootPlayer : ActionBase {
     private Animator anim;
     float animation_timer = 0.0f;
 
-    override public BT_Status StartAction()
+    private Animator myAnimator;
+
+override public BT_Status StartAction()
     {
         timer_spawn_proj = time_to_spawn_projectile;
 

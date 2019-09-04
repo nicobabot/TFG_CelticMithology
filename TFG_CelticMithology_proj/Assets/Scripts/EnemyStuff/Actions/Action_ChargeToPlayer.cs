@@ -59,7 +59,7 @@ public class Action_ChargeToPlayer : ActionBase
             timer_charging += Time.deltaTime;
 
             get_damage.enabled = false;
-            inmortalGO.SetActive(true);
+           
 
             Charger_Filler.enabled = true;
             Charger_Filler.fillAmount = 1 - timer_charging / time_charging_anim;

@@ -18,6 +18,8 @@ public class Action_FollowPoint : ActionBase {
 
     private Vector3 last_point_followed;
 
+    bool flip = false;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -46,8 +48,7 @@ public class Action_FollowPoint : ActionBase {
 
         collider_enemy.enabled = false;
         col_detect_player.enabled = false;
-        inmortalGO.SetActive(true);
-
+       
         return BT_Status.RUNNING;
     }
 
@@ -80,6 +81,19 @@ public class Action_FollowPoint : ActionBase {
         }
         else
         {
+            if(point_to_follow.x < transform.position.x && flip == false)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+                flip = true;
+            }
+            else
+            {
+                if (point_to_follow.x > transform.position.x && flip == true)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, point_to_follow, step);
         }
 

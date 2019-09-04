@@ -161,6 +161,7 @@ public class Player_Manager : MonoBehaviour
             }
         }
 
+        
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && current_state != Player_States.MID_STUNNED_PLAYER
             && current_state != Player_States.PUSHBACK_PLAYER && current_state != Player_States.SLASHING_PLAYER

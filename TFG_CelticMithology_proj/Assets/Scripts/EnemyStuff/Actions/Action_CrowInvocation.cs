@@ -15,6 +15,7 @@ public class Action_CrowInvocation : ActionBase
     public GameObject inmortalGO;
     private GameObject player;
 
+    private Animator myAnimator;
 
     override public BT_Status StartAction()
     {
@@ -24,7 +25,14 @@ public class Action_CrowInvocation : ActionBase
             Debug.Log("<color=red> Player not found!_Action_CrowInvocation");
         }
         myHitCollider.enabled = false;
-        inmortalGO.SetActive(true);
+
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        if (myAnimator)
+        {
+            myAnimator.SetBool("Chasing", false);
+            myAnimator.SetBool("enemy_startwalking", false);
+        }
 
         StartCoroutine(InvokeCrows());
 
@@ -33,7 +41,6 @@ public class Action_CrowInvocation : ActionBase
 
     IEnumerator InvokeCrows()
     {
-
         float theta = 0f;
         float deltTheta = (2f * Mathf.PI) / numCrows;
         GameObject[] crowsGo = new GameObject[numCrows];
@@ -70,8 +77,15 @@ public class Action_CrowInvocation : ActionBase
         inmortalGO.SetActive(false);
 
         //Throw bat transformation anim
+       
 
-        isFinish = true;
+        if(myAnimator)
+        {
+            myAnimator.SetBool("Chasing", true);
+        }
+
+            //
+            isFinish = true;
         myBT.myBB.SetParameter("invokedCrows", true);
     }
 

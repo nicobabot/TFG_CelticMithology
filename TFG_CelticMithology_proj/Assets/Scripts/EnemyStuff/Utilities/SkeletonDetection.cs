@@ -14,28 +14,36 @@ public class SkeletonDetection : MonoBehaviour {
     private float timeDoingAnim = 5.0f;
     private float timer = 0;
 
+    private Animator anim;
+
 	// Use this for initialization
 	void Start ()
     {
+        anim = GetComponent<Animator>();
+
         collider = GetComponent<CircleCollider2D>();
         spriteRend = gameObject.GetComponentInChildren<SpriteRenderer>();
         foundPlayer = null;
         timer = 0.0f;
 
-        spriteRend.DOFade(1.0f, timeDoingAnim).OnComplete(() => DoAction());
+        //spriteRend.DOFade(1.0f, timeDoingAnim).OnComplete(() => DoAction());
 
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //timer += Time.deltaTime;
+        timer += Time.deltaTime;
         
-       /* if (timer >= timeDoingAnim)
+        if(timer >= (timeDoingAnim * 0.85))
+            anim.SetBool("grab", true);
+
+        if (timer >= timeDoingAnim)
         {
+
             Is_Material_Collided();
             Destroy(gameObject);
-        }*/
+        }
 
     }
 

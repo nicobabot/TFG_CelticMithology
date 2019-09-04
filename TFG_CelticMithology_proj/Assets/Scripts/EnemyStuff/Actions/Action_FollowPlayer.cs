@@ -108,7 +108,7 @@ public class Action_FollowPlayer : ActionBase
             //}
 
             //if (can_reach)
-            if (myBT.enemy_type == Enemy_type.MEELE_ENEMY && !waitOnce)
+            if (myBT.enemy_type == Enemy_type.MEELE_ENEMY || myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY && !waitOnce)
             {
                
                 canMove = WaitFirstAnimationFinished();
@@ -123,6 +123,9 @@ public class Action_FollowPlayer : ActionBase
 
                 Direction mydir = DetectDirection(transform.position, player.transform.position);
 
+                if(mySpriteRend == null)
+                    Debug.Log("Rend = null PLAYUer");
+
                 if (mydir == Direction.RIGHT && mySpriteRend != null)
                 {
                     mySpriteRend.flipX = false;
@@ -134,6 +137,8 @@ public class Action_FollowPlayer : ActionBase
             }
 
         }
+
+        
 
         return BT_Status.RUNNING;
     }
@@ -147,6 +152,7 @@ public class Action_FollowPlayer : ActionBase
         if (timerWait>= timeWaiting)
         {
             ret = true;
+            timerWait = 0.0f;
         }
 
         return ret;

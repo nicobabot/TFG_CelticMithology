@@ -18,8 +18,17 @@ public class Action_InvokeEnemies : ActionBase
     private float timer_spawning = 0.0f;
     private float timer_spawning_other_enemy = 0.0f;
 
+    private Animator myAnimator;
+
     override public BT_Status StartAction()
     {
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        if (myAnimator)
+        {
+            myAnimator.SetInteger("Phase", 2);
+        }
+
         player = (GameObject)myBT.myBB.GetParameter("player");
         if (player == null)
         {
