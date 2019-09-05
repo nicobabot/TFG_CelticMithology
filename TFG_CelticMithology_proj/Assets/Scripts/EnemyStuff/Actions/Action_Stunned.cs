@@ -15,6 +15,9 @@ public class Action_Stunned : ActionBase
     bool wantFinished = false;
     Tween myTween;
     YieldInstruction test;
+
+    private Animator myAnimator;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -27,6 +30,13 @@ public class Action_Stunned : ActionBase
         Stunned_Filler.enabled = true;
         Stunned_Filler.fillAmount = 0.0f;
         //stunnedRoutine = StartCoroutine(StunnedTime());
+
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        if (myAnimator)
+        {
+            myAnimator.SetBool("Stuned", true);
+        }
 
         return BT_Status.RUNNING;
     }
@@ -66,6 +76,11 @@ public class Action_Stunned : ActionBase
         timerStun = 0;
         isFinish = true;
         wantFinished = false;
+
+        if (myAnimator)
+        {
+            myAnimator.SetBool("Stuned", false);
+        }
     }
 
     override public BT_Status EndAction()

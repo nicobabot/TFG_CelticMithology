@@ -211,7 +211,7 @@ public class RunTimeRoomControl : MonoBehaviour {
             _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.meleeEnemey, 5, 6));
             _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.caorthannach, 5, 4));
             _possibleEnemies.Add(new EnemiesRoom(Enemy_type.CARTONACH_ENEMY, ProceduralDungeonGenerator.mapGenerator.bluecaorthannach, 5, 4));
-            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DEARDUG_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
+            _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MEELE_ENEMY, ProceduralDungeonGenerator.mapGenerator.dearDug, 5, 3));
         }
         //Need to add something to detect if is the dungeon you want
         if (ProceduralDungeonGenerator.mapGenerator.numDungeon == 1)

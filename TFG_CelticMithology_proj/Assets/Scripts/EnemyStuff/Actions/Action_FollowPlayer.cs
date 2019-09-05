@@ -108,7 +108,7 @@ public class Action_FollowPlayer : ActionBase
             //}
 
             //if (can_reach)
-            if (myBT.enemy_type == Enemy_type.MEELE_ENEMY || myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY && !waitOnce)
+            if ((myBT.enemy_type == Enemy_type.MEELE_ENEMY || myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY) && !waitOnce)
             {
                
                 canMove = WaitFirstAnimationFinished();
@@ -128,11 +128,15 @@ public class Action_FollowPlayer : ActionBase
 
                 if (mydir == Direction.RIGHT && mySpriteRend != null)
                 {
-                    mySpriteRend.flipX = false;
+                    if(myBT.enemy_type == Enemy_type.BANSHEE_ENEMY)
+                        mySpriteRend.flipX = true;
+                    else mySpriteRend.flipX = false;
                 }
                 else if (mydir == Direction.LEFT && mySpriteRend != null)
                 {
-                    mySpriteRend.flipX = true;
+                    if (myBT.enemy_type == Enemy_type.BANSHEE_ENEMY)
+                        mySpriteRend.flipX = false;
+                    else mySpriteRend.flipX = true;
                 }
             }
 
@@ -152,7 +156,7 @@ public class Action_FollowPlayer : ActionBase
         if (timerWait>= timeWaiting)
         {
             ret = true;
-            timerWait = 0.0f;
+            //timerWait = 0.0f;
         }
 
         return ret;
