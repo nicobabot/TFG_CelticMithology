@@ -30,6 +30,11 @@ public class Action_MeleSlashPlayer : ActionBase
     private Collider2D player_detection_slash;
     private Direction dir_collider;
 
+    private Animator myAnimator;
+    float animation_timer = 0.0f;
+
+    bool already_attack = false;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -37,10 +42,13 @@ public class Action_MeleSlashPlayer : ActionBase
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
-        if(myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
+        if (myBT.enemy_type == Enemy_type.DULLAHAN_ENEMY)
             follow_playerRanged_scr = GetComponent<Action_FollowPlayerRanged>();
         else follow_player_scr = GetComponent<Action_FollowPlayer>();
 
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+        Debug.Log("MAC LIR ATTACK");
+        myAnimator.SetBool("Attacking", true);
 
         //EndActionDisable();
         timer_attack = 0;
@@ -88,7 +96,7 @@ public class Action_MeleSlashPlayer : ActionBase
 
         go = father_colliders.transform.GetChild((int)dir_collider).gameObject;
 
-        go.SetActive(true);
+       
 
         if (filler != null)
         {
@@ -107,59 +115,88 @@ public class Action_MeleSlashPlayer : ActionBase
             realTimeSlash = time_to_make_slash - 0.49f;
         }
 
-        if (timer_attack >= (time_to_make_slash*0.5f))
+        //Start shoot animation
+        float lenght_anim = 0;
+        if (myAnimator)
         {
-
-            if (timer_attack < realTimeSlash)
-            {
-                //get_damage_collider.enabled = false;
-                BoxCollider2D col = go.GetComponent<BoxCollider2D>();
-
-                Vector3 posToTest = Vector3.zero;
-
-                posToTest = col.transform.position + new Vector3(col.offset.x, col.offset.y);
-
-                player_detection_slash = Physics2D.OverlapBox(posToTest, col.size, 0, player_mask);
-
-                if (player_detection_slash != null)
-                {
-                    Transform parent = player_detection_slash.transform.parent;
-                    if (parent != null)
-                    {
-                        is_player_detected = true;
-                        Player_Manager player_manager = parent.GetComponent<Player_Manager>();
-                        if (myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
-                        {
-                            player_manager.GetDamage(transform, false);
-                            if (ProceduralDungeonGenerator.mapGenerator.damageDagda)
-                            {
-                                ProceduralDungeonGenerator.mapGenerator.damageDagda.enabled = true;
-                                ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.15f).OnComplete(() => ProceduralDungeonGenerator.mapGenerator.damageDagda.DOFade(0.0f, 0.5f));
-                            }
-                        }
-                        else
-                        {
-                            player_manager.GetDamage(transform);
-                            //EndActionDisable();
-                            //return BT_Status.SUCCESS;
-                        }
-                    }
-
-                }
-
-                go.SetActive(false);
-            }
-            else
-            {
-                if (go != null)
-                    go.SetActive(false);
-
-
-
-                EndActionDisable();
-                return BT_Status.SUCCESS;
-            }
+            AnimatorClipInfo[] anim_clip = myAnimator.GetCurrentAnimatorClipInfo(0);
+            //lenght_anim = anim_clip[0].clip.length;
         }
+
+        if (already_attack)
+        {
+            already_attack = false;
+            go.SetActive(false);
+            EndActionDisable();
+            return BT_Status.SUCCESS;
+        }
+
+        //if (timer_attack >= (time_to_make_slash * 0.5f))
+        // {
+
+        if (animation_timer >= 0.35f && !already_attack)
+            {
+            Debug.Log("EEEEEEEEEEEEEEEEEEEH");
+                go.SetActive(true);
+                animation_timer = 0.0f;
+                already_attack = true;
+            }
+            else animation_timer += Time.deltaTime;
+
+       // }
+
+        
+
+            /* if (timer_attack < realTimeSlash)
+             {
+                 //get_damage_collider.enabled = false;
+                 BoxCollider2D col = go.GetComponent<BoxCollider2D>();
+
+                 Vector3 posToTest = Vector3.zero;
+
+                 posToTest = col.transform.position + new Vector3(col.offset.x, col.offset.y);
+
+                 player_detection_slash = Physics2D.OverlapBox(posToTest, col.size, 0, player_mask);
+
+                 if (player_detection_slash != null)
+                 {
+                     Transform parent = player_detection_slash.transform.parent;
+                     if (parent != null)
+                     {
+                         is_player_detected = true;
+                         Player_Manager player_manager = parent.GetComponent<Player_Manager>();
+                         if (myBT.enemy_type == Enemy_type.DAGDA_ENEMY)
+                         {
+                             player_manager.GetDamage(transform, false);
+                             if (ProceduralDungeonGenerator.mapGenerator.damageDagda)
+                             {
+                                 ProceduralDungeonGenerator.mapGenerator.damageDagda.enabled = true;
+                                 ProceduralDungeonGenerator.mapGenerator.damageDagda.gameObject.transform.DOLocalMoveY(yEndDagdaText, 0.15f).OnComplete(() => ProceduralDungeonGenerator.mapGenerator.damageDagda.DOFade(0.0f, 0.5f));
+                             }
+                         }
+                         else
+                         {
+                             player_manager.GetDamage(transform);
+                             //EndActionDisable();
+                             //return BT_Status.SUCCESS;
+                         }
+                     }
+
+                 }
+
+                 go.SetActive(false);
+             }
+             else
+             {
+                 if (go != null)
+                     go.SetActive(false);
+
+
+
+                 EndActionDisable();
+                 return BT_Status.SUCCESS;
+             }*/
+        
         return BT_Status.RUNNING;
     }
 
@@ -176,6 +213,8 @@ public class Action_MeleSlashPlayer : ActionBase
             filler.fillAmount = 1;
             filler.enabled = false;
         }
+
+        myAnimator.SetBool("Attacking", false);
 
         player_detection_slash = null;
         timer_attack = 0.0f;

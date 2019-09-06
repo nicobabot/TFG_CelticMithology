@@ -70,7 +70,7 @@ public class Action_ThrowBouncingBalls : ActionBase
             {
                 myAnimator.SetBool("KelpieShoot", true);
                 throwBalls = true;
-                InmortalGo.SetActive(true);
+                //InmortalGo.SetActive(true);
             }
         }
         else

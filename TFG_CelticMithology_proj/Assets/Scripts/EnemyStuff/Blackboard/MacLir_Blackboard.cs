@@ -12,6 +12,9 @@ public class MacLir_Blackboard : Blackboard
     public ParameterEnumDirection direction;
     public ParameterBool playerIsInsideRoom;
 
+    public ParameterSpriteRend mySpriteRend;
+    public ParameterAnimator myAnimator;
+
     // Use this for initialization
     override public void Start()
     {
@@ -26,5 +29,7 @@ public class MacLir_Blackboard : Blackboard
         list.Add(player);
         list.Add(direction);
         list.Add(playerIsInsideRoom);
+        list.Add(mySpriteRend);
+        list.Add(myAnimator);
     }
 }

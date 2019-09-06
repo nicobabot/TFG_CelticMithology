@@ -20,6 +20,8 @@ public class Action_FollowPoint : ActionBase {
 
     bool flip = false;
 
+    private Animator myAnimator;
+
     override public BT_Status StartAction()
     {
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -48,8 +50,17 @@ public class Action_FollowPoint : ActionBase {
 
         collider_enemy.enabled = false;
         col_detect_player.enabled = false;
-       
-        return BT_Status.RUNNING;
+        
+        //mclir vicente
+        if(myBT.enemy_type == Enemy_type.MACLIR_ENEMY)
+        {
+            myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+            myAnimator.SetFloat("direction", 0.0f);
+            myAnimator.SetBool("goin_to_invoke", true);
+            myAnimator.SetBool("invokinasion", true);
+        }
+
+            return BT_Status.RUNNING;
     }
 
     override public BT_Status UpdateAction()
@@ -71,6 +82,7 @@ public class Action_FollowPoint : ActionBase {
             {
                 BT_MacLir mac_lir_bt = GetComponent<BT_MacLir>();
                 mac_lir_bt.Set_Invoke_State(true);
+                myAnimator.SetBool("goin_to_invoke", false);
             }
             else if(myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
             {
@@ -81,16 +93,39 @@ public class Action_FollowPoint : ActionBase {
         }
         else
         {
-            if(point_to_follow.x < transform.position.x && flip == false)
+            
+
+            if(myBT.enemy_type == Enemy_type.MACLIR_ENEMY)
             {
-                GetComponent<SpriteRenderer>().flipX = true;
-                flip = true;
+                bool fliped = GetComponent<SpriteRenderer>().flipX;
+
+                if (point_to_follow.x > transform.position.x && fliped == true)
+                {
+                   
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+
+                if (point_to_follow.x < transform.position.x && fliped == false)
+                {
+
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
             }
             else
             {
-                if (point_to_follow.x > transform.position.x && flip == true)
+                if (point_to_follow.x < transform.position.x && flip == false)
                 {
-                    GetComponent<SpriteRenderer>().flipX = false;
+                    Debug.Log("Flipp");
+                    GetComponent<SpriteRenderer>().flipX = true;
+                    flip = true;
+                }
+                else
+                {
+                    if (point_to_follow.x > transform.position.x && flip == true)
+                    {
+                        Debug.Log(" no Flipp");
+                        GetComponent<SpriteRenderer>().flipX = false;
+                    }
                 }
             }
 

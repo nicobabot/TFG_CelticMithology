@@ -33,8 +33,10 @@ public class Action_ChargeToPlayer : ActionBase
     private GameObject player;
     private Vector3 point_to_charge = Vector3.zero;
 
-    private float time_charging_anim = 1.0f;
+    private float time_charging_anim = 1.33f;
     private float timer_charging = 0.0f;
+
+    private Animator myAnimator;
 
     override public BT_Status StartAction()
     {
@@ -43,6 +45,10 @@ public class Action_ChargeToPlayer : ActionBase
         {
             Debug.Log("<color=red> Player not found!_Action_FollowPlayer");
         }
+
+        myAnimator = (Animator)myBT.myBB.GetParameter("myAnimator");
+
+        myAnimator.SetInteger("Phase", 2);
 
         return BT_Status.RUNNING;
     }
@@ -59,7 +65,8 @@ public class Action_ChargeToPlayer : ActionBase
             timer_charging += Time.deltaTime;
 
             get_damage.enabled = false;
-           
+
+            myAnimator.SetBool("player_hit", false);
 
             Charger_Filler.enabled = true;
             Charger_Filler.fillAmount = 1 - timer_charging / time_charging_anim;
@@ -87,11 +94,12 @@ public class Action_ChargeToPlayer : ActionBase
 
             if (mag_to_point.magnitude < 0.85f)
             {
-                if ((bool)myBT.myBB.GetParameter("player_detected_charging"))
+                if ((bool)myBT.myBB.GetParameter("player_detected_charging") && state_charge != ChargingState.STUNNED)
                 {
                     //Next charge
                     can_charge = false;
                     myBT.myBB.SetParameter("player_detected_charging", false);
+                    myAnimator.SetBool("player_hit", true);
                     ResetValues();
                 }
                 else
@@ -105,6 +113,8 @@ public class Action_ChargeToPlayer : ActionBase
                     Stunned_Filler.enabled = true;
                     Stunned_Filler.fillAmount = 1 - timer_stunned / Time_stunned;
 
+                    myAnimator.SetBool("Stunned", true);
+
                     if (timer_stunned > Time_stunned || (bool)myBT.myBB.GetParameter("is_enemy_hit") == true)
                     {
                         Stunned_Filler.enabled = false;
@@ -112,6 +122,7 @@ public class Action_ChargeToPlayer : ActionBase
                         myBT.myBB.SetParameter("is_enemy_hit", false);
                         myBT.myBB.SetParameter("player_detected_charging", false);
                         ResetValues();
+                        myAnimator.SetBool("Stunned", false);
                     }
                 }
                 charge_collider.enabled = false;
@@ -137,6 +148,24 @@ public class Action_ChargeToPlayer : ActionBase
         {
                 point_to_charge = hit.point;
         }
+
+        Direction dir = DetectDirection(transform.position, point_to_charge);
+        myAnimator.SetFloat("direction", (float)dir);
+
+        //Flip if goin left/rigth
+        bool fliped = GetComponent<SpriteRenderer>().flipX;
+
+        if (point_to_charge.x > transform.position.x && fliped == true)
+        {
+
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        if (point_to_charge.x < transform.position.x && fliped == false)
+        {
+
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void OnDrawGizmos()
@@ -155,6 +184,39 @@ public class Action_ChargeToPlayer : ActionBase
     override public BT_Status EndAction()
     {
         return BT_Status.SUCCESS;
+    }
+
+    public Direction DetectDirection(Vector3 my_position, Vector3 new_position)
+    {
+        Direction dir_x = Direction.NEUTRAL;
+        Direction dir_y = Direction.NEUTRAL;
+
+        float x = my_position.x;
+        float y = my_position.y;
+
+        if (x < new_position.x) dir_x = Direction.RIGHT;
+        else dir_x = Direction.LEFT;
+
+        if (y < new_position.y) dir_y = Direction.UP;
+        else dir_y = Direction.DOWN;
+
+        float dif_x = Mathf.Abs(x - new_position.x);
+        float dif_y = Mathf.Abs(y - new_position.y);
+
+        if (dif_x > dif_y)
+        {
+            dir_y = Direction.NEUTRAL;
+            //Debug.Log("Going " + dir_x.ToString());
+            myBT.myBB.SetParameter("direction", dir_x);
+            return dir_x;
+        }
+        else
+        {
+            dir_x = Direction.NEUTRAL;
+            //Debug.Log("Going " + dir_y.ToString());
+            myBT.myBB.SetParameter("direction", dir_y);
+            return dir_y;
+        }
     }
 
 }

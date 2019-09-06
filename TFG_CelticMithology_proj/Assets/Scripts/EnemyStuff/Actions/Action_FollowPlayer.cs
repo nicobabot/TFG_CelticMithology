@@ -123,6 +123,11 @@ public class Action_FollowPlayer : ActionBase
 
                 Direction mydir = DetectDirection(transform.position, player.transform.position);
 
+                if(myBT.enemy_type == Enemy_type.MACLIR_ENEMY)
+                {                 
+                    myAnimator.SetFloat("direction", (float)mydir);
+                }
+
                 if(mySpriteRend == null)
                     Debug.Log("Rend = null PLAYUer");
 

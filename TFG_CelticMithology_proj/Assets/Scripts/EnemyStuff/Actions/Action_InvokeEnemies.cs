@@ -26,7 +26,11 @@ public class Action_InvokeEnemies : ActionBase
 
         if (myAnimator)
         {
-            myAnimator.SetInteger("Phase", 2);
+            if(myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
+                myAnimator.SetInteger("Phase", 2);
+            else myAnimator.SetInteger("Phase", 1);
+
+            myAnimator.SetBool("invokinasion", true);
         }
 
         player = (GameObject)myBT.myBB.GetParameter("player");
@@ -40,7 +44,7 @@ public class Action_InvokeEnemies : ActionBase
         timer_spawning_other_enemy = 0.0f;
 
         collider_enemy.enabled = false;
-        ImortalGO.SetActive(true);
+        //ImortalGO.SetActive(true);
         return BT_Status.RUNNING;
     }
 
@@ -61,8 +65,19 @@ public class Action_InvokeEnemies : ActionBase
                 Vector2 point_to_spawn = transform.position + Random.insideUnitSphere * radius;
 
                 GameObject temp_go = Instantiate(melee_enemy);
-                Soldier_Blackboard soldierBt = temp_go.GetComponent<Soldier_Blackboard>();
-                soldierBt.playerIsInsideRoom.SetValue(true);
+
+                if (myBT.enemy_type == Enemy_type.MACLIR_ENEMY)
+                {
+                    Banshee_Blackboard soldierBt = temp_go.GetComponent<Banshee_Blackboard>();
+                    soldierBt.playerIsInsideRoom.SetValue(true);
+                }
+                else
+                {
+                    Soldier_Blackboard soldierBt = temp_go.GetComponent<Soldier_Blackboard>();
+                    soldierBt.playerIsInsideRoom.SetValue(true);
+                }
+
+                
                 temp_go.SetActive(true);
                 temp_go.transform.position = point_to_spawn;
 
@@ -72,6 +87,8 @@ public class Action_InvokeEnemies : ActionBase
         {
             isFinish = true;
             collider_enemy.enabled = true;
+           
+           
             ImortalGO.SetActive(false);
         }
 
@@ -80,6 +97,8 @@ public class Action_InvokeEnemies : ActionBase
 
     override public BT_Status EndAction()
     {
+        myAnimator.SetBool("invokinasion", false);
+
         return BT_Status.SUCCESS;
     }
 }
