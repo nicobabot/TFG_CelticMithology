@@ -16,6 +16,9 @@ public class BouncingBall : MonoBehaviour {
     float rebaundsCount = 0;
     Vector3 rightVec;
 
+    private Animator anim;
+    float timer = 0.0f;
+
     public void SetDirection(Vector3 newDir)
     {
         dir = newDir;
@@ -30,6 +33,14 @@ public class BouncingBall : MonoBehaviour {
         Player = ProceduralDungeonGenerator.mapGenerator.Player;
         SelectDirection();
         rebaundsCount = 0;
+
+        anim = GetComponent<Animator>();
+        if(anim)
+        {
+            float random = Random.Range(0.0f, 0.35f);
+            Debug.Log(random);
+            anim.SetFloat("offset", random);
+        }
     }
 	
 	// Update is called once per frame
@@ -37,7 +48,11 @@ public class BouncingBall : MonoBehaviour {
 
         if (rebaundsCount >= numRebaunds)
         {
-            Destroy(gameObject);
+            anim.SetBool("dead", true);
+
+            if (timer >= 0.35)
+                Destroy(gameObject);
+            else timer += Time.deltaTime;
         }
         /*else if(rebaundsCount < numRebaunds)
         {
@@ -86,7 +101,7 @@ public class BouncingBall : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, dir);
+        //Gizmos.DrawLine(transform.position, dir);
         /*if (ray != null && col!=null)
         {
             Gizmos.DrawLine(col.transform.position, ray.normal);

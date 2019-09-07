@@ -312,7 +312,7 @@ MonoBehaviour:
   layer_wall:
     serializedVersion: 2
     m_Bits: 10240
-  projectile: {fileID: 1682421969592024, guid: d4ce94043e64502449fc181d4bbe2a61, type: 2}
+  projectile: {fileID: 1034930822092238, guid: 87a7b89712ce2a94189c6f632cd08ea3, type: 2}
   time_to_spawn_projectile: 2
   only_stright_shots: 0
   projectile_min_distance: 0.1
