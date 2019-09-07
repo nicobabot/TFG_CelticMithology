@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61370060543431530}
   - component: {fileID: 114571712251814410}
   - component: {fileID: 114060054075025250}
+  - component: {fileID: 95635591110820800}
   m_Layer: 0
   m_Name: FireBallMorr
   m_TagString: Untagged
@@ -68,6 +69,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45335957, y: 0.39937502}
   m_EdgeRadius: 0
+--- !u!95 &95635591110820800
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088267445570470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 716011f95d49d3541be60684db3de48c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114060054075025250
 MonoBehaviour:
   m_ObjectHideFlags: 1

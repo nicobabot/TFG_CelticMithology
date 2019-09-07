@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1749,7 +1749,7 @@ Prefab:
         type: 2}
       propertyPath: macLir
       value: 
-      objectReference: {fileID: 1280355210869254, guid: dd93e430852f4274e87d244dec50b2f7,
+      objectReference: {fileID: 1148829782586678, guid: 95aaffee69cc4164d95fa4e27b6af1ee,
         type: 2}
     - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
         type: 2}
@@ -1776,6 +1776,12 @@ Prefab:
       propertyPath: audioSourceDeads
       value: 
       objectReference: {fileID: 425538709}
+    - target: {fileID: 114945801177303956, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1,
+        type: 2}
+      propertyPath: dearDug
+      value: 
+      objectReference: {fileID: 1717113336692986, guid: f62b5f1958961ca4487e2ac1e277bf19,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d7d7b636bdd8345ba1e5a0aeffc1f1, type: 2}
   m_IsPrefabAsset: 0
@@ -1956,9 +1962,9 @@ RectTransform:
   m_Father: {fileID: 1184375434}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &780954313
@@ -2601,9 +2607,9 @@ RectTransform:
   m_Father: {fileID: 1184375434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173.25, y: -150.42}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 346.5, y: 77.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1232433443

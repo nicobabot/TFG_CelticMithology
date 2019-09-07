@@ -26,7 +26,11 @@ public class Action_SkeletonInvoke : ActionBase
     private Coroutine actionCoroutine;
     private Transform[] sheletonsInstancied;
 
+    public GameObject rayParticles;
+
     private Animator myAnimator;
+
+    float timeroso = 0.0f;
 
     override public BT_Status StartAction()
     {
@@ -114,6 +118,9 @@ public class Action_SkeletonInvoke : ActionBase
         {
             myAnimator.SetBool("Shoot", true);
         }
+
+        rayParticles.SetActive(true);
+        Debug.Log("EXecuteRAY");
     }
 
     void ResetAction()
@@ -122,6 +129,8 @@ public class Action_SkeletonInvoke : ActionBase
         isFinish = true;
         myBT.myBB.SetParameter("invSkelPlayerDet", false);
         rayGO.SetActive(false);
+        rayParticles.SetActive(false);
+        Debug.Log("NO RAY");
     }
 
     IEnumerator StartFocusingWithRay()
@@ -177,10 +186,14 @@ public class Action_SkeletonInvoke : ActionBase
     {
         if (rayDetect.playerHitted)
         {
-            ((BT_Morrigan)myBT).wantToInvoke = true;
-            rayDetect.playerHitted = false;
-
-            ResetAction();
+            if (timeroso >= 0.75f)
+            {
+                ((BT_Morrigan)myBT).wantToInvoke = true;
+                rayDetect.playerHitted = false;
+                timeroso = 0.0f;
+                ResetAction();
+            }
+            else timeroso += Time.deltaTime;
         }
 
         return BT_Status.RUNNING;
@@ -188,6 +201,7 @@ public class Action_SkeletonInvoke : ActionBase
 
     override public BT_Status EndAction()
     {
+        
         return BT_Status.SUCCESS;
     }
 

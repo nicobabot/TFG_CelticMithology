@@ -89,7 +89,7 @@ override public BT_Status StartAction()
 
                 if(myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
                 {
-                    my_projectile.transform.position = spawn_pos.transform.position;
+                   // my_projectile.transform.position = spawn_pos.transform.position;
                 }
 
                 Projectile_Behaviour projectile_scr = my_projectile.GetComponent<Projectile_Behaviour>();
@@ -119,9 +119,9 @@ override public BT_Status StartAction()
 
         RaycastHit2D hit;
 
-        if (myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
+        /*if (myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
             hit = Physics2D.Raycast(spawn_pos.transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
-        else hit = Physics2D.Raycast(transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
+        else*/ hit = Physics2D.Raycast(transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
 
         if (hit != null)
         {

@@ -16,7 +16,8 @@ public class TutorialScript : MonoBehaviour {
 	void Update () {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && numTutorial == 0)
         {
-            SceneManager.LoadScene("TutorialScene2", LoadSceneMode.Single);
+            SceneManager.LoadScene("DungeonGenerator", LoadSceneMode.Single);
+            //SceneManager.LoadScene("TutorialScene2", LoadSceneMode.Single);
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Abutton")) && numTutorial == 1)
         {
