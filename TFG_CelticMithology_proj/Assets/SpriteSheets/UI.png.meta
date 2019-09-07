@@ -3,6 +3,10 @@ guid: 972ac94aefacf9f468e4c77184490e48
 TextureImporter:
   fileIDToRecycleName:
     21300000: Skull
+    21300002: Title
+    21300004: UI_0
+    21300006: UI_1
+    21300008: UI_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -100,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 9
         width: 15
         height: 17
       alignment: 0
@@ -111,6 +115,86 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3f0a6c7d31b4ccf41a37c5cec6e971c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 107
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0071e5cc90fea184ebc48e09efb983e0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 157
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716580765a89f8246a1b1044aabca621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_1
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 4
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe24ae44535a2b74cbc670318ee23328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 4
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 191d94cc697aded46a4dd42055a33fac
       vertices: []
       indices: 
       edges: []

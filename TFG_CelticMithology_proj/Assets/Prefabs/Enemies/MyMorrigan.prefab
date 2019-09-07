@@ -802,7 +802,7 @@ MonoBehaviour:
   shootPlayer: {fileID: 114615660009114678}
   pushback: {fileID: 114115876643757954}
   dead: {fileID: 114512871910799144}
-  lives_to_change_phase_2: 1
+  lives_to_change_phase_2: 4
   lives_to_change_phase_3: 5
   wantToInvoke: 1
   wantToInvokeEnemies: 1
