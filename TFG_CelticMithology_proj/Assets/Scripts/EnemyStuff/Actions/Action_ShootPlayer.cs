@@ -21,6 +21,8 @@ public class Action_ShootPlayer : ActionBase {
     private Vector3 hitpoint_wall;
     private Action_FollowPlayer follow_player_scr;
 
+    public GameObject spawn_pos;
+
     private Animator anim;
     float animation_timer = 0.0f;
 
@@ -84,6 +86,12 @@ override public BT_Status StartAction()
                 GameObject my_projectile = Instantiate(projectile);
                 my_projectile.SetActive(true);
                 my_projectile.transform.position = transform.position;
+
+                if(myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
+                {
+                    my_projectile.transform.position = spawn_pos.transform.position;
+                }
+
                 Projectile_Behaviour projectile_scr = my_projectile.GetComponent<Projectile_Behaviour>();
                 if (projectile_scr != null)
                 {
@@ -109,7 +117,12 @@ override public BT_Status StartAction()
         temp_position_player.y += size_addition_player;
         pushback_dir = temp_position_player - transform.position;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
+        RaycastHit2D hit;
+
+        if (myBT.enemy_type == Enemy_type.MORRIGAN_ENEMY)
+            hit = Physics2D.Raycast(spawn_pos.transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
+        else hit = Physics2D.Raycast(transform.position, pushback_dir.normalized, Mathf.Infinity, layer_wall);
+
         if (hit != null)
         {
             hitpoint_wall = hit.point;

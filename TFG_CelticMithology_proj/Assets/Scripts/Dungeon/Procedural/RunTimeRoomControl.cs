@@ -131,7 +131,7 @@ public class RunTimeRoomControl : MonoBehaviour {
                     _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MACLIR_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
 
                 if (ProceduralDungeonGenerator.mapGenerator.numDungeon == 1)
-                    _possibleEnemies.Add(new EnemiesRoom(Enemy_type.DAGDA_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
+                    _possibleEnemies.Add(new EnemiesRoom(Enemy_type.MORRIGAN_ENEMY, ProceduralDungeonGenerator.mapGenerator.macLir, 5, 4));
 
                 GameObject go = Instantiate(_possibleEnemies[0].myEnemy);
                 go.transform.position = _enemyPositions[0]._position;
@@ -538,6 +538,14 @@ public class RunTimeRoomControl : MonoBehaviour {
                     if (bb != null)
                     {
                         ((Dagda_Blackboard)bb).playerIsInsideRoom.myValue = true;
+                    }
+                    break;
+
+                case Enemy_type.MORRIGAN_ENEMY:
+                    bb = enemiesRoom.myEnemy.GetComponentInChildren<Morrigan_Blackboard>();
+                    if(bb)
+                    {
+                        ((Morrigan_Blackboard)bb).playerIsInsideRoom.myValue = true;
                     }
                     break;
 

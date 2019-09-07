@@ -32,7 +32,7 @@ public class GoToBoss : MonoBehaviour {
             }
             else if (numDungeon == 1)
             {
-                GameObject go = GameObject.Find("myDagda(Clone)");
+                GameObject go = GameObject.Find("MyMorrigan(Clone)");
                 if (go == null) return;
                 player.transform.position = go.transform.position;
             }
